@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Summarizer Online Free — Extractive Summary in Seconds</title>
+  <meta name="description" content="Free extractive text summarizer: paste any text and get a shorter version made of its most important sentences. Frequency-based, no signup, runs in your browser.">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "QuickTools Text Summarizer",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "Free extractive text summarizer that shortens text by selecting its most important sentences using frequency-based scoring. Runs 100% in the browser."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does this text summarizer work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It is an extractive, frequency-based summarizer. It splits your text into sentences, counts how often each significant word appears in the whole document, scores every sentence by the frequencies of the words it contains, and keeps the top-scoring sentences in their original order. No machine learning and no AI model are involved — nothing is generated or reworded." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this an AI summarizer?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. This tool uses classic extractive summarization: word-frequency scoring with stopword removal and length normalization. It cannot understand meaning the way a large language model does, which is exactly why its output is always a faithful subset of your original sentences — it never invents facts." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between sentences mode and percent mode?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sentences mode keeps an exact number of sentences (e.g. the 3 most important). Percent mode keeps that share of the total — 25% of a 20-sentence article keeps 5 sentences. Percent mode adapts automatically to document length." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the summary keep sentences in their original order?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Reading order matters for comprehension. The tool ranks sentences by importance to choose which ones survive, then restores document order so the summary still reads like a condensed version of your text instead of a shuffled pile of highlights." }
+      },
+      {
+        "@type": "Question",
+        "name": "What text works best with extractive summarization?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Factual, information-dense writing: articles, reports, meeting notes, research summaries. It works poorly on very short texts (under ~5 sentences there is little to compress), dialogue, poetry, and texts where the key point is implied rather than stated outright." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my text uploaded anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The summarizer runs 100% in your browser with JavaScript. Your text never leaves your device, is never stored, and never sent to any server." }
+      }
+    ]
+  }
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T2LH1SV8Y5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8008490095120298"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="QuickTools home">
+        <span class="brand-name">QuickTools</span>
+        <span class="brand-tag">Free online tools that run in your browser.</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> › <a href="../index.html">Tools</a> › <span aria-current="page">Text Summarizer</span>
+    </nav>
+
+    <h1>Free Online Text Summarizer</h1>
+    <p><strong>Extractive summarizer — runs 100% in your browser, your text never leaves your device.</strong></p>
+
+    <section class="tool-box" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" style="margin-top:0">Summarize your text</h2>
+      <label for="ts-input">Paste your text below (works best with 5+ sentences):</label>
+      <textarea id="ts-input" rows="8" placeholder="Paste an article, report, or notes here…" aria-describedby="ts-stats"></textarea>
+      <div class="form-row">
+        <div class="form-field">
+          <span id="ts-mode-label" style="font-weight:bold">Summary length</span>
+          <div role="radiogroup" aria-labelledby="ts-mode-label" style="display:flex;gap:1rem;margin-top:.4rem">
+            <label><input type="radio" name="ts-mode" value="sentences" checked> Sentences</label>
+            <label><input type="radio" name="ts-mode" value="percent"> Percent</label>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="ts-n">Keep how many?</label>
+          <input type="number" id="ts-n" min="1" value="3" style="max-width:8rem">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button type="button" id="ts-go">Summarize</button>
+        <button type="button" id="ts-clear">Clear</button>
+        <button type="button" id="ts-copy">Copy summary</button>
+      </div>
+      <div class="error" id="ts-err" style="display:none" role="alert"></div>
+      <label for="ts-output" style="font-weight:bold">Summary</label>
+      <textarea id="ts-output" rows="6" readonly placeholder="Your summary will appear here…" aria-live="polite"></textarea>
+      <div class="stats-grid" id="ts-stats" aria-live="polite">
+        <div class="stat"><div class="stat-label">Original words</div><div class="stat-value" id="ts-ow">0</div></div>
+        <div class="stat"><div class="stat-label">Summary words</div><div class="stat-value" id="ts-sw">0</div></div>
+        <div class="stat"><div class="stat-label">Sentences kept</div><div class="stat-value" id="ts-sk">0 / 0</div></div>
+        <div class="stat"><div class="stat-label">Compression</div><div class="stat-value" id="ts-cp">–</div></div>
+      </div>
+    </section>
+
+    <section class="prose" aria-labelledby="how-ts">
+      <h2 id="how-ts">How this summarizer works (honestly)</h2>
+      <p>This is an <strong>extractive, frequency-based summarizer</strong> — a classic text-processing technique, not artificial intelligence and not machine learning. It works in four transparent steps:</p>
+      <ol>
+        <li><strong>Split</strong> your text into sentences.</li>
+        <li><strong>Count</strong> how often each significant word appears in the whole document (common filler words like "the", "and", "is" are ignored via a stopword list).</li>
+        <li><strong>Score</strong> every sentence by the frequencies of the words it contains, normalized for length so long sentences don't automatically win.</li>
+        <li><strong>Keep</strong> the top-scoring sentences and return them in their original order, so the summary reads like a condensed version of your text.</li>
+      </ol>
+      <p>The upside of this old-fashioned approach: the summary is always a faithful subset of your original sentences. It never invents facts, never hallucinates, and you can trace every summary sentence back to its source. Use <strong>Sentences</strong> mode when you want an exact length ("give me 3 sentences"), and <strong>Percent</strong> mode when the document length varies — 25% of a 40-sentence report keeps 10 sentences automatically.</p>
+
+      <h2>What extractive summarization can't do</h2>
+      <ul>
+        <li><strong>It doesn't understand meaning.</strong> It scores words by frequency, so a sentence can rank highly just for repeating terms — and a crucial sentence stated once, subtly, can be missed.</li>
+        <li><strong>It can't rephrase.</strong> Unlike an AI model, it never rewrites or combines ideas; the summary is stitched from original sentences, which can feel choppy.</li>
+        <li><strong>It struggles with short text.</strong> Below about five sentences there is little worth compressing — frequency statistics need volume to be meaningful.</li>
+        <li><strong>It misses implied points.</strong> Dialogue, humor, poetry, and arguments where the conclusion is implied rather than stated will summarize poorly.</li>
+        <li><strong>Abbreviations can split sentences.</strong> "Mr.", "e.g." and similar may create extra sentence breaks, slightly skewing the ranking.</li>
+      </ul>
+      <p>For study notes, meeting minutes, and news articles it is genuinely useful. For nuanced or creative writing, read the original.</p>
+    </section>
+
+    <section class="prose faq" aria-labelledby="ts-faq">
+      <h2 id="ts-faq">Frequently asked questions</h2>
+      <details>
+        <summary>How does this text summarizer work?</summary>
+        <p>It is an extractive, frequency-based summarizer. It splits your text into sentences, counts how often each significant word appears in the whole document, scores every sentence by the frequencies of the words it contains, and keeps the top-scoring sentences in their original order. No machine learning and no AI model are involved.</p>
+      </details>
+      <details>
+        <summary>Is this an AI summarizer?</summary>
+        <p>No. This tool uses classic extractive summarization: word-frequency scoring with stopword removal and length normalization. It cannot understand meaning the way a large language model does — which is exactly why its output is always a faithful subset of your original sentences and never invents facts.</p>
+      </details>
+      <details>
+        <summary>What is the difference between sentences mode and percent mode?</summary>
+        <p>Sentences mode keeps an exact number of sentences. Percent mode keeps that share of the total — 25% of a 20-sentence article keeps 5 sentences — and adapts automatically to document length.</p>
+      </details>
+      <details>
+        <summary>Why does the summary keep sentences in their original order?</summary>
+        <p>Reading order matters for comprehension. The tool ranks sentences by importance to choose which survive, then restores document order so the summary reads like a condensed version of your text.</p>
+      </details>
+      <details>
+        <summary>What text works best with extractive summarization?</summary>
+        <p>Factual, information-dense writing: articles, reports, meeting notes, research summaries. It works poorly on very short texts, dialogue, poetry, and texts where the key point is implied rather than stated.</p>
+      </details>
+      <details>
+        <summary>Is my text uploaded anywhere?</summary>
+        <p>No. The summarizer runs 100% in your browser with JavaScript. Your text never leaves your device, is never stored, and never sent to any server.</p>
+      </details>
+    </section>
+
+    <section class="related-tools" aria-labelledby="related">
+      <h2 id="related">Related tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="../word-counter/index.html"><h3>Word Counter</h3><p>Words, sentences, paragraphs and reading time estimates.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../text-cleaner/index.html"><h3>Text Cleaner</h3><p>Remove line breaks, duplicates and extra whitespace.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../case-converter/index.html"><h3>Case Converter</h3><p>UPPERCASE, lowercase, Title Case and more in one click.</p><span class="card-cta">Open tool →</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../privacy.html">Privacy</a></li>
+          <li><a href="../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">© <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+    </div>
+  </footer>
+  <script src="../../assets/logic/text-summarizer.js"></script>
+  <script src="../../assets/main.js"></script>
+  <script>
+    (function () {
+      var Q = window.QuickTools;
+      var input = document.getElementById('ts-input');
+      var output = document.getElementById('ts-output');
+      var nInput = document.getElementById('ts-n');
+      var err = document.getElementById('ts-err');
+
+      function currentMode() {
+        var r = document.querySelector('input[name="ts-mode"]:checked');
+        return r ? r.value : 'sentences';
+      }
+
+      function updateHint() {
+        if (currentMode() === 'percent') {
+          nInput.min = '1'; nInput.max = '100'; nInput.value = '25';
+          nInput.previousElementSibling.textContent = 'Keep what percent?';
+        } else {
+          nInput.removeAttribute('max'); nInput.min = '1'; nInput.value = '3';
+          nInput.previousElementSibling.textContent = 'Keep how many?';
+        }
+      }
+      Array.prototype.forEach.call(document.querySelectorAll('input[name="ts-mode"]'), function (r) {
+        r.addEventListener('change', updateHint);
+      });
+
+      function stats(r) {
+        document.getElementById('ts-ow').textContent = r.originalWords.toLocaleString();
+        document.getElementById('ts-sw').textContent = r.summaryWords.toLocaleString();
+        document.getElementById('ts-sk').textContent = r.keptSentences + ' / ' + r.originalSentences;
+        document.getElementById('ts-cp').textContent =
+          r.originalSentences === 0 ? '–' : r.compressionPct + '% shorter';
+      }
+
+      document.getElementById('ts-go').addEventListener('click', function () {
+        try {
+          var r = Q.textSummarizer.summarize(input.value, {
+            mode: currentMode(), value: Number(nInput.value)
+          });
+          Q.hideError(err);
+          output.value = r.summary || '(No sentences to summarize — paste some text first.)';
+          stats(r);
+        } catch (e) {
+          Q.showError(err, e.message);
+        }
+      });
+      document.getElementById('ts-clear').addEventListener('click', function () {
+        input.value = ''; output.value = '';
+        stats({ originalWords: 0, summaryWords: 0, keptSentences: 0, originalSentences: 0, compressionPct: 0 });
+        Q.hideError(err); input.focus();
+      });
+      document.getElementById('ts-copy').addEventListener('click', function (e) {
+        if (!output.value) return;
+        Q.copyText(output.value).then(function () { Q.flashButton(e.currentTarget); });
+      });
+    })();
+  </script>
+</body>
+</html>
