@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compress Image Online Free — Reduce Image Size Without Uploading</title>
+  <meta name="description" content="Free image compressor: shrink JPG, PNG and WebP photos by quality or to an exact target size (e.g. under 100KB). No upload — files never leave your browser.">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I compress an image to exactly 100KB?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Choose \u201cTo exact file size\u201d, type 100, and click Compress images. The tool automatically finds the highest JPEG/WebP quality whose output stays under 100KB \u2014 a feature most free compressors do not offer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will compressing reduce image quality?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on the setting. Quality 80 looks identical to the original for almost all photos while cutting the file roughly in half. Below ~50 you will start to see artifacts in skies, gradients and text. The results list shows exactly what you saved so you can judge the tradeoff."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is there no upload?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compression happens 100% in your browser using the canvas API. Nothing is uploaded, so there are no queues, no accounts and no privacy concerns \u2014 unlike most online compressors, which require sending your photos to their servers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "JPG or WebP \u2014 which compresses better?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WebP typically produces files ~25\u201335% smaller than JPG at the same visual quality and is supported by all modern browsers. Choose WebP unless you need maximum compatibility with old software."
+      }
+    }
+  ]
+}
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T2LH1SV8Y5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8008490095120298"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="QuickTools home">
+        <span class="brand-name">QuickTools</span>
+        <span class="brand-tag">Free online tools that run in your browser.</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> &#8250; <a href="../index.html">Tools</a> &#8250; <span aria-current="page">Image Compressor</span>
+    </nav>
+
+    <h1>Free Image Compressor</h1>
+    <p><strong>Runs 100% in your browser — your images never leave your device.</strong></p>
+
+    <section class="tool-box" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" style="margin-top:0">Compress images</h2>
+      <div id="tool-error" class="error-box" style="display:none" role="alert"></div>
+      <div class="drop-zone" id="dz" role="button" tabindex="0" aria-label="Upload files"><p style="font-size:2rem; margin:0 0 .5rem">&#128247;</p><p><strong>Drop image(s) here</strong> or click to browse</p><p class="progress-note">JPG, PNG, WebP — multiple files OK</p><input type="file" id="file-input" accept="image/*" multiple></div>
+      <ul class="file-list" id="file-list"></ul>
+      <div class="opt-grid" id="opts" style="display:none">
+        <div class="opt-row" role="radiogroup" aria-label="Compression mode">
+          <label><input type="radio" name="cp-mode" value="quality" checked> By quality</label>
+          <label><input type="radio" name="cp-mode" value="target"> To exact file size</label>
+        </div>
+        <div class="opt-row" id="cp-quality-row">
+          <label for="cp-quality">Quality: <output id="cp-quality-val" for="cp-quality">80</output>%</label>
+          <input type="range" id="cp-quality" min="10" max="95" value="80" step="1">
+        </div>
+        <div class="opt-row" id="cp-target-row" style="display:none">
+          <label for="cp-target">Target size (KB):</label>
+          <input type="number" id="cp-target" value="100" min="5" max="10240" style="width:7rem">
+          <span class="progress-note">e.g. 20, 50, 100, 500</span>
+        </div>
+        <div class="opt-row">
+          <label for="cp-format">Output format:</label>
+          <select id="cp-format">
+            <option value="jpg" selected>JPG</option>
+            <option value="webp">WebP</option>
+            <option value="png">PNG (lossless — quality ignored)</option>
+          </select>
+        </div>
+        <div class="btn-row">
+          <button type="button" id="cp-go" class="primary">Compress images</button>
+          <button type="button" id="cp-clear">Clear</button>
+        </div>
+        <p class="progress-note" id="cp-status"></p>
+        <ul class="download-list" id="cp-downloads"></ul>
+      </div>
+    </section>
+
+    <section class="prose" aria-labelledby="about-tool">
+      <h2 id="about-tool">About this image compressor</h2>
+      <p>Email attachment limits, upload forms capped at 2MB, and slow portfolio pages all punish oversized photos. This free image compressor shrinks JPG, PNG and WebP images two ways: pick a quality level for a quick shrink, or — the trick most tools skip — set an exact target file size like 100KB and let the tool hunt the best quality that fits. That exact-size mode is what forums, marketplaces and application portals actually ask for.</p>
+      <p>Everything runs on a canvas in your browser: the image is re-encoded locally at your chosen quality, and the target-size mode binary-searches the highest quality that lands under your KB limit. Unlike TinyPNG-style services there is no upload, no queue and no monthly cap — and the privacy story is stronger, because your photos are never transmitted anywhere.</p>
+      <h2>How to use</h2>
+      <ol>
+        <li>Drop one or more images into the upload box (or click to browse).</li>
+        <li>Choose <strong>By quality</strong> and move the slider, or <strong>To exact file size</strong> and type a KB target (e.g. 100).</li>
+        <li>Pick JPG or WebP output (PNG is lossless, so it cannot shrink by quality).</li>
+        <li>Click <strong>Compress images</strong> — the results show before/after sizes and the percentage saved.</li>
+      </ol>
+      <h2>Limitations</h2>
+      <ul>
+        <li>Compression is lossy: pushing quality very low or targeting a tiny KB size will visibly degrade the image, especially text and sharp edges.</li>
+        <li>PNG output is lossless — it will not shrink meaningfully by “quality”; use JPG or WebP for real compression.</li>
+        <li>Exact-size mode cannot go below the encoder’s minimum quality; extremely small targets on huge photos may undershoot slightly or fail.</li>
+        <li>Animated GIFs are compressed as a single still frame.</li>
+      </ul>
+    </section>
+
+    <section class="prose faq" aria-labelledby="tool-faq">
+      <h2 id="tool-faq">Frequently asked questions</h2>
+      <details>
+        <summary>How do I compress an image to exactly 100KB?</summary>
+        <p>Choose “To exact file size”, type 100, and click Compress images. The tool automatically finds the highest JPEG/WebP quality whose output stays under 100KB — a feature most free compressors do not offer.</p>
+      </details>
+      <details>
+        <summary>Will compressing reduce image quality?</summary>
+        <p>It depends on the setting. Quality 80 looks identical to the original for almost all photos while cutting the file roughly in half. Below ~50 you will start to see artifacts in skies, gradients and text. The results list shows exactly what you saved so you can judge the tradeoff.</p>
+      </details>
+      <details>
+        <summary>Why is there no upload?</summary>
+        <p>Compression happens 100% in your browser using the canvas API. Nothing is uploaded, so there are no queues, no accounts and no privacy concerns — unlike most online compressors, which require sending your photos to their servers.</p>
+      </details>
+      <details>
+        <summary>JPG or WebP — which compresses better?</summary>
+        <p>WebP typically produces files ~25–35% smaller than JPG at the same visual quality and is supported by all modern browsers. Choose WebP unless you need maximum compatibility with old software.</p>
+      </details>
+    </section>
+
+    <section class="related-tools" aria-labelledby="related">
+      <h2 id="related">Related tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="../image-resizer/index.html"><h3>Image Resizer</h3><p>Shrink dimensions too — smaller pixels, smaller files.</p><span class="card-cta">Open tool &rarr;</span></a>
+        <a class="tool-card" href="../image-converter/index.html"><h3>JPG to PNG Converter</h3><p>Switch formats before or after compressing.</p><span class="card-cta">Open tool &rarr;</span></a>
+        <a class="tool-card" href="../image-to-pdf/index.html"><h3>Image to PDF</h3><p>Bundle compressed images into one PDF.</p><span class="card-cta">Open tool &rarr;</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../privacy.html">Privacy</a></li>
+          <li><a href="../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">&copy; <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+    </div>
+  </footer>
+  <script src="../../assets/logic/image-compressor.js"></script>
+  <script src="../../assets/main.js"></script>
+<script>
+/* Image Compressor UI */
+(function () {
+  'use strict';
+  var C = window.QuickTools.imageCompressor, Q = window.QuickTools;
+  var errBox = document.getElementById('tool-error');
+  var zone = document.getElementById('dz'), input = document.getElementById('file-input');
+  var list = document.getElementById('file-list');
+  var files = [];
+
+  function renderList() {
+    list.innerHTML = '';
+    files.forEach(function (f, i) {
+      var li = document.createElement('li');
+      var meta = document.createElement('div'); meta.className = 'file-meta';
+      var nm = document.createElement('div'); nm.className = 'fname'; nm.textContent = f.name;
+      var sz = document.createElement('div'); sz.className = 'fsize'; sz.textContent = C.formatBytes(f.size);
+      meta.appendChild(nm); meta.appendChild(sz);
+      var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'remove-btn'; rm.textContent = 'Remove';
+      rm.addEventListener('click', function () { files.splice(i, 1); renderList(); });
+      li.appendChild(meta); li.appendChild(rm); list.appendChild(li);
+    });
+    document.getElementById('opts').style.display = files.length ? '' : 'none';
+  }
+
+  Q.setupDropZone(zone, input, function (picked) {
+    Q.hideError(errBox);
+    var bad = 0;
+    picked.forEach(function (f) { /^image\//.test(f.type || '') ? files.push(f) : bad++; });
+    if (bad) Q.showError(errBox, bad + ' file(s) skipped: not an image.');
+    renderList();
+  });
+
+  document.getElementById('cp-clear').addEventListener('click', function () {
+    files = []; renderList();
+    document.getElementById('cp-downloads').innerHTML = '';
+    document.getElementById('cp-status').textContent = '';
+    Q.hideError(errBox);
+  });
+
+  var qInput = document.getElementById('cp-quality');
+  qInput.addEventListener('input', function () {
+    document.getElementById('cp-quality-val').textContent = qInput.value;
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="cp-mode"]'), function (radio) {
+    radio.addEventListener('change', function () {
+      var m = document.querySelector('input[name="cp-mode"]:checked').value;
+      document.getElementById('cp-quality-row').style.display = m === 'quality' ? '' : 'none';
+      document.getElementById('cp-target-row').style.display = m === 'target' ? '' : 'none';
+    });
+  });
+
+  function encodeAt(canvas, mime, quality) {
+    return Q.canvasToBlob(canvas, mime, quality).then(function (blob) { return blob.size; });
+  }
+
+  document.getElementById('cp-go').addEventListener('click', function () {
+    Q.hideError(errBox);
+    if (!files.length) { Q.showError(errBox, 'Add at least one image first.'); return; }
+    var mode = document.querySelector('input[name="cp-mode"]:checked').value;
+    var format = document.getElementById('cp-format').value;
+    var mime = C.mimeForFormat(format);
+    if (format === 'png' && mode === 'target') {
+      Q.showError(errBox, 'Exact-size mode needs JPG or WebP — PNG is lossless and cannot shrink by quality.');
+      return;
+    }
+    var targetKB = parseFloat(document.getElementById('cp-target').value);
+    if (mode === 'target' && (!(targetKB >= 5) || targetKB > 10240)) {
+      Q.showError(errBox, 'Target size must be between 5 KB and 10240 KB.'); return;
+    }
+    var status = document.getElementById('cp-status');
+    var dl = document.getElementById('cp-downloads');
+    dl.innerHTML = '';
+    var done = 0, failed = 0;
+    status.textContent = 'Compressing 0 of ' + files.length + '\u2026';
+
+    files.forEach(function (f) {
+      Q.readFileAsDataURL(f).then(Q.loadImage).then(function (img) {
+        var canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+        canvas.getContext('2d').drawImage(img, 0, 0);
+        if (mode === 'quality') {
+          var q = C.clampQuality(parseFloat(qInput.value));
+          return Q.canvasToBlob(canvas, mime, q).then(function (blob) { return { blob: blob, q: q }; });
+        }
+        var targetBytes = Math.round(targetKB * 1024);
+        return C.findQualityForTargetSize(function (q) { return encodeAt(canvas, mime, q); }, targetBytes)
+          .then(function (r) { return Q.canvasToBlob(canvas, mime, r.quality).then(function (blob) { return { blob: blob, q: r.quality }; }); });
+      }).then(function (r) {
+        var name = C.buildOutputName(f.name, format);
+        var url = URL.createObjectURL(r.blob);
+        var saved = C.savingsPercent(f.size, r.blob.size);
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.className = 'dl'; a.href = url; a.download = name;
+        a.textContent = 'Download ' + name + ' (' + C.formatBytes(f.size) + ' \u2192 ' + C.formatBytes(r.blob.size) + ', \u2212' + saved + '%)';
+        li.appendChild(a); dl.appendChild(li);
+      }).catch(function () { failed++; }).then(function () {
+        done++;
+        status.textContent = done === files.length
+          ? (failed ? 'Done: ' + (done - failed) + ' compressed, ' + failed + ' failed.' : 'Done: all ' + done + ' images compressed.')
+          : 'Compressing ' + done + ' of ' + files.length + '\u2026';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
