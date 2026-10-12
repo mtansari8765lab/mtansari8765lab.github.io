@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator Online Free — How Old Am I?</title>
+  <meta name="description" content="Free age calculator online: enter your date of birth and get your exact age in years, months and days, total days lived, and a countdown to your next birthday.">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is age calculated in years, months and days?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Full years are counted first, then the remaining whole months, then the remaining days — the same convention used on official documents. For example, born 15 June 1990 and measured on 12 October 2026 gives 36 years, 3 months and 27 days." }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if I was born on February 29?",
+        "acceptedAnswer": { "@type": "Answer", "text": "In non-leap years your birthday is observed on February 28 for the next-birthday countdown, the common legal convention. Your age in years, months and days is still computed exactly from your actual birth date." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the age calculator handle time zones or daylight saving?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — all math is done on calendar dates only, never on timestamps, so daylight-saving transitions and time zones can never shift your age by a day." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I calculate someone's age on a past or future date?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Change the 'as of' date to any date on or after the birth date — useful for checking eligibility ages for applications, licenses or registrations." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my date of birth uploaded anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The calculator runs 100% in your browser with JavaScript. Your birth date never leaves your device, is never stored, and never sent to any server." }
+      }
+    ]
+  }
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T2LH1SV8Y5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8008490095120298"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="QuickTools home">
+        <span class="brand-name">QuickTools</span>
+        <span class="brand-tag">Free online tools that run in your browser.</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> › <a href="../index.html">Tools</a> › <span aria-current="page">Age Calculator</span>
+    </nav>
+
+    <h1>Free Online Age Calculator — How Old Am I?</h1>
+    <p><strong>Runs 100% in your browser — your birth date never leaves your device.</strong></p>
+
+    <section class="tool-box" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" style="margin-top:0">Calculate your exact age</h2>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="age-birth">Date of birth</label>
+          <input type="date" id="age-birth">
+        </div>
+        <div class="form-field">
+          <label for="age-on">Age as of (defaults to today)</label>
+          <input type="date" id="age-on">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button type="button" id="age-go">Calculate age</button>
+      </div>
+      <div class="error" id="age-err" style="display:none" role="alert"></div>
+      <div class="result" id="age-plain" aria-live="polite" style="font-size:1.15em">Enter your date of birth above.</div>
+      <div class="stats-grid" id="age-stats" style="display:none" aria-live="polite">
+        <div class="stat"><div class="stat-label">Years</div><div class="stat-value" id="age-y">–</div></div>
+        <div class="stat"><div class="stat-label">Months</div><div class="stat-value" id="age-m">–</div></div>
+        <div class="stat"><div class="stat-label">Days</div><div class="stat-value" id="age-d">–</div></div>
+        <div class="stat"><div class="stat-label">Total days lived</div><div class="stat-value" id="age-td">–</div></div>
+        <div class="stat"><div class="stat-label">Total weeks lived</div><div class="stat-value" id="age-tw">–</div></div>
+        <div class="stat"><div class="stat-label">Next birthday</div><div class="stat-value" id="age-nb">–</div></div>
+      </div>
+    </section>
+
+    <section class="prose" aria-labelledby="about-ac">
+      <h2 id="about-ac">About this age calculator</h2>
+      <p>"How old am I, exactly?" is a harder question than it sounds — months have different lengths, leap years add a day every four years, and naively dividing days by 365 gives wrong answers near birthdays. This calculator counts full years first, then whole months, then remaining days, the same convention used on official forms and eligibility checks.</p>
+      <p>It also answers the follow-up questions people actually have: how many total days you have lived, and exactly how many days until your next birthday. Set the "as of" date to any date on or after the birth date to check an age on a past date — handy for applications, license eligibility, or registration cutoffs.</p>
+
+      <h2>How to use</h2>
+      <ol>
+        <li>Enter the date of birth (the "as of" date defaults to today).</li>
+        <li>Press <strong>Calculate age</strong>.</li>
+        <li>Read the plain answer plus the detailed breakdown. Feb 29 birthdays are observed on Feb 28 in non-leap years for the countdown.</li>
+      </ol>
+
+      <h2>Limitations</h2>
+      <ul>
+        <li>The birth date must not be after the "as of" date.</li>
+        <li>Feb 29 birthdays use the Feb 28 convention in non-leap years; some jurisdictions use March 1 — check local rules if it matters legally.</li>
+        <li>Dates are treated as calendar dates, so results ignore time of day and time zone.</li>
+      </ul>
+    </section>
+
+    <section class="prose faq" aria-labelledby="ac-faq">
+      <h2 id="ac-faq">Frequently asked questions</h2>
+      <details>
+        <summary>How is age calculated in years, months and days?</summary>
+        <p>Full years are counted first, then the remaining whole months, then the remaining days — the same convention used on official documents.</p>
+      </details>
+      <details>
+        <summary>What happens if I was born on February 29?</summary>
+        <p>In non-leap years your birthday is observed on February 28 for the next-birthday countdown, the common legal convention. Your age itself is still computed exactly from your actual birth date.</p>
+      </details>
+      <details>
+        <summary>Does the age calculator handle time zones or daylight saving?</summary>
+        <p>Yes — all math is done on calendar dates only, never on timestamps, so daylight-saving transitions and time zones can never shift your age by a day.</p>
+      </details>
+      <details>
+        <summary>Can I calculate someone's age on a past or future date?</summary>
+        <p>Yes. Change the "as of" date to any date on or after the birth date — useful for checking eligibility ages for applications, licenses or registrations.</p>
+      </details>
+      <details>
+        <summary>Is my date of birth uploaded anywhere?</summary>
+        <p>No. The calculator runs 100% in your browser with JavaScript. Your birth date never leaves your device, is never stored, and never sent to any server.</p>
+      </details>
+    </section>
+
+    <section class="related-tools" aria-labelledby="related">
+      <h2 id="related">Related tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="../date-calculator/index.html"><h3>Date Calculator</h3><p>Days between dates, add/subtract time.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../time-duration-calculator/index.html"><h3>Time Duration Calculator</h3><p>Hours between two times, timesheets.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../percentage-calculator/index.html"><h3>Percentage Calculator</h3><p>X% of Y, percent change &amp; more.</p><span class="card-cta">Open tool →</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../privacy.html">Privacy</a></li>
+          <li><a href="../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">© <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+    </div>
+  </footer>
+  <script src="../../assets/logic/age-calculator.js"></script>
+  <script src="../../assets/main.js"></script>
+  <script>
+    (function () {
+      var Q = window.QuickTools;
+      var onInput = document.getElementById('age-on');
+      onInput.value = new Date().toISOString().slice(0, 10);
+
+      function fmtLong(iso) {
+        var p = iso.split('-');
+        return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2]))
+          .toLocaleDateString('en-US', { timeZone: 'UTC', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      }
+
+      document.getElementById('age-go').addEventListener('click', function () {
+        var birth = document.getElementById('age-birth').value;
+        var on = onInput.value || new Date().toISOString().slice(0, 10);
+        var err = document.getElementById('age-err');
+        try {
+          var a = Q.ageCalculator.age(birth, on);
+          Q.hideError(err);
+          document.getElementById('age-plain').textContent =
+            Q.ageCalculator.plainAgeLine(birth, on, fmtLong(birth));
+          document.getElementById('age-y').textContent = a.years;
+          document.getElementById('age-m').textContent = a.months;
+          document.getElementById('age-d').textContent = a.days;
+          document.getElementById('age-td').textContent = a.totalDays.toLocaleString();
+          document.getElementById('age-tw').textContent = a.totalWeeks.toLocaleString();
+          document.getElementById('age-nb').textContent =
+            a.nextBirthdayInDays === 0 ? 'Today! 🎉'
+              : 'in ' + a.nextBirthdayInDays + ' days (' + fmtLong(a.nextBirthdayISO) + ')';
+          document.getElementById('age-stats').style.display = '';
+        } catch (e) {
+          Q.showError(err, e.message);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
