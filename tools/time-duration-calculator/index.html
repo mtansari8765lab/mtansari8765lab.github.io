@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Duration Calculator — Hours Between Times</title>
+  <meta name="description" content="Free time duration calculator online: find hours and minutes between two times (overnight shifts supported) and total a multi-row timesheet.">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do overnight shifts work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "If the end time is earlier than the start time, the calculator treats the end as the next day. So 23:00 to 07:00 is an 8-hour overnight shift." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do identical start and end times show zero?",
+        "acceptedAnswer": { "@type": "Answer", "text": "09:00 to 09:00 is treated as zero duration, not 24 hours. If you need a full 24-hour span, enter times one minute apart (e.g. 09:00 to 08:59) or use two timesheet rows." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the timesheet mode work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Add one row per work block with a start and end time — for example morning and afternoon sessions — and the calculator totals them into hours and minutes plus a decimal-hours figure for payroll." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I convert minutes to decimal hours?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Divide minutes by 60: 90 minutes is 1.5 hours. The timesheet total shows both formats." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my data uploaded anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The calculator runs 100% in your browser with JavaScript. Your times never leave your device, are never stored, and never sent to any server." }
+      }
+    ]
+  }
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T2LH1SV8Y5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8008490095120298"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="QuickTools home">
+        <span class="brand-name">QuickTools</span>
+        <span class="brand-tag">Free online tools that run in your browser.</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> › <a href="../index.html">Tools</a> › <span aria-current="page">Time Duration Calculator</span>
+    </nav>
+
+    <h1>Free Online Time Duration Calculator</h1>
+    <p><strong>Runs 100% in your browser — your times never leave your device.</strong></p>
+
+    <section class="tool-box" aria-labelledby="td-a-h">
+      <h2 id="td-a-h" style="margin-top:0">Duration between two times</h2>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="td-start">Start time</label>
+          <input type="time" id="td-start" value="09:00">
+        </div>
+        <div class="form-field">
+          <label for="td-end">End time</label>
+          <input type="time" id="td-end" value="17:00">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button type="button" id="td-a-go">Calculate duration</button>
+      </div>
+      <div class="error" id="td-a-err" style="display:none" role="alert"></div>
+      <div class="result" id="td-a-out" aria-live="polite">Press Calculate duration.</div>
+    </section>
+
+    <section class="tool-box" aria-labelledby="td-b-h">
+      <h2 id="td-b-h" style="margin-top:0">Timesheet total</h2>
+      <p>Add one row per work block (e.g. morning and afternoon sessions).</p>
+      <div id="ts-rows">
+        <div class="form-row ts-row">
+          <div class="form-field"><label>Start</label><input type="time" class="ts-start" value="09:00"></div>
+          <div class="form-field"><label>End</label><input type="time" class="ts-end" value="12:30"></div>
+        </div>
+        <div class="form-row ts-row">
+          <div class="form-field"><label>Start</label><input type="time" class="ts-start" value="13:30"></div>
+          <div class="form-field"><label>End</label><input type="time" class="ts-end" value="18:00"></div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button type="button" id="ts-add">+ Add row</button>
+        <button type="button" id="ts-go">Total timesheet</button>
+      </div>
+      <div class="error" id="td-b-err" style="display:none" role="alert"></div>
+      <div class="result" id="ts-out" aria-live="polite">Press Total timesheet.</div>
+    </section>
+
+    <section class="prose" aria-labelledby="about-td">
+      <h2 id="about-td">About this time duration calculator</h2>
+      <p>Subtracting times is easy until midnight gets involved. "23:00 to 07:00" breaks naive subtraction, but it is a perfectly normal night shift — 8 hours. This calculator treats an end time earlier than the start time as the next day, so overnight work just works.</p>
+      <p>The timesheet mode totals split days — morning and afternoon sessions, or multiple gigs in one day — into one total, shown both as hours-and-minutes and as decimal hours (8.5h), the format payroll systems expect.</p>
+
+      <h2>How to use</h2>
+      <ol>
+        <li>Enter a start and end time (24-hour clock) and press <strong>Calculate duration</strong>.</li>
+        <li>For a whole day, add rows in <strong>Timesheet total</strong> — one per work block — and press <strong>Total timesheet</strong>.</li>
+        <li>Identical start and end times count as zero duration; see the FAQ for a 24-hour span.</li>
+      </ol>
+
+      <h2>Limitations</h2>
+      <ul>
+        <li>Breaks are not auto-detected — split your day into rows around unpaid breaks.</li>
+        <li>An end time before the start time always means "next day"; the tool cannot represent spans longer than 24 hours in a single row.</li>
+        <li>Decimal hours are rounded to 2 places.</li>
+      </ul>
+    </section>
+
+    <section class="prose faq" aria-labelledby="td-faq">
+      <h2 id="td-faq">Frequently asked questions</h2>
+      <details>
+        <summary>How do overnight shifts work?</summary>
+        <p>If the end time is earlier than the start time, the calculator treats the end as the next day. So 23:00 to 07:00 is an 8-hour overnight shift.</p>
+      </details>
+      <details>
+        <summary>Why do identical start and end times show zero?</summary>
+        <p>09:00 to 09:00 is treated as zero duration, not 24 hours. If you need a full 24-hour span, enter times one minute apart (e.g. 09:00 to 08:59) or use two timesheet rows.</p>
+      </details>
+      <details>
+        <summary>How does the timesheet mode work?</summary>
+        <p>Add one row per work block with a start and end time — for example morning and afternoon sessions — and the calculator totals them into hours and minutes plus a decimal-hours figure for payroll.</p>
+      </details>
+      <details>
+        <summary>How do I convert minutes to decimal hours?</summary>
+        <p>Divide minutes by 60: 90 minutes is 1.5 hours. The timesheet total shows both formats.</p>
+      </details>
+      <details>
+        <summary>Is my data uploaded anywhere?</summary>
+        <p>No. The calculator runs 100% in your browser with JavaScript. Your times never leave your device, are never stored, and never sent to any server.</p>
+      </details>
+    </section>
+
+    <section class="related-tools" aria-labelledby="related">
+      <h2 id="related">Related tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="../date-calculator/index.html"><h3>Date Calculator</h3><p>Days between dates, add/subtract time.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../salary-calculator/index.html"><h3>Salary Calculator</h3><p>Annual ↔ hourly pay conversions.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../age-calculator/index.html"><h3>Age Calculator</h3><p>Exact age in years, months and days.</p><span class="card-cta">Open tool →</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../privacy.html">Privacy</a></li>
+          <li><a href="../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">© <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+    </div>
+  </footer>
+  <script src="../../assets/logic/time-duration-calculator.js"></script>
+  <script src="../../assets/main.js"></script>
+  <script>
+    (function () {
+      var Q = window.QuickTools;
+      var T = Q.timeDurationCalculator;
+      document.getElementById('td-a-go').addEventListener('click', function () {
+        var err = document.getElementById('td-a-err');
+        var out = document.getElementById('td-a-out');
+        try {
+          var min = T.durationMinutes(
+            document.getElementById('td-start').value,
+            document.getElementById('td-end').value
+          );
+          Q.hideError(err);
+          out.textContent = 'Duration: ' + T.formatHm(min) + ' (' + min + ' minutes).';
+        } catch (e) { Q.showError(err, e.message); }
+      });
+      document.getElementById('ts-add').addEventListener('click', function () {
+        var row = document.createElement('div');
+        row.className = 'form-row ts-row';
+        row.innerHTML =
+          '<div class="form-field"><label>Start</label><input type="time" class="ts-start" value="09:00"></div>' +
+          '<div class="form-field"><label>End</label><input type="time" class="ts-end" value="17:00"></div>';
+        document.getElementById('ts-rows').appendChild(row);
+      });
+      document.getElementById('ts-go').addEventListener('click', function () {
+        var err = document.getElementById('td-b-err');
+        var out = document.getElementById('ts-out');
+        try {
+          var rows = [];
+          var els = document.querySelectorAll('#ts-rows .ts-row');
+          for (var i = 0; i < els.length; i++) {
+            rows.push({
+              start: els[i].querySelector('.ts-start').value,
+              end: els[i].querySelector('.ts-end').value
+            });
+          }
+          var t = T.timesheetTotal(rows);
+          Q.hideError(err);
+          out.textContent = 'Total: ' + t.formatted + ' (' + t.minutes + ' minutes = ' + t.hours + ' decimal hours).';
+        } catch (e) { Q.showError(err, e.message); }
+      });
+    })();
+  </script>
+</body>
+</html>
