@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image to PDF Converter Free — PNG to PDF Online, No Upload</title>
+  <meta name="description" content="Convert JPG, PNG or WebP images to PDF free. Multiple images per document, Letter/A4/fit-to-image pages. Everything happens in your browser — no upload.">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I convert PNG to PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Drop the PNG (or several) into the tool above, pick a page size, and click Create PDF. Each image becomes one page of a single PDF that downloads instantly \u2014 no signup and no upload."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I combine multiple images into one PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 add as many images as you like and they become consecutive pages in one document, in the order you added them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my images uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The PDF is built entirely in your browser by a small built-in PDF writer. Your images never leave your device."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is text in my PDF not selectable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The converter places each image as a picture on the page rather than running OCR. For searchable text you would need OCR software first, then convert."
+      }
+    }
+  ]
+}
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T2LH1SV8Y5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8008490095120298"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="QuickTools home">
+        <span class="brand-name">QuickTools</span>
+        <span class="brand-tag">Free online tools that run in your browser.</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> &#8250; <a href="../index.html">Tools</a> &#8250; <span aria-current="page">Image to PDF</span>
+    </nav>
+
+    <h1>Free Image to PDF Converter</h1>
+    <p><strong>Runs 100% in your browser — your images never leave your device.</strong></p>
+
+    <section class="tool-box" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" style="margin-top:0">Convert images to PDF</h2>
+      <div id="tool-error" class="error-box" style="display:none" role="alert"></div>
+      <div class="drop-zone" id="dz" role="button" tabindex="0" aria-label="Upload files"><p style="font-size:2rem; margin:0 0 .5rem">&#128247;</p><p><strong>Drop image(s) here</strong> or click to browse</p><p class="progress-note">JPG, PNG, WebP — multiple files OK, in page order</p><input type="file" id="file-input" accept="image/*" multiple></div>
+      <ul class="file-list" id="file-list"></ul>
+      <div class="opt-grid" id="opts" style="display:none">
+        <div class="opt-row">
+          <label for="pdf-pagesize">Page size:</label>
+          <select id="pdf-pagesize">
+            <option value="letter" selected>US Letter</option>
+            <option value="a4">A4</option>
+            <option value="fit">Fit to image</option>
+          </select>
+        </div>
+        <div class="opt-row">
+          <label for="pdf-title">Document title:</label>
+          <input type="text" id="pdf-title" value="QuickTools images" maxlength="120" style="padding:.45rem .6rem;border:1px solid var(--border);border-radius:8px;font:inherit">
+        </div>
+        <div class="btn-row">
+          <button type="button" id="pdf-go" class="primary">Create PDF</button>
+          <button type="button" id="pdf-clear">Clear</button>
+        </div>
+        <p class="progress-note" id="pdf-status"></p>
+        <ul class="download-list" id="pdf-downloads"></ul>
+      </div>
+    </section>
+
+    <section class="prose" aria-labelledby="about-tool">
+      <h2 id="about-tool">About this image to PDF converter</h2>
+      <p>Scanned receipts, photographed documents, design mockups, a comic strip — plenty of things start life as images and need to end up as a PDF. This free converter turns any set of JPG, PNG or WebP images into a single PDF document: one image per page, centered with margins on US Letter or A4, or pages sized to fit each image exactly.</p>
+      <p>The PDF is assembled byte-by-byte in your browser by a small built-in PDF writer — no libraries fetched from a CDN, no server round-trip. Most “image to PDF” sites upload your files first; here the whole document is generated locally, which is faster and keeps private scans and photos off other people’s servers.</p>
+      <h2>How to use</h2>
+      <ol>
+        <li>Drop your images into the upload box in the order you want the pages (or click to browse).</li>
+        <li>Remove or reorder is not needed — but you can remove any file with its Remove button.</li>
+        <li>Choose the page size (US Letter, A4, or Fit to image) and set a document title.</li>
+        <li>Click <strong>Create PDF</strong> and download the finished document.</li>
+      </ol>
+      <h2>Limitations</h2>
+      <ul>
+        <li>Each image becomes one full page — there is no multi-image-per-page layout option yet.</li>
+        <li>Images are re-encoded as JPEG inside the PDF, so PNG transparency becomes a white background.</li>
+        <li>The generated PDF is a simple image-only document: text is not selectable or searchable.</li>
+        <li>Extremely large image sets (hundreds of high-resolution photos) may be slow or hit browser memory limits.</li>
+      </ul>
+    </section>
+
+    <section class="prose faq" aria-labelledby="tool-faq">
+      <h2 id="tool-faq">Frequently asked questions</h2>
+      <details>
+        <summary>How do I convert PNG to PDF?</summary>
+        <p>Drop the PNG (or several) into the tool above, pick a page size, and click Create PDF. Each image becomes one page of a single PDF that downloads instantly — no signup and no upload.</p>
+      </details>
+      <details>
+        <summary>Can I combine multiple images into one PDF?</summary>
+        <p>Yes — add as many images as you like and they become consecutive pages in one document, in the order you added them.</p>
+      </details>
+      <details>
+        <summary>Are my images uploaded to a server?</summary>
+        <p>No. The PDF is built entirely in your browser by a small built-in PDF writer. Your images never leave your device.</p>
+      </details>
+      <details>
+        <summary>Why is text in my PDF not selectable?</summary>
+        <p>The converter places each image as a picture on the page rather than running OCR. For searchable text you would need OCR software first, then convert.</p>
+      </details>
+    </section>
+
+    <section class="related-tools" aria-labelledby="related">
+      <h2 id="related">Related tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="../pdf-merger/index.html"><h3>PDF Merger</h3><p>Combine this PDF with others afterwards.</p><span class="card-cta">Open tool &rarr;</span></a>
+        <a class="tool-card" href="../image-compressor/index.html"><h3>Image Compressor</h3><p>Shrink images first for a smaller PDF.</p><span class="card-cta">Open tool &rarr;</span></a>
+        <a class="tool-card" href="../image-resizer/index.html"><h3>Image Resizer</h3><p>Standardize image dimensions before converting.</p><span class="card-cta">Open tool &rarr;</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../privacy.html">Privacy</a></li>
+          <li><a href="../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">&copy; <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+    </div>
+  </footer>
+  <script src="../../assets/logic/image-to-pdf.js"></script>
+  <script src="../../assets/main.js"></script>
+<script>
+/* Image to PDF UI */
+(function () {
+  'use strict';
+  var P = window.QuickTools.imageToPdf, Q = window.QuickTools;
+  var errBox = document.getElementById('tool-error');
+  var zone = document.getElementById('dz'), input = document.getElementById('file-input');
+  var list = document.getElementById('file-list');
+  var files = [];
+
+  function renderList() {
+    list.innerHTML = '';
+    files.forEach(function (f, i) {
+      var li = document.createElement('li');
+      var meta = document.createElement('div'); meta.className = 'file-meta';
+      var nm = document.createElement('div'); nm.className = 'fname'; nm.textContent = (i + 1) + '. ' + f.name;
+      var sz = document.createElement('div'); sz.className = 'fsize'; sz.textContent = Math.round(f.size / 1024) + ' KB';
+      meta.appendChild(nm); meta.appendChild(sz);
+      var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'remove-btn'; rm.textContent = 'Remove';
+      rm.addEventListener('click', function () { files.splice(i, 1); renderList(); });
+      li.appendChild(meta); li.appendChild(rm); list.appendChild(li);
+    });
+    document.getElementById('opts').style.display = files.length ? '' : 'none';
+  }
+
+  Q.setupDropZone(zone, input, function (picked) {
+    Q.hideError(errBox);
+    var bad = 0;
+    picked.forEach(function (f) { /^image\//.test(f.type || '') ? files.push(f) : bad++; });
+    if (bad) Q.showError(errBox, bad + ' file(s) skipped: not an image.');
+    renderList();
+  });
+
+  document.getElementById('pdf-clear').addEventListener('click', function () {
+    files = []; renderList();
+    document.getElementById('pdf-downloads').innerHTML = '';
+    document.getElementById('pdf-status').textContent = '';
+    Q.hideError(errBox);
+  });
+
+  function jpegBytesOf(img) {
+    var canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height); // flatten transparency
+    ctx.drawImage(img, 0, 0);
+    var dataUrl = canvas.toDataURL('image/jpeg', 0.92);
+    var bin = atob(dataUrl.split(',')[1]);
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return { bytes: bytes, w: canvas.width, h: canvas.height };
+  }
+
+  document.getElementById('pdf-go').addEventListener('click', function () {
+    Q.hideError(errBox);
+    if (!files.length) { Q.showError(errBox, 'Add at least one image first.'); return; }
+    var pageSize = document.getElementById('pdf-pagesize').value;
+    var title = document.getElementById('pdf-title').value || 'QuickTools images';
+    var status = document.getElementById('pdf-status');
+    var dl = document.getElementById('pdf-downloads');
+    dl.innerHTML = '';
+    status.textContent = 'Building PDF\u2026';
+    var chain = Promise.resolve([]);
+    files.forEach(function (f) {
+      chain = chain.then(function (pages) {
+        return Q.readFileAsDataURL(f).then(Q.loadImage).then(function (img) {
+          var r = jpegBytesOf(img);
+          pages.push({ jpeg: r.bytes, width: r.w, height: r.h });
+          status.textContent = 'Processing image ' + pages.length + ' of ' + files.length + '\u2026';
+          return pages;
+        });
+      });
+    });
+    chain.then(function (pages) {
+      var pdfBytes = P.buildPdf(pages, { pageSize: pageSize, title: title });
+      var blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      var d = new Date();
+      function p2(n) { return (n < 10 ? '0' : '') + n; }
+      var name = 'images-' + d.getFullYear() + p2(d.getMonth() + 1) + p2(d.getDate()) + '.pdf';
+      var url = URL.createObjectURL(blob);
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.className = 'dl'; a.href = url; a.download = name;
+      var kb = Math.round(blob.size / 1024);
+      a.textContent = 'Download ' + name + ' (' + pages.length + ' pages, ' + kb + ' KB)';
+      li.appendChild(a); dl.appendChild(li);
+      status.textContent = 'Done.';
+    }).catch(function (e) {
+      status.textContent = '';
+      Q.showError(errBox, e.message);
+    });
+  });
+})();
+</script>
+</body>
+</html>
