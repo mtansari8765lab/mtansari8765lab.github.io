@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Resizer Online Free — Resize Photos Without Uploading</title>
+  <meta name="description" content="Free image resizer: resize photos by width, height, percentage or longest side, keeping the aspect ratio. 100% in your browser — images never leave your device.">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I resize an image without losing quality?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shrinking an image preserves perceived quality well because you are discarding pixels, not inventing them. This tool resamples with the browser\u2019s high-quality smoothing and keeps the exact aspect ratio, so the result looks clean. Enlarging is the opposite: quality always drops because new pixels must be guessed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best image size for a website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on placement: hero images are typically 1600\u20132000px wide, blog content images 800\u20131200px, and thumbnails 300\u2013400px. Resize to the display size and serve WebP \u2014 most sites load far faster with no visible difference."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my images uploaded to a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The resize runs 100% in your browser using the HTML canvas API. Your images never leave your device, are never stored, and never sent anywhere."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which output format should I choose?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JPG for photographs (smallest files), PNG for graphics with sharp edges or transparency, WebP for the best of both on modern browsers."
+      }
+    }
+  ]
+}
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T2LH1SV8Y5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8008490095120298"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="QuickTools home">
+        <span class="brand-name">QuickTools</span>
+        <span class="brand-tag">Free online tools that run in your browser.</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> &#8250; <a href="../index.html">Tools</a> &#8250; <span aria-current="page">Image Resizer</span>
+    </nav>
+
+    <h1>Free Image Resizer</h1>
+    <p><strong>Runs 100% in your browser — your images never leave your device.</strong></p>
+
+    <section class="tool-box" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" style="margin-top:0">Resize an image</h2>
+      <div id="tool-error" class="error-box" style="display:none" role="alert"></div>
+      <div class="drop-zone" id="dz" role="button" tabindex="0" aria-label="Upload files"><p style="font-size:2rem; margin:0 0 .5rem">&#128247;</p><p><strong>Drop image(s) here</strong> or click to browse</p><p class="progress-note">JPG, PNG, WebP, GIF, BMP</p><input type="file" id="file-input" accept="image/*"></div>
+      <div id="preview-wrap" style="display:none; margin-top:1rem">
+        <img id="preview" class="thumb" style="width:120px;height:120px;object-fit:cover;border-radius:8px" alt="Uploaded image preview">
+        <p class="progress-note" id="orig-dims"></p>
+      </div>
+      <div class="opt-grid" id="opts" style="display:none">
+        <div class="opt-row" role="radiogroup" aria-label="Resize mode">
+          <label><input type="radio" name="rz-mode" value="percent" checked> By percentage</label>
+          <label><input type="radio" name="rz-mode" value="width"> By width</label>
+          <label><input type="radio" name="rz-mode" value="height"> By height</label>
+          <label><input type="radio" name="rz-mode" value="longest"> Longest side</label>
+        </div>
+        <div class="opt-row">
+          <label for="rz-value" id="rz-value-label">Percentage:</label>
+          <input type="number" id="rz-value" value="50" min="1" max="1000" style="width:7rem">
+          <span class="progress-note" id="rz-unit">% (1–1000)</span>
+        </div>
+        <div class="opt-row">
+          <label for="rz-format">Output format:</label>
+          <select id="rz-format">
+            <option value="png" selected>PNG</option>
+            <option value="jpg">JPG</option>
+            <option value="webp">WebP</option>
+          </select>
+        </div>
+        <div class="btn-row">
+          <button type="button" id="rz-go" class="primary">Resize image</button>
+        </div>
+        <p class="progress-note" id="rz-result"></p>
+        <ul class="download-list" id="rz-downloads"></ul>
+      </div>
+    </section>
+
+    <section class="prose" aria-labelledby="about-tool">
+      <h2 id="about-tool">About this image resizer</h2>
+      <p>Oversized photos slow down websites, bounce off email attachment limits and eat phone storage. This free image resizer shrinks (or enlarges) any photo while preserving its aspect ratio, so nothing comes out stretched or squashed. Resize by exact pixel width or height, by longest side, or by percentage — handy for batch-feeling one-off jobs like forum avatars, marketplace listings and blog images.</p>
+      <p>Resizing happens on an HTML canvas entirely on your device: the pixels are resampled locally with high-quality smoothing and the result is encoded to PNG, JPG or WebP right in the page. Because nothing is uploaded, there is no queue, no watermark and no account — and sensitive photos (IDs, screenshots, client work) never touch a server. That privacy edge is exactly where most online resizers fall short: they require an upload before they do anything.</p>
+      <h2>How to use</h2>
+      <ol>
+        <li>Drop an image into the upload box (or click to browse).</li>
+        <li>Pick a resize mode — percentage, exact width, exact height, or longest side — and enter the value.</li>
+        <li>Choose the output format (PNG for graphics, JPG for photos, WebP for the web).</li>
+        <li>Click <strong>Resize image</strong>, then download the result with its new dimensions in the filename.</li>
+      </ol>
+      <h2>Limitations</h2>
+      <ul>
+        <li>Enlarging beyond ~200% will look soft — resizing cannot invent detail that is not in the original.</li>
+        <li>Animated GIFs are resized as a single still frame; animation is not preserved.</li>
+        <li>Very large images (50+ megapixels) may hit browser memory limits on low-end devices.</li>
+        <li>JPG output uses high quality (0.92); for aggressive file-size shrinking use the <a href="../image-compressor/index.html">Image Compressor</a> instead.</li>
+      </ul>
+    </section>
+
+    <section class="prose faq" aria-labelledby="tool-faq">
+      <h2 id="tool-faq">Frequently asked questions</h2>
+      <details>
+        <summary>How do I resize an image without losing quality?</summary>
+        <p>Shrinking an image preserves perceived quality well because you are discarding pixels, not inventing them. This tool resamples with the browser’s high-quality smoothing and keeps the exact aspect ratio, so the result looks clean. Enlarging is the opposite: quality always drops because new pixels must be guessed.</p>
+      </details>
+      <details>
+        <summary>What is the best image size for a website?</summary>
+        <p>It depends on placement: hero images are typically 1600–2000px wide, blog content images 800–1200px, and thumbnails 300–400px. Resize to the display size and serve WebP — most sites load far faster with no visible difference.</p>
+      </details>
+      <details>
+        <summary>Are my images uploaded to a server?</summary>
+        <p>No. The resize runs 100% in your browser using the HTML canvas API. Your images never leave your device, are never stored, and never sent anywhere.</p>
+      </details>
+      <details>
+        <summary>Which output format should I choose?</summary>
+        <p>JPG for photographs (smallest files), PNG for graphics with sharp edges or transparency, WebP for the best of both on modern browsers.</p>
+      </details>
+    </section>
+
+    <section class="related-tools" aria-labelledby="related">
+      <h2 id="related">Related tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="../image-compressor/index.html"><h3>Image Compressor</h3><p>Shrink file size by quality or to an exact target like 100KB.</p><span class="card-cta">Open tool &rarr;</span></a>
+        <a class="tool-card" href="../image-converter/index.html"><h3>JPG to PNG Converter</h3><p>Convert between JPG, PNG and WebP formats.</p><span class="card-cta">Open tool &rarr;</span></a>
+        <a class="tool-card" href="../favicon-generator/index.html"><h3>Favicon Generator</h3><p>Turn any image into a multi-size favicon.ico.</p><span class="card-cta">Open tool &rarr;</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../privacy.html">Privacy</a></li>
+          <li><a href="../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">&copy; <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+    </div>
+  </footer>
+  <script src="../../assets/logic/image-resizer.js"></script>
+  <script src="../../assets/main.js"></script>
+<script>
+/* Image Resizer UI */
+(function () {
+  'use strict';
+  var R = window.QuickTools.imageResizer, Q = window.QuickTools;
+  var errBox = document.getElementById('tool-error');
+  var zone = document.getElementById('dz'), input = document.getElementById('file-input');
+  var state = null; // { img, w, h, name }
+
+  Q.setupDropZone(zone, input, function (files) {
+    Q.hideError(errBox);
+    var f = files[0];
+    if (!f || !/^image\//.test(f.type || '')) { Q.showError(errBox, 'Please choose an image file (JPG, PNG, WebP, GIF, BMP).'); return; }
+    Q.readFileAsDataURL(f).then(function (url) { return Q.loadImage(url); }).then(function (img) {
+      state = { img: img, w: img.naturalWidth, h: img.naturalHeight, name: f.name };
+      document.getElementById('preview').src = img.src;
+      document.getElementById('orig-dims').textContent = 'Original: ' + img.naturalWidth + ' \u00d7 ' + img.naturalHeight + ' px';
+      document.getElementById('preview-wrap').style.display = '';
+      document.getElementById('opts').style.display = '';
+      document.getElementById('rz-downloads').innerHTML = '';
+      document.getElementById('rz-result').textContent = '';
+    }).catch(function (e) { Q.showError(errBox, e.message); });
+  });
+
+  var modeLabels = { percent: ['Percentage:', '% (1\u20131000)'], width: ['Width (px):', 'pixels'], height: ['Height (px):', 'pixels'], longest: ['Longest side (px):', 'pixels'] };
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="rz-mode"]'), function (radio) {
+    radio.addEventListener('change', function () {
+      var m = document.querySelector('input[name="rz-mode"]:checked').value;
+      document.getElementById('rz-value-label').textContent = modeLabels[m][0];
+      document.getElementById('rz-unit').textContent = modeLabels[m][1];
+    });
+  });
+
+  document.getElementById('rz-go').addEventListener('click', function () {
+    Q.hideError(errBox);
+    if (!state) { Q.showError(errBox, 'Upload an image first.'); return; }
+    var mode = document.querySelector('input[name="rz-mode"]:checked').value;
+    var value = parseFloat(document.getElementById('rz-value').value);
+    var format = document.getElementById('rz-format').value;
+    var dims;
+    try {
+      dims = R.calculateDimensions(state.w, state.h, { mode: mode, value: value });
+    } catch (e) { Q.showError(errBox, e.message); return; }
+    var canvas = document.createElement('canvas');
+    canvas.width = dims.width; canvas.height = dims.height;
+    var ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(state.img, 0, 0, dims.width, dims.height);
+    var mime = R.mimeForFormat(format);
+    var quality = format === 'jpg' ? 0.92 : undefined;
+    Q.canvasToBlob(canvas, mime, quality).then(function (blob) {
+      var name = R.buildOutputName(state.name, dims.width, dims.height, format);
+      var url = URL.createObjectURL(blob);
+      var list = document.getElementById('rz-downloads');
+      list.innerHTML = '';
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.className = 'dl'; a.href = url; a.download = name;
+      a.textContent = 'Download ' + name + ' (' + R.formatBytes(blob.size) + ')';
+      li.appendChild(a); list.appendChild(li);
+      document.getElementById('rz-result').textContent =
+        state.w + ' \u00d7 ' + state.h + ' \u2192 ' + dims.width + ' \u00d7 ' + dims.height + ' px';
+    }).catch(function (e) { Q.showError(errBox, e.message); });
+  });
+})();
+</script>
+</body>
+</html>
