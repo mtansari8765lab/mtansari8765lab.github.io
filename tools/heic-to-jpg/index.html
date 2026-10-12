@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HEIC to JPG Converter Free Online — Convert iPhone Photos</title>
+  <meta name="description" content="Convert HEIC photos from your iPhone to JPG free. Batch conversion, adjustable quality, runs entirely in your browser — photos never uploaded.">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I convert HEIC to JPG on iPhone or Windows?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Drop the .HEIC files into the tool above and click Convert to JPG. It works in any modern browser on iPhone, Android, Windows or Mac \u2014 no app to install, no upload, no signup."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my iPhone save photos as HEIC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Apple switched the default camera format to HEIC (High Efficiency Image Container) because it stores the same quality in roughly half the file size of JPG. The tradeoff is compatibility: many Windows programs and websites still expect JPG."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will converting HEIC to JPG lose quality?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JPG is a lossy format, so there is a small, usually invisible loss at quality 92. If you need pixel-perfect archival copies, keep the original HEIC files too."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my photos uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Decoding happens 100% in your browser with a locally-served decoder. Your photos never leave your device."
+      }
+    }
+  ]
+}
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T2LH1SV8Y5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8008490095120298"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="QuickTools home">
+        <span class="brand-name">QuickTools</span>
+        <span class="brand-tag">Free online tools that run in your browser.</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> &#8250; <a href="../index.html">Tools</a> &#8250; <span aria-current="page">HEIC to JPG</span>
+    </nav>
+
+    <h1>Free HEIC to JPG Converter</h1>
+    <p><strong>Runs 100% in your browser — your photos never leave your device.</strong></p>
+
+    <section class="tool-box" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" style="margin-top:0">Convert HEIC photos to JPG</h2>
+      <div id="tool-error" class="error-box" style="display:none" role="alert"></div>
+      <div class="drop-zone" id="dz" role="button" tabindex="0" aria-label="Upload files"><p style="font-size:2rem; margin:0 0 .5rem">&#128247;</p><p><strong>Drop image(s) here</strong> or click to browse</p><p class="progress-note">.HEIC / .HEIF files — multiple files OK</p><input type="file" id="file-input" accept=".heic,.heif,image/heic,image/heif" multiple></div>
+      <ul class="file-list" id="file-list"></ul>
+      <div class="opt-grid" id="opts" style="display:none">
+        <div class="opt-row">
+          <label for="heic-quality">JPG quality: <output id="heic-quality-val" for="heic-quality">92</output>%</label>
+          <input type="range" id="heic-quality" min="50" max="100" value="92" step="1">
+        </div>
+        <div class="btn-row">
+          <button type="button" id="heic-go" class="primary">Convert to JPG</button>
+          <button type="button" id="heic-clear">Clear</button>
+        </div>
+        <p class="progress-note" id="heic-status"></p>
+        <ul class="download-list" id="heic-downloads"></ul>
+      </div>
+    </section>
+
+    <section class="prose" aria-labelledby="about-tool">
+      <h2 id="about-tool">About this HEIC to JPG converter</h2>
+      <p>iPhones save photos as HEIC by default — great for storage, terrible for compatibility. Windows apps, older software and many websites still demand JPG. This free converter turns HEIC and HEIF photos into standard JPGs with adjustable quality, several files at once.</p>
+      <p>Decoding runs on a HEIC decoder that executes entirely in your browser (the decoder file is served from this site, so the page works offline once loaded and makes zero external requests). That matters because the usual HEIC converters all require uploading your personal photos to their servers first — here they never leave your device.</p>
+      <h2>How to use</h2>
+      <ol>
+        <li>Drop your .HEIC files into the upload box (or click to browse).</li>
+        <li>Set the JPG quality (92 is a strong default; 80 for smaller files).</li>
+        <li>Click <strong>Convert to JPG</strong> — the first conversion loads the decoder (~1MB), then each photo converts in seconds.</li>
+        <li>Download each JPG from the results list.</li>
+      </ol>
+      <h2>Limitations</h2>
+      <ul>
+        <li>The decoder (~1.3MB) loads on first use, so the first conversion takes a few seconds; later ones are fast.</li>
+        <li>Live Photos and burst sequences convert the primary still image only.</li>
+        <li>HEIC metadata (location, camera settings) is generally not carried into the JPG.</li>
+        <li>Very old browsers without WebAssembly support cannot run the decoder.</li>
+      </ul>
+    </section>
+
+    <section class="prose faq" aria-labelledby="tool-faq">
+      <h2 id="tool-faq">Frequently asked questions</h2>
+      <details>
+        <summary>How do I convert HEIC to JPG on iPhone or Windows?</summary>
+        <p>Drop the .HEIC files into the tool above and click Convert to JPG. It works in any modern browser on iPhone, Android, Windows or Mac — no app to install, no upload, no signup.</p>
+      </details>
+      <details>
+        <summary>Why does my iPhone save photos as HEIC?</summary>
+        <p>Apple switched the default camera format to HEIC (High Efficiency Image Container) because it stores the same quality in roughly half the file size of JPG. The tradeoff is compatibility: many Windows programs and websites still expect JPG.</p>
+      </details>
+      <details>
+        <summary>Will converting HEIC to JPG lose quality?</summary>
+        <p>JPG is a lossy format, so there is a small, usually invisible loss at quality 92. If you need pixel-perfect archival copies, keep the original HEIC files too.</p>
+      </details>
+      <details>
+        <summary>Are my photos uploaded anywhere?</summary>
+        <p>No. Decoding happens 100% in your browser with a locally-served decoder. Your photos never leave your device.</p>
+      </details>
+    </section>
+
+    <section class="related-tools" aria-labelledby="related">
+      <h2 id="related">Related tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="../image-converter/index.html"><h3>JPG to PNG Converter</h3><p>Convert the JPGs further if needed.</p><span class="card-cta">Open tool &rarr;</span></a>
+        <a class="tool-card" href="../image-compressor/index.html"><h3>Image Compressor</h3><p>Shrink the converted JPGs.</p><span class="card-cta">Open tool &rarr;</span></a>
+        <a class="tool-card" href="../image-to-pdf/index.html"><h3>Image to PDF</h3><p>Bundle converted photos into a PDF.</p><span class="card-cta">Open tool &rarr;</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../privacy.html">Privacy</a></li>
+          <li><a href="../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">&copy; <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+    </div>
+  </footer>
+  <script src="../../assets/vendor/heic2any.min.js"></script>
+  <script src="../../assets/logic/heic-to-jpg.js"></script>
+  <script src="../../assets/main.js"></script>
+<script>
+/* HEIC to JPG UI */
+(function () {
+  'use strict';
+  var H = window.QuickTools.heicToJpg, Q = window.QuickTools;
+  var errBox = document.getElementById('tool-error');
+  var zone = document.getElementById('dz'), input = document.getElementById('file-input');
+  var list = document.getElementById('file-list');
+  var files = [];
+
+  function renderList() {
+    list.innerHTML = '';
+    files.forEach(function (f, i) {
+      var li = document.createElement('li');
+      var meta = document.createElement('div'); meta.className = 'file-meta';
+      var nm = document.createElement('div'); nm.className = 'fname'; nm.textContent = f.name;
+      var sz = document.createElement('div'); sz.className = 'fsize'; sz.textContent = H.formatBytes(f.size);
+      meta.appendChild(nm); meta.appendChild(sz);
+      var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'remove-btn'; rm.textContent = 'Remove';
+      rm.addEventListener('click', function () { files.splice(i, 1); renderList(); });
+      li.appendChild(meta); li.appendChild(rm); list.appendChild(li);
+    });
+    document.getElementById('opts').style.display = files.length ? '' : 'none';
+  }
+
+  Q.setupDropZone(zone, input, function (picked) {
+    Q.hideError(errBox);
+    var bad = 0;
+    picked.forEach(function (f) { H.looksLikeHeic(f) ? files.push(f) : bad++; });
+    if (bad) Q.showError(errBox, bad + ' file(s) skipped: not a HEIC/HEIF file.');
+    if (!H.isDecoderAvailable()) {
+      Q.showError(errBox, 'HEIC decoder is still loading — please wait a moment and try again.');
+    }
+    renderList();
+  });
+
+  document.getElementById('heic-clear').addEventListener('click', function () {
+    files = []; renderList();
+    document.getElementById('heic-downloads').innerHTML = '';
+    document.getElementById('heic-status').textContent = '';
+    Q.hideError(errBox);
+  });
+
+  var qInput = document.getElementById('heic-quality');
+  qInput.addEventListener('input', function () {
+    document.getElementById('heic-quality-val').textContent = qInput.value;
+  });
+
+  document.getElementById('heic-go').addEventListener('click', function () {
+    Q.hideError(errBox);
+    if (!files.length) { Q.showError(errBox, 'Add at least one HEIC file first.'); return; }
+    if (!H.isDecoderAvailable()) {
+      Q.showError(errBox, 'HEIC decoder failed to load. Please reload the page and try again.');
+      return;
+    }
+    var quality = parseInt(qInput.value, 10) / 100;
+    var status = document.getElementById('heic-status');
+    var dl = document.getElementById('heic-downloads');
+    dl.innerHTML = '';
+    var done = 0, failed = 0;
+    status.textContent = 'Converting 0 of ' + files.length + ' (first run loads the decoder)\u2026';
+    files.forEach(function (f) {
+      H.convertHeicToJpg(f, quality).then(function (blob) {
+        var name = H.buildOutputName(f.name);
+        var url = URL.createObjectURL(blob);
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.className = 'dl'; a.href = url; a.download = name;
+        a.textContent = 'Download ' + name + ' (' + H.formatBytes(blob.size) + ')';
+        li.appendChild(a); dl.appendChild(li);
+      }).catch(function (e) {
+        failed++;
+        Q.showError(errBox, 'Failed on ' + f.name + ': ' + e.message);
+      }).then(function () {
+        done++;
+        status.textContent = done === files.length
+          ? (failed ? 'Done: ' + (done - failed) + ' converted, ' + failed + ' failed.' : 'Done: all ' + done + ' photos converted.')
+          : 'Converting ' + done + ' of ' + files.length + '\u2026';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
