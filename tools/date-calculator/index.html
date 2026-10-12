@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Calculator Online Free — Days Between Dates &amp; Days From Today</title>
+  <meta name="description" content="Free date calculator online: count days between two dates, or add/subtract days, weeks, months and years from any date. Handles leap years and month ends.">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many days are between two dates?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Enter both dates and the calculator counts the calendar days from the first date to the second, exclusive of the start date. So from Monday to the following Monday is 7 days." }
+      },
+      {
+        "@type": "Question",
+        "name": "What date is N days from today?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Use the add/subtract box below with today's date pre-filled. Popular answers have their own pages: 90 days from today, 45 days from today and 30 days from today." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do month additions handle month ends?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Adding months preserves the day of month where possible; when the target month is shorter, the date is clamped to the last day of that month. January 31 plus one month becomes February 28 (or February 29 in a leap year)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are weekends counted or only business days?",
+        "acceptedAnswer": { "@type": "Answer", "text": "This calculator counts calendar days, including weekends and holidays. For a rough business-day estimate, multiply calendar days by 5/7." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my data uploaded anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The calculator runs 100% in your browser with JavaScript. Your dates never leave your device, are never stored, and never sent to any server." }
+      }
+    ]
+  }
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T2LH1SV8Y5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8008490095120298"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="QuickTools home">
+        <span class="brand-name">QuickTools</span>
+        <span class="brand-tag">Free online tools that run in your browser.</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> › <a href="../index.html">Tools</a> › <span aria-current="page">Date Calculator</span>
+    </nav>
+
+    <h1>Free Online Date Calculator</h1>
+    <p><strong>Runs 100% in your browser — your dates never leave your device.</strong></p>
+
+    <section class="tool-box" aria-labelledby="dc-a-h">
+      <h2 id="dc-a-h" style="margin-top:0">Days between two dates</h2>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="dc-from">From date</label>
+          <input type="date" id="dc-from">
+        </div>
+        <div class="form-field">
+          <label for="dc-to">To date</label>
+          <input type="date" id="dc-to">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button type="button" id="dc-a-go">Count days</button>
+      </div>
+      <div class="error" id="dc-a-err" style="display:none" role="alert"></div>
+      <div class="result" id="dc-a-out" aria-live="polite">Enter both dates and press Count days.</div>
+    </section>
+
+    <section class="tool-box" aria-labelledby="dc-b-h">
+      <h2 id="dc-b-h" style="margin-top:0">Add or subtract time from a date</h2>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="dc-base">Start date</label>
+          <input type="date" id="dc-base">
+        </div>
+        <div class="form-field">
+          <label for="dc-dir">Direction</label>
+          <select id="dc-dir">
+            <option value="1">Add (future)</option>
+            <option value="-1">Subtract (past)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="dc-days">Days</label>
+          <input type="number" id="dc-days" inputmode="numeric" value="90" min="0" step="1">
+        </div>
+        <div class="form-field">
+          <label for="dc-weeks">Weeks</label>
+          <input type="number" id="dc-weeks" inputmode="numeric" value="0" min="0" step="1">
+        </div>
+        <div class="form-field">
+          <label for="dc-months">Months</label>
+          <input type="number" id="dc-months" inputmode="numeric" value="0" min="0" step="1">
+        </div>
+        <div class="form-field">
+          <label for="dc-years">Years</label>
+          <input type="number" id="dc-years" inputmode="numeric" value="0" min="0" step="1">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button type="button" id="dc-b-go">Calculate date</button>
+      </div>
+      <div class="error" id="dc-b-err" style="display:none" role="alert"></div>
+      <div class="result" id="dc-b-out" aria-live="polite">Defaults to 90 days from today — press Calculate date.</div>
+    </section>
+
+    <section class="prose" aria-labelledby="popular">
+      <h2 id="popular">Popular date answers</h2>
+      <p>These are answered live from <em>your</em> current date every time you open the page:</p>
+      <ul>
+        <li><a href="90-days-from-today/index.html"><strong>What date is 90 days from today?</strong></a></li>
+        <li><a href="45-days-from-today/index.html"><strong>What date is 45 days from today?</strong></a></li>
+        <li><a href="30-days-from-today/index.html"><strong>What date is 30 days from today?</strong></a></li>
+      </ul>
+    </section>
+
+    <section class="prose" aria-labelledby="about-dc">
+      <h2 id="about-dc">About this date calculator</h2>
+      <p>Date arithmetic is full of traps: February has 28 or 29 days, months end on the 30th or 31st, and adding "one month" to January 31 has no obvious answer. This calculator uses calendar-date math throughout (never timestamps), so daylight-saving changes can never shift a result by a day, and it handles leap years automatically.</p>
+      <p>The two modes cover the common cases: measuring a span ("how many days between these dates?") and projecting a date ("what date is 90 days from now?" — a question asked hundreds of thousands of times a month, usually for deadlines, notice periods and due dates).</p>
+
+      <h2>How to use</h2>
+      <ol>
+        <li>To count a span: enter both dates and press <strong>Count days</strong>. Same date twice gives 0.</li>
+        <li>To project: pick a start date (defaults to today), choose add or subtract, enter the amounts, and press <strong>Calculate date</strong>.</li>
+        <li>At least one of days/weeks/months/years must be non-zero.</li>
+      </ol>
+
+      <h2>Limitations</h2>
+      <ul>
+        <li>Days are calendar days — weekends and holidays are included, not excluded.</li>
+        <li>Adding months clamps to the end of shorter months (Jan 31 + 1 month = Feb 28/29).</li>
+        <li>Dates before year 1 or far-future dates may hit browser date limits; the tool validates input.</li>
+      </ul>
+    </section>
+
+    <section class="prose faq" aria-labelledby="dc-faq">
+      <h2 id="dc-faq">Frequently asked questions</h2>
+      <details>
+        <summary>How many days are between two dates?</summary>
+        <p>Enter both dates and the calculator counts the calendar days from the first date to the second, exclusive of the start date. So from Monday to the following Monday is 7 days.</p>
+      </details>
+      <details>
+        <summary>What date is N days from today?</summary>
+        <p>Use the add/subtract box above with today's date pre-filled. Popular answers have their own pages: 90 days from today, 45 days from today and 30 days from today.</p>
+      </details>
+      <details>
+        <summary>How do month additions handle month ends?</summary>
+        <p>Adding months preserves the day of month where possible; when the target month is shorter, the date is clamped to the last day of that month.</p>
+      </details>
+      <details>
+        <summary>Are weekends counted or only business days?</summary>
+        <p>This calculator counts calendar days, including weekends and holidays. For a rough business-day estimate, multiply calendar days by 5/7.</p>
+      </details>
+      <details>
+        <summary>Is my data uploaded anywhere?</summary>
+        <p>No. The calculator runs 100% in your browser with JavaScript. Your dates never leave your device, are never stored, and never sent to any server.</p>
+      </details>
+    </section>
+
+    <section class="related-tools" aria-labelledby="related">
+      <h2 id="related">Related tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="../age-calculator/index.html"><h3>Age Calculator</h3><p>Exact age in years, months and days.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../time-duration-calculator/index.html"><h3>Time Duration Calculator</h3><p>Hours between two times, timesheets.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="90-days-from-today/index.html"><h3>90 Days From Today</h3><p>The date 90 days from right now.</p><span class="card-cta">Open page →</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../privacy.html">Privacy</a></li>
+          <li><a href="../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">© <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+    </div>
+  </footer>
+  <script src="../../assets/logic/date-calculator.js"></script>
+  <script src="../../assets/main.js"></script>
+  <script>
+    (function () {
+      var Q = window.QuickTools;
+      var DC = Q.dateCalculator;
+      function todayISO() { return new Date().toISOString().slice(0, 10); }
+      document.getElementById('dc-base').value = todayISO();
+      function fmtLong(iso) {
+        var p = iso.split('-');
+        return new Date(Date.UTC(+p[0], +p[1] - 1, +p[2]))
+          .toLocaleDateString('en-US', { timeZone: 'UTC', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      }
+      document.getElementById('dc-a-go').addEventListener('click', function () {
+        var from = document.getElementById('dc-from').value;
+        var to = document.getElementById('dc-to').value;
+        var err = document.getElementById('dc-a-err');
+        var out = document.getElementById('dc-a-out');
+        try {
+          var n = DC.daysBetween(from, to);
+          Q.hideError(err);
+          if (n === 0) {
+            out.textContent = 'These are the same date — 0 days apart.';
+          } else {
+            out.textContent = Math.abs(n) + ' day' + (Math.abs(n) === 1 ? '' : 's') +
+              (n < 0 ? ' (the second date is before the first)' : '') + '.';
+          }
+        } catch (e) { Q.showError(err, e.message); }
+      });
+      document.getElementById('dc-b-go').addEventListener('click', function () {
+        var base = document.getElementById('dc-base').value || todayISO();
+        var dir = +document.getElementById('dc-dir').value;
+        var err = document.getElementById('dc-b-err');
+        var out = document.getElementById('dc-b-out');
+        try {
+          var res = DC.addTime(base, {
+            days: dir * (+document.getElementById('dc-days').value || 0),
+            weeks: dir * (+document.getElementById('dc-weeks').value || 0),
+            months: dir * (+document.getElementById('dc-months').value || 0),
+            years: dir * (+document.getElementById('dc-years').value || 0)
+          });
+          Q.hideError(err);
+          out.textContent = 'Result: ' + fmtLong(res) + ' (' + DC.weekday(res) + ').';
+        } catch (e) { Q.showError(err, e.message); }
+      });
+    })();
+  </script>
+</body>
+</html>
