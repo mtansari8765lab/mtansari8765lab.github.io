@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strong Random Password Generator — Free &amp; Secure</title>
+  <meta name="description" content="Generate strong random passwords (4–64 characters) with a secure generator using WebCrypto. Custom length, symbols, no ambiguous characters option.">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How random are the generated passwords?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Passwords are generated with your browser's WebCrypto API (crypto.getRandomValues), the same cryptographic randomness used for TLS keys. The generator refuses to run if WebCrypto is unavailable — it never falls back to weaker Math.random()." }
+      },
+      {
+        "@type": "Question",
+        "name": "What password length should I choose?",
+        "acceptedAnswer": { "@type": "Answer", "text": "16 characters from the full character set gives about 103 bits of entropy, which is strong for almost every purpose. Use 20+ for master passwords and anything protecting sensitive accounts. The slider goes up to 64." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does \"exclude ambiguous characters\" do?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It removes characters that are easy to confuse when reading: lowercase l, digit 1, uppercase I, digit 0 and uppercase O. Useful when you must read or type a password manually." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are my passwords sent anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Generation happens 100% in your browser. Passwords are never transmitted, stored or logged — they exist only on your device until you copy them." }
+      }
+    ]
+  }
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T2LH1SV8Y5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8008490095120298"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="QuickTools home">
+        <span class="brand-name">QuickTools</span>
+        <span class="brand-tag">Free online tools that run in your browser.</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> › <a href="../index.html">Tools</a> › <span aria-current="page">Password Generator</span>
+    </nav>
+
+    <h1>Free Strong Password Generator</h1>
+    <p><strong>Runs 100% in your browser — your passwords never leave your device.</strong></p>
+
+    <section class="tool-box" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" style="margin-top:0">Generate a random password</h2>
+      <div id="pg-error" class="error-box" style="display:none" role="alert"></div>
+      <div id="pg-ui">
+        <label for="pg-length">Length: <output id="pg-length-val" for="pg-length">16</output> characters</label>
+        <input type="range" id="pg-length" min="4" max="64" value="16" step="1">
+        <div class="toggle-row" role="group" aria-label="Character sets">
+          <label><input type="checkbox" id="pg-upper" checked> Uppercase (A–Z)</label>
+          <label><input type="checkbox" id="pg-lower" checked> Lowercase (a–z)</label>
+          <label><input type="checkbox" id="pg-digits" checked> Digits (0–9)</label>
+          <label><input type="checkbox" id="pg-symbols" checked> Symbols (!@#$…)</label>
+          <label><input type="checkbox" id="pg-noamb"> Exclude ambiguous (l, 1, I, 0, O)</label>
+        </div>
+        <div class="btn-row">
+          <button type="button" id="pg-generate" class="primary">Generate</button>
+          <button type="button" id="pg-regen">Regenerate</button>
+          <button type="button" id="pg-copy">Copy</button>
+        </div>
+        <label for="pg-output" style="margin-top:1rem">Your password:</label>
+        <div class="output-box password-display" id="pg-output" aria-live="polite"><span style="color:var(--muted); font-family:inherit">Click Generate to create a password.</span></div>
+        <p class="strength-meter" id="pg-strength" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="prose" aria-labelledby="about-pg">
+      <h2 id="about-pg">About this password generator</h2>
+      <p>Weak and reused passwords remain the most common way accounts get compromised. A strong password needs to be long and random — two things humans are bad at producing. This free password generator creates cryptographically random passwords of any length from 4 to 64 characters, mixing uppercase, lowercase, digits and symbols, with an option to exclude ambiguous characters (l, 1, I, 0, O) that are easy to misread.</p>
+      <p>Randomness quality is what separates a real password generator from a toy. This tool uses only your browser's WebCrypto API (<code>crypto.getRandomValues</code>) — the same source of randomness behind TLS encryption keys. If WebCrypto is unavailable, the generator shows an error and refuses to run rather than silently falling back to the weaker <code>Math.random()</code>. Every password is guaranteed to contain at least one character from each character set you enable, and an entropy readout (in bits) plus a plain-English strength label tells you exactly how strong the result is: 16 characters from all four sets gives roughly 103 bits of entropy — strong for almost every purpose.</p>
+      <p>Because generation happens entirely on your device, passwords are never transmitted, stored or logged. For real security, store each generated password in a reputable password manager and never reuse passwords across sites.</p>
+
+      <h2>How to use</h2>
+      <ol>
+        <li>Choose a length with the slider (16 is a strong default; 20+ for master passwords).</li>
+        <li>Tick the character sets you want; optionally exclude ambiguous characters.</li>
+        <li>Click <strong>Generate</strong> (or <strong>Regenerate</strong> for a new one).</li>
+        <li>Check the entropy and strength readout, then <strong>Copy</strong> the password into your password manager.</li>
+      </ol>
+
+      <h2>Limitations</h2>
+      <ul>
+        <li>Some websites restrict password length or ban certain symbols — adjust the options to match the site's rules.</li>
+        <li>The generator cannot check whether a password has appeared in a data breach; avoid reusing passwords regardless.</li>
+        <li>Strength labels estimate resistance to brute force; they do not protect against phishing or malware on your device.</li>
+        <li>Requires a browser with WebCrypto support (all modern browsers); the tool refuses to generate without it.</li>
+      </ul>
+    </section>
+
+    <section class="prose faq" aria-labelledby="pg-faq">
+      <h2 id="pg-faq">Frequently asked questions</h2>
+      <details>
+        <summary>How random are the generated passwords?</summary>
+        <p>Passwords are generated with your browser's WebCrypto API (crypto.getRandomValues), the same cryptographic randomness used for TLS keys. The generator refuses to run if WebCrypto is unavailable — it never falls back to weaker Math.random().</p>
+      </details>
+      <details>
+        <summary>What password length should I choose?</summary>
+        <p>16 characters from the full character set gives about 103 bits of entropy, which is strong for almost every purpose. Use 20+ for master passwords and anything protecting sensitive accounts. The slider goes up to 64.</p>
+      </details>
+      <details>
+        <summary>What does "exclude ambiguous characters" do?</summary>
+        <p>It removes characters that are easy to confuse when reading: lowercase l, digit 1, uppercase I, digit 0 and uppercase O. Useful when you must read or type a password manually.</p>
+      </details>
+      <details>
+        <summary>Are my passwords sent anywhere?</summary>
+        <p>No. Generation happens 100% in your browser. Passwords are never transmitted, stored or logged — they exist only on your device until you copy them.</p>
+      </details>
+    </section>
+
+    <section class="related-tools" aria-labelledby="related">
+      <h2 id="related">Related tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="../word-counter/index.html"><h3>Word Counter</h3><p>Words, sentences, paragraphs and reading time estimates.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../character-counter/index.html"><h3>Character Counter</h3><p>Characters, words, lines and UTF-8 bytes — live.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../text-cleaner/index.html"><h3>Text Cleaner</h3><p>Remove line breaks, duplicates and extra whitespace.</p><span class="card-cta">Open tool →</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../privacy.html">Privacy</a></li>
+          <li><a href="../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">© <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+    </div>
+  </footer>
+  <script src="../../assets/logic/password-generator.js"></script>
+  <script src="../../assets/main.js"></script>
+  <script>
+    (function () {
+      var pg = window.QuickTools.passwordGenerator;
+      var ui = document.getElementById('pg-ui');
+      var errBox = document.getElementById('pg-error');
+      var lengthInput = document.getElementById('pg-length');
+      var lengthVal = document.getElementById('pg-length-val');
+      var output = document.getElementById('pg-output');
+      var strength = document.getElementById('pg-strength');
+
+      if (!pg.isCryptoAvailable()) {
+        ui.style.display = 'none';
+        errBox.style.display = '';
+        errBox.textContent = 'Secure password generation is unavailable: your browser does not support WebCrypto (crypto.getRandomValues). QuickTools refuses to generate passwords with weaker randomness. Please use a modern browser.';
+        return;
+      }
+
+      function readOpts() {
+        return {
+          uppercase: document.getElementById('pg-upper').checked,
+          lowercase: document.getElementById('pg-lower').checked,
+          digits: document.getElementById('pg-digits').checked,
+          symbols: document.getElementById('pg-symbols').checked,
+          excludeAmbiguous: document.getElementById('pg-noamb').checked
+        };
+      }
+
+      function generate() {
+        errBox.style.display = 'none';
+        try {
+          var r = pg.generate(parseInt(lengthInput.value, 10), readOpts());
+          output.textContent = r.password;
+          output.dataset.value = r.password;
+          strength.textContent = 'Entropy: ' + r.entropyBits + ' bits — ' + r.strength;
+        } catch (e) {
+          errBox.style.display = '';
+          errBox.textContent = e.message;
+        }
+      }
+
+      lengthInput.addEventListener('input', function () {
+        lengthVal.textContent = lengthInput.value;
+      });
+      document.getElementById('pg-generate').addEventListener('click', generate);
+      document.getElementById('pg-regen').addEventListener('click', generate);
+      document.getElementById('pg-copy').addEventListener('click', function (e) {
+        var v = output.dataset.value || '';
+        if (!v) return;
+        window.QuickTools.copyText(v).then(function () {
+          window.QuickTools.flashButton(e.currentTarget);
+        });
+      });
+
+      generate(); // generate one on load
+    })();
+  </script>
+</body>
+</html>
