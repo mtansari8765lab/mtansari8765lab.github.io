@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compound Interest Calculator — See Your Money Grow</title>
+  <meta name="description" content="Free compound interest calculator online: project savings growth with compounding frequency and monthly contributions, plus a year-by-year growth table.">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is compound interest?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Compound interest is interest earned on both your original money and the interest already added. Over time the growth curve bends upward — the later years earn far more than the early ones, which is why starting early matters more than the exact rate." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do monthly contributions change the result?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Dramatically. Regular contributions usually dominate the final balance for most savers — the growth table below shows your contributions and interest separately so you can see which does the heavy lifting." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does compounding frequency mean?",
+        "acceptedAnswer": { "@type": "Answer", "text": "How often interest is calculated and added: yearly, half-yearly, quarterly, monthly or daily. More frequent compounding grows slightly faster, but the difference between monthly and daily is small compared to the rate and the time horizon." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this financial advice?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. This is an educational estimate tool, not financial advice. It ignores taxes, fees and inflation, and past market returns do not predict future results. Talk to a qualified professional before investing." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my data uploaded anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The calculator runs 100% in your browser with JavaScript. Your numbers never leave your device, are never stored, and never sent to any server." }
+      }
+    ]
+  }
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T2LH1SV8Y5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8008490095120298"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="QuickTools home">
+        <span class="brand-name">QuickTools</span>
+        <span class="brand-tag">Free online tools that run in your browser.</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> › <a href="../index.html">Tools</a> › <span aria-current="page">Compound Interest Calculator</span>
+    </nav>
+
+    <h1>Free Online Compound Interest Calculator</h1>
+    <p><strong>Runs 100% in your browser — your numbers never leave your device.</strong></p>
+    <p class="disclaimer"><em>Educational estimates only — not financial advice. Ignores taxes, fees and inflation.</em></p>
+
+    <section class="tool-box" aria-labelledby="ci-h">
+      <h2 id="ci-h" style="margin-top:0">Project your growth</h2>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="ci-principal">Initial investment</label>
+          <input type="number" id="ci-principal" inputmode="decimal" min="0" value="1000">
+        </div>
+        <div class="form-field">
+          <label for="ci-rate">Annual interest rate (%)</label>
+          <input type="number" id="ci-rate" inputmode="decimal" min="0" value="5" step="0.1">
+        </div>
+        <div class="form-field">
+          <label for="ci-years">Years</label>
+          <input type="number" id="ci-years" inputmode="numeric" min="0" value="10" step="1">
+        </div>
+        <div class="form-field">
+          <label for="ci-freq">Compounding</label>
+          <select id="ci-freq">
+            <option value="1">Yearly</option>
+            <option value="2">Half-yearly</option>
+            <option value="4">Quarterly</option>
+            <option value="12" selected>Monthly</option>
+            <option value="365">Daily</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="ci-monthly">Monthly contribution (optional)</label>
+          <input type="number" id="ci-monthly" inputmode="decimal" min="0" value="100">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button type="button" id="ci-go">Calculate growth</button>
+      </div>
+      <div class="error" id="ci-err" style="display:none" role="alert"></div>
+      <div class="stats-grid" id="ci-stats" style="display:none" aria-live="polite">
+        <div class="stat"><div class="stat-label">Future value</div><div class="stat-value" id="ci-fv">–</div></div>
+        <div class="stat"><div class="stat-label">Total contributions</div><div class="stat-value" id="ci-contrib">–</div></div>
+        <div class="stat"><div class="stat-label">Interest earned</div><div class="stat-value" id="ci-interest">–</div></div>
+      </div>
+      <div id="ci-table-wrap" style="display:none; overflow-x:auto">
+        <table class="data-table" id="ci-table" aria-label="Year by year growth">
+          <thead>
+            <tr><th>Year</th><th>Balance</th><th>Interest that year</th><th>Total contributed</th></tr>
+          </thead>
+          <tbody id="ci-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="prose" aria-labelledby="about-ci">
+      <h2 id="about-ci">About this compound interest calculator</h2>
+      <p>Compound interest is interest earning interest. In year one, a 5% rate on $1,000 adds $50. By year ten, the same 5% applies to a much larger balance, so the dollar gains accelerate — the growth curve bends upward. The table above makes this visible: early rows are mostly your own contributions, later rows are mostly interest.</p>
+      <p>Two levers matter more than anything: time and contributions. Doubling the rate helps, but starting ten years earlier or adding a monthly contribution usually wins. Try the defaults ($1,000 at 5% for 10 years with $100/month) against the same setup with $0 monthly contributions to see the difference.</p>
+
+      <h2>How to use</h2>
+      <ol>
+        <li>Enter the starting amount, annual rate, time horizon and compounding frequency.</li>
+        <li>Add an optional monthly contribution.</li>
+        <li>Press <strong>Calculate growth</strong> for the future value, total contributions, interest earned and a year-by-year table.</li>
+      </ol>
+
+      <h2>Limitations</h2>
+      <ul>
+        <li>Educational estimates only — not financial advice.</li>
+        <li>Ignores taxes, fees, inflation and variable returns; real investments fluctuate.</li>
+        <li>Monthly contributions are assumed at each compounding period, spread evenly.</li>
+      </ul>
+    </section>
+
+    <section class="prose faq" aria-labelledby="ci-faq">
+      <h2 id="ci-faq">Frequently asked questions</h2>
+      <details>
+        <summary>What is compound interest?</summary>
+        <p>Compound interest is interest earned on both your original money and the interest already added. Over time the growth curve bends upward — the later years earn far more than the early ones, which is why starting early matters more than the exact rate.</p>
+      </details>
+      <details>
+        <summary>How do monthly contributions change the result?</summary>
+        <p>Dramatically. Regular contributions usually dominate the final balance for most savers — the growth table shows your contributions and interest separately so you can see which does the heavy lifting.</p>
+      </details>
+      <details>
+        <summary>What does compounding frequency mean?</summary>
+        <p>How often interest is calculated and added: yearly, half-yearly, quarterly, monthly or daily. More frequent compounding grows slightly faster, but the difference between monthly and daily is small compared to the rate and the time horizon.</p>
+      </details>
+      <details>
+        <summary>Is this financial advice?</summary>
+        <p>No. This is an educational estimate tool, not financial advice. It ignores taxes, fees and inflation, and past market returns do not predict future results. Talk to a qualified professional before investing.</p>
+      </details>
+      <details>
+        <summary>Is my data uploaded anywhere?</summary>
+        <p>No. The calculator runs 100% in your browser with JavaScript. Your numbers never leave your device, are never stored, and never sent to any server.</p>
+      </details>
+    </section>
+
+    <section class="related-tools" aria-labelledby="related">
+      <h2 id="related">Related tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="../percentage-calculator/index.html"><h3>Percentage Calculator</h3><p>X% of Y, percent change &amp; more.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../salary-calculator/index.html"><h3>Salary Calculator</h3><p>Annual ↔ hourly pay conversions.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../discount-calculator/index.html"><h3>Discount Calculator</h3><p>Sale price, stacked discounts and tax.</p><span class="card-cta">Open tool →</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../privacy.html">Privacy</a></li>
+          <li><a href="../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">© <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+    </div>
+  </footer>
+  <script src="../../assets/logic/compound-interest-calculator.js"></script>
+  <script src="../../assets/main.js"></script>
+  <script>
+    (function () {
+      var Q = window.QuickTools;
+      var C = Q.compoundInterestCalculator;
+      function money(n) {
+        return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+      document.getElementById('ci-go').addEventListener('click', function () {
+        var err = document.getElementById('ci-err');
+        try {
+          var p = document.getElementById('ci-principal').value;
+          var r = document.getElementById('ci-rate').value;
+          var y = document.getElementById('ci-years').value;
+          var n = +document.getElementById('ci-freq').value;
+          var m = document.getElementById('ci-monthly').value;
+          var s = C.summary(p, r, y, n, m === '' ? 0 : m);
+          var table = C.growthTable(p, r, y, n, m === '' ? 0 : m);
+          Q.hideError(err);
+          document.getElementById('ci-fv').textContent = money(s.futureValue);
+          document.getElementById('ci-contrib').textContent = money(s.totalContributions);
+          document.getElementById('ci-interest').textContent = money(s.totalInterest);
+          document.getElementById('ci-stats').style.display = '';
+          var tb = document.getElementById('ci-tbody');
+          tb.innerHTML = '';
+          for (var i = 0; i < table.length; i++) {
+            var row = table[i];
+            var tr = document.createElement('tr');
+            tr.innerHTML = '<td>' + row.year + '</td><td>' + money(row.balance) + '</td>' +
+              '<td>' + money(row.interest) + '</td><td>' + money(row.contributions) + '</td>';
+            tb.appendChild(tr);
+          }
+          document.getElementById('ci-table-wrap').style.display = table.length ? '' : 'none';
+        } catch (e) { Q.showError(err, e.message); }
+      });
+    })();
+  </script>
+</body>
+</html>
