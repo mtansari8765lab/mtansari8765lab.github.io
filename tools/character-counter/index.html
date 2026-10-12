@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character Counter — Count Characters, Words &amp; Lines</title>
+  <meta name="description" content="Free character counter: count characters, characters without spaces, words, lines and UTF-8 bytes live as you type. Fast, private, no signup.">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do spaces count as characters?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The main character count includes spaces and line breaks. A separate \"excluding spaces\" count is shown for platforms and assignments that ignore whitespace." }
+      },
+      {
+        "@type": "Question",
+        "name": "How are emoji counted?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Each emoji counts as one character. The counter measures Unicode code points, not UTF-16 code units, so emoji are never counted as two characters." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the UTF-8 byte count for?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Some systems — databases, APIs, SMS gateways, meta description validators — limit text by bytes rather than characters. Accented letters take 2 bytes and most emoji take 4, so byte count and character count can differ." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my text sent to a server?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Counting happens entirely in your browser. Your text never leaves your device." }
+      }
+    ]
+  }
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T2LH1SV8Y5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8008490095120298"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="QuickTools home">
+        <span class="brand-name">QuickTools</span>
+        <span class="brand-tag">Free online tools that run in your browser.</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> › <a href="../index.html">Tools</a> › <span aria-current="page">Character Counter</span>
+    </nav>
+
+    <h1>Free Online Character Counter</h1>
+    <p><strong>Runs 100% in your browser — your text never leaves your device.</strong></p>
+
+    <section class="tool-box" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" style="margin-top:0">Count characters live</h2>
+      <label for="cc-input">Paste or type your text below:</label>
+      <textarea id="cc-input" placeholder="Start typing or paste your text here…" aria-describedby="cc-stats"></textarea>
+      <div class="btn-row">
+        <button type="button" id="cc-clear">Clear</button>
+        <button type="button" id="cc-copy">Copy stats</button>
+      </div>
+      <div class="stats-grid" id="cc-stats" aria-live="polite">
+        <div class="stat"><div class="stat-label">Characters</div><div class="stat-value" id="c-chars">0</div></div>
+        <div class="stat"><div class="stat-label">Characters (no spaces)</div><div class="stat-value" id="c-chars-ns">0</div></div>
+        <div class="stat"><div class="stat-label">Words</div><div class="stat-value" id="c-words">0</div></div>
+        <div class="stat"><div class="stat-label">Lines</div><div class="stat-value" id="c-lines">0</div></div>
+        <div class="stat"><div class="stat-label">UTF-8 bytes</div><div class="stat-value" id="c-bytes">0</div></div>
+      </div>
+    </section>
+
+    <section class="prose" aria-labelledby="about-cc">
+      <h2 id="about-cc">About this character counter</h2>
+      <p>Character limits decide whether your message fits: social media bios, post captions, SMS messages, form fields, and SEO meta descriptions all cut you off at a fixed number of characters. The trouble is that "characters" is not always counted the way you expect — some platforms count emoji as two characters, others limit by bytes instead. This free character counter shows every count that matters, live as you type: total characters, characters excluding spaces, words, lines, and the exact UTF-8 byte length.</p>
+      <p>Counting is Unicode-safe. Each emoji counts as one character (many naive counters report two because they count UTF-16 code units), and the UTF-8 byte readout tells you the true storage size — useful when a database column, API, or SMS gateway enforces a byte limit, since accented characters take two bytes and most emoji take four. Writers use the excluding-spaces figure for assignments that ignore whitespace; marketers use the byte count to keep meta descriptions and ad copy inside technical limits.</p>
+      <p>Like every QuickTools utility, the counter runs entirely on your device. Paste confidential drafts freely — nothing is uploaded or stored.</p>
+
+      <h2>How to use</h2>
+      <ol>
+        <li>Type or paste your text into the box.</li>
+        <li>Read the live counts — characters, excluding spaces, words, lines and UTF-8 bytes.</li>
+        <li>Use <strong>Copy stats</strong> to copy a one-line summary to your clipboard.</li>
+        <li>Use <strong>Clear</strong> to reset the box.</li>
+      </ol>
+
+      <h2>Limitations</h2>
+      <ul>
+        <li>Some platforms (notably X/Twitter) count certain characters, URLs and emoji with their own weighted rules — this tool reports standard Unicode counts, not platform-specific ones.</li>
+        <li>Complex emoji sequences joined with zero-width joiners (e.g. family emoji) count by code point, which may differ from what a platform displays as one glyph.</li>
+        <li>Line breaks count as characters in the total; the excluding-spaces count removes all whitespace including line breaks.</li>
+      </ul>
+    </section>
+
+    <section class="prose faq" aria-labelledby="cc-faq">
+      <h2 id="cc-faq">Frequently asked questions</h2>
+      <details>
+        <summary>Do spaces count as characters?</summary>
+        <p>The main character count includes spaces and line breaks. A separate "excluding spaces" count is shown for platforms and assignments that ignore whitespace.</p>
+      </details>
+      <details>
+        <summary>How are emoji counted?</summary>
+        <p>Each emoji counts as one character. The counter measures Unicode code points, not UTF-16 code units, so emoji are never counted as two characters.</p>
+      </details>
+      <details>
+        <summary>What is the UTF-8 byte count for?</summary>
+        <p>Some systems — databases, APIs, SMS gateways, meta description validators — limit text by bytes rather than characters. Accented letters take 2 bytes and most emoji take 4, so byte count and character count can differ.</p>
+      </details>
+      <details>
+        <summary>Is my text sent to a server?</summary>
+        <p>No. Counting happens entirely in your browser. Your text never leaves your device.</p>
+      </details>
+    </section>
+
+    <section class="related-tools" aria-labelledby="related">
+      <h2 id="related">Related tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="../word-counter/index.html"><h3>Word Counter</h3><p>Words, sentences, paragraphs and reading time estimates.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../case-converter/index.html"><h3>Case Converter</h3><p>UPPERCASE, lowercase, Title Case and more in one click.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../text-cleaner/index.html"><h3>Text Cleaner</h3><p>Remove line breaks, duplicates and extra whitespace.</p><span class="card-cta">Open tool →</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../privacy.html">Privacy</a></li>
+          <li><a href="../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">© <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+    </div>
+  </footer>
+  <script src="../../assets/logic/character-counter.js"></script>
+  <script src="../../assets/main.js"></script>
+  <script>
+    (function () {
+      var input = document.getElementById('cc-input');
+      var els = {
+        chars: document.getElementById('c-chars'),
+        charsNs: document.getElementById('c-chars-ns'),
+        words: document.getElementById('c-words'),
+        lines: document.getElementById('c-lines'),
+        bytes: document.getElementById('c-bytes')
+      };
+      function update() {
+        var r = window.QuickTools.characterCounter.analyze(input.value);
+        els.chars.textContent = r.characters.toLocaleString();
+        els.charsNs.textContent = r.charactersNoSpaces.toLocaleString();
+        els.words.textContent = r.words.toLocaleString();
+        els.lines.textContent = r.lines.toLocaleString();
+        els.bytes.textContent = r.utf8Bytes.toLocaleString();
+      }
+      input.addEventListener('input', update);
+      document.getElementById('cc-clear').addEventListener('click', function () {
+        input.value = ''; update(); input.focus();
+      });
+      document.getElementById('cc-copy').addEventListener('click', function (e) {
+        var r = window.QuickTools.characterCounter.analyze(input.value);
+        var summary = 'Characters: ' + r.characters + ' (' + r.charactersNoSpaces +
+          ' excl. spaces), Words: ' + r.words + ', Lines: ' + r.lines +
+          ', UTF-8 bytes: ' + r.utf8Bytes;
+        window.QuickTools.copyText(summary).then(function () {
+          window.QuickTools.flashButton(e.currentTarget);
+        });
+      });
+      update();
+    })();
+  </script>
+</body>
+</html>
