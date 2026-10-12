@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discount Calculator Online Free — Sale Price &amp; Savings</title>
+  <meta name="description" content="Free discount calculator online: apply one or more stacked discounts, add sales tax, or work backwards from a sale price to the percent off. Prices rounded to cents.">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why don't stacked discounts add up to their sum?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because each discount applies to the already-reduced price. A 20% discount followed by 10% gives 0.80 × 0.90 = 0.72, i.e. 28% off — not 30%. Retailers rely on this; now you can check the real number." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is sales tax applied before or after the discount?",
+        "acceptedAnswer": { "@type": "Answer", "text": "After. Tax is calculated on the discounted price at checkout, so this calculator applies discounts first and tax second — matching how stores ring you up." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I find the original price from a sale price?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Divide the sale price by (1 − discount). A $72 item at 28% off was 72 ÷ 0.72 = $100 originally." }
+      },
+      {
+        "@type": "Question",
+        "name": "How are prices rounded?",
+        "acceptedAnswer": { "@type": "Answer", "text": "All money results are rounded to the nearest cent (two decimal places), standard for currency." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my data uploaded anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The calculator runs 100% in your browser with JavaScript. Your numbers never leave your device, are never stored, and never sent to any server." }
+      }
+    ]
+  }
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T2LH1SV8Y5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8008490095120298"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="QuickTools home">
+        <span class="brand-name">QuickTools</span>
+        <span class="brand-tag">Free online tools that run in your browser.</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> › <a href="../index.html">Tools</a> › <span aria-current="page">Discount Calculator</span>
+    </nav>
+
+    <h1>Free Online Discount Calculator</h1>
+    <p><strong>Runs 100% in your browser — your numbers never leave your device.</strong></p>
+
+    <section class="tool-box" aria-labelledby="ds-a-h">
+      <h2 id="ds-a-h" style="margin-top:0">Final price after discounts + tax</h2>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="ds-price">Original price</label>
+          <input type="number" id="ds-price" inputmode="decimal" min="0" placeholder="e.g. 100">
+        </div>
+        <div class="form-field">
+          <label for="ds-d1">Discount 1 (%)</label>
+          <input type="number" id="ds-d1" inputmode="decimal" min="0" max="100" placeholder="e.g. 20">
+        </div>
+        <div class="form-field">
+          <label for="ds-d2">Discount 2 (%) — optional</label>
+          <input type="number" id="ds-d2" inputmode="decimal" min="0" max="100" placeholder="e.g. 10">
+        </div>
+        <div class="form-field">
+          <label for="ds-tax">Sales tax (%) — optional</label>
+          <input type="number" id="ds-tax" inputmode="decimal" min="0" max="100" placeholder="e.g. 8">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button type="button" id="ds-a-go">Calculate</button>
+      </div>
+      <div class="error" id="ds-a-err" style="display:none" role="alert"></div>
+      <div class="stats-grid" id="ds-a-stats" style="display:none" aria-live="polite">
+        <div class="stat"><div class="stat-label">Final price</div><div class="stat-value" id="ds-final">–</div></div>
+        <div class="stat"><div class="stat-label">You save</div><div class="stat-value" id="ds-save">–</div></div>
+        <div class="stat"><div class="stat-label">Effective discount</div><div class="stat-value" id="ds-eff">–</div></div>
+      </div>
+    </section>
+
+    <section class="tool-box" aria-labelledby="ds-b-h">
+      <h2 id="ds-b-h" style="margin-top:0">What percent off is this?</h2>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="ds-orig">Original price</label>
+          <input type="number" id="ds-orig" inputmode="decimal" min="0" placeholder="e.g. 80">
+        </div>
+        <div class="form-field">
+          <label for="ds-sale">Sale price</label>
+          <input type="number" id="ds-sale" inputmode="decimal" min="0" placeholder="e.g. 60">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button type="button" id="ds-b-go">Calculate</button>
+      </div>
+      <div class="error" id="ds-b-err" style="display:none" role="alert"></div>
+      <div class="result" id="ds-b-out" aria-live="polite">Enter both prices and press Calculate.</div>
+    </section>
+
+    <section class="prose" aria-labelledby="about-ds">
+      <h2 id="about-ds">About this discount calculator</h2>
+      <p>Sale math is designed to confuse: "20% off plus an extra 10% off" sounds like 30% off, but the second discount applies to the already-reduced price, so you actually save 28%. This calculator applies discounts in sequence exactly the way a checkout till does, then adds sales tax on the discounted price.</p>
+      <p>The second box answers the reverse question — "was $80, now $60, what percent off?" — useful for checking whether a "sale" is really a deal, and for reconstructing the original price from a sale price (divide the sale price by 1 minus the discount).</p>
+
+      <h2>How to use</h2>
+      <ol>
+        <li>Enter the original price, one or two discounts, and optional sales tax.</li>
+        <li>Press <strong>Calculate</strong> to see the final price, total savings and effective discount.</li>
+        <li>Use the second box to convert any original/sale pair into a percent-off figure.</li>
+      </ol>
+
+      <h2>Limitations</h2>
+      <ul>
+        <li>Money is rounded to cents; tiny fractions of a cent are lost, as at a real till.</li>
+        <li>Tax rules vary by place — some regions tax the pre-discount price. This calculator follows the common post-discount convention.</li>
+        <li>Coupons with fixed dollar amounts aren't covered; subtract those from the price first.</li>
+      </ul>
+    </section>
+
+    <section class="prose faq" aria-labelledby="ds-faq">
+      <h2 id="ds-faq">Frequently asked questions</h2>
+      <details>
+        <summary>Why don't stacked discounts add up to their sum?</summary>
+        <p>Because each discount applies to the already-reduced price. A 20% discount followed by 10% gives 0.80 × 0.90 = 0.72, i.e. 28% off — not 30%.</p>
+      </details>
+      <details>
+        <summary>Is sales tax applied before or after the discount?</summary>
+        <p>After. Tax is calculated on the discounted price at checkout, so this calculator applies discounts first and tax second.</p>
+      </details>
+      <details>
+        <summary>How do I find the original price from a sale price?</summary>
+        <p>Divide the sale price by (1 − discount). A $72 item at 28% off was 72 ÷ 0.72 = $100 originally.</p>
+      </details>
+      <details>
+        <summary>How are prices rounded?</summary>
+        <p>All money results are rounded to the nearest cent (two decimal places), standard for currency.</p>
+      </details>
+      <details>
+        <summary>Is my data uploaded anywhere?</summary>
+        <p>No. The calculator runs 100% in your browser with JavaScript. Your numbers never leave your device, are never stored, and never sent to any server.</p>
+      </details>
+    </section>
+
+    <section class="related-tools" aria-labelledby="related">
+      <h2 id="related">Related tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="../percentage-calculator/index.html"><h3>Percentage Calculator</h3><p>X% of Y, percent change &amp; more.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../salary-calculator/index.html"><h3>Salary Calculator</h3><p>Annual ↔ hourly pay conversions.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../compound-interest-calculator/index.html"><h3>Compound Interest Calculator</h3><p>See your money grow over time.</p><span class="card-cta">Open tool →</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../privacy.html">Privacy</a></li>
+          <li><a href="../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">© <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+    </div>
+  </footer>
+  <script src="../../assets/logic/discount-calculator.js"></script>
+  <script src="../../assets/main.js"></script>
+  <script>
+    (function () {
+      var Q = window.QuickTools;
+      var DC = Q.discountCalculator;
+      function money(n) {
+        return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+      document.getElementById('ds-a-go').addEventListener('click', function () {
+        var err = document.getElementById('ds-a-err');
+        try {
+          var price = document.getElementById('ds-price').value;
+          var discounts = [
+            document.getElementById('ds-d1').value,
+            document.getElementById('ds-d2').value
+          ].filter(function (v) { return v !== ''; });
+          var afterDisc = DC.priceAfterDiscounts(price, discounts);
+          var tax = document.getElementById('ds-tax').value;
+          var finalP = DC.addTax(afterDisc, tax === '' ? 0 : tax);
+          var save = DC.savings(price, finalP);
+          var eff = DC.discountPercent(price, afterDisc);
+          Q.hideError(err);
+          document.getElementById('ds-final').textContent = money(finalP);
+          document.getElementById('ds-save').textContent = money(save);
+          document.getElementById('ds-eff').textContent = eff + '%';
+          document.getElementById('ds-a-stats').style.display = '';
+        } catch (e) { Q.showError(err, e.message); }
+      });
+      document.getElementById('ds-b-go').addEventListener('click', function () {
+        var err = document.getElementById('ds-b-err');
+        var out = document.getElementById('ds-b-out');
+        try {
+          var orig = document.getElementById('ds-orig').value;
+          var sale = document.getElementById('ds-sale').value;
+          var p = DC.discountPercent(orig, sale);
+          Q.hideError(err);
+          out.textContent = p >= 0
+            ? 'That is ' + p + '% off (you save ' + money(DC.savings(orig, sale)) + ').'
+            : 'That is a ' + Math.abs(p) + '% price increase, not a discount.';
+        } catch (e) { Q.showError(err, e.message); }
+      });
+    })();
+  </script>
+</body>
+</html>
