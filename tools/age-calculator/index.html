@@ -33,6 +33,16 @@
       },
       {
         "@type": "Question",
+        "name": "How old am I if I was born in 1990?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Enter 1990 and your birth month and day above — the calculator answers in plain English, e.g. \"You are 36 years, 3 months and 27 days old.\" As a rule of thumb, subtract your birth year from the current year, then subtract one more if your birthday hasn't happened yet this year." }
+      },
+      {
+        "@type": "Question",
+        "name": "How old am I in days?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The calculator shows \"Total days lived\" in the results grid — for example, 36 years works out to roughly 13,170 days including leap days. Dividing by 365 by hand gets it wrong near leap years, which is why the calculator counts exact calendar days." }
+      },
+      {
+        "@type": "Question",
         "name": "Is my date of birth uploaded anywhere?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. The calculator runs 100% in your browser with JavaScript. Your birth date never leaves your device, is never stored, and never sent to any server." }
       }
@@ -104,6 +114,12 @@
       </div>
     </section>
 
+    <section class="prose" aria-labelledby="how-old-am-i">
+      <h2 id="how-old-am-i">How old am I?</h2>
+      <p>Enter your date of birth in the calculator above and it answers in plain English — for example, <em>"You are 36 years, 3 months and 27 days old."</em> <span id="howold-live" aria-live="polite"></span></p>
+      <p>People ask "how old am I" in a few different ways, and this page covers them all: your exact age today in years, months and days; your age as a single number of total days lived; and how old you were (or will be) on any specific date via the "as of" field. If you were born in 1990, you turn 36 sometime in 2026 — the calculator gives you the precise day count instead of making you do the mental math.</p>
+    </section>
+
     <section class="prose" aria-labelledby="about-ac">
       <h2 id="about-ac">About this age calculator</h2>
       <p>"How old am I, exactly?" is a harder question than it sounds — months have different lengths, leap years add a day every four years, and naively dividing days by 365 gives wrong answers near birthdays. This calculator counts full years first, then whole months, then remaining days, the same convention used on official forms and eligibility checks.</p>
@@ -141,6 +157,14 @@
       <details>
         <summary>Can I calculate someone's age on a past or future date?</summary>
         <p>Yes. Change the "as of" date to any date on or after the birth date — useful for checking eligibility ages for applications, licenses or registrations.</p>
+      </details>
+      <details>
+        <summary>How old am I if I was born in 1990?</summary>
+        <p>Enter 1990 and your birth month and day above — the calculator answers in plain English. As a rule of thumb, subtract your birth year from the current year, then subtract one more if your birthday hasn't happened yet this year.</p>
+      </details>
+      <details>
+        <summary>How old am I in days?</summary>
+        <p>The calculator shows "Total days lived" in the results grid — 36 years works out to roughly 13,170 days including leap days. Dividing by 365 by hand gets it wrong near leap years, which is why the calculator counts exact calendar days.</p>
       </details>
       <details>
         <summary>Is my date of birth uploaded anywhere?</summary>
@@ -196,6 +220,11 @@
           Q.hideError(err);
           document.getElementById('age-plain').textContent =
             Q.ageCalculator.plainAgeLine(birth, on, fmtLong(birth));
+          var live = document.getElementById('howold-live');
+          if (live) {
+            live.textContent = 'Your answer: ' +
+              Q.ageCalculator.plainAgeLine(birth, on, fmtLong(birth));
+          }
           document.getElementById('age-y').textContent = a.years;
           document.getElementById('age-m').textContent = a.months;
           document.getElementById('age-d').textContent = a.days;
