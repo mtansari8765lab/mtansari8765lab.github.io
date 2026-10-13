@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Many Days Until Christmas, Easter &amp; Every Holiday? (Live Countdown)</title>
+  <meta name="description" content="Search any holiday — Christmas, Easter, Diwali, Eid, Halloween — and get a live days-hours-minutes-seconds countdown. 68 festivals in a searchable database, computed in your browser.">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <style>
+    .hc-search-wrap { position: relative; }
+    .hc-results { position: absolute; top: 100%; left: 0; right: 0; z-index: 20; background: #fff; border: 1px solid var(--border); border-radius: 8px; margin: 4px 0 0; padding: 0; list-style: none; max-height: 16rem; overflow: auto; box-shadow: 0 8px 24px rgba(0,0,0,.08); display: none; }
+    .hc-results.open { display: block; }
+    .hc-results button { display: block; width: 100%; text-align: left; background: none; border: 0; padding: 0.6rem 0.8rem; font: inherit; cursor: pointer; color: var(--text); }
+    .hc-results button:hover, .hc-results button.active { background: var(--bg-soft); }
+    .hc-results .tags { font-size: 0.8rem; color: var(--muted); margin-left: 0.5rem; }
+    .hc-countdown { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 1rem 0; }
+    .hc-unit { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem 0.25rem; min-width: 4.5rem; text-align: center; }
+    .hc-unit .num { display: block; font-size: 2rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .hc-unit .lbl { display: block; font-size: 0.8rem; color: var(--muted); }
+    .hc-today { font-size: 1.5rem; font-weight: 700; margin: 1rem 0; }
+    .hc-upcoming { display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); gap: 0.75rem; margin-top: 1rem; }
+    .hc-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 0.75rem; cursor: pointer; font: inherit; text-align: left; color: var(--text); }
+    .hc-card:hover { border-color: var(--brand); }
+    .hc-card .d { font-size: 1.35rem; font-weight: 700; }
+    .hc-card .n { font-weight: 600; margin-top: 0.25rem; }
+    .hc-card .t { font-size: 0.8rem; color: var(--muted); }
+    .hc-approx { font-size: 0.9rem; color: var(--muted); }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How Many Days Until Christmas, Easter & Every Holiday? (Live Countdown)",
+    "description": "Search any holiday — Christmas, Easter, Diwali, Eid, Halloween — and get a live days-hours-minutes-seconds countdown. 68 festivals in a searchable database, computed in your browser.",
+    "author": { "@type": "Organization", "name": "QuickTools" },
+    "publisher": { "@type": "Organization", "name": "QuickTools" },
+    "mainEntityOfPage": "https://mtansari8765lab.github.io/tools/holiday-countdown/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many days are there until Christmas?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Type Christmas in the search box above and the countdown shows the exact days, hours, minutes and seconds remaining until December 25, ticking live. The same works for Easter, Diwali, Eid, Halloween and 60+ other holidays." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does Easter change date every year?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Easter Sunday is defined as the first Sunday after the first full moon on or after March 21, computed with the Gregorian computus. That puts it anywhere between March 22 and April 25 — for example April 5 in 2026 and March 28 in 2027. This tool computes it automatically for any year." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are Ramadan and Eid dates marked approximate?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Islamic festivals follow a lunar calendar of 354-355 days, so they shift about 10-11 days earlier each Gregorian year, and the exact start depends on the physical moon sighting in each country. The dates shown are astronomical forecasts and can move by a day." }
+      },
+      {
+        "@type": "Question",
+        "name": "How is Thanksgiving's date decided?",
+        "acceptedAnswer": { "@type": "Answer", "text": "US Thanksgiving is the fourth Thursday of November by federal law. Similar rules set the other movable US holidays: Memorial Day is the last Monday of May, Labor Day the first Monday of September, and Martin Luther King Jr. Day the third Monday of January." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the countdown include today?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The day count is the number of full calendar days remaining: if the holiday is tomorrow it shows 1 day, and on the day itself the tool shows a celebration message instead of a countdown." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my holiday search sent anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The entire holiday database and all date math run in your browser with JavaScript. Your searches never leave your device, are never stored, and are never sent to any server." }
+      }
+    ]
+  }
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T2LH1SV8Y5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8008490095120298"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="QuickTools home">
+        <span class="brand-name">QuickTools</span>
+        <span class="brand-tag">Free online tools that run in your browser.</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> › <a href="../index.html">Tools</a> › <span aria-current="page">Holiday Countdown</span>
+    </nav>
+
+    <h1>How Many Days Until the Next Holiday?</h1>
+    <p><strong>Search any festival or special day and get a live countdown — days, hours, minutes and seconds, ticking in real time.</strong></p>
+
+    <section class="tool-box" aria-labelledby="hc-search-h">
+      <h2 id="hc-search-h" style="margin-top:0">Search holidays</h2>
+      <div class="form-field hc-search-wrap">
+        <label for="hc-search">Type a holiday, festival or special day</label>
+        <input type="text" id="hc-search" placeholder='Try "easter", "diwali", "eid", "halloween"…' autocomplete="off" role="combobox" aria-expanded="false" aria-controls="hc-results" aria-autocomplete="list">
+        <ul class="hc-results" id="hc-results" role="listbox" aria-label="Matching holidays"></ul>
+      </div>
+      <p class="hc-approx">68 holidays included — Christmas, Easter, Ramadan, Eid al-Fitr, Eid al-Adha, Diwali, Holi, Thanksgiving, Halloween, Valentine's Day and more.</p>
+    </section>
+
+    <section class="tool-box" id="hc-count-box" aria-labelledby="hc-name" aria-live="polite">
+      <h2 id="hc-name" style="margin-top:0">Upcoming holiday</h2>
+      <p id="hc-date-line"></p>
+      <div class="hc-countdown" id="hc-countdown" hidden>
+        <div class="hc-unit"><span class="num" id="hc-d">0</span><span class="lbl">days</span></div>
+        <div class="hc-unit"><span class="num" id="hc-h">0</span><span class="lbl">hours</span></div>
+        <div class="hc-unit"><span class="num" id="hc-m">0</span><span class="lbl">minutes</span></div>
+        <div class="hc-unit"><span class="num" id="hc-s">0</span><span class="lbl">seconds</span></div>
+      </div>
+      <p class="hc-today" id="hc-today" hidden>🎉 It's today — happy <span id="hc-today-name"></span>!</p>
+      <p class="hc-approx" id="hc-approx" hidden>Note: this date is approximate — lunar-calendar festivals depend on the moon sighting and can shift by a day.</p>
+    </section>
+
+    <section aria-labelledby="hc-up-h">
+      <h2 id="hc-up-h">Upcoming holidays</h2>
+      <p>The next 12 holidays from today — tap any card to start its live countdown.</p>
+      <div class="hc-upcoming" id="hc-upcoming"></div>
+    </section>
+
+    <section class="prose" aria-labelledby="about-hc">
+      <h2 id="about-hc">About this holiday countdown</h2>
+      <p>"How many days until Christmas?" and "when is Easter this year?" are among the most searched questions on the internet every year — asked hundreds of millions of times across December, spring festival seasons and the run-up to Eid and Diwali. People ask because holidays drive real plans: booking flights before prices spike, requesting time off work, ordering gifts, or preparing for religious observance. This tool answers instantly for 68 holidays, with a live countdown that ticks down to the second.</p>
+      <p>Holiday dates fall into four groups, and the tool handles each differently. <strong>Fixed dates</strong> like Christmas (December 25) or Pakistan's Independence Day (August 14) never move. <strong>Movable Christian feasts</strong> orbit Easter Sunday, which is defined as the first Sunday after the first full moon on or after March 21 — computed here with the Gregorian computus, the same algorithm churches use. That is why Easter was April 20 in 2025, is April 5 in 2026, and moves to March 28 in 2027, dragging Good Friday, Ash Wednesday and Pentecost with it.</p>
+      <p><strong>Rule-based holidays</strong> follow "nth weekday" laws: US Thanksgiving is the fourth Thursday of November, Memorial Day the last Monday of May, Labor Day the first Monday of September. The tool computes these for any year, so the countdown never goes stale. <strong>Lunar-calendar festivals</strong> — Ramadan, both Eids, Diwali, Holi and the other Hindu festivals — shift against the Gregorian calendar every year and, for Islamic dates, are only confirmed by the physical moon sighting. Their dates here are astronomical forecasts for 2026–2030 and are clearly flagged as approximate.</p>
+      <p>Beyond curiosity, countdowns are practical planning tools. Flight and hotel prices climb steeply in the final weeks before major holidays, so knowing Christmas is 80 days away — not "sometime soon" — is the difference between a cheap booking and an expensive one. The same applies to requesting time off before colleagues claim the same dates, hitting gift shipping cutoffs, and arranging school-break childcare. For movable feasts the payoff is bigger: because Easter and Eid slide each year, a countdown is the only way to know at a glance whether you have five months or five weeks to prepare.</p>
+      <p>One more thing the search box teaches you: the same holiday name can mean different dates in different places. Mother's Day in the United States is the second Sunday of May, while Britain's Mothering Sunday falls on the fourth Sunday of Lent — weeks apart. Orthodox Easter usually (though not always) lands on a different Sunday than Western Easter. Each result here shows region tags so you can tell which tradition a date belongs to, and the search understands common aliases — try "xmas", "turkey day" or "choti eid".</p>
+      <p>Everything runs 100% in your browser: the holiday database, the Easter computus and the countdown timer are plain JavaScript with no network requests. For date arithmetic between arbitrary dates, see the <a href="../date-calculator/index.html">date calculator</a>, and for the popular "what date is N days from today?" question, read the <a href="../../guides/days-from-today/index.html">days-from-today guide</a>.</p>
+    </section>
+
+    <section class="prose faq" aria-labelledby="hc-faq">
+      <h2 id="hc-faq">Frequently asked questions</h2>
+      <details>
+        <summary>How many days are there until Christmas?</summary>
+        <p>Type Christmas in the search box above and the countdown shows the exact days, hours, minutes and seconds remaining until December 25, ticking live. The same works for Easter, Diwali, Eid, Halloween and 60+ other holidays.</p>
+      </details>
+      <details>
+        <summary>Why does Easter change date every year?</summary>
+        <p>Easter Sunday is defined as the first Sunday after the first full moon on or after March 21, computed with the Gregorian computus. That puts it anywhere between March 22 and April 25 — for example April 5 in 2026 and March 28 in 2027. This tool computes it automatically for any year.</p>
+      </details>
+      <details>
+        <summary>Why are Ramadan and Eid dates marked approximate?</summary>
+        <p>Islamic festivals follow a lunar calendar of 354–355 days, so they shift about 10–11 days earlier each Gregorian year, and the exact start depends on the physical moon sighting in each country. The dates shown are astronomical forecasts and can move by a day.</p>
+      </details>
+      <details>
+        <summary>How is Thanksgiving's date decided?</summary>
+        <p>US Thanksgiving is the fourth Thursday of November by federal law. Similar rules set the other movable US holidays: Memorial Day is the last Monday of May, Labor Day the first Monday of September, and Martin Luther King Jr. Day the third Monday of January.</p>
+      </details>
+      <details>
+        <summary>Does the countdown include today?</summary>
+        <p>The day count is the number of full calendar days remaining: if the holiday is tomorrow it shows 1 day, and on the day itself the tool shows a celebration message instead of a countdown.</p>
+      </details>
+      <details>
+        <summary>Is my holiday search sent anywhere?</summary>
+        <p>No. The entire holiday database and all date math run in your browser with JavaScript. Your searches never leave your device, are never stored, and are never sent to any server.</p>
+      </details>
+    </section>
+
+    <section class="related-tools" aria-labelledby="related">
+      <h2 id="related">Related tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="../date-calculator/index.html"><h3>Date Calculator</h3><p>Days between dates, or add/subtract time.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../../guides/days-from-today/index.html"><h3>Days From Today Guide</h3><p>What date is 90 days from today? Answered.</p><span class="card-cta">Open guide →</span></a>
+        <a class="tool-card" href="../age-calculator/index.html"><h3>Age Calculator</h3><p>Exact age in years, months and days.</p><span class="card-cta">Open tool →</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../privacy.html">Privacy</a></li>
+          <li><a href="../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">© <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+    </div>
+  </footer>
+  <script src="../../assets/logic/holiday-countdown.js"></script>
+  <script src="../../assets/main.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var HC = window.QuickTools.holidayCountdown;
+
+      function todayLocalISO() {
+        var n = new Date();
+        return n.getFullYear() + '-' + String(n.getMonth() + 1).padStart(2, '0') + '-' +
+          String(n.getDate()).padStart(2, '0');
+      }
+
+      function targetLocal(iso) {
+        var p = iso.split('-');
+        return new Date(+p[0], +p[1] - 1, +p[2]); // local midnight of the holiday
+      }
+
+      var search = document.getElementById('hc-search');
+      var results = document.getElementById('hc-results');
+      var nameEl = document.getElementById('hc-name');
+      var dateLine = document.getElementById('hc-date-line');
+      var cdBox = document.getElementById('hc-countdown');
+      var todayBox = document.getElementById('hc-today');
+      var todayName = document.getElementById('hc-today-name');
+      var approxNote = document.getElementById('hc-approx');
+      var dEl = document.getElementById('hc-d'), hEl = document.getElementById('hc-h');
+      var mEl = document.getElementById('hc-m'), sEl = document.getElementById('hc-s');
+
+      var timer = null;
+      var currentIso = null;
+      var activeIndex = -1;
+      var matches = [];
+
+      function stopTimer() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      function plural(n, word) { return n + ' ' + word + (n === 1 ? '' : 's'); }
+
+      function renderCountdown(iso, daysAway, holiday) {
+        nameEl.textContent = holiday.name;
+        dateLine.textContent = HC.formatLong(iso) + ' — ' +
+          (daysAway === 0 ? 'today!' : plural(daysAway, 'day') + ' to go.');
+        approxNote.hidden = !holiday.approx;
+        if (daysAway === 0) {
+          stopTimer();
+          cdBox.hidden = true;
+          todayName.textContent = holiday.name;
+          todayBox.hidden = false;
+          return;
+        }
+        todayBox.hidden = true;
+        cdBox.hidden = false;
+        currentIso = iso;
+        stopTimer();
+        tick();
+        timer = setInterval(tick, 1000);
+      }
+
+      function tick() {
+        if (!currentIso) return;
+        var diff = targetLocal(currentIso) - new Date();
+        if (diff < 0) diff = 0;
+        var total = Math.floor(diff / 1000);
+        dEl.textContent = Math.floor(total / 86400);
+        hEl.textContent = String(Math.floor(total % 86400 / 3600)).padStart(2, '0');
+        mEl.textContent = String(Math.floor(total % 3600 / 60)).padStart(2, '0');
+        sEl.textContent = String(total % 60).padStart(2, '0');
+      }
+
+      function selectHoliday(holiday) {
+        closeResults();
+        search.value = holiday.name;
+        var n = HC.nextOccurrence(holiday, todayLocalISO());
+        renderCountdown(n.iso, n.daysAway, holiday);
+      }
+
+      function openResults() {
+        results.classList.add('open');
+        search.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeResults() {
+        results.classList.remove('open');
+        search.setAttribute('aria-expanded', 'false');
+        activeIndex = -1;
+      }
+
+      function renderResults() {
+        results.innerHTML = '';
+        matches.forEach(function (h, i) {
+          var li = document.createElement('li');
+          li.setAttribute('role', 'option');
+          li.id = 'hc-opt-' + i;
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.textContent = h.name;
+          var tags = document.createElement('span');
+          tags.className = 'tags';
+          tags.textContent = h.tags.join(' · ');
+          b.appendChild(tags);
+          if (i === activeIndex) b.classList.add('active');
+          b.addEventListener('click', function () { selectHoliday(h); });
+          b.addEventListener('mousemove', function () {
+            activeIndex = i;
+            Array.prototype.forEach.call(results.querySelectorAll('button'), function (x, j) {
+              x.classList.toggle('active', j === i);
+            });
+          });
+          li.appendChild(b);
+          results.appendChild(li);
+        });
+        if (matches.length) openResults(); else closeResults();
+      }
+
+      search.addEventListener('input', function () {
+        matches = HC.searchHolidays(search.value, 8);
+        activeIndex = matches.length ? 0 : -1;
+        renderResults();
+      });
+
+      search.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+          if (!matches.length) return;
+          e.preventDefault();
+          activeIndex = e.key === 'ArrowDown'
+            ? (activeIndex + 1) % matches.length
+            : (activeIndex - 1 + matches.length) % matches.length;
+          renderResults();
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          var pick = matches[activeIndex >= 0 ? activeIndex : 0];
+          if (pick) selectHoliday(pick);
+        } else if (e.key === 'Escape') {
+          closeResults();
+        }
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest('.hc-search-wrap')) closeResults();
+      });
+
+      // Upcoming holidays grid
+      var upcoming = document.getElementById('hc-upcoming');
+      function renderUpcoming() {
+        var list = HC.upcomingHolidays(todayLocalISO(), 12);
+        list.forEach(function (u) {
+          var card = document.createElement('button');
+          card.type = 'button';
+          card.className = 'hc-card';
+          var d = document.createElement('div');
+          d.className = 'd';
+          d.textContent = u.daysAway === 0 ? 'Today!' : plural(u.daysAway, 'day');
+          var n = document.createElement('div');
+          n.className = 'n';
+          n.textContent = u.name;
+          var t = document.createElement('div');
+          t.className = 't';
+          t.textContent = HC.formatLong(u.iso);
+          card.appendChild(d);
+          card.appendChild(n);
+          card.appendChild(t);
+          card.addEventListener('click', function () {
+            var h = HC.HOLIDAYS.filter(function (x) { return x.name === u.name; })[0];
+            if (h) selectHoliday(h);
+            document.getElementById('hc-count-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+          upcoming.appendChild(card);
+        });
+      }
+
+      renderUpcoming();
+      // Default: start the countdown on the nearest upcoming holiday.
+      var first = HC.upcomingHolidays(todayLocalISO(), 1)[0];
+      if (first) {
+        var h = HC.HOLIDAYS.filter(function (x) { return x.name === first.name; })[0];
+        if (h) renderCountdown(first.iso, first.daysAway, h);
+      }
+    })();
+  </script>
+</body>
+</html>
