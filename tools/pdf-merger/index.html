@@ -53,6 +53,38 @@
         "@type": "Answer",
         "text": "No \u2014 encrypted files are rejected. Open them in a PDF reader, remove the password, save, and then merge."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the merged PDF keep each file's original page size?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Pages are copied with their original dimensions - A4 stays A4, Letter stays Letter. A merge of mixed-size documents produces a mixed-size PDF; nothing is scaled or cropped."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How big will the merged file be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Roughly the total of the inputs: merging a 2 MB and a 3 MB PDF produces about a 5 MB file. Merging does not compress anything, so big scans stay big."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I reorder scanned receipts before merging?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Add each receipt as its own PDF and use the arrows to sort them - the top file becomes the first pages of the merged document. Sorting oldest-to-newest before merging keeps expense reports readable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do digital signatures survive merging?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A digital signature is bound to the exact contents of its file, so it becomes invalid the moment pages are combined. Merge first, then sign the finished document."
+      }
     }
   ]
 }
@@ -62,6 +94,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -115,6 +148,13 @@
       <h2 id="about-tool">About this PDF merger</h2>
       <p>Invoices split across files, a scanned contract in three parts, chapters that need to become one document — merging PDFs is a weekly chore. This free merger combines any number of PDF files into a single document, in the order you choose, with page-level fidelity: text stays selectable, links and layout survive the merge.</p>
       <p>Merging runs on pdf-lib, a real PDF engine that executes entirely in your browser — the library file is served from this site, not a CDN, so the page works offline once loaded and makes zero external requests. Contrast that with the big merger sites, which all require uploading your documents first. For contracts, medical records and anything confidential, client-side merging is the safer default.</p>
+      <h2>Common ways people use a PDF merger</h2>
+      <p><strong>Job application packets.</strong> A cover letter, CV and work samples usually live in separate files. Merge them — cover letter first, CV second, samples last — and an employer gets one document to open instead of five attachments, in exactly the order you chose.</p>
+      <p><strong>Expense receipts in chronological order.</strong> Scan each receipt as a PDF, then sort them oldest-first with the arrows before merging. A finance team would rather receive one "2026-10 receipts.pdf" than forty loose files.</p>
+      <p><strong>Application bundles.</strong> Rental and visa applications often need bank statements, payslips and ID copies as a single upload. Merging the PDFs first gives you one file to attach, arranged in the order the form asks for.</p>
+      <p><strong>Study packs.</strong> Lecture slides split across weekly files become one document once merged — easier to flip through, and search still works across the whole thing if the originals had real text.</p>
+      <h2>A note on page order</h2>
+      <p>The merge order is exactly what the file list shows: the top file's pages come first, and every page inside each file keeps its original position. If a document's own pages are out of order (a scanner fed them backwards, say), fix that in the file itself before merging — the merger combines whole files and cannot shuffle individual pages between them. Quick sanity check after downloading: open the merged PDF and skim the first page of each section.</p>
       <h2>How to use</h2>
       <ol>
         <li>Drop two or more PDF files into the upload box (or click to browse).</li>
@@ -128,6 +168,10 @@
         <li>Some PDFs with unusual structures (certain scanned forms, XFA forms) may merge with layout quirks; check the result.</li>
         <li>Very large merges (hundreds of pages) can be slow and memory-hungry on low-end devices.</li>
         <li>The merger combines whole files; it cannot pick individual pages out of a document.</li>
+        <li>Interactive form fields do not survive — merged PDFs are read-only; fill forms before merging.</li>
+        <li>Digital signatures break: a signature is bound to the exact bytes of the original file, so always merge first and sign the final document last.</li>
+        <li>The merged file is roughly the sum of the inputs — merging does not compress anything. Shrink scanned images before converting them to PDF if size matters.</li>
+        <li>Bookmarks and outlines from the originals may not carry over into the merged file.</li>
       </ul>
     </section>
 
@@ -148,6 +192,22 @@
       <details>
         <summary>Can I merge password-protected PDFs?</summary>
         <p>No — encrypted files are rejected. Open them in a PDF reader, remove the password, save, and then merge.</p>
+      </details>
+      <details>
+        <summary>Does the merged PDF keep each file's original page size?</summary>
+        <p>Yes. Pages are copied with their original dimensions — A4 stays A4, Letter stays Letter. A merge of mixed-size documents produces a mixed-size PDF; nothing is scaled or cropped.</p>
+      </details>
+      <details>
+        <summary>How big will the merged file be?</summary>
+        <p>Roughly the total of the inputs: merging a 2 MB and a 3 MB PDF produces about a 5 MB file. Merging does not compress anything, so big scans stay big.</p>
+      </details>
+      <details>
+        <summary>Can I reorder scanned receipts before merging?</summary>
+        <p>Yes. Add each receipt as its own PDF and use the arrows to sort them — the top file becomes the first pages of the merged document. Sorting oldest-to-newest before merging keeps expense reports readable.</p>
+      </details>
+      <details>
+        <summary>Do digital signatures survive merging?</summary>
+        <p>No. A digital signature is bound to the exact contents of its file, so it becomes invalid the moment pages are combined. Merge first, then sign the finished document.</p>
       </details>
     </section>
 
@@ -267,5 +327,30 @@
   });
 })();
 </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

@@ -46,6 +46,26 @@
         "@type": "Question",
         "name": "Are my numbers uploaded anywhere?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. The calculator runs 100% in your browser with JavaScript. Your numbers never leave your device, are never stored, and never sent to any server." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate a 20% tip?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Multiply the bill by 20 and divide by 100. On a $48.50 bill that's a $9.70 tip and a $58.20 total. The first calculator box does it for you - enter 20 and 48.50." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I find the original price from a sale price?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Divide the price you paid by what remains after the discount. If you paid $60 after 25% off, the original price was 60 / (1 - 0.25) = 60 / 0.75 = $80." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I turn a test score into a percentage?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Divide the score by the total and multiply by 100. A score of 38 out of 50 is (38 / 50) x 100 = 76%. Use the second calculator box for this." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do stacked discounts not add up?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Each discount applies to the already-reduced price. 20% then 10% off $100 leaves $72 - a 28% total discount, not 30%. For stacked discounts, use the discount calculator." }
       }
     ]
   }
@@ -55,6 +75,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -150,6 +171,18 @@
       <p>Percentages show up everywhere: tips, discounts, tax, interest rates, grade curves, and month-over-month growth. The three calculators above cover the three questions people actually ask. "What is 19% of 199.99?" is the tip-or-tax question. "45 is what percent of 180?" is the progress question — how far through a goal you are. "100 to 125" is the change question — how much something grew or shrank.</p>
       <p>One trap to watch: percent change is not the same as percentage points. If a rate moves from 50% to 60%, that is a 10 percentage-point move but a 20% relative increase. Mixing the two up is one of the most common mistakes in business reporting, and the third calculator above uses the relative definition.</p>
 
+      <h2>Worked examples</h2>
+      <p><strong>The tip question.</strong> A $48.50 bill with a 20% tip: 20% of 48.50 = 9.70, so the total is $58.20. At 15% the tip is 48.50 × 15 ÷ 100 = 7.275, which rounds to $7.28. The first box on this page does the arithmetic.</p>
+      <p><strong>The discount question.</strong> A £120 jacket marked 30% off: the discount is 120 × 30 ÷ 100 = £36, so you pay £84. Stacked discounts are sequential, not additive — 20% followed by another 10% off is not 30% off (see the discount calculator for that trap).</p>
+      <p><strong>The progress question.</strong> A student scores 38 out of 50 on a test: (38 ÷ 50) × 100 = 76%. A savings goal of $2,000 with $1,450 saved is (1,450 ÷ 2,000) × 100 = 72.5% funded. The second box answers this one.</p>
+      <p><strong>The change question.</strong> A shop's weekly revenue drops from $1,000 to $850: (850 − 1,000) ÷ 1,000 × 100 = −15%, a 15% decrease. And the trap again: a rate rising from 3% to 5% is a 2 percentage-point increase but a 66.7% relative increase — always check which one a headline means.</p>
+
+      <h2>Finding the original price from a sale price</h2>
+      <p>A question the three boxes don't answer directly: you paid $60 after a 25% discount — what was the original price? Divide by what remains after the discount: 60 ÷ (1 − 0.25) = 60 ÷ 0.75 = $80. The original price was $80. This works for any discount: paid price ÷ (1 − discount as a decimal).</p>
+
+      <h2>Where percentages turn up in daily life</h2>
+      <p>Shoppers meet them at every sale rail; diners meet them on every bill. Investors quote portfolio returns as percentages, teachers convert raw marks into percentages, and managers report month-over-month growth as percent change. Percentage points, meanwhile, belong to rates that are already percentages — mortgage rates, tax rates, election shares — where the distinction from relative change genuinely matters.</p>
+
       <h2>How to use</h2>
       <ol>
         <li>Pick the question you want answered: X% of Y, X as a percent of Y, or percent change.</li>
@@ -162,6 +195,8 @@
         <li>Percent change from an original value of zero is undefined — the calculator will tell you.</li>
         <li>"X is what percent of Y" needs a non-zero Y (division by zero is rejected).</li>
         <li>Results are rounded to 4 decimal places; for money, use the <a href="../discount-calculator/index.html">discount calculator</a> which rounds to cents.</li>
+        <li>Reverse percentages (finding the original from a discounted price) need a different formula — divide by (1 − discount), e.g. $60 ÷ 0.75 for a 25%-off price.</li>
+        <li>Discounts stack sequentially, not additively: 20% then 10% off is a 28% total discount, not 30%.</li>
       </ul>
     </section>
 
@@ -186,6 +221,22 @@
       <details>
         <summary>Are my numbers uploaded anywhere?</summary>
         <p>No. The calculator runs 100% in your browser with JavaScript. Your numbers never leave your device, are never stored, and never sent to any server.</p>
+      </details>
+      <details>
+        <summary>How do I calculate a 20% tip?</summary>
+        <p>Multiply the bill by 20 and divide by 100. On a $48.50 bill that's a $9.70 tip and a $58.20 total. The first calculator box does it for you — enter 20 and 48.50.</p>
+      </details>
+      <details>
+        <summary>How do I find the original price from a sale price?</summary>
+        <p>Divide the price you paid by what remains after the discount. If you paid $60 after 25% off, the original price was 60 ÷ (1 − 0.25) = 60 ÷ 0.75 = $80.</p>
+      </details>
+      <details>
+        <summary>How do I turn a test score into a percentage?</summary>
+        <p>Divide the score by the total and multiply by 100. A score of 38 out of 50 is (38 ÷ 50) × 100 = 76%. Use the second calculator box for this.</p>
+      </details>
+      <details>
+        <summary>Why do stacked discounts not add up?</summary>
+        <p>Each discount applies to the already-reduced price. 20% then 10% off $100 leaves $72 — a 28% total discount, not 30%. For stacked discounts, use the discount calculator.</p>
       </details>
     </section>
 
@@ -248,5 +299,30 @@
       });
     })();
   </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

@@ -60,6 +60,26 @@
       },
       {
         "@type": "Question",
+        "name": "Can the summary contain sentences I didn't write?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No — never. This is extractive summarization: the output is always a subset of your original sentences, selected and reordered but never rewritten. It cannot invent facts, which is its main advantage over generative approaches." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long should my text be for a good summary?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Five or more sentences is the practical minimum — frequency statistics need volume to be meaningful. Below about five sentences there is little worth compressing, and the summary may look nearly identical to the input." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the compression percentage mean?",
+        "acceptedAnswer": { "@type": "Answer", "text": "How much shorter the summary is than the original, by word count. A 60-word paragraph reduced to a 24-word summary shows as 60% shorter. It reflects the sentences mode or percent you chose, not a quality score." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I summarize a PDF or Word document?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — copy the text out of the document and paste it here. Formatting, headings and page breaks don't matter; the tool only looks at sentences and word frequencies." }
+      },
+      {
+        "@type": "Question",
         "name": "Is my text uploaded anywhere?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. The summarizer runs 100% in your browser with JavaScript. Your text never leaves your device, is never stored, and never sent to any server." }
       }
@@ -71,6 +91,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -157,6 +178,14 @@
         <li><strong>Abbreviations can split sentences.</strong> "Mr.", "e.g." and similar may create extra sentence breaks, slightly skewing the ranking.</li>
       </ul>
       <p>For study notes, meeting minutes, and news articles it is genuinely useful. For nuanced or creative writing, read the original.</p>
+
+      <h3>Worked example</h3>
+      <p>Take an 8-sentence, 60-word paragraph about solar energy. With <strong>Sentences</strong> mode set to 3, the tool scores every sentence by word frequency and keeps the three highest-scoring ones in their original order:</p>
+      <p><em>Solar panels convert sunlight into electricity. Modern panels reach over 22 percent efficiency. Solar is now the cheapest new power source in many countries.</em></p>
+      <p>The stats panel reports <strong>60 original words → 24 summary words, 3 / 8 sentences kept, 60% shorter</strong> — exactly what the tool computes. Switch to <strong>Percent</strong> mode at 25% on the same text and it keeps 2 of the 8 sentences automatically, adapting to whatever length you paste. Notice the summary is stitched from the original sentences verbatim: nothing reworded, nothing invented.</p>
+
+      <h3>Who uses an extractive summarizer</h3>
+      <p>Students condense long readings and lecture notes into reviewable key sentences before exams. Researchers skim the core claims of papers and reports without reading every paragraph. Professionals turn rambling meeting notes into the sentences that actually carried information. Journalists and newsletter writers pull the load-bearing sentences from press releases and source documents. Job seekers compress long job descriptions to the sentences that matter for tailoring a CV. Because the output can never invent facts, it's also the safe choice for anyone who needs a shorter version they can quote — every summary sentence traces back to the source text.</p>
     </section>
 
     <section class="prose faq" aria-labelledby="ts-faq">
@@ -180,6 +209,22 @@
       <details>
         <summary>What text works best with extractive summarization?</summary>
         <p>Factual, information-dense writing: articles, reports, meeting notes, research summaries. It works poorly on very short texts, dialogue, poetry, and texts where the key point is implied rather than stated.</p>
+      </details>
+      <details>
+        <summary>Can the summary contain sentences I didn't write?</summary>
+        <p>No — never. This is extractive summarization: the output is always a subset of your original sentences, selected and reordered but never rewritten. It cannot invent facts, which is its main advantage over generative approaches.</p>
+      </details>
+      <details>
+        <summary>How long should my text be for a good summary?</summary>
+        <p>Five or more sentences is the practical minimum — frequency statistics need volume to be meaningful. Below about five sentences there is little worth compressing, and the summary may look nearly identical to the input.</p>
+      </details>
+      <details>
+        <summary>What does the compression percentage mean?</summary>
+        <p>How much shorter the summary is than the original, by word count. A 60-word paragraph reduced to a 24-word summary shows as 60% shorter. It reflects the sentences mode or percent you chose, not a quality score.</p>
+      </details>
+      <details>
+        <summary>Can I summarize a PDF or Word document?</summary>
+        <p>Yes — copy the text out of the document and paste it here. Formatting, headings and page breaks don't matter; the tool only looks at sentences and word frequencies.</p>
       </details>
       <details>
         <summary>Is my text uploaded anywhere?</summary>
@@ -271,5 +316,30 @@
       });
     })();
   </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

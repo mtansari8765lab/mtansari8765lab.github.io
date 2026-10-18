@@ -48,6 +48,46 @@
     },
     {
       "@type": "Question",
+      "name": "Can I compress multiple images at once?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Drop as many images as you like into the upload box \u2014 the tool compresses each one with the same settings and gives every image its own download link with before/after sizes and the percentage saved. There is no monthly cap or queue."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if I choose PNG with exact file size?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tool shows an error: Exact-size mode needs JPG or WebP \u2014 PNG is lossless and cannot shrink by quality. PNG has no quality setting to adjust, so the exact-size search has nothing to tune. Switch the output format to JPG or WebP and try again."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the smallest file size I can target?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "5KB is the minimum and 10,240KB (10MB) is the maximum. Extremely small targets on very large photos may undershoot slightly or fail, because the encoder has a minimum quality it cannot go below."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did my PNG barely shrink at all?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PNG output is lossless, so the quality slider is ignored and the file can only shrink a little through re-encoding. If you want real compression, choose JPG or WebP output \u2014 that's where the size savings come from."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the compressor work offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Once the page has loaded, yes. All compression happens locally on a canvas in your browser with no server involved, so a dropped connection mid-session doesn't interrupt anything."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "JPG or WebP \u2014 which compresses better?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -62,6 +102,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -135,6 +176,14 @@
       <h2 id="about-tool">About this image compressor</h2>
       <p>Email attachment limits, upload forms capped at 2MB, and slow portfolio pages all punish oversized photos. This free image compressor shrinks JPG, PNG and WebP images two ways: pick a quality level for a quick shrink, or — the trick most tools skip — set an exact target file size like 100KB and let the tool hunt the best quality that fits. That exact-size mode is what forums, marketplaces and application portals actually ask for.</p>
       <p>Everything runs on a canvas in your browser: the image is re-encoded locally at your chosen quality, and the target-size mode binary-searches the highest quality that lands under your KB limit. Unlike TinyPNG-style services there is no upload, no queue and no monthly cap — and the privacy story is stronger, because your photos are never transmitted anywhere.</p>
+
+      <h3>Worked example</h3>
+      <p>Say a job portal demands your photo be under 100KB. Choose <strong>To exact file size</strong>, type <strong>100</strong> in the target box, leave the output format on JPG, and click <strong>Compress images</strong>. The tool re-encodes the photo repeatedly, narrowing in on the highest quality setting whose output still fits under 100KB — you don't guess a quality number and you don't compress twice. The results list then shows the before and after size for every image plus the percentage saved, so you can judge whether the quality tradeoff is acceptable before downloading.</p>
+      <p>The target box accepts anything from 5KB to 10,240KB. If you pick <strong>PNG</strong> output together with exact-size mode, the tool stops you with a clear error instead of silently failing — PNG is lossless, so there is no quality knob to turn. For that combination, switch the format to JPG or WebP and the exact-size search works as intended.</p>
+
+      <h3>Who uses an image compressor</h3>
+      <p>Job seekers shrink ID photos and certificates to the exact KB limits that application portals enforce — "under 100KB" or "under 2MB" are the classic gates. Marketplace sellers (eBay, Etsy, Facebook Marketplace) compress product photos so listings load fast on phones. Bloggers and portfolio owners cut page weight to improve loading speed and search rankings. Anyone emailing photos dodges attachment-size rejections. Forum and community users fit avatars and signatures inside strict file-size caps. Photographers preparing web galleries batch-compress dozens of shots at once with no monthly quota. And privacy-conscious users prefer this tool over server-based compressors precisely because the photos never leave the device.</p>
+
       <h2>How to use</h2>
       <ol>
         <li>Drop one or more images into the upload box (or click to browse).</li>
@@ -164,6 +213,26 @@
       <details>
         <summary>Why is there no upload?</summary>
         <p>Compression happens 100% in your browser using the canvas API. Nothing is uploaded, so there are no queues, no accounts and no privacy concerns — unlike most online compressors, which require sending your photos to their servers.</p>
+      </details>
+      <details>
+        <summary>Can I compress multiple images at once?</summary>
+        <p>Yes. Drop as many images as you like into the upload box — the tool compresses each one with the same settings and gives every image its own download link with before/after sizes and the percentage saved. There is no monthly cap or queue.</p>
+      </details>
+      <details>
+        <summary>What happens if I choose PNG with exact file size?</summary>
+        <p>The tool shows an error: "Exact-size mode needs JPG or WebP — PNG is lossless and cannot shrink by quality." PNG has no quality setting to adjust, so the exact-size search has nothing to tune. Switch the output format to JPG or WebP and try again.</p>
+      </details>
+      <details>
+        <summary>What is the smallest file size I can target?</summary>
+        <p>5KB is the minimum and 10,240KB (10MB) is the maximum. Extremely small targets on very large photos may undershoot slightly or fail, because the encoder has a minimum quality it cannot go below.</p>
+      </details>
+      <details>
+        <summary>Why did my PNG barely shrink at all?</summary>
+        <p>PNG output is lossless, so the quality slider is ignored and the file can only shrink a little through re-encoding. If you want real compression, choose JPG or WebP output — that's where the size savings come from.</p>
+      </details>
+      <details>
+        <summary>Does the compressor work offline?</summary>
+        <p>Once the page has loaded, yes. All compression happens locally on a canvas in your browser with no server involved, so a dropped connection mid-session doesn't interrupt anything.</p>
       </details>
       <details>
         <summary>JPG or WebP — which compresses better?</summary>
@@ -306,5 +375,30 @@
   });
 })();
 </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

@@ -53,6 +53,38 @@
         "@type": "Answer",
         "text": "The converter places each image as a picture on the page rather than running OCR. For searchable text you would need OCR software first, then convert."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "US Letter or A4 \u2014 which page size should I pick?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Match the recipient, not the content. Use US Letter for anything printed, filed or submitted in the United States; use A4 for the UK, Europe, Asia and Australia. The difference is small \u2014 A4 is slightly narrower and taller \u2014 but a mismatched document can print with awkward scaling on the other standard. If nobody will print it and you just want the images without margins, choose Fit to image instead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I put two images on one page?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not with this tool \u2014 each image becomes its own full page, and there is no collage or multi-up layout option yet. If you need several photos per page, combine them into single images first (for example with a photo collage app), then convert. For documents that stay one-image-per-page, this converter is the faster route."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How big will the finished PDF be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each image is re-encoded as JPEG at quality 0.92, so the total is roughly the sum of those JPEGs plus a small overhead. As a rule of thumb, a phone photo at 1200\u00d71600 lands around 300\u2013500 KB per page: ten photos make a 3\u20135 MB PDF, forty make roughly 15\u201320 MB. If that is too heavy for email, shrink the images with the Image Resizer or Image Compressor before converting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I reorder the pages after adding images?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There is no drag-to-reorder control yet. To fix the order, remove the files with their Remove buttons and add them again in the sequence you want \u2014 the file list numbers each entry so you can verify the order before clicking Create PDF. If you have already made the PDF, you can reorder afterwards by splitting and re-merging with the PDF Merger."
+      }
     }
   ]
 }
@@ -62,6 +94,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -126,6 +159,16 @@
       <h2 id="about-tool">About this image to PDF converter</h2>
       <p>Scanned receipts, photographed documents, design mockups, a comic strip — plenty of things start life as images and need to end up as a PDF. This free converter turns any set of JPG, PNG or WebP images into a single PDF document: one image per page, centered with margins on US Letter or A4, or pages sized to fit each image exactly.</p>
       <p>The PDF is assembled byte-by-byte in your browser by a small built-in PDF writer — no libraries fetched from a CDN, no server round-trip. Most “image to PDF” sites upload your files first; here the whole document is generated locally, which is faster and keeps private scans and photos off other people’s servers.</p>
+      <h2>Choosing the page size</h2>
+      <p>The three options are not just paper sizes — they change how each image sits on the page:</p>
+      <ul>
+        <li><strong>US Letter (8.5 × 11 in).</strong> The standard for anything printed or submitted in the United States — school assignments, rental applications, expense receipts. Each image is scaled to fit inside the page with white margins and centred. A 4000×3000 landscape photo fills the width of a Letter page and sits centred vertically.</li>
+        <li><strong>A4 (210 × 297 mm).</strong> Slightly narrower and taller than Letter; the default outside North America. Pick this when the document will be printed or filed in Europe, the UK, Asia or Australia, so margins and printers behave as expected.</li>
+        <li><strong>Fit to image.</strong> Each page takes the exact dimensions of its image — no margins, no wasted white space. Best for photo albums, comic strips and full-bleed artwork where the image <em>is</em> the page. Not ideal for documents someone will print, since home printers can't print edge-to-edge.</li>
+      </ul>
+      <p>Worked example: six scanned receipts, each roughly 1200×1800 px, converted on A4 with the document title set to "March expenses". The result is one PDF with six pages, each receipt centred on its own A4 sheet at roughly 300–500 KB per page — about 2–3 MB total — and the title you typed is stored in the PDF's metadata, so it shows in document properties and some file managers.</p>
+      <h2>Who uses this tool</h2>
+      <p>Students photographing handwritten homework and submitting it as a single PDF. Tenants and landlords turning phone photos of signed pages into one tidy document for email. Freelancers archiving receipts — a month of scanned slips becomes one searchable-by-date file. Comic artists and photographers assembling image sets into a portfolio PDF. And anyone whose bank, insurer or government portal asks for "a PDF" when all they have are photos.</p>
       <h2>How to use</h2>
       <ol>
         <li>Drop your images into the upload box in the order you want the pages (or click to browse).</li>
@@ -137,6 +180,9 @@
       <ul>
         <li>Each image becomes one full page — there is no multi-image-per-page layout option yet.</li>
         <li>Images are re-encoded as JPEG inside the PDF, so PNG transparency becomes a white background.</li>
+        <li>Images are re-encoded at JPEG quality 0.92, which is visually lossless for photos but technically a fresh compression pass — keep your originals if you need bit-perfect copies.</li>
+        <li>There is no page-reorder control: to reorder, remove the files and add them again in the right order (the list shows numbers so you can check the sequence before converting).</li>
+        <li>The document title is stored as PDF metadata only; it does not appear printed on any page.</li>
         <li>The generated PDF is a simple image-only document: text is not selectable or searchable.</li>
         <li>Extremely large image sets (hundreds of high-resolution photos) may be slow or hit browser memory limits.</li>
       </ul>
@@ -159,6 +205,22 @@
       <details>
         <summary>Why is text in my PDF not selectable?</summary>
         <p>The converter places each image as a picture on the page rather than running OCR. For searchable text you would need OCR software first, then convert.</p>
+      </details>
+      <details>
+        <summary>US Letter or A4 — which page size should I pick?</summary>
+        <p>Match the recipient, not the content. Use US Letter for anything printed, filed or submitted in the United States; use A4 for the UK, Europe, Asia and Australia. The difference is small — A4 is slightly narrower and taller — but a mismatched document can print with awkward scaling on the other standard. If nobody will print it and you just want the images without margins, choose Fit to image instead.</p>
+      </details>
+      <details>
+        <summary>Can I put two images on one page?</summary>
+        <p>Not with this tool — each image becomes its own full page, and there is no collage or multi-up layout option yet. If you need several photos per page, combine them into single images first (for example with a photo collage app), then convert. For documents that stay one-image-per-page, this converter is the faster route.</p>
+      </details>
+      <details>
+        <summary>How big will the finished PDF be?</summary>
+        <p>Each image is re-encoded as JPEG at quality 0.92, so the total is roughly the sum of those JPEGs plus a small overhead. As a rule of thumb, a phone photo at 1200×1600 lands around 300–500 KB per page: ten photos make a 3–5 MB PDF, forty make roughly 15–20 MB. If that is too heavy for email, shrink the images with the <a href="../image-resizer/index.html">Image Resizer</a> or <a href="../image-compressor/index.html">Image Compressor</a> before converting.</p>
+      </details>
+      <details>
+        <summary>Can I reorder the pages after adding images?</summary>
+        <p>There is no drag-to-reorder control yet. To fix the order, remove the files with their Remove buttons and add them again in the sequence you want — the file list numbers each entry so you can verify the order before clicking Create PDF. If you have already made the PDF, you can reorder afterwards by splitting and re-merging with the <a href="../pdf-merger/index.html">PDF Merger</a>.</p>
       </details>
     </section>
 
@@ -283,5 +345,30 @@
   });
 })();
 </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

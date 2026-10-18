@@ -53,6 +53,38 @@
         "@type": "Answer",
         "text": "No. Decoding happens 100% in your browser with a locally-served decoder. Your photos never leave your device."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I stop my iPhone saving photos as HEIC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On the iPhone, go to Settings > Camera > Formats and choose \u201cMost Compatible\u201d instead of \u201cHigh Efficiency\u201d. From then on the camera saves JPGs directly. The tradeoff is storage: JPGs take roughly twice the space of HEIC at the same quality, so check you have room before a long trip. This only affects new photos \u2014 existing HEIC files stay HEIC."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Windows 11 open HEIC files without converting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sometimes. Windows needs the HEIF Image Extensions codec from the Microsoft Store, and on some systems it is a paid add-on; even installed, support in desktop apps is inconsistent. Converting to JPG is the reliable route: the resulting files open in every viewer, editor and upload form on Windows with nothing extra installed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What JPG quality should I choose?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The default of 92 is a strong all-rounder: visually identical to the original at a sane file size. Drop to 80\u201385 for web uploads or email, where smaller files matter more than pixel perfection. Choose 100 only for archival copies \u2014 it preserves the most detail but produces files noticeably larger than the HEIC you started from. Remember the quality slider controls the re-encoding step only; it cannot add detail the camera didn\u2019t capture."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does converting keep the photo's date and location?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Generally no. The converter writes a fresh JPG without carrying over the HEIC metadata \u2014 date taken, GPS location and camera settings are dropped. The filename is kept, so you can still match each JPG back to its original. If the metadata matters (archiving family photos, for example), keep the original HEIC files alongside the JPGs."
+      }
     }
   ]
 }
@@ -62,6 +94,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -118,6 +151,11 @@
       <h2 id="about-tool">About this HEIC to JPG converter</h2>
       <p>iPhones save photos as HEIC by default — great for storage, terrible for compatibility. Windows apps, older software and many websites still demand JPG. This free converter turns HEIC and HEIF photos into standard JPGs with adjustable quality, several files at once.</p>
       <p>Decoding runs on a HEIC decoder that executes entirely in your browser (the decoder file is served from this site, so the page works offline once loaded and makes zero external requests). That matters because the usual HEIC converters all require uploading your personal photos to their servers first — here they never leave your device.</p>
+      <h2>Why iPhones save HEIC — and where JPG is still required</h2>
+      <p>Apple made HEIC the default camera format back in iOS 11. It is built on HEVC video compression, so a photo that needs about 5–8 MB as a JPG fits in roughly 2.5–4 MB as HEIC, with support for 16-bit colour and tricks like Live Photos baked in. For the phone's own storage it is clearly the better format — the problem starts the moment the photo leaves the Apple ecosystem.</p>
+      <p>JPG is still the format the rest of the world expects. A concrete example: you copy 40 holiday photos off an iPhone onto a Windows laptop — about 130 MB of HEIC files — and half of them refuse to open in the desktop photo viewer, the marketplace listing form rejects them outright, and the email attachment preview shows a broken icon. After converting at quality 92, the same 40 photos become JPGs totalling roughly 150–180 MB (JPG re-encodes less efficiently than HEIC, so the files grow a little) and every one of them opens everywhere: web upload forms, desktop editors, print-shop kiosks, older smart TVs and car dashboards.</p>
+      <h2>Who uses this tool</h2>
+      <p>Parents and grandparents archiving phone photos on a Windows PC, where HEIC files either won't open or need a codec from the Microsoft Store. Photographers delivering proofs to clients who shoot on iPhone but work on Windows machines — a converted JPG set just works, no "install this codec" email needed. Online sellers preparing product shots: most marketplace and classified-ad upload forms accept JPG or PNG and silently reject HEIC. And anyone emailing photos to someone whose phone or mail client predates HEIC support.</p>
       <h2>How to use</h2>
       <ol>
         <li>Drop your .HEIC files into the upload box (or click to browse).</li>
@@ -130,6 +168,8 @@
         <li>The decoder (~1.3MB) loads on first use, so the first conversion takes a few seconds; later ones are fast.</li>
         <li>Live Photos and burst sequences convert the primary still image only.</li>
         <li>HEIC metadata (location, camera settings) is generally not carried into the JPG.</li>
+        <li>HEIC can carry wide-gamut (Display P3) colour; the JPG is written in standard sRGB, so extremely saturated colours may look slightly different.</li>
+        <li>Some carrier-branded or heavily edited HEIC variants may fail to decode — if one file fails, the rest of the batch still converts.</li>
         <li>Very old browsers without WebAssembly support cannot run the decoder.</li>
       </ul>
     </section>
@@ -151,6 +191,22 @@
       <details>
         <summary>Are my photos uploaded anywhere?</summary>
         <p>No. Decoding happens 100% in your browser with a locally-served decoder. Your photos never leave your device.</p>
+      </details>
+      <details>
+        <summary>How do I stop my iPhone saving photos as HEIC?</summary>
+        <p>On the iPhone, go to Settings &gt; Camera &gt; Formats and choose "Most Compatible" instead of "High Efficiency". From then on the camera saves JPGs directly. The tradeoff is storage: JPGs take roughly twice the space of HEIC at the same quality, so check you have room before a long trip. This only affects new photos — existing HEIC files stay HEIC.</p>
+      </details>
+      <details>
+        <summary>Can Windows 11 open HEIC files without converting?</summary>
+        <p>Sometimes. Windows needs the HEIF Image Extensions codec from the Microsoft Store, and on some systems it is a paid add-on; even installed, support in desktop apps is inconsistent. Converting to JPG is the reliable route: the resulting files open in every viewer, editor and upload form on Windows with nothing extra installed.</p>
+      </details>
+      <details>
+        <summary>What JPG quality should I choose?</summary>
+        <p>The default of 92 is a strong all-rounder: visually identical to the original at a sane file size. Drop to 80–85 for web uploads or email, where smaller files matter more than pixel perfection. Choose 100 only for archival copies — it preserves the most detail but produces files noticeably larger than the HEIC you started from. Remember the quality slider controls the re-encoding step only; it cannot add detail the camera didn't capture.</p>
+      </details>
+      <details>
+        <summary>Does converting keep the photo's date and location?</summary>
+        <p>Generally no. The converter writes a fresh JPG without carrying over the HEIC metadata — date taken, GPS location and camera settings are dropped. The filename is kept, so you can still match each JPG back to its original. If the metadata matters (archiving family photos, for example), keep the original HEIC files alongside the JPGs.</p>
       </details>
     </section>
 
@@ -265,5 +321,30 @@
   });
 })();
 </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

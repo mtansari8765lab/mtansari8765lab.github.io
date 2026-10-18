@@ -54,6 +54,26 @@
       },
       {
         "@type": "Question",
+        "name": "How accurate is the total days lived count?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Completely exact: it counts real calendar days between the two dates, including every leap day. Someone born 15 June 1990 and measured on 12 October 2026 has lived exactly 13,268 days." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this to get a baby's age in months?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. A baby born 15 January 2024 is 2 years, 8 months and 27 days old on 12 October 2026 (1,001 days in total). Pediatric checkups and milestones usually want the months count, and this gives it directly." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does it say my next birthday is today?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because it is! When the countdown reaches zero days, the tool shows Today! instead of a day count. If your birth date matches the as of date, that's what you'll see." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the calculator use my exact birth time or time zone?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. It works on calendar dates only — being born at 11pm still counts the whole birth day, and time zones never shift the result. If you need hour-level precision, this tool isn't the right one." }
+      },
+      {
+        "@type": "Question",
         "name": "Is my date of birth uploaded anywhere?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. The calculator runs 100% in your browser with JavaScript. Your birth date never leaves your device, is never stored, and never sent to any server." }
       }
@@ -65,6 +85,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -136,6 +157,13 @@
       <p>"How old am I, exactly?" is a harder question than it sounds — months have different lengths, leap years add a day every four years, and naively dividing days by 365 gives wrong answers near birthdays. This calculator counts full years first, then whole months, then remaining days, the same convention used on official forms and eligibility checks.</p>
       <p>It also answers the follow-up questions people actually have: how many total days you have lived, and exactly how many days until your next birthday. Set the "as of" date to any date on or after the birth date to check an age on a past date — handy for applications, license eligibility, or registration cutoffs.</p>
 
+      <h3>Worked example</h3>
+      <p>Take a birth date of <strong>15 June 1990</strong> measured on <strong>12 October 2026</strong>. The calculator counts full years first (15 June 1990 → 15 June 2026 is 36 years), then whole months (15 June → 15 September is 3 months), then remaining days (15 September → 12 October is 27 days) — giving <strong>36 years, 3 months and 27 days</strong>, exactly as the tool reports. The breakdown adds up behind the scenes: <strong>13,268 total days lived</strong> (every leap day included), <strong>1,895 total weeks</strong>, and <strong>246 days</strong> until the next birthday on 15 June 2027.</p>
+      <p>Leap-day birthdays work too. Someone born <strong>29 February 2000</strong>, measured on 12 October 2026, is <strong>26 years, 7 months and 13 days</strong> old, and the next-birthday countdown treats 28 February as the birthday in non-leap years — 139 days away. Parents like the month-level precision for young children: a baby born <strong>15 January 2024</strong> is <strong>2 years, 8 months and 27 days</strong> old on 12 October 2026, or 1,001 days total.</p>
+
+      <h3>Who uses an age calculator</h3>
+      <p>Parents track a baby's or toddler's age in months for pediatric checkups and milestones, where "2 years old" isn't precise enough. Job applicants and HR teams verify minimum-age eligibility for roles, licenses and registrations without mental date arithmetic. Students filling in forms that ask for age "as of" a cutoff date — school admissions, exam registrations, sports categories — get the exact figure. Retirees and financial planners check years of service or years until pension age. Pet owners convert a pet's birth date into years and months for vet visits. And the merely curious finally get a precise answer to "how many days have I been alive?" — 13,268, in our example above.</p>
+
       <h2>How to use</h2>
       <ol>
         <li>Enter the date of birth (the "as of" date defaults to today).</li>
@@ -176,6 +204,22 @@
       <details>
         <summary>How old am I in days?</summary>
         <p>The calculator shows "Total days lived" in the results grid — 36 years works out to roughly 13,170 days including leap days. Dividing by 365 by hand gets it wrong near leap years, which is why the calculator counts exact calendar days.</p>
+      </details>
+      <details>
+        <summary>How accurate is the total days lived count?</summary>
+        <p>Completely exact: it counts real calendar days between the two dates, including every leap day. Someone born 15 June 1990 and measured on 12 October 2026 has lived exactly 13,268 days — dividing 36 years by hand would miss the leap days.</p>
+      </details>
+      <details>
+        <summary>Can I use this to get a baby's age in months?</summary>
+        <p>Yes — the months figure is the useful one for young children. A baby born 15 January 2024 is 2 years, 8 months and 27 days old on 12 October 2026, which is 1,001 days in total. Pediatric checkups and milestones usually want the months count, and this gives it directly.</p>
+      </details>
+      <details>
+        <summary>Why does it say my next birthday is today?</summary>
+        <p>Because it is! When the countdown reaches zero days, the tool shows "Today! 🎉" instead of a day count. If your birth date matches the "as of" date, that's what you'll see.</p>
+      </details>
+      <details>
+        <summary>Does the calculator use my exact birth time or time zone?</summary>
+        <p>No. It works on calendar dates only — being born at 11pm still counts the whole birth day, and time zones never shift the result. If you need hour-level precision (for example, a newborn's exact age in hours), this tool isn't the right one.</p>
       </details>
       <details>
         <summary>Is my date of birth uploaded anywhere?</summary>
@@ -251,5 +295,30 @@
       });
     })();
   </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

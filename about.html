@@ -22,6 +22,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -53,13 +54,24 @@
     </nav>
     <div class="prose">
       <h1>About QuickTools</h1>
-      <p>QuickTools is a collection of free online utilities — text tools, converters and calculators — built around one simple principle: <strong>your data should never have to leave your device</strong> to count words, convert a file or generate a password.</p>
-      <p>Most free tool sites process your input on their servers. That means your text, files or passwords travel across the internet, sit on someone else's computer, and may be logged. QuickTools does the opposite. Every tool is written in plain JavaScript and runs entirely in your browser. There is no backend, no database, and no account system. When you close the tab, your input is gone.</p>
-      <p>This approach has practical benefits beyond privacy. The tools are fast — results update as you type with no network round-trips. They work offline once the page has loaded. And they cost nothing to run, which is why every tool here is free with no usage limits and no signup.</p>
-      <h2>What we build</h2>
-      <p>We focus on small, genuinely useful utilities that do one job well: counting and cleaning text, converting between formats, and everyday calculations. Each tool is tested, documented with its limitations, and kept free of clutter — no fake download buttons, no misleading ads near the action buttons, no dark patterns.</p>
+      <h2>Who runs this site</h2>
+      <p>My name is <strong>Talha Ansari</strong>. I'm an independent developer, and I built QuickTools and run it myself — every tool on this site was designed, coded and tested by me. There's no company behind it, no team, and no investors: just one person who kept needing small, trustworthy utilities and got tired of what was already out there.</p>
+      <p>The frustration that started this project is specific. Most free tool sites make you create an account before you can count words. They upload your files to their servers to convert them. They surround the real buttons with fake "Download" ads and dark patterns. I wanted the opposite: tools that open instantly, ask for nothing, do one job well, and never touch your data. So I built them.</p>
+      <h2>The principle behind every tool</h2>
+      <p>QuickTools is built around one simple rule: <strong>your data should never have to leave your device</strong> to count words, convert a file or generate a password. Every tool is written in plain JavaScript and runs entirely in your browser. There is no backend, no database, and no account system. When you close the tab, your input is gone — nothing was ever sent anywhere, because there is nowhere to send it to.</p>
+      <p>This approach has practical benefits beyond privacy. The tools are fast, with results updating as you type and no network round-trips. They keep working offline once the page has loaded. And because there are no servers processing your input, the tools cost almost nothing to run — which is why every tool here is free, with no usage limits and no signup.</p>
+      <h2>What the site covers</h2>
+      <p>I focus on small, genuinely useful utilities that do one job well, in three groups:</p>
+      <ul>
+        <li><strong>Text tools</strong> — word and character counters, case conversion, text cleaning and summarising: the everyday jobs writers, students and editors repeat constantly.</li>
+        <li><strong>File converters</strong> — image conversion, resizing and compression, HEIC to JPG, image-to-PDF and PDF merging. Files are processed locally in your browser, which matters most exactly when the file is private.</li>
+        <li><strong>Calculators</strong> — percentages, discounts, compound interest, salary conversion, date and time-duration math: quick answers with the working shown, not black boxes.</li>
+      </ul>
+      <p>Each tool page documents how to use it, where it falls short, and answers the questions people actually ask — including the honest limitations. If a tool can't do something, I'd rather tell you on the page than let you discover it by surprise. Every tool is also covered by an automated test suite that I run before each update, so the calculators keep giving the right answers as the site grows.</p>
       <h2>How the site is funded</h2>
-      <p>QuickTools is free to use and will stay that way. The site is supported by advertising shown around the tools — never by charging for features, selling data (we collect none), or limiting usage. See our <a href="privacy.html">Privacy Policy</a> for exactly what little information exists here.</p>
+      <p>QuickTools is free to use and will stay that way. The plan is to support the site with advertising shown around the tools — never by charging for features, selling data (there is nothing to sell; see the <a href="privacy.html">Privacy Policy</a> for exactly what little information exists here), or limiting usage. If a tool ever needs a paid third-party service to work, I won't build it: the whole point is that everything here runs on your device, for free.</p>
+      <h2>Get in touch</h2>
+      <p>Found a bug, want a tool that isn't here yet, or spotted an error in one of the explanations? I read every genuine message and fix reported bugs myself. Head to the <a href="contact.html">Contact page</a> — that inbox goes directly to me.</p>
     </div>
   </main>
 
@@ -79,5 +91,30 @@
     </div>
   </footer>
   <script src="assets/main.js"></script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

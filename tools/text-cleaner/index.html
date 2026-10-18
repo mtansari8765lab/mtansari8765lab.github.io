@@ -39,6 +39,26 @@
       },
       {
         "@type": "Question",
+        "name": "In what order are the cleaning operations applied?",
+        "acceptedAnswer": { "@type": "Answer", "text": "In a fixed order: strip HTML, then remove line breaks, remove empty lines, trim lines, remove duplicates, and finally collapse whitespace. The order matters — trimming runs before duplicate detection, so lines differing only by trailing spaces are caught as duplicates." }
+      },
+      {
+        "@type": "Question",
+        "name": "Will it remove duplicate lines that differ only by spaces?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, as long as Trim each line is also ticked (it is on by default). Duplicate detection is exact-match, but trimming runs first in the operation order, so 'apple ' and 'apple' are treated as the same line and only the first is kept." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the output update live or do I click a button?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Live. The output re-computes every time you type or tick a checkbox, so you can experiment with combinations and watch exactly what each option changes before you copy the result." }
+      },
+      {
+        "@type": "Question",
+        "name": "What do the lines-before/after stats tell me?",
+        "acceptedAnswer": { "@type": "Answer", "text": "They confirm the cleanup worked: lines before and after, plus total characters removed. For example, cleaning a 4-line paste with duplicates and HTML tags down to 2 clean lines reports 28 characters removed — a quick sanity check before you paste the result into your document." }
+      },
+      {
+        "@type": "Question",
         "name": "Is my text uploaded anywhere?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. Cleaning runs 100% in your browser. Your text never leaves your device." }
       }
@@ -50,6 +70,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -118,6 +139,20 @@
       <p>Every option works independently and the output updates live as you tick boxes or edit the text, so you can see exactly what each change does. A small stats panel shows lines before and after plus how many characters were removed — useful for confirming that a dedupe or whitespace collapse actually did what you expected. Duplicate-line removal keeps the first occurrence and preserves order, which is what you want when cleaning keyword lists, email lists or data rows.</p>
       <p>As with all QuickTools, cleaning happens entirely in your browser. Paste sensitive data, client lists or internal documents freely — nothing is uploaded, stored or sent anywhere.</p>
 
+      <h3>Worked example</h3>
+      <p>Take this realistic mess pasted from a web page:</p>
+      <pre>Hello   world
+
+Hello   world
+  &lt;b&gt;Bold&lt;/b&gt; text  </pre>
+      <p>With every cleaning option ticked, the tool strips the HTML tags, removes the empty line, drops the duplicate "Hello world" line (keeping the first), trims each line and collapses the extra spaces. The output is:</p>
+      <pre>Hello world
+Bold text</pre>
+      <p>The stats panel confirms the work: <strong>4 lines before, 2 lines after, 28 characters removed</strong> — exactly what the tool reports, so you can trust the cleanup before copying it into your document. A second common job is joining wrapped lines: pasting <em>line one / line two / line three</em> (three lines) with only "Remove all line breaks" ticked gives <strong>line one line two line three</strong> — one line, each break replaced by a single space.</p>
+
+      <h3>Who uses a text cleaner</h3>
+      <p>Researchers and students rescue text pasted from PDFs, where every line ends with a hard break that must be joined into paragraphs. SEO specialists and marketers dedupe keyword lists, keeping the first occurrence and the original order. Email marketers clean subscriber lists by removing blank rows and duplicate addresses before import. Data-entry workers tidy spreadsheet exports and CSV rows. Developers strip HTML from scraped content and normalize log files. Support agents reformat chat transcripts for tickets. Anyone who has ever pasted from a PDF or a web page and spent ten minutes fixing it by hand is the target user — this does it in one pass, live, as you tick the options.</p>
+
       <h2>How to use</h2>
       <ol>
         <li>Paste your messy text into the input box.</li>
@@ -148,6 +183,22 @@
       <details>
         <summary>What does strip HTML tags do?</summary>
         <p>It removes anything that looks like an HTML tag (for example &lt;p&gt; or &lt;a href=...&gt;) and leaves the visible text behind. Useful for cleaning text copied from web pages.</p>
+      </details>
+      <details>
+        <summary>In what order are the cleaning operations applied?</summary>
+        <p>In a fixed order: strip HTML → remove line breaks → remove empty lines → trim lines → remove duplicates → collapse whitespace. The order matters — for example, trimming happens before duplicate detection, so lines that differ only by trailing spaces are caught as duplicates.</p>
+      </details>
+      <details>
+        <summary>Will it remove duplicate lines that differ only by spaces?</summary>
+        <p>Yes, as long as "Trim each line" is also ticked (it is on by default). Duplicate detection is exact-match, but trimming runs first in the operation order, so "apple " and "apple" are treated as the same line and only the first is kept.</p>
+      </details>
+      <details>
+        <summary>Does the output update live or do I click a button?</summary>
+        <p>Live. The output re-computes every time you type or tick a checkbox, so you can experiment with combinations and watch exactly what each option changes before you copy the result.</p>
+      </details>
+      <details>
+        <summary>What do the lines-before/after stats tell me?</summary>
+        <p>They confirm the cleanup worked: lines before and after, plus total characters removed. For example, cleaning a 4-line paste with duplicates and HTML tags down to 2 clean lines reports 28 characters removed — a quick sanity check before you paste the result into your document.</p>
       </details>
       <details>
         <summary>Is my text uploaded anywhere?</summary>
@@ -235,5 +286,30 @@
       update();
     })();
   </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

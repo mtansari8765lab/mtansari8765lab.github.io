@@ -41,6 +41,26 @@
         "@type": "Question",
         "name": "Is my text sent to a server?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. Counting happens entirely in your browser. Your text never leaves your device." }
+      },
+      {
+        "@type": "Question",
+        "name": "How many characters should a meta description be?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Aim for roughly 150–160 characters so search results show the whole description instead of cutting it off. Paste your draft into the counter and trim until the total sits in that range — the excluding-spaces figure is irrelevant here; Google counts everything." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the SMS character limit?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A standard text message is 160 characters. Longer messages are split into multiple segments, each billed separately — and one emoji can switch the whole message to a costlier encoding that shrinks each segment to 70 characters. The UTF-8 byte readout helps you spot that before sending." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do line breaks affect the count?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Each line break counts as one character in the total. The excluding-spaces count removes all whitespace, including line breaks and tabs, so it is the figure to use when whitespace does not count." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the counter count words too?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Alongside characters it shows word count and line count, live as you type. Use the Copy stats button to copy a one-line summary of all five figures to your clipboard." }
       }
     ]
   }
@@ -50,6 +70,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -106,6 +127,12 @@
       <p>Counting is Unicode-safe. Each emoji counts as one character (many naive counters report two because they count UTF-16 code units), and the UTF-8 byte readout tells you the true storage size — useful when a database column, API, or SMS gateway enforces a byte limit, since accented characters take two bytes and most emoji take four. Writers use the excluding-spaces figure for assignments that ignore whitespace; marketers use the byte count to keep meta descriptions and ad copy inside technical limits.</p>
       <p>Like every QuickTools utility, the counter runs entirely on your device. Paste confidential drafts freely — nothing is uploaded or stored.</p>
 
+      <h3>Worked example</h3>
+      <p>Type <em>Hello world! 😀</em> into the box and the counter reports: 14 characters, 12 characters excluding spaces, 3 words, 1 line, and 17 UTF-8 bytes. Notice the two numbers the emoji produces: it is one character (14, not 15), but four bytes (17 bytes for 14 characters). That gap is exactly what breaks naive counters and SMS gateways — this one shows you both figures so you are never guessing. Try a sentence of your own, such as <em>SEO meta descriptions should stay under 160 characters for best display.</em> — 72 characters, 62 excluding spaces, 11 words, 72 bytes.</p>
+
+      <h3>Who uses a character counter</h3>
+      <p>Social media managers check bios, captions and post text against each platform's ceiling before publishing. SEO specialists keep meta descriptions around 150–160 characters and page titles near 50–60 so search results show the full text instead of cutting it off with an ellipsis. SMS marketers stay within the 160-character segment: one segment is cheap, two segments double the cost, and a single emoji can force a message into costlier UCS-2 encoding — the byte readout warns you early. Students and freelancers verify minimum and maximum counts on essays and paid articles. Developers validate input against database column limits and API constraints, where bytes matter more than characters. Translators compare source and target lengths to spot text that will overflow a fixed-size button or banner.</p>
+
       <h2>How to use</h2>
       <ol>
         <li>Type or paste your text into the box.</li>
@@ -119,6 +146,7 @@
         <li>Some platforms (notably X/Twitter) count certain characters, URLs and emoji with their own weighted rules — this tool reports standard Unicode counts, not platform-specific ones.</li>
         <li>Complex emoji sequences joined with zero-width joiners (e.g. family emoji) count by code point, which may differ from what a platform displays as one glyph.</li>
         <li>Line breaks count as characters in the total; the excluding-spaces count removes all whitespace including line breaks.</li>
+        <li>The "ideal" meta description length (150–160 characters) is a display convention, not a rule — Google truncates by pixels, so wide letters like "W" eat more of your budget than the count suggests.</li>
       </ul>
     </section>
 
@@ -139,6 +167,22 @@
       <details>
         <summary>Is my text sent to a server?</summary>
         <p>No. Counting happens entirely in your browser. Your text never leaves your device.</p>
+      </details>
+      <details>
+        <summary>How many characters should a meta description be?</summary>
+        <p>Aim for roughly 150–160 characters so search results show the whole description instead of cutting it off. Paste your draft into the counter and trim until the total sits in that range — the excluding-spaces figure is irrelevant here; Google counts everything.</p>
+      </details>
+      <details>
+        <summary>What is the SMS character limit?</summary>
+        <p>A standard text message is 160 characters. Longer messages are split into multiple segments, each billed separately — and one emoji can switch the whole message to a costlier encoding that shrinks each segment to 70 characters. The UTF-8 byte readout helps you spot that before sending.</p>
+      </details>
+      <details>
+        <summary>Do line breaks affect the count?</summary>
+        <p>Yes. Each line break counts as one character in the total. The excluding-spaces count removes all whitespace, including line breaks and tabs, so it is the figure to use when whitespace does not count.</p>
+      </details>
+      <details>
+        <summary>Does the counter count words too?</summary>
+        <p>Yes. Alongside characters it shows word count and line count, live as you type. Use the Copy stats button to copy a one-line summary of all five figures to your clipboard.</p>
       </details>
     </section>
 
@@ -203,5 +247,30 @@
       update();
     })();
   </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

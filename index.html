@@ -22,6 +22,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -151,7 +152,7 @@
       <p>The first batch covers everyday text jobs. Writers and students use the <a href="tools/word-counter/index.html">word counter</a> to hit assignment limits and estimate reading time. Social media managers use the <a href="tools/character-counter/index.html">character counter</a> to stay inside post and bio limits, including an exact UTF-8 byte count for systems that limit by bytes rather than characters. The <a href="tools/case-converter/index.html">case converter</a> fixes headings and pasted text in one click, handling tricky cases like apostrophes in Title Case correctly ("don't" becomes "Don't", not "Don'T"). The <a href="tools/text-cleaner/index.html">text cleaner</a> tidies up messy copied text — collapsing extra whitespace, removing blank or duplicate lines, and stripping HTML tags. And the <a href="tools/password-generator/index.html">password generator</a> creates strong, random passwords using your browser's cryptographic random number generator, with an entropy readout so you can see exactly how strong each password is.</p>
       <p>More tools are on the way: calculators and file utilities are in development. Every new tool follows the same rules — free forever, no signup, and everything processed on your device.</p>
       <p>The second batch covers images and documents. The <a href="tools/image-resizer/index.html">image resizer</a> changes photo dimensions by pixels, percentage or longest side without stretching. The <a href="tools/image-converter/index.html">JPG to PNG converter</a> switches images between JPG, PNG and WebP in batches. The <a href="tools/image-compressor/index.html">image compressor</a> shrinks files by quality — or to an exact target like 100KB, a trick most free tools skip. The <a href="tools/heic-to-jpg/index.html">HEIC to JPG converter</a> handles iPhone photos with a decoder that runs entirely in your browser. The <a href="tools/image-to-pdf/index.html">image to PDF converter</a> bundles photos into one document, the <a href="tools/pdf-merger/index.html">PDF merger</a> combines PDFs without uploading them, and the <a href="tools/favicon-generator/index.html">favicon generator</a> builds a complete multi-size icon set from any image.</p>
-      <p>New in this batch: an <a href="tools/text-summarizer/index.html">extractive text summarizer</a> that shortens articles and notes to their most important sentences — with an honest explanation of what frequency-based summarization can and can't do. Plus our first long-form guide: <a href="guides/how-to-create-a-strong-password/index.html">how to create a strong password</a>, covering entropy, worked weak-vs-strong examples with crack-time estimates, and password manager advice. And a new guide answering <a href="guides/days-from-today/index.html">what date is 90 days from today</a> — with the day-counting convention, leap-year traps, and real use cases from due dates to visa day counts.</p>
+      <p>New in this batch: an <a href="tools/text-summarizer/index.html">extractive text summarizer</a> that shortens articles and notes to their most important sentences — with an honest explanation of what frequency-based summarization can and can't do. Plus our first long-form guide: <a href="guides/how-to-create-a-strong-password/index.html">how to create a strong password</a>, covering entropy, worked weak-vs-strong examples with crack-time estimates, and password manager advice. And a new guide answering <a href="guides/days-from-today/index.html">what date is 90 days from today</a> — with the day-counting convention, leap-year traps, and real use cases from due dates to visa day counts. Four more in-depth guides just landed: <a href="guides/lorem-ipsum-explained/index.html">what lorem ipsum actually is and how designers use placeholder text</a>, <a href="guides/uuid-guid-explained/index.html">UUIDs and GUIDs explained</a> (formats, versions, collision odds), <a href="guides/random-numbers-explained/index.html">true randomness vs pseudorandomness</a>, and <a href="guides/compare-two-texts/index.html">how to compare two texts and spot every difference</a>.</p>
     </section>
 
     <section class="prose faq" aria-labelledby="home-faq">
@@ -187,5 +188,30 @@
     </div>
   </footer>
   <script src="assets/main.js"></script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

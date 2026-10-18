@@ -53,6 +53,38 @@
         "@type": "Answer",
         "text": "No. Conversion happens 100% in your browser via the canvas API. Files never leave your device."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use WebP for my website?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually yes. For photos, WebP matches JPG\u2019s file sizes with visibly better quality; for graphics, it keeps PNG\u2019s transparency at files roughly a quarter to a third smaller. Every modern browser \u2014 Chrome, Firefox, Safari (since 2020), Edge \u2014 displays WebP natively. The only reason to stick with JPG is supporting genuinely old browsers or a platform that rejects WebP uploads."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my converted PNG bigger than the JPG?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because the two formats store data very differently. JPG uses lossy compression tuned for photos, while PNG is lossless and must record every pixel exactly. A photo converted from JPG to PNG typically comes out 3\u20135\u00d7 larger than it started \u2014 you gained editability and transparency support, not smaller size. If the goal is a smaller file, convert JPG to WebP or run the JPG through the compressor instead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does converting JPG to JPG lose quality?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, a little, every time. Each JPG encode re-applies lossy compression, so converting the same file repeatedly slowly accumulates artefacts \u2014 blocky patches in smooth gradients are the first thing you notice. One conversion at this tool\u2019s 0.92 quality is visually lossless for practical purposes, but avoid round-trips: always convert from the highest-quality original you have, not from an already-compressed copy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I convert BMP or TIFF files?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BMP works \u2014 drop it in and convert to JPG, PNG or WebP. TIFF is a mixed bag: some browsers decode common TIFF variants through the canvas, others refuse, so it is not guaranteed. Animated GIFs are accepted but convert as a single still frame; the animation is not carried over. HEIC iPhone photos need the dedicated HEIC to JPG tool instead, since browsers can\u2019t decode them natively."
+      }
     }
   ]
 }
@@ -62,6 +94,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -122,6 +155,11 @@
       <h2 id="about-tool">About this image converter</h2>
       <p>Need a JPG as a PNG for transparency or editing, a PNG as a JPG to shrink it for email, or a WebP for a faster website? This free converter switches images between JPG, PNG and WebP in one click, with batch conversion so you can drop in a whole folder of screenshots or photos and convert them all at once.</p>
       <p>Conversion runs on an HTML canvas entirely on your device — the image is decoded and re-encoded locally, so there is no upload queue and no file-size cap imposed by a server. Most online converters force an upload first; here your files never leave the browser, which matters for client work, screenshots with personal data, and anything you would rather not hand to a stranger’s server.</p>
+      <h2>Worked example: which format for which job</h2>
+      <p>Three common jobs show how the formats compare. First, a 2400×1600 screenshot saved as PNG at 1.8 MB: converting it to JPG produces a file around 300–400 KB — a roughly 80% saving — because JPG's lossy compression is far more efficient for photographic content, and the slight softening is invisible on screen. Second, a logo with a transparent background: JPG cannot keep the transparency, so converting it to WebP is the right move — you keep the alpha channel at a file size typically 25–35% smaller than the PNG. Third, a product photo destined for a web page: WebP gives you near-JPG file sizes at near-PNG visual quality, which is why most modern sites have switched.</p>
+      <p>One detail worth knowing: when this tool writes JPG it uses quality 0.92 — high enough that the output looks identical to the original for photos, while still cutting file size substantially. And converting a JPG to JPG in this tool re-encodes it at that same 0.92, which is fine once but slowly degrades the image if repeated — always convert from the best-quality original you have.</p>
+      <h2>Who uses this tool</h2>
+      <p>Bloggers converting screenshots to JPG or WebP before publishing, so posts load fast without visible quality loss. Online sellers preparing product photos for marketplaces that want JPGs under a file-size limit. Designers exporting PNG graphics with transparency to WebP for web builds, and office workers turning PNG scans into smaller JPGs that fit email attachment limits. Anyone who has ever hit an upload form that says "JPG only" also ends up here.</p>
       <h2>How to use</h2>
       <ol>
         <li>Drop one or more images into the upload box (or click to browse).</li>
@@ -134,6 +172,9 @@
         <li>Converting JPG to PNG will not restore quality lost to JPG compression, and PNG files are usually larger than the JPG they came from.</li>
         <li>JPG output cannot preserve transparency — transparent areas become black unless the page flattens them; use PNG or WebP to keep transparency.</li>
         <li>Animated GIFs convert as a single still frame; animation is not preserved.</li>
+        <li>JPG output is written at a fixed quality of 0.92 — there is no quality slider. If you need tighter file-size control, convert first and then use the <a href="../image-compressor/index.html">Image Compressor</a>.</li>
+        <li>Converting a JPG to JPG re-compresses it and loses a little quality each round-trip, even at 0.92 — always convert from the highest-quality original rather than from an already-compressed copy.</li>
+        <li>Colour-profile and EXIF metadata may be dropped when the image passes through the canvas re-encode.</li>
         <li>Very old browsers may not support WebP output; the tool will report an encoding error in that case.</li>
       </ul>
     </section>
@@ -155,6 +196,22 @@
       <details>
         <summary>Are my images uploaded anywhere?</summary>
         <p>No. Conversion happens 100% in your browser via the canvas API. Files never leave your device.</p>
+      </details>
+      <details>
+        <summary>Should I use WebP for my website?</summary>
+        <p>Usually yes. For photos, WebP matches JPG's file sizes with visibly better quality; for graphics, it keeps PNG's transparency at files roughly a quarter to a third smaller. Every modern browser — Chrome, Firefox, Safari (since 2020), Edge — displays WebP natively. The only reason to stick with JPG is supporting genuinely old browsers or a platform that rejects WebP uploads.</p>
+      </details>
+      <details>
+        <summary>Why is my converted PNG bigger than the JPG?</summary>
+        <p>Because the two formats store data very differently. JPG uses lossy compression tuned for photos, while PNG is lossless and must record every pixel exactly. A photo converted from JPG to PNG typically comes out 3–5× larger than it started — you gained editability and transparency support, not smaller size. If the goal is a smaller file, convert JPG to WebP or run the JPG through the compressor instead.</p>
+      </details>
+      <details>
+        <summary>Does converting JPG to JPG lose quality?</summary>
+        <p>Yes, a little, every time. Each JPG encode re-applies lossy compression, so converting the same file repeatedly slowly accumulates artefacts — blocky patches in smooth gradients are the first thing you notice. One conversion at this tool's 0.92 quality is visually lossless for practical purposes, but avoid round-trips: always convert from the highest-quality original you have, not from an already-compressed copy.</p>
+      </details>
+      <details>
+        <summary>Can I convert BMP or TIFF files?</summary>
+        <p>BMP works — drop it in and convert to JPG, PNG or WebP. TIFF is a mixed bag: some browsers decode common TIFF variants through the canvas, others refuse, so it is not guaranteed. Animated GIFs are accepted but convert as a single still frame; the animation is not carried over. HEIC iPhone photos need the dedicated <a href="../heic-to-jpg/index.html">HEIC to JPG</a> tool instead, since browsers can't decode them natively.</p>
       </details>
     </section>
 
@@ -270,5 +327,30 @@
   });
 })();
 </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

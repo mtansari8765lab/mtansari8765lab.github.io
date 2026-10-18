@@ -46,6 +46,26 @@
         "@type": "Question",
         "name": "Is my data uploaded anywhere?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. The calculator runs 100% in your browser with JavaScript. Your dates never leave your device, are never stored, and never sent to any server." }
+      },
+      {
+        "@type": "Question",
+        "name": "How many days are in a year — 365 or 366?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It depends on whether the span includes a 29 February. From 1 January 2026 to 1 January 2027 is 365 days, but from 1 January 2024 to 1 January 2025 is 366 days because 2024 is a leap year. The calculator handles this automatically — you never need to check the calendar yourself." }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens when I add one month to 31 January?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The date is clamped to the end of the shorter month: 31 January 2026 plus one month becomes 28 February 2026. In a leap year it becomes 29 February — 31 January 2028 plus one month is 29 February 2028. Years clamp the same way: 29 February 2028 plus one year is 28 February 2029." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does daylight saving time affect the results?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. All maths is done on calendar dates, never on timestamps, so a daylight-saving change can never shift a result by a day. Adding 90 days always means 90 calendar days, wherever you are." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I find a date in the past?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. In the add/subtract box, switch the direction to Subtract (past) and enter the amounts. For example, 90 days before 1 January 2026 is 3 October 2025. The weekday is shown too, so you can see at a glance what day it fell on." }
       }
     ]
   }
@@ -55,6 +75,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -162,6 +183,13 @@
       <p>Date arithmetic is full of traps: February has 28 or 29 days, months end on the 30th or 31st, and adding "one month" to January 31 has no obvious answer. This calculator uses calendar-date math throughout (never timestamps), so daylight-saving changes can never shift a result by a day, and it handles leap years automatically.</p>
       <p>The two modes cover the common cases: measuring a span ("how many days between these dates?") and projecting a date ("what date is 90 days from now?" — a question asked hundreds of thousands of times a month, usually for deadlines, notice periods and due dates).</p>
 
+      <h3>Worked examples</h3>
+      <p><strong>Days between dates.</strong> From 1 January 2026 to 31 December 2026 is 364 days. From Christmas Day 2026 (25 December) to New Year's Day 2027 (1 January) is 7 days — the count is exclusive of the start date, so Monday to the following Monday is always 7. A span that crosses a leap day is one longer: 1 January 2024 to 1 January 2025 is 366 days because 2024 has a 29 February.</p>
+      <p><strong>Projecting a date.</strong> 1 January 2026 plus 90 days is 1 April 2026, a Wednesday — the result also names the weekday, handy for spotting that a deadline lands on a weekend. When you add months, short months clamp: 31 January 2026 plus one month is 28 February 2026, but 31 January 2028 plus one month is 29 February 2028, because 2028 is a leap year. The same clamping applies to years: 29 February 2028 plus one year becomes 28 February 2029, since 2029 has no 29 February.</p>
+
+      <h3>Who uses a date calculator</h3>
+      <p>HR teams and employees check notice periods — "three months from 15 March" is 15 June, but "90 days from 15 March" is a different date, and confusing the two can cost a week's pay. Project managers turn "six weeks" into a calendar date before committing to a client. Freelancers convert payment terms (net 30, net 60) into exact due dates for invoices. Travellers count visa-free stay limits, and expecting parents count weeks to a due date. Landlords and tenants measure tenancy lengths and notice windows. Anyone can use it for the everyday questions too: how many days until a holiday, a birthday, or a product launch.</p>
+
       <h2>How to use</h2>
       <ol>
         <li>To count a span: enter both dates and press <strong>Count days</strong>. Same date twice gives 0.</li>
@@ -174,6 +202,8 @@
         <li>Days are calendar days — weekends and holidays are included, not excluded.</li>
         <li>Adding months clamps to the end of shorter months (Jan 31 + 1 month = Feb 28/29).</li>
         <li>Dates before year 1 or far-future dates may hit browser date limits; the tool validates input.</li>
+        <li>The 5/7 business-day estimate ignores public holidays — it is a rough guide, not a payroll figure.</li>
+        <li>When you subtract months or years, the same end-of-month clamping applies (e.g. 31 March minus one month is 29 February in a leap year, 28 February otherwise).</li>
       </ul>
     </section>
 
@@ -198,6 +228,22 @@
       <details>
         <summary>Is my data uploaded anywhere?</summary>
         <p>No. The calculator runs 100% in your browser with JavaScript. Your dates never leave your device, are never stored, and never sent to any server.</p>
+      </details>
+      <details>
+        <summary>How many days are in a year — 365 or 366?</summary>
+        <p>It depends on whether the span includes a 29 February. From 1 January 2026 to 1 January 2027 is 365 days, but from 1 January 2024 to 1 January 2025 is 366 days because 2024 is a leap year. The calculator handles this automatically — you never need to check the calendar yourself.</p>
+      </details>
+      <details>
+        <summary>What happens when I add one month to 31 January?</summary>
+        <p>The date is clamped to the end of the shorter month: 31 January 2026 plus one month becomes 28 February 2026. In a leap year it becomes 29 February — 31 January 2028 plus one month is 29 February 2028. Years clamp the same way: 29 February 2028 plus one year is 28 February 2029.</p>
+      </details>
+      <details>
+        <summary>Does daylight saving time affect the results?</summary>
+        <p>No. All maths is done on calendar dates, never on timestamps, so a daylight-saving change can never shift a result by a day. Adding 90 days always means 90 calendar days, wherever you are.</p>
+      </details>
+      <details>
+        <summary>Can I find a date in the past?</summary>
+        <p>Yes. In the add/subtract box, switch the direction to Subtract (past) and enter the amounts. For example, 90 days before 1 January 2026 is 3 October 2025. The weekday is shown too, so you can see at a glance what day it fell on.</p>
       </details>
     </section>
 
@@ -273,5 +319,30 @@
       });
     })();
   </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

@@ -41,6 +41,26 @@
         "@type": "Question",
         "name": "Is my text uploaded anywhere?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. Conversion runs 100% in your browser. Your text never leaves your device." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does aLtErNaTiNg case decide which letters are capital?",
+        "acceptedAnswer": { "@type": "Answer", "text": "By position: characters at even positions (0, 2, 4…) are lowercased and characters at odd positions are uppercased. Spaces and punctuation still count as positions, so \"hello world\" becomes \"hElLo wOrLd\"." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Title Case capitalise hyphenated words?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Each hyphenated segment is treated as its own word, so \"quick-brown\" becomes \"Quick-Brown\" and \"well-known\" becomes \"Well-Known\"." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I fix text that is already in mixed case?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every mode normalises the whole input before converting — lowercase first, then applies the new case. Pasting \"hElLo WoRLd\" and clicking Sentence case gives you \"Hello world\", not a partial fix." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the Copy button copy?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Exactly the converted result shown in the result box. If nothing has been converted yet, Copy does nothing. Use Download .txt instead if you want the result saved as a plain-text file named converted-text.txt on your device." }
       }
     ]
   }
@@ -50,6 +70,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -110,6 +131,12 @@
       <p>The details are handled properly, not approximately. Title Case capitalises the first letter of each word while treating apostrophes inside words sensibly, so "don't" becomes "Don't" and "o'clock" becomes "O'clock" — avoiding the "Don'T" error that cruder converters produce. Sentence case lowercases everything first, then capitalises the first letter after each sentence-ending mark, which is ideal for normalising pasted paragraphs. Capitalized Case uppercases only the very first letter of the whole text, and aLtErNaTiNg case gives you the stylised alternating look in one click.</p>
       <p>Conversion happens instantly on your device, and you can copy the result or download it as a .txt file — handy for moving cleaned-up text into documents, emails or content management systems.</p>
 
+      <h3>Worked examples</h3>
+      <p>Here is what each mode does to real text, so you know exactly what to expect before you click. Take the sentence <em>hello world</em>: UPPERCASE gives <strong>HELLO WORLD</strong>, lowercase gives <strong>hello world</strong>, and aLtErNaTiNg gives <strong>hElLo wOrLd</strong> — letters at even positions are lowercased and letters at odd positions are uppercased, with spaces still counting as positions. Title Case turns <em>the quick-brown fox</em> into <strong>The Quick-Brown Fox</strong>, and it treats apostrophes inside words sensibly: <em>don't stop o'clock</em> becomes <strong>Don't Stop O'clock</strong>, not "Don'T". Sentence case normalises a messy paragraph: <em>HELLO. THIS IS A TEST! works? yes.</em> becomes <strong>Hello. This is a test! Works? Yes.</strong> And Capitalized Case reduces <em>hELLO WORLD</em> to <strong>Hello world</strong>.</p>
+
+      <h3>Who uses a case converter</h3>
+      <p>Writers and editors rescue headings and pasted quotes: a title copied from a PDF in ALL CAPS becomes proper Title Case in one click, and a paragraph pasted from an email thread gets natural sentence capitalisation. Developers reformat string literals, log output and configuration values — shouted constants from a config file become readable lowercase or title case for documentation. Students fix the accidental caps-lock paragraph before submitting an essay. Marketers and social media managers match each platform's conventions: sentence case for a LinkedIn post, Title Case for a headline, aLtErNaTiNg for a playful caption. Data-entry workers cleaning spreadsheets normalise inconsistent name columns — SMITH, Smith, smith — to one style before import. Because nothing leaves the browser, even confidential drafts and client copy are safe to paste.</p>
+
       <h2>How to use</h2>
       <ol>
         <li>Paste or type your text into the input box.</li>
@@ -124,6 +151,7 @@
         <li>Sentence case relies on . ! ? … to find sentence ends — abbreviations like "e.g." may trigger unwanted capitals.</li>
         <li>Locale-specific casing (e.g. Turkish dotted İ) follows standard Unicode rules, not locale-specific ones.</li>
         <li>Very large pastes (megabytes of text) may take a moment; the tool is designed for documents, not bulk data processing.</li>
+        <li>aLtErNaTiNg case counts every position, including spaces and punctuation — removing or adding one character shifts the whole pattern.</li>
       </ul>
     </section>
 
@@ -144,6 +172,22 @@
       <details>
         <summary>Is my text uploaded anywhere?</summary>
         <p>No. Conversion runs 100% in your browser. Your text never leaves your device.</p>
+      </details>
+      <details>
+        <summary>How does aLtErNaTiNg case decide which letters are capital?</summary>
+        <p>By position: characters at even positions (0, 2, 4…) are lowercased and characters at odd positions are uppercased. Spaces and punctuation still count as positions, so "hello world" becomes "hElLo wOrLd". Removing a character shifts the whole pattern.</p>
+      </details>
+      <details>
+        <summary>Does Title Case capitalise hyphenated words?</summary>
+        <p>Yes. Each hyphenated segment is treated as its own word, so "quick-brown" becomes "Quick-Brown" and "well-known" becomes "Well-Known".</p>
+      </details>
+      <details>
+        <summary>Can I fix text that is already in mixed case?</summary>
+        <p>Yes. Every mode normalises the whole input before converting — lowercase first, then applies the new case. Pasting "hElLo WoRLd" and clicking Sentence case gives you "Hello world", not a partial fix.</p>
+      </details>
+      <details>
+        <summary>What does the Copy button copy?</summary>
+        <p>Exactly the converted result shown in the result box. If nothing has been converted yet, Copy does nothing. Use Download .txt instead if you want the result saved as a plain-text file named converted-text.txt on your device.</p>
       </details>
     </section>
 
@@ -212,5 +256,30 @@
       });
     })();
   </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

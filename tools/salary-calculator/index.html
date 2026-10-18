@@ -46,6 +46,26 @@
         "@type": "Question",
         "name": "Is my data uploaded anywhere?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. The calculator runs 100% in your browser with JavaScript. Your numbers never leave your device, are never stored, and never sent to any server." }
+      },
+      {
+        "@type": "Question",
+        "name": "How many working hours are in a year?",
+        "acceptedAnswer": { "@type": "Answer", "text": "2,080 for a 40-hour week (40 x 52), 1,950 for 37.5 hours, and 1,560 for a 30-hour part-time week. Enter your actual hours per week and the calculator uses the right figure automatically." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I convert a day rate to an annual salary?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Multiply the day rate by your working days per year. 400 a day x 260 working days (5 days x 52 weeks) = 104,000 a year before holidays - subtract unpaid days off for the real figure." }
+      },
+      {
+        "@type": "Question",
+        "name": "Which offer is better: $55,000 at 45 hours/week or $50,000 at 37.5?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Convert to hourly: the first is 55,000 / (45 x 52) = $23.50 an hour; the second is 50,000 / (37.5 x 52) = $25.64 an hour. The smaller salary pays more per hour - convert any two offers the same way before deciding." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator include taxes or take-home pay?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No - every figure is gross pay before deductions. Income tax, social security, pensions and insurance vary too much by jurisdiction to estimate here; this tool converts the quoted amounts only." }
       }
     ]
   }
@@ -55,6 +75,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -156,6 +177,17 @@
       <p>Job offers come in different units — one quotes $52,000 a year, another $25 an hour — and comparing them needs a common denominator. This calculator converts between annual, monthly, weekly and hourly pay using your actual hours per week (the classic 2,080-hour year assumes 40 hours × 52 weeks, but part-time and 37.5-hour schedules are fully supported).</p>
       <p>Remember this is gross pay before tax. Two jobs with identical gross figures can leave very different amounts in your pocket depending on tax jurisdiction, benefits and deductions — use the conversions to compare offers, not to budget take-home pay.</p>
 
+      <h2>Worked examples</h2>
+      <p><strong>Hourly to annual.</strong> $25 an hour at 40 hours a week: 25 × 40 = $1,000 a week; 25 × 2,080 = $52,000 a year; 52,000 ÷ 12 = $4,333.33 a month. The breakdown box shows all four figures at once.</p>
+      <p><strong>Part-time hours.</strong> A £37,440 salary on a 37.5-hour week: the year holds 37.5 × 52 = 1,950 working hours, so the hourly rate is 37,440 ÷ 1,950 = £19.20. Change "hours per week" to anything — 20 for a two-day week, 45 for a long one — and the maths follows.</p>
+      <p><strong>Overtime.</strong> $25 an hour, working 45 hours a week at 1.5× overtime: regular pay is 40 × 25 = $1,000; overtime is 5 × 25 × 1.5 = $187.50; the week totals $1,187.50 and the year comes to $1,187.50 × 52 = $61,750 — $9,750 more than the no-overtime year.</p>
+
+      <h2>Comparing two job offers</h2>
+      <p>Offers are rarely quoted in the same units, and hours differ too — convert both to hourly pay before judging. A $55,000 offer at 45 hours a week is 55,000 ÷ (45 × 52) = $23.50 an hour; a $50,000 offer at 37.5 hours is 50,000 ÷ (37.5 × 52) = $25.64 an hour. The "bigger" salary actually pays less per hour, and once you see both as hourly rates the trade-off is honest.</p>
+
+      <h2>Day rates and bonuses</h2>
+      <p>Contractors usually quote day rates: £400 a day at 5 days a week, 52 weeks, is 400 × 260 = £104,000 a year before holidays — subtract your unpaid days off for the real figure. Annual bonuses fold in simply: add the bonus to the annual salary first, then convert. A $60,000 salary with a $5,000 bonus behaves like $65,000 a year, or 65,000 ÷ 2,080 = $31.25 an hour at 40 hours a week.</p>
+
       <h2>How to use</h2>
       <ol>
         <li>Enter your pay, say whether it is annual or hourly, set your hours per week and currency.</li>
@@ -168,6 +200,8 @@
         <li>Gross pay only — taxes, social security, retirement and insurance are not deducted.</li>
         <li>Assumes 52 working weeks; unpaid leave is not subtracted.</li>
         <li>Overtime rules vary by country and contract — 1.5× beyond 40h is the common default, not a legal guarantee.</li>
+        <li>Bonuses, commission and tips are not included — add them to the annual figure first if you want them reflected in the hourly rate.</li>
+        <li>Pay-frequency quirks (biweekly vs semi-monthly, 13th-month pay, unpaid leave) are not modelled; the maths assumes 52 full weeks.</li>
       </ul>
     </section>
 
@@ -192,6 +226,22 @@
       <details>
         <summary>Is my data uploaded anywhere?</summary>
         <p>No. The calculator runs 100% in your browser with JavaScript. Your numbers never leave your device, are never stored, and never sent to any server.</p>
+      </details>
+      <details>
+        <summary>How many working hours are in a year?</summary>
+        <p>2,080 for a 40-hour week (40 × 52), 1,950 for 37.5 hours, and 1,560 for a 30-hour part-time week. Enter your actual hours per week and the calculator uses the right figure automatically.</p>
+      </details>
+      <details>
+        <summary>How do I convert a day rate to an annual salary?</summary>
+        <p>Multiply the day rate by your working days per year. £400 a day × 260 working days (5 days × 52 weeks) = £104,000 a year before holidays — subtract unpaid days off for the real figure.</p>
+      </details>
+      <details>
+        <summary>Which offer is better: $55,000 at 45 hours/week or $50,000 at 37.5?</summary>
+        <p>Convert to hourly: the first is 55,000 ÷ (45 × 52) = $23.50 an hour; the second is 50,000 ÷ (37.5 × 52) = $25.64 an hour. The smaller salary pays more per hour — convert any two offers the same way before deciding.</p>
+      </details>
+      <details>
+        <summary>Does this calculator include taxes or take-home pay?</summary>
+        <p>No — every figure is gross pay before deductions. Income tax, social security, pensions and insurance vary too much by jurisdiction to estimate here; this tool converts the quoted amounts only.</p>
       </details>
     </section>
 
@@ -266,5 +316,30 @@
       });
     })();
   </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

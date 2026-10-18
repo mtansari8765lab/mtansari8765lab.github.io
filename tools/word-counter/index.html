@@ -39,6 +39,26 @@
       },
       {
         "@type": "Question",
+        "name": "What's the difference between characters and characters (no spaces)?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Characters counts everything including spaces; Characters (no spaces) excludes them. For 'Hello world. This is a test.' that's 28 characters versus 23 without spaces. Some submission forms count one way and some the other — this shows both so you're covered." }
+      },
+      {
+        "@type": "Question",
+        "name": "How are paragraphs counted?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A paragraph is a block of text separated by blank lines. Single line breaks inside a block don't start a new paragraph — so a poem with one line break per verse counts as one paragraph until you leave an empty line between stanzas." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it count words in other languages and emoji?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. The counter is Unicode-safe and counts by actual characters (code points), not byte fragments. For example, the text with two emoji, 'test' and two Chinese characters counts as 10 characters, 8 without spaces, and 3 words — Chinese, Arabic, Hindi and emoji are all handled correctly." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the word counter work offline?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, once the page has loaded. All counting happens in JavaScript in your browser with no server calls, so you can keep typing and watching stats update with no connection at all." }
+      },
+      {
+        "@type": "Question",
         "name": "Is my text uploaded anywhere?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. The counter runs 100% in your browser with JavaScript. Your text never leaves your device, is never stored, and never sent to any server." }
       }
@@ -50,6 +70,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -108,6 +129,12 @@
       <p>The counter is Unicode-safe, so emoji and non-Latin scripts like Chinese, Arabic or Hindi are counted by actual characters rather than broken byte fragments. Reading time is estimated at 200 words per minute (average adult reading speed) and speaking time at 130 words per minute (a comfortable presentation pace) — genuinely useful when you are timing a speech, a video script, or a podcast outline and need to know whether your draft fits the slot.</p>
       <p>Because the whole tool runs in your browser, it also works offline once the page has loaded, and your text is never uploaded anywhere — safe for drafts, client work, and anything confidential.</p>
 
+      <h3>Worked example</h3>
+      <p>Type <em>Hello world. This is a test.</em> and the stats read: <strong>6 words, 28 characters (23 without spaces), 2 sentences, 1 paragraph</strong> — with an estimated <strong>2 seconds</strong> reading time and <strong>3 seconds</strong> speaking time. A longer sample shows how the estimates scale: <em>The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs.</em> gives <strong>17 words, 85 characters (69 without spaces), 2 sentences, 1 paragraph</strong>, about <strong>5 seconds</strong> to read and <strong>8 seconds</strong> to speak aloud. These are exactly the figures the tool computes — reading time from 200 words per minute, speaking time from 130 words per minute.</p>
+
+      <h3>Who uses a word counter</h3>
+      <p>Students check essays against word limits (1,000-word essays, 250-word abstracts) before submitting. Writers and bloggers track article length and pacing as they draft. Marketers fit copy to platform limits for ads, meta descriptions and social posts. Speakers and video creators time scripts: a 1,300-word script at 130 words per minute is a 10-minute talk. Translators and freelancers estimate job size from word counts. Job applicants keep resumes and cover letters within limits. Podcasters outline episodes to length. Teachers verify assignment lengths at a glance. And anyone drafting an important email pastes it here first to check it's concise enough to actually be read.</p>
+
       <h2>How to use</h2>
       <ol>
         <li>Type directly into the box, or paste text from any document, email or web page.</li>
@@ -138,6 +165,22 @@
       <details>
         <summary>How is reading time calculated?</summary>
         <p>Reading time assumes an average adult reading speed of 200 words per minute; speaking time assumes 130 words per minute, a typical presentation pace. Both are estimates — dense or technical text takes longer.</p>
+      </details>
+      <details>
+        <summary>What's the difference between characters and characters (no spaces)?</summary>
+        <p>"Characters" counts everything including spaces; "Characters (no spaces)" excludes them. For "Hello world. This is a test." that's 28 characters versus 23 without spaces. Some submission forms count one way and some the other — this shows both so you're covered.</p>
+      </details>
+      <details>
+        <summary>How are paragraphs counted?</summary>
+        <p>A paragraph is a block of text separated by blank lines. Single line breaks inside a block don't start a new paragraph — so a poem with one line break per verse counts as one paragraph until you leave an empty line between stanzas.</p>
+      </details>
+      <details>
+        <summary>Does it count words in other languages and emoji?</summary>
+        <p>Yes. The counter is Unicode-safe and counts by actual characters (code points), not byte fragments. For example, "😀😀 test 测试" counts as 10 characters, 8 without spaces, and 3 words — Chinese, Arabic, Hindi and emoji are all handled correctly.</p>
+      </details>
+      <details>
+        <summary>Does the word counter work offline?</summary>
+        <p>Yes, once the page has loaded. All counting happens in JavaScript in your browser with no server calls, so you can keep typing and watching stats update with no connection at all.</p>
       </details>
       <details>
         <summary>Is my text uploaded anywhere?</summary>
@@ -210,5 +253,30 @@
       update();
     })();
   </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

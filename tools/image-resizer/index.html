@@ -53,6 +53,38 @@
         "@type": "Answer",
         "text": "JPG for photographs (smallest files), PNG for graphics with sharp edges or transparency, WebP for the best of both on modern browsers."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I resize without stretching or distorting the image?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You don\u2019t have to do anything \u2014 this tool always locks the aspect ratio, so the image can never come out stretched or squashed. Set one dimension (width, height, longest side or percentage) and the other is calculated automatically. If you need an exact square or a specific shape, crop the image to that shape first in any editor, then resize; resizing and cropping are different operations, and this page deliberately does only the first."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between resizing and compressing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Resizing changes the pixel dimensions (4000\u00d73000 becomes 800\u00d7600); compressing reduces the file size at the same dimensions by lowering quality. They solve different problems: resize when the image is physically too big for its display slot, compress when the file is too heavy to send. For web publishing, do both \u2014 resize to the display size first, then run the result through the Image Compressor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I enlarge a small image for printing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Technically yes \u2014 percentage mode goes up to 1000% \u2014 but enlarging cannot add detail, so the result gets soft past roughly 200%. A practical rule: divide your pixel dimensions by the print resolution. An 800\u00d7600 image prints at 300 dpi to about 2.7 \u00d7 2 inches \u2014 fine for a small insert, not for a poster. For anything larger you need a bigger original, not a bigger resize."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did my file get bigger after shrinking it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually a format mismatch: shrinking a photographic PNG and saving it as PNG again keeps the inefficient lossless encoding, so a 1.8 MB screenshot can still be large at smaller dimensions. If the file needs to be small, also switch the output format \u2014 JPG or WebP for photos \u2014 and consider the Image Compressor, which is purpose-built for file size. Resize controls dimensions; format and quality control file size."
+      }
     }
   ]
 }
@@ -62,6 +94,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -135,6 +168,17 @@
       <h2 id="about-tool">About this image resizer</h2>
       <p>Oversized photos slow down websites, bounce off email attachment limits and eat phone storage. This free image resizer shrinks (or enlarges) any photo while preserving its aspect ratio, so nothing comes out stretched or squashed. Resize by exact pixel width or height, by longest side, or by percentage — handy for batch-feeling one-off jobs like forum avatars, marketplace listings and blog images.</p>
       <p>Resizing happens on an HTML canvas entirely on your device: the pixels are resampled locally with high-quality smoothing and the result is encoded to PNG, JPG or WebP right in the page. Because nothing is uploaded, there is no queue, no watermark and no account — and sensitive photos (IDs, screenshots, client work) never touch a server. That privacy edge is exactly where most online resizers fall short: they require an upload before they do anything.</p>
+      <h2>The aspect-ratio math, worked out</h2>
+      <p>The tool always preserves your image's proportions — it never stretches. Here is what that means in practice, with the exact results this page produces:</p>
+      <ul>
+        <li><strong>4000×3000 photo → 800 px wide.</strong> The ratio is 4:3, so the height becomes 3000 × 800 ÷ 4000 = <strong>800×600 px</strong>.</li>
+        <li><strong>4032×3024 iPhone photo → longest side 1024.</strong> The width is the longest side, so the result is <strong>1024×768 px</strong> (3024 × 1024 ÷ 4032 = 768).</li>
+        <li><strong>1920×1080 video still → 50%.</strong> Percentage mode scales both sides equally: <strong>960×540 px</strong>, still exactly 16:9.</li>
+        <li><strong>6000×4000 marketplace photo → height 1067.</strong> Setting the height gives 6000 × 1067 ÷ 4000 ≈ 1600.5, which rounds to <strong>1600×1067 px</strong> — one pixel off the exact ratio, which is invisible in practice.</li>
+      </ul>
+      <p>That rounding is worth a sentence: pixels are indivisible, so any resize rounds each dimension to a whole pixel. On odd dimensions the ratio shifts by less than a pixel — nothing a human eye can detect.</p>
+      <h2>Who uses this tool</h2>
+      <p>Online sellers hitting marketplace dimension rules (a 1600px longest side is a common listing requirement). Bloggers resizing photos to their content column width — usually 800–1200px — before uploading, so pages load in a fraction of the time. Forum and community members shrinking photos to avatar or attachment limits, and anyone emailing a batch of phone photos: a 4000×3000 original becomes a quick-loading 800×600 that still looks great on screen. WhatsApp profile pictures, Discord avatars and presentation slides all land here too.</p>
       <h2>How to use</h2>
       <ol>
         <li>Drop an image into the upload box (or click to browse).</li>
@@ -146,6 +190,8 @@
       <ul>
         <li>Enlarging beyond ~200% will look soft — resizing cannot invent detail that is not in the original.</li>
         <li>Animated GIFs are resized as a single still frame; animation is not preserved.</li>
+        <li>The tool resizes proportionally only — it cannot crop, rotate or stretch an image into a different shape. For a square avatar from a landscape photo, crop elsewhere first.</li>
+        <li>Dimensions round to whole pixels, so results on odd sizes can differ from the exact ratio by a single pixel.</li>
         <li>Very large images (50+ megapixels) may hit browser memory limits on low-end devices.</li>
         <li>JPG output uses high quality (0.92); for aggressive file-size shrinking use the <a href="../image-compressor/index.html">Image Compressor</a> instead.</li>
       </ul>
@@ -168,6 +214,22 @@
       <details>
         <summary>Which output format should I choose?</summary>
         <p>JPG for photographs (smallest files), PNG for graphics with sharp edges or transparency, WebP for the best of both on modern browsers.</p>
+      </details>
+      <details>
+        <summary>How do I resize without stretching or distorting the image?</summary>
+        <p>You don't have to do anything — this tool always locks the aspect ratio, so the image can never come out stretched or squashed. Set one dimension (width, height, longest side or percentage) and the other is calculated automatically. If you need an exact square or a specific shape, crop the image to that shape first in any editor, then resize; resizing and cropping are different operations, and this page deliberately does only the first.</p>
+      </details>
+      <details>
+        <summary>What's the difference between resizing and compressing?</summary>
+        <p>Resizing changes the pixel dimensions (4000×3000 becomes 800×600); compressing reduces the file size at the same dimensions by lowering quality. They solve different problems: resize when the image is physically too big for its display slot, compress when the file is too heavy to send. For web publishing, do both — resize to the display size first, then run the result through the <a href="../image-compressor/index.html">Image Compressor</a>.</p>
+      </details>
+      <details>
+        <summary>Can I enlarge a small image for printing?</summary>
+        <p>Technically yes — percentage mode goes up to 1000% — but enlarging cannot add detail, so the result gets soft past roughly 200%. A practical rule: divide your pixel dimensions by the print resolution. An 800×600 image prints at 300 dpi to about 2.7 × 2 inches — fine for a small insert, not for a poster. For anything larger you need a bigger original, not a bigger resize.</p>
+      </details>
+      <details>
+        <summary>Why did my file get bigger after shrinking it?</summary>
+        <p>Usually a format mismatch: shrinking a photographic PNG and saving it as PNG again keeps the inefficient lossless encoding, so a 1.8 MB screenshot can still be large at smaller dimensions. If the file needs to be small, also switch the output format — JPG or WebP for photos — and consider the <a href="../image-compressor/index.html">Image Compressor</a>, which is purpose-built for file size. Resize controls dimensions; format and quality control file size.</p>
       </details>
     </section>
 
@@ -264,5 +326,30 @@
   });
 })();
 </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

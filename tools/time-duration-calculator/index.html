@@ -46,6 +46,26 @@
         "@type": "Question",
         "name": "Is my data uploaded anywhere?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. The calculator runs 100% in your browser with JavaScript. Your times never leave your device, are never stored, and never sent to any server." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate hours worked with an unpaid lunch break?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Enter the day as two rows: for example 09:00-12:30 and 13:30-17:30. The timesheet totals only the work blocks and ignores the break in between." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I add up a full week of shifts?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Add one row per shift per day with the + Add row button - Monday 09:00-17:00, Tuesday 09:00-17:00, and so on - then press Total timesheet for the week's hours in minutes and decimal hours." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is 7 hours 25 minutes as decimal hours?",
+        "acceptedAnswer": { "@type": "Answer", "text": "7.42 hours: 25 / 60 = 0.4167, rounded to two places - the precision payroll systems use. The timesheet total shows this figure automatically." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I time something longer than 24 hours?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not in one row - a row always represents a single clock-to-clock span under 24 hours. For multi-day totals, add one row per day (or per work block) in the timesheet and let it add them up." }
       }
     ]
   }
@@ -55,6 +75,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -133,6 +154,15 @@
       <p>Subtracting times is easy until midnight gets involved. "23:00 to 07:00" breaks naive subtraction, but it is a perfectly normal night shift — 8 hours. This calculator treats an end time earlier than the start time as the next day, so overnight work just works.</p>
       <p>The timesheet mode totals split days — morning and afternoon sessions, or multiple gigs in one day — into one total, shown both as hours-and-minutes and as decimal hours (8.5h), the format payroll systems expect.</p>
 
+      <h2>Worked examples</h2>
+      <p><strong>A standard day.</strong> 09:00 to 17:30 is 8 hours 30 minutes — 510 minutes, or 8.5 decimal hours. The first box on this page gives all three figures.</p>
+      <p><strong>A night shift.</strong> 22:00 to 06:30: the end time is earlier than the start, so it counts as the next day — 8 hours 30 minutes again. No date-picking needed; the overnight rule handles it.</p>
+      <p><strong>A split day in the timesheet.</strong> Morning 08:30–12:15 (3h 45m) plus afternoon 13:00–17:45 (4h 45m): the timesheet totals 8 hours 30 minutes — 510 minutes, 8.5 decimal hours, ready for a payroll entry.</p>
+      <p><strong>Minutes to decimal hours.</strong> Divide minutes by 60: 7 hours 25 minutes is 7 + 25 ÷ 60 = 7.42 hours, rounded to two places — the precision payroll systems use. The timesheet total shows this figure automatically.</p>
+
+      <h2>Who uses this calculator</h2>
+      <p>Shift workers log their hours to check payslips; freelancers turn clock times into billable hours; managers total a team's daily rows into a weekly figure. If you ever do timesheets by hand — especially overnight or split shifts — this removes the mental subtraction and the midnight mistakes that come with it.</p>
+
       <h2>How to use</h2>
       <ol>
         <li>Enter a start and end time (24-hour clock) and press <strong>Calculate duration</strong>.</li>
@@ -145,6 +175,8 @@
         <li>Breaks are not auto-detected — split your day into rows around unpaid breaks.</li>
         <li>An end time before the start time always means "next day"; the tool cannot represent spans longer than 24 hours in a single row.</li>
         <li>Decimal hours are rounded to 2 places.</li>
+        <li>Times resolve to the minute — seconds are not supported.</li>
+        <li>Daylight-saving clock changes are ignored; a shift crossing one is measured as if the clock did not move.</li>
       </ul>
     </section>
 
@@ -169,6 +201,22 @@
       <details>
         <summary>Is my data uploaded anywhere?</summary>
         <p>No. The calculator runs 100% in your browser with JavaScript. Your times never leave your device, are never stored, and never sent to any server.</p>
+      </details>
+      <details>
+        <summary>How do I calculate hours worked with an unpaid lunch break?</summary>
+        <p>Enter the day as two rows: for example 09:00–12:30 and 13:30–17:30. The timesheet totals only the work blocks and ignores the break in between.</p>
+      </details>
+      <details>
+        <summary>How do I add up a full week of shifts?</summary>
+        <p>Add one row per shift per day with the + Add row button — Monday 09:00–17:00, Tuesday 09:00–17:00, and so on — then press Total timesheet for the week's hours in minutes and decimal hours.</p>
+      </details>
+      <details>
+        <summary>What is 7 hours 25 minutes as decimal hours?</summary>
+        <p>7.42 hours: 25 ÷ 60 = 0.4167, rounded to two places — the precision payroll systems use. The timesheet total shows this figure automatically.</p>
+      </details>
+      <details>
+        <summary>Can I time something longer than 24 hours?</summary>
+        <p>Not in one row — a row always represents a single clock-to-clock span under 24 hours. For multi-day totals, add one row per day (or per work block) in the timesheet and let it add them up.</p>
       </details>
     </section>
 
@@ -242,5 +290,30 @@
       });
     })();
   </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

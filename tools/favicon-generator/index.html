@@ -53,6 +53,38 @@
         "@type": "Answer",
         "text": "No. The icons are rendered and packed 100% in your browser. Your source image never leaves your device."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need both favicon.ico and the PNG icons?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use all four files. Browsers still request /favicon.ico at the site root on their own, and bookmarks, taskbars and desktop shortcuts use the 16, 32 and 48 px entries inside it. The PNG icons cover contexts the .ico format cannot: apple-touch-icon.png is what iOS shows when someone saves your site to their home screen, and icon-192.png/icon-512.png are the sizes a PWA manifest points to for install prompts and splash screens."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why isn't my new favicon showing up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nine times out of ten it is aggressive caching. First confirm the files are at your site root and the snippet is in your page\u2019s <head>. Then hard-refresh (Ctrl+F5 on Windows, Cmd+Shift+R on Mac). If it still shows the old icon, clear that site\u2019s data in browser settings \u2014 some browsers cache favicons for days regardless of refresh. Also check you uploaded all four files; a missing file silently falls back to the cached one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What makes a good favicon design?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Simple, bold shapes in one or two colours. At 16\u00d716 px there is no room for fine detail or text \u2014 a detailed company logo becomes an unreadable blob, so most sites use a simplified mark or a single initial. A good test: shrink your source to 16\u00d716 in any editor and see whether it still reads. High contrast between the mark and its background matters more at favicon size than it does in the full logo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What size should my source image be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start from at least 512\u00d7512 px; a 1024\u00d71024 px PNG is ideal. The 512px PWA icon and 180px touch icon are rendered from your source, so anything below 180px means the largest icons are upscaled copies with no real detail. A larger source also survives the downscaling to 16\u00d716 much better than a source that is already tiny."
+      }
     }
   ]
 }
@@ -62,6 +94,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -121,6 +154,16 @@
       <h2 id="about-tool">About this favicon generator</h2>
       <p>Every professional website needs a favicon — the little icon in the browser tab — plus a touch icon for phones and larger icons for progressive web apps. This free generator builds the whole set from one image: a real multi-size <code>favicon.ico</code> (16, 32 and 48 px packed as PNG-compressed entries, valid in every modern browser), a 180px Apple touch icon, and 192/512px PWA icons, along with the exact HTML snippet to install them.</p>
       <p>Rendering happens on a canvas in your browser and the .ico file is packed byte-by-byte locally — no upload, no watermark, no account. Many favicon tools are thin wrappers around the same idea but force you through an upload; here the source image never leaves your device.</p>
+      <h2>What each icon size is for</h2>
+      <p>The generator produces four files, and each one has a job. Knowing where they go helps you check the result afterwards:</p>
+      <ul>
+        <li><strong>favicon.ico (16, 32, 48 px)</strong> — the 16×16 version is the tiny icon you see in browser tabs and bookmark lists; 32×32 covers high-density displays and taskbar shortcuts; 48×48 is used by Windows for desktop shortcuts. All three live inside a single <code>.ico</code> container, and the browser picks the right size automatically.</li>
+        <li><strong>apple-touch-icon.png (180×180)</strong> — this is the icon iOS shows when someone adds your site to their iPhone or iPad home screen. Apple looks for it at the site root automatically, but declaring it in the snippet is more reliable.</li>
+        <li><strong>icon-192.png and icon-512.png</strong> — progressive web apps reference these in their manifest so the icon looks sharp on install prompts, splash screens and Android home screens. The 512px version is the master copy the store-scale versions are derived from.</li>
+      </ul>
+      <h2>Who uses this tool</h2>
+      <p>Indie developers launching a side project on GitHub Pages or Netlify — this page included — use it to get a professional-looking tab icon in under a minute, without adding a build step or an icon-design app to the workflow. Bloggers and small-business owners use it before a relaunch, so the site no longer shows the default blank-page icon in bookmarks. PWA builders generate the full set in one pass instead of resizing each icon by hand. Designers use it to hand clients a complete, working set: the files plus a snippet that can be pasted straight into a template.</p>
+      <p>The practical rule is simple: regenerate from a large, simple source whenever the logo changes, and keep the old files around for a few days because cached icons can take time to update for returning visitors.</p>
       <h2>How to use</h2>
       <ol>
         <li>Drop a square image into the upload box (PNG with transparency works best).</li>
@@ -134,6 +177,8 @@
         <li>Very detailed images become unreadable at 16\u00d716 px; simple bold shapes work best as favicons.</li>
         <li>Some browsers cache favicons aggressively — after replacing one, hard-refresh (Ctrl+F5) to see the new icon.</li>
         <li>The .ico embeds PNG-compressed entries, which all modern browsers support; truly ancient browsers (IE6-era) expected BMP entries.</li>
+        <li>The generator cover-fits your image — it crops the centre to a square rather than letterboxing — so a wide logo will lose its sides; prepare a square version first if the full width matters.</li>
+        <li>Browsers choose which .ico entry to display themselves; you cannot force the 16px entry on one display and the 32px entry on another.</li>
       </ul>
     </section>
 
@@ -154,6 +199,22 @@
       <details>
         <summary>Are my images uploaded anywhere?</summary>
         <p>No. The icons are rendered and packed 100% in your browser. Your source image never leaves your device.</p>
+      </details>
+      <details>
+        <summary>Do I need both favicon.ico and the PNG icons?</summary>
+        <p>Use all four files. Browsers still request <code>/favicon.ico</code> at the site root on their own, and bookmarks, taskbars and desktop shortcuts use the 16, 32 and 48 px entries inside it. The PNG icons cover contexts the .ico format cannot: <code>apple-touch-icon.png</code> is what iOS shows when someone saves your site to their home screen, and <code>icon-192.png</code>/<code>icon-512.png</code> are the sizes a PWA manifest points to for install prompts and splash screens.</p>
+      </details>
+      <details>
+        <summary>Why isn't my new favicon showing up?</summary>
+        <p>Nine times out of ten it is aggressive caching. First confirm the files are at your site root and the snippet is in your page's <code>&lt;head&gt;</code>. Then hard-refresh (Ctrl+F5 on Windows, Cmd+Shift+R on Mac). If it still shows the old icon, clear that site's data in browser settings — some browsers cache favicons for days regardless of refresh. Also check you uploaded all four files; a missing file silently falls back to the cached one.</p>
+      </details>
+      <details>
+        <summary>What makes a good favicon design?</summary>
+        <p>Simple, bold shapes in one or two colours. At 16×16 px there is no room for fine detail or text — a detailed company logo becomes an unreadable blob, so most sites use a simplified mark or a single initial. A good test: shrink your source to 16×16 in any editor and see whether it still reads. High contrast between the mark and its background matters more at favicon size than it does in the full logo.</p>
+      </details>
+      <details>
+        <summary>What size should my source image be?</summary>
+        <p>Start from at least 512×512 px; a 1024×1024 px PNG is ideal. The 512px PWA icon and 180px touch icon are rendered from your source, so anything below 180px means the largest icons are upscaled copies with no real detail. A larger source also survives the downscaling to 16×16 much better than a source that is already tiny.</p>
       </details>
     </section>
 
@@ -287,5 +348,30 @@
   });
 })();
 </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

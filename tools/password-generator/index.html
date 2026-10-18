@@ -39,6 +39,26 @@
       },
       {
         "@type": "Question",
+        "name": "What do the strength labels mean?",
+        "acceptedAnswer": { "@type": "Answer", "text": "They map directly to entropy in bits: Weak (under 40), Fair (40-60), Good (60-80), Strong (80-100) and Very strong (100+). A 16-character password from all four character sets scores 103.4 bits — Very strong. The labels estimate brute-force resistance only; they say nothing about phishing or malware." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is a 12-digit PIN strong?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not by this tool's measure: 12 digits carry only 39.9 bits of entropy, labeled Weak. That's acceptable for a phone lock screen with attempt limits and lockout delays, but far too weak for an online account that attackers can hammer from anywhere." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does every password include each selected character set?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The generator guarantees at least one character from every set you tick. Without that guarantee, a 16-character draw from the full pool could theoretically come out with no symbols at all — the guarantee removes that edge case so the password always matches the policy you chose." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does excluding ambiguous characters weaken my password?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Barely. It shrinks the pool from 88 to 83 characters, so a 16-character password drops from 103.4 to 102 bits — still Very strong. The readability gain (no more confusing l with 1 or O with 0) is worth far more than the 1.4 lost bits when you must type or read a password manually." }
+      },
+      {
+        "@type": "Question",
         "name": "Are my passwords sent anywhere?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. Generation happens 100% in your browser. Passwords are never transmitted, stored or logged — they exist only on your device until you copy them." }
       }
@@ -50,6 +70,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -113,6 +134,12 @@
       <p>Randomness quality is what separates a real password generator from a toy. This tool uses only your browser's WebCrypto API (<code>crypto.getRandomValues</code>) — the same source of randomness behind TLS encryption keys. If WebCrypto is unavailable, the generator shows an error and refuses to run rather than silently falling back to the weaker <code>Math.random()</code>. Every password is guaranteed to contain at least one character from each character set you enable, and an entropy readout (in bits) plus a plain-English strength label tells you exactly how strong the result is: 16 characters from all four sets gives roughly 103 bits of entropy — strong for almost every purpose.</p>
       <p>Because generation happens entirely on your device, passwords are never transmitted, stored or logged. For real security, store each generated password in a reputable password manager and never reuse passwords across sites.</p>
 
+      <h3>Worked example</h3>
+      <p>Click <strong>Generate</strong> with the defaults — 16 characters, all four character sets ticked — and you get something like <code>k7#Qm2$vL9@nX4!pR</code> (yours will differ; every click is a fresh random draw). The readout shows <strong>103.4 bits of entropy</strong> and the label <strong>Very strong</strong>: with 88 possible characters per position (26 uppercase + 26 lowercase + 10 digits + 26 symbols), each character carries about 6.46 bits, and 16 × 6.46 = 103.4. Compare a digits-only 12-character PIN: 12 × 3.32 = <strong>39.9 bits</strong>, labeled <strong>Weak</strong> — fine for a phone lockout with attempt limits, hopeless for an online account. Bump the slider to 20 characters with all sets and you get <strong>129.2 bits</strong>. Every password is also guaranteed to contain at least one character from each character set you enabled, so a "symbols" password never accidentally comes out symbol-free.</p>
+
+      <h3>Who uses a password generator</h3>
+      <p>Anyone creating a new account anywhere uses one — email, banking, social media, work logins — because unique random passwords per site are the single most effective defense against credential-stuffing attacks. IT administrators generate initial passwords and Wi-Fi keys for teams (ticking "exclude ambiguous" when the password must be read aloud or typed from a printout). Developers seed test accounts and staging environments with random credentials. Freelancers and agencies hand clients secure logins for the sites they build. Privacy-conscious users replace memorable-but-guessable passwords across dozens of accounts, storing each in a password manager. The honest framing: the generator makes the password strong, but a password manager plus unique-per-site passwords is what makes you secure.</p>
+
       <h2>How to use</h2>
       <ol>
         <li>Choose a length with the slider (16 is a strong default; 20+ for master passwords).</li>
@@ -143,6 +170,22 @@
       <details>
         <summary>What does "exclude ambiguous characters" do?</summary>
         <p>It removes characters that are easy to confuse when reading: lowercase l, digit 1, uppercase I, digit 0 and uppercase O. Useful when you must read or type a password manually.</p>
+      </details>
+      <details>
+        <summary>What do the strength labels mean?</summary>
+        <p>They map directly to entropy in bits: Weak (under 40), Fair (40–60), Good (60–80), Strong (80–100) and Very strong (100+). A 16-character password from all four character sets scores 103.4 bits — Very strong. The labels estimate brute-force resistance only; they say nothing about phishing or malware.</p>
+      </details>
+      <details>
+        <summary>Is a 12-digit PIN strong?</summary>
+        <p>Not by this tool's measure: 12 digits carry only 39.9 bits of entropy, labeled Weak. That's acceptable for a phone lock screen with attempt limits and lockout delays, but far too weak for an online account that attackers can hammer from anywhere.</p>
+      </details>
+      <details>
+        <summary>Why does every password include each selected character set?</summary>
+        <p>The generator guarantees at least one character from every set you tick. Without that guarantee, a 16-character draw from the full pool could theoretically come out with no symbols at all — the guarantee removes that edge case so the password always matches the policy you chose.</p>
+      </details>
+      <details>
+        <summary>Does excluding ambiguous characters weaken my password?</summary>
+        <p>Barely. It shrinks the pool from 88 to 83 characters, so a 16-character password drops from 103.4 to 102 bits — still Very strong. The readability gain (no more confusing l with 1 or O with 0) is worth far more than the 1.4 lost bits when you must type or read a password manually.</p>
       </details>
       <details>
         <summary>Are my passwords sent anywhere?</summary>
@@ -238,5 +281,30 @@
       generate(); // generate one on load
     })();
   </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>

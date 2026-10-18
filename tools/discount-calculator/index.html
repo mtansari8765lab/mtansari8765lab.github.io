@@ -46,6 +46,26 @@
         "@type": "Question",
         "name": "Is my data uploaded anywhere?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. The calculator runs 100% in your browser with JavaScript. Your numbers never leave your device, are never stored, and never sent to any server." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is 25% off $129.99?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Multiply the price by (1 − 0.25): 129.99 × 0.75 = $97.49, so you save $32.50. Enter the same figures in the first box and the calculator shows the final price, your savings and the effective discount together." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the order of stacked discounts matter?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Percentage discounts multiply, and multiplication does not care about order: 20% then 10% is 0.80 × 0.90 = 0.72, exactly the same as 10% then 20%. Either way the effective discount is 28%. Enter them in any order." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the total a cent different from my own calculation?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because the calculator rounds to cents once after applying the discounts and once again after adding tax — exactly like a till. If your hand maths carries full precision through every step, the last cent can differ. The calculator's figure is the one a checkout would show." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I enter a discount over 100% or a negative price?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Discounts must be between 0 and 100, and prices cannot be negative — the calculator shows an error otherwise. A 100% discount makes the item free; anything beyond that is not a discount." }
       }
     ]
   }
@@ -55,6 +75,7 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
   gtag('js', new Date());
   gtag('config', 'G-T2LH1SV8Y5');
 </script>
@@ -143,6 +164,15 @@
       <p>Sale math is designed to confuse: "20% off plus an extra 10% off" sounds like 30% off, but the second discount applies to the already-reduced price, so you actually save 28%. This calculator applies discounts in sequence exactly the way a checkout till does, then adds sales tax on the discounted price.</p>
       <p>The second box answers the reverse question — "was $80, now $60, what percent off?" — useful for checking whether a "sale" is really a deal, and for reconstructing the original price from a sale price (divide the sale price by 1 minus the discount).</p>
 
+      <h3>Worked examples</h3>
+      <p><strong>A simple sale.</strong> A $129.99 gadget at 25% off costs 129.99 × 0.75 = <strong>$97.49</strong>, and you save $32.50. Enter 129.99 and 25 in the first box and the calculator shows all three figures: final price, savings and effective discount.</p>
+      <p><strong>Stacked discounts.</strong> A $59.99 jacket has a 30% coupon plus an extra 20% taken at the till. The discounts apply in sequence: 59.99 × 0.70 × 0.80 = <strong>$33.59</strong>. That is an effective discount of about 44% — not the 50% it feels like. Enter both discounts and the calculator does the sequence for you, so you see the real number before you buy.</p>
+      <p><strong>Adding tax.</strong> After those discounts the jacket is $33.59 at the shelf; with 8% sales tax the checkout total is 33.59 × 1.08 = $36.28. (Or the simpler textbook case: $72 plus 8% tax = $77.76.) Tax always applies to the discounted price here, matching how stores ring you up.</p>
+      <p><strong>Checking a sale label.</strong> A tag says "was $80, now $60". The second box tells you that is 25% off and you save $20 — and if you only know the sale price and the discount, you can work backwards: a $72 item at 28% off was 72 ÷ 0.72 = $100 originally. Handy when a retailer hides the original price.</p>
+
+      <h3>Who uses a discount calculator</h3>
+      <p>Bargain hunters sanity-check Black Friday and clearance labels — "up to 70% off" on the banner rarely means 70% off your item. Resellers verify their margin: buy at the sale price, add tax and fees, and confirm the resale still profits. Small shop owners use the reverse direction when pricing a sale: pick the sale price customers will see, then confirm the discount percentage it implies. Travellers shopping abroad convert a foreign price, apply the local discount, and add local tax to get the true cost in one pass. And anyone staring at a "20% off plus extra 10%" sign uses it to find the number the marketing is hiding.</p>
+
       <h2>How to use</h2>
       <ol>
         <li>Enter the original price, one or two discounts, and optional sales tax.</li>
@@ -155,6 +185,8 @@
         <li>Money is rounded to cents; tiny fractions of a cent are lost, as at a real till.</li>
         <li>Tax rules vary by place — some regions tax the pre-discount price. This calculator follows the common post-discount convention.</li>
         <li>Coupons with fixed dollar amounts aren't covered; subtract those from the price first.</li>
+        <li>Percentage discounts commute: 20% then 10% gives the same result as 10% then 20% — the order you enter them in does not matter.</li>
+        <li>Rounding happens once after discounts and once after tax, so hand maths that keeps full precision can differ from the result by a cent.</li>
       </ul>
     </section>
 
@@ -179,6 +211,22 @@
       <details>
         <summary>Is my data uploaded anywhere?</summary>
         <p>No. The calculator runs 100% in your browser with JavaScript. Your numbers never leave your device, are never stored, and never sent to any server.</p>
+      </details>
+      <details>
+        <summary>What is 25% off $129.99?</summary>
+        <p>$97.49. Multiply the price by (1 − 0.25): 129.99 × 0.75 = 97.49, so you save $32.50. Enter the same figures in the first box and the calculator shows the final price, your savings and the effective discount together.</p>
+      </details>
+      <details>
+        <summary>Does the order of stacked discounts matter?</summary>
+        <p>No. Percentage discounts multiply, and multiplication does not care about order: 20% then 10% is 0.80 × 0.90 = 0.72, exactly the same as 10% then 20%. Either way the effective discount is 28%. Enter them in any order.</p>
+      </details>
+      <details>
+        <summary>Why is the total a cent different from my own calculation?</summary>
+        <p>Because the calculator rounds to cents once after applying the discounts and once again after adding tax — exactly like a till. If your hand maths carries full precision through every step, the last cent can differ. The calculator's figure is the one a checkout would show.</p>
+      </details>
+      <details>
+        <summary>Can I enter a discount over 100% or a negative price?</summary>
+        <p>No. Discounts must be between 0 and 100, and prices cannot be negative — the calculator shows an error otherwise. A 100% discount makes the item free; anything beyond that is not a discount.</p>
       </details>
     </section>
 
@@ -251,5 +299,30 @@
       });
     })();
   </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
 </body>
 </html>
