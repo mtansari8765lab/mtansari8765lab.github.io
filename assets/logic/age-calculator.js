@@ -7,6 +7,14 @@
 
   var DAY_MS = 86400000;
 
+  // Build a UTC date without Date.UTC's 1900-offset for years 0-99.
+  function makeDate(y, m, d) {
+    var dt = new Date(0);
+    dt.setUTCFullYear(y, m - 1, d);
+    dt.setUTCHours(0, 0, 0, 0);
+    return dt;
+  }
+
   function parseISO(s) {
     s = String(s === null || s === undefined ? '' : s);
     var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
@@ -14,7 +22,7 @@
       throw new Error('Invalid date "' + s + '" — expected YYYY-MM-DD.');
     }
     var y = +m[1], mo = +m[2], d = +m[3];
-    var dt = new Date(Date.UTC(y, mo - 1, d));
+    var dt = makeDate(y, mo, d);
     if (dt.getUTCFullYear() !== y || dt.getUTCMonth() !== mo - 1 || dt.getUTCDate() !== d) {
       throw new Error('Invalid date "' + s + '" — that calendar date does not exist.');
     }
@@ -22,11 +30,22 @@
   }
 
   function daysInMonth(y, m) {
-    return new Date(Date.UTC(y, m, 0)).getUTCDate();
+    var dt = new Date(0);
+    dt.setUTCFullYear(y, m, 0); // day 0 of the following month = last day of month m
+    return dt.getUTCDate();
   }
 
   function daysBetween(a, b) {
-    return Math.round((Date.UTC(b.y, b.m - 1, b.d) - Date.UTC(a.y, a.m - 1, a.d)) / DAY_MS);
+    return Math.round((makeDate(b.y, b.m, b.d) - makeDate(a.y, a.m, a.d)) / DAY_MS);
+  }
+
+  // Add whole months, clamping the day to the target month's length
+  // (Jan 31 + 1 month -> Feb 28/29).
+  function addMonthsClamped(date, months) {
+    var idx = date.y * 12 + (date.m - 1) + months;
+    var y = Math.floor(idx / 12);
+    var m = (idx % 12) + 1;
+    return { y: y, m: m, d: Math.min(date.d, daysInMonth(y, m)) };
   }
 
   // The observed birthday in a given year (Feb 29 -> Feb 28 when not a leap year).
@@ -41,24 +60,26 @@
       throw new Error('The birth date is in the future relative to the "as of" date.');
     }
 
-    var years = o.y - b.y;
-    var months = o.m - b.m;
-    var days = o.d - b.d;
-    if (days < 0) {
-      months -= 1;
-      var prevM = o.m - 1 < 1 ? 12 : o.m - 1;
-      var prevY = o.m - 1 < 1 ? o.y - 1 : o.y;
-      days += daysInMonth(prevY, prevM);
+    /* Anchor method: apply the whole-month count to the BIRTH date in one
+       shot (day clamped to the target month), back off one month if that
+       overshoots, then count the remaining days. Anchoring every step on
+       the original birth day keeps Feb-29 and 31st-day births exact, and
+       the remainder can never go negative — unlike the naive
+       borrow-from-previous-month method. */
+    var totalMonthsAll = (o.y - b.y) * 12 + (o.m - b.m);
+    var anchor = addMonthsClamped(b, totalMonthsAll);
+    if (daysBetween(anchor, o) < 0) {
+      totalMonthsAll -= 1;
+      anchor = addMonthsClamped(b, totalMonthsAll);
     }
-    if (months < 0) {
-      years -= 1;
-      months += 12;
-    }
+    var years = Math.floor(totalMonthsAll / 12);
+    var months = totalMonthsAll % 12;
+    var days = daysBetween(anchor, o);
 
     var totalDays = daysBetween(b, o);
 
     var thisYear = observedBirthday(b, o.y);
-    var next = daysBetween(o, thisYear) > 0 ? thisYear : observedBirthday(b, o.y + 1);
+    var next = daysBetween(o, thisYear) >= 0 ? thisYear : observedBirthday(b, o.y + 1);
     var nextIn = daysBetween(o, next);
 
     return {

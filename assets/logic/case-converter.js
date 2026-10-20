@@ -23,7 +23,9 @@
   function toTitle(text) {
     const t = toText(text);
     return t.replace(/[\p{L}\p{N}]+(?:'[\p{L}\p{N}]+)*/gu, function (word) {
-      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      // Split by code point so astral-plane first letters aren't torn apart.
+      const chars = [...word];
+      return chars[0].toUpperCase() + chars.slice(1).join('').toLowerCase();
     });
   }
 
@@ -31,7 +33,7 @@
   // the first letter following sentence-ending punctuation.
   function toSentence(text) {
     const t = toText(text).toLowerCase();
-    return t.replace(/(^\s*\p{L})|([.!?…]+['"”’)\]]*\s+\p{L})/gu, function (m) {
+    return t.replace(/(^\s*\p{L})|([.!?…]+['"”’)\]]*\s*\p{L})/gu, function (m) {
       return m.toUpperCase();
     });
   }
@@ -42,11 +44,18 @@
     return t.replace(/\p{L}/u, function (m) { return m.toUpperCase(); });
   }
 
-  // aLtErNaTiNg case: even positions lower, odd positions upper.
+  // aLtErNaTiNg case: parity counts letters only — spaces and punctuation
+  // pass through without breaking the pattern ("hello world" -> "hElLo WoRlD").
   function toAlternating(text) {
     const cps = [...toText(text)];
+    let letterIndex = 0;
     return cps
-      .map(function (ch, i) { return i % 2 === 0 ? ch.toLowerCase() : ch.toUpperCase(); })
+      .map(function (ch) {
+        if (!/\p{L}/u.test(ch)) return ch;
+        const out = letterIndex % 2 === 0 ? ch.toLowerCase() : ch.toUpperCase();
+        letterIndex += 1;
+        return out;
+      })
       .join('');
   }
 

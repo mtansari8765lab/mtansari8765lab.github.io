@@ -31,7 +31,7 @@
   }
 
   // pages: [{ jpeg: Uint8Array, width, height }] — width/height in pixels.
-  // opts: { pageSize: 'letter'|'a4'|'fit', title: string }
+  // opts: { pageSize: 'letter'|'a4'|'fit', orientation: 'portrait'|'landscape', title: string }
   // Returns Uint8Array with the complete PDF file bytes.
   //
   // Object layout: 1 = catalog, 2 = pages tree, then per page i:
@@ -67,6 +67,9 @@
         pw = drawW; ph = drawH; dx = 0; dy = 0;
       } else {
         pw = pageSize[0]; ph = pageSize[1];
+        if (String(opts.orientation || 'portrait').toLowerCase() === 'landscape') {
+          var tmp = pw; pw = ph; ph = tmp;
+        }
         var fitted = fitPage(p.width, p.height, pw, ph, 36);
         drawW = fitted.w; drawH = fitted.h;
         dx = (pw - drawW) / 2; dy = (ph - drawH) / 2;

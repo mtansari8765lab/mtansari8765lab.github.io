@@ -348,7 +348,9 @@
       Q.readFileAsDataURL(f).then(Q.loadImage).then(function (img) {
         var canvas = document.createElement('canvas');
         canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
-        canvas.getContext('2d').drawImage(img, 0, 0);
+        var ctx = canvas.getContext('2d');
+        if (mime === 'image/jpeg') { ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height); }
+        ctx.drawImage(img, 0, 0);
         if (mode === 'quality') {
           var q = C.clampQuality(parseFloat(qInput.value));
           return Q.canvasToBlob(canvas, mime, q).then(function (blob) { return { blob: blob, q: q }; });

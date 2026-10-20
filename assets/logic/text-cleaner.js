@@ -26,7 +26,19 @@
     let out = t;
 
     if (opts.stripHtml) {
-      out = out.replace(/<[^>]*>/g, '');
+      // Drop script/style blocks WITH their contents, then strip real tags
+      // (a tag must start with a letter, so "a < b and c > d" survives),
+      // then decode the common HTML entities.
+      out = out
+        .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, '')
+        .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, '')
+        .replace(/<\/?[a-zA-Z][^>]*>/g, '')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&#0?39;|&apos;/g, "'")
+        .replace(/&nbsp;/g, ' ')
+        .replace(/&amp;/g, '&');
     }
     if (opts.removeLineBreaks) {
       out = out.replace(/\r?\n/g, ' ');

@@ -6,6 +6,14 @@
 
   var DAY_MS = 86400000;
 
+  // Build a UTC date without Date.UTC's 1900-offset for years 0-99.
+  function makeDate(y, m, d) {
+    var dt = new Date(0);
+    dt.setUTCFullYear(y, m - 1, d);
+    dt.setUTCHours(0, 0, 0, 0);
+    return dt;
+  }
+
   function parseISO(s) {
     s = String(s === null || s === undefined ? '' : s);
     var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s);
@@ -13,7 +21,7 @@
       throw new Error('Invalid date "' + s + '" — expected YYYY-MM-DD.');
     }
     var y = +m[1], mo = +m[2], d = +m[3];
-    var dt = new Date(Date.UTC(y, mo - 1, d));
+    var dt = makeDate(y, mo, d);
     if (dt.getUTCFullYear() !== y || dt.getUTCMonth() !== mo - 1 || dt.getUTCDate() !== d) {
       throw new Error('Invalid date "' + s + '" — that calendar date does not exist.');
     }
@@ -27,13 +35,15 @@
   }
 
   function daysInMonth(y, m) {
-    return new Date(Date.UTC(y, m, 0)).getUTCDate();
+    var dt = new Date(0);
+    dt.setUTCFullYear(y, m, 0); // day 0 of the following month = last day of month m
+    return dt.getUTCDate();
   }
 
   // Signed number of days from date a to date b (b - a). Zero when equal.
   function daysBetween(aISO, bISO) {
     var a = parseISO(aISO), b = parseISO(bISO);
-    return Math.round((Date.UTC(b.y, b.m - 1, b.d) - Date.UTC(a.y, a.m - 1, a.d)) / DAY_MS);
+    return Math.round((makeDate(b.y, b.m, b.d) - makeDate(a.y, a.m, a.d)) / DAY_MS);
   }
 
   function int(value, name) {
@@ -54,7 +64,7 @@
   function addDaysISO(iso, n) {
     var c = parseISO(iso);
     n = nonZero(int(n, 'Days'), 'Days');
-    var dt = new Date(Date.UTC(c.y, c.m - 1, c.d) + n * DAY_MS);
+    var dt = new Date(makeDate(c.y, c.m, c.d).getTime() + n * DAY_MS);
     return toISO(dt.getUTCFullYear(), dt.getUTCMonth() + 1, dt.getUTCDate());
   }
 
@@ -97,7 +107,7 @@
 
   function weekdayISO(iso) {
     var c = parseISO(iso);
-    return WEEKDAYS[new Date(Date.UTC(c.y, c.m - 1, c.d)).getUTCDay()];
+    return WEEKDAYS[makeDate(c.y, c.m, c.d).getUTCDay()];
   }
 
   var api = {

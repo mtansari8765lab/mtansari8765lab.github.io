@@ -35,13 +35,20 @@
   }
 
   // Split into sentences, keeping trailing punctuation. Splits on . ! ? …
-  // followed by whitespace/end. Heuristic — abbreviations like "Mr." may
-  // create extra breaks; documented on-page.
+  // Decimal points inside numbers ("3.50") and common honorifics ("Dr.")
+  // are protected first so they don't create false breaks. Other
+  // abbreviations may still split; documented on-page.
+  var DOT = '\u0001';
   function splitSentences(text) {
     var t = toText(text).trim().replace(/\s+/g, ' ');
     if (t === '') return [];
-    var parts = t.match(/[^.!?…]+[.!?…]+["'”’)\]]*|[^.!?…]+$/g) || [];
-    return parts.map(function (s) { return s.trim(); }).filter(function (s) { return s.length > 0; });
+    var guarded = t
+      .replace(/(\d)\.(\d)/g, '$1' + DOT + '$2')
+      .replace(/\b(Mr|Mrs|Ms|Dr|St|Jr|Sr)\./g, '$1' + DOT);
+    var parts = guarded.match(/[^.!?…]+[.!?…]+["'”’)\]]*|[^.!?…]+$/g) || [];
+    return parts.map(function (s) {
+      return s.split(DOT).join('.').trim();
+    }).filter(function (s) { return s.length > 0; });
   }
 
   // Lowercase unicode word tokens, keeping internal apostrophes.

@@ -20,28 +20,36 @@
     return n;
   }
 
+  function nonNegative(value, name) {
+    var n = num(value, name);
+    if (n < 0) {
+      throw new Error(name + ' cannot be negative.');
+    }
+    return n;
+  }
+
   function round2(n) {
     return Math.round(n * 100) / 100;
   }
 
   function annualToHourly(annual, hoursPerWeek) {
-    annual = num(annual, 'Annual salary');
+    annual = nonNegative(annual, 'Annual salary');
     hoursPerWeek = hoursPerWeek === undefined ? 40 : positive(hoursPerWeek, 'Hours per week');
     return round2(annual / (hoursPerWeek * 52));
   }
 
   function hourlyToAnnual(hourly, hoursPerWeek) {
-    hourly = num(hourly, 'Hourly rate');
+    hourly = nonNegative(hourly, 'Hourly rate');
     hoursPerWeek = hoursPerWeek === undefined ? 40 : positive(hoursPerWeek, 'Hours per week');
     return round2(hourly * hoursPerWeek * 52);
   }
 
   function annualToMonthly(annual) {
-    return round2(num(annual, 'Annual salary') / 12);
+    return round2(nonNegative(annual, 'Annual salary') / 12);
   }
 
   function annualToWeekly(annual) {
-    return round2(num(annual, 'Annual salary') / 52);
+    return round2(nonNegative(annual, 'Annual salary') / 52);
   }
 
   function hourlyToMonthly(hourly, hoursPerWeek) {
@@ -50,7 +58,7 @@
 
   // Effective annual pay with overtime beyond 40h/week at the given multiplier.
   function effectiveAnnualWithOvertime(hourly, hoursPerWeek, multiplier) {
-    hourly = num(hourly, 'Hourly rate');
+    hourly = nonNegative(hourly, 'Hourly rate');
     hoursPerWeek = positive(hoursPerWeek, 'Hours per week');
     multiplier = multiplier === undefined ? 1.5 : positive(multiplier, 'Overtime multiplier');
     var regular = Math.min(hoursPerWeek, 40);
@@ -60,7 +68,7 @@
 
   // Full breakdown from an annual figure.
   function breakdownFromAnnual(annual, hoursPerWeek) {
-    var a = num(annual, 'Annual salary');
+    var a = nonNegative(annual, 'Annual salary');
     return {
       annual: round2(a),
       monthly: annualToMonthly(a),

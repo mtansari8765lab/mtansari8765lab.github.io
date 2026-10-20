@@ -84,6 +84,20 @@
         contributions: round2(contributed)
       });
     }
+    /* Fractional final year (e.g. 2.5 years): add a closing row taken from
+       the closed-form future value so the table always ends at the same
+       number as the headline result. */
+    var exactYears = nonNegative(years, 'Years');
+    var frac = exactYears - totalYears;
+    if (frac > 0) {
+      var endBalance = futureValue(principal, annualRatePct, exactYears, n, monthly);
+      rows.push({
+        year: round2(exactYears),
+        balance: endBalance,
+        interest: round2(endBalance - balance - monthly * 12 * frac),
+        contributions: round2(principal + monthly * 12 * exactYears)
+      });
+    }
     return rows;
   }
 

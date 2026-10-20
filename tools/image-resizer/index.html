@@ -307,6 +307,7 @@
     canvas.width = dims.width; canvas.height = dims.height;
     var ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+    if (format === 'jpg') { ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, dims.width, dims.height); }
     ctx.drawImage(state.img, 0, 0, dims.width, dims.height);
     var mime = R.mimeForFormat(format);
     var quality = format === 'jpg' ? 0.92 : undefined;

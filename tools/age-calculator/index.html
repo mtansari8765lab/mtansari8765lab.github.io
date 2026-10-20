@@ -140,6 +140,7 @@
         <div class="stat"><div class="stat-label">Years</div><div class="stat-value" id="age-y">–</div></div>
         <div class="stat"><div class="stat-label">Months</div><div class="stat-value" id="age-m">–</div></div>
         <div class="stat"><div class="stat-label">Days</div><div class="stat-value" id="age-d">–</div></div>
+        <div class="stat"><div class="stat-label">Total months</div><div class="stat-value" id="age-tm">–</div></div>
         <div class="stat"><div class="stat-label">Total days lived</div><div class="stat-value" id="age-td">–</div></div>
         <div class="stat"><div class="stat-label">Total weeks lived</div><div class="stat-value" id="age-tw">–</div></div>
         <div class="stat"><div class="stat-label">Next birthday</div><div class="stat-value" id="age-nb">–</div></div>
@@ -283,6 +284,7 @@
           document.getElementById('age-y').textContent = a.years;
           document.getElementById('age-m').textContent = a.months;
           document.getElementById('age-d').textContent = a.days;
+          document.getElementById('age-tm').textContent = a.totalMonths.toLocaleString();
           document.getElementById('age-td').textContent = a.totalDays.toLocaleString();
           document.getElementById('age-tw').textContent = a.totalWeeks.toLocaleString();
           document.getElementById('age-nb').textContent =

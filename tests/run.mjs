@@ -418,6 +418,12 @@ test('image to pdf: fit page size matches image aspect', () => {
   assert.ok(text.includes('/MediaBox [0 0 144 72]'), 'fit mediabox, got: ' + text.match(/\/MediaBox \[[^\]]+\]/)[0]);
 });
 
+test('image to pdf: landscape swaps the page box', () => {
+  const pdf = ip.buildPdf([{ jpeg: fakeJpeg(), width: 300, height: 150 }], { pageSize: 'letter', orientation: 'landscape' });
+  const text = Buffer.from(pdf).toString('latin1');
+  assert.ok(text.includes('/MediaBox [0 0 792 612]'), 'landscape mediabox, got: ' + text.match(/\/MediaBox \[[^\]]+\]/)[0]);
+});
+
 test('image to pdf: input validation', () => {
   assert.throws(() => ip.buildPdf([], {}), /at least one image/);
   assert.throws(() => ip.buildPdf([{ jpeg: new Uint8Array([1, 2, 3, 4]), width: 10, height: 10 }], {}), /not a JPEG/);
@@ -589,8 +595,8 @@ test('age: birthday today', () => {
   assert.equal(a.years, 26);
   assert.equal(a.months, 0);
   assert.equal(a.days, 0);
-  assert.equal(a.nextBirthdayInDays, 365);
-  assert.equal(a.nextBirthdayISO, '2027-10-12');
+  assert.equal(a.nextBirthdayInDays, 0);
+  assert.equal(a.nextBirthdayISO, '2026-10-12');
 });
 
 test('age: future birth date rejected', () => {
@@ -803,4 +809,48 @@ test('summarizer: stats are consistent', () => {
 test('summarizer: splitSentences handles abbreviations gracefully', () => {
   const parts = ts.splitSentences('Mr. Smith went home. He was tired.');
   assert.ok(parts.length >= 2, 'splits into at least 2, got ' + parts.length);
+});
+
+// ---------- audit regressions 2026-10-20 ----------
+test('age: end-of-month births never give negative days', () => {
+  const a = ag.age('2023-01-31', '2023-03-01');
+  assert.equal(a.years, 0); assert.equal(a.months, 1); assert.equal(a.days, 1);
+  const b = ag.age('2023-01-29', '2023-03-01');
+  assert.equal(b.months, 1); assert.equal(b.days, 1);
+  const c = ag.age('2023-03-31', '2023-05-01');
+  assert.equal(c.months, 1); assert.equal(c.days, 1);
+});
+test('age: years below 100 parse (no 1900 offset)', () => {
+  const p = ag.parseISO('0099-01-01');
+  assert.equal(p.y, 99);
+});
+test('date: years below 100 arithmetic', () => {
+  assert.equal(dc.addDays('0099-01-01', 1), '0099-01-02');
+  assert.equal(dc.daysBetween('0099-01-01', '0099-01-11'), 10);
+});
+test('case: alternating counts letters only', () => {
+  assert.equal(cs.toAlternating('hello world'), 'hElLo WoRlD');
+  assert.equal(cs.toAlternating('ab cd'), 'aB cD');
+});
+test('case: sentence case after punctuation without space', () => {
+  assert.equal(cs.toSentence('hello.World again'), 'Hello.World again');
+});
+test('cleaner: strip HTML keeps comparisons, removes script content, decodes entities', () => {
+  assert.equal(tc.clean('a < b and c > d', { stripHtml: true }).output, 'a < b and c > d');
+  assert.equal(tc.clean('<script>alert(1)</script>fish &amp; chips', { stripHtml: true }).output, 'fish & chips');
+  assert.equal(tc.clean('<p>Hello</p>', { stripHtml: true }).output, 'Hello');
+});
+test('summarizer: decimals and honorifics do not split sentences', () => {
+  const parts = ts.splitSentences('Dr. Smith paid 3.50 dollars. He left quickly.');
+  assert.equal(parts.length, 2);
+  assert.equal(parts[0], 'Dr. Smith paid 3.50 dollars.');
+});
+test('compound: growth table reaches the future value for fractional years', () => {
+  const rows = ci.growthTable(1000, 5, 2.5, 12, 0);
+  assert.equal(rows[rows.length - 1].balance, ci.futureValue(1000, 5, 2.5, 12, 0));
+  assert.equal(rows[rows.length - 1].year, 2.5);
+});
+test('salary: negative amounts rejected', () => {
+  assert.throws(() => sc.hourlyToAnnual(-5, 40), /cannot be negative/);
+  assert.throws(() => sc.annualToMonthly(-100), /cannot be negative/);
 });

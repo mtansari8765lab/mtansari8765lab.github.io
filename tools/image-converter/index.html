@@ -170,7 +170,7 @@
       <h2>Limitations</h2>
       <ul>
         <li>Converting JPG to PNG will not restore quality lost to JPG compression, and PNG files are usually larger than the JPG they came from.</li>
-        <li>JPG output cannot preserve transparency — transparent areas become black unless the page flattens them; use PNG or WebP to keep transparency.</li>
+        <li>JPG output cannot preserve transparency — this page flattens transparent areas onto white; use PNG or WebP to keep transparency.</li>
         <li>Animated GIFs convert as a single still frame; animation is not preserved.</li>
         <li>JPG output is written at a fixed quality of 0.92 — there is no quality slider. If you need tighter file-size control, convert first and then use the <a href="../image-compressor/index.html">Image Compressor</a>.</li>
         <li>Converting a JPG to JPG re-compresses it and loses a little quality each round-trip, even at 0.92 — always convert from the highest-quality original rather than from an already-compressed copy.</li>
@@ -299,7 +299,9 @@
         .then(function (img) {
           var canvas = document.createElement('canvas');
           canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
-          canvas.getContext('2d').drawImage(img, 0, 0);
+          var ctx = canvas.getContext('2d');
+          if (mime === 'image/jpeg') { ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height); }
+          ctx.drawImage(img, 0, 0);
           return Q.canvasToBlob(canvas, mime, format === 'jpg' ? 0.92 : undefined);
         })
         .then(function (blob) {
