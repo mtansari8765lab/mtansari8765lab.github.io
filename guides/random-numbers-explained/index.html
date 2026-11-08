@@ -28,6 +28,62 @@
     "mainEntityOfPage": "https://mtansari8765lab.github.io/guides/random-numbers-explained/"
   }
   </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Math.random() truly random?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It's a pseudorandom generator: deterministic, seeded internally, and not designed to resist prediction. It's fine for games and visual effects, but never use it for passwords, tokens, or anything where an attacker benefits from guessing the output."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between random and pseudorandom?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Truly random output comes from a non-deterministic physical process and is unpredictable even in principle. Pseudorandom output comes from a deterministic algorithm starting from a seed — the same seed always gives the same sequence. A cryptographically secure PRNG seeded from true entropy is unpredictable in practice, which is what security needs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can humans generate random numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Badly. People favor certain numbers (7 is the classic), avoid repeats that genuine randomness produces, and build unconscious patterns. Studies consistently show human-generated \"random\" sequences fail statistical tests. Use dice, coins, or a proper generator instead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do online casinos generate random numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Regulated ones use certified hardware random number generators or cryptographic PRNGs seeded from hardware entropy, and they're audited by testing labs. The certification — not the algorithm alone — is what makes them trustworthy. An uncertified site's \"random\" shuffle is just a claim."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a seed in random number generation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The starting value fed into a pseudorandom algorithm. The same seed always reproduces the same sequence, which makes simulations reproducible — and which is why seeds must themselves be unpredictable (drawn from OS entropy, not the clock) for security uses."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many random words make a secure passphrase?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Five words drawn randomly from a 7,776-word diceware list gives about 64 bits of entropy — roughly 90,000 years against a fast offline attack. The words must be randomly selected (dice or a secure generator), not chosen by you. Our password guide works through the full math."
+      }
+    }
+  ]
+}
+  </script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
 <script>

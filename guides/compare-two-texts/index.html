@@ -28,6 +28,62 @@
     "mainEntityOfPage": "https://mtansari8765lab.github.io/guides/compare-two-texts/"
   }
   </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best way to compare two text files?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Normalize both files first (line endings, trailing whitespace), then use a diff tool at the right granularity: line-level for code and configs, word-level for prose. For quick checks, paste both texts into an online compare tool; for versioned work, use Git's built-in diff."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does a text diff algorithm work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most diff tools use the Myers algorithm (1986): they find the longest common subsequence — the longest content both texts share in order — and treat everything else as additions or deletions. The result is the smallest set of edits that converts one text into the other."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my diff show the whole document as changed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Almost always formatting noise: different line endings (Windows vs Unix), trailing whitespace, or re-wrapped paragraphs. Normalize both texts — strip trailing spaces, unify line breaks, collapse extra blank lines — with a text cleaner and diff again."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a diff tool detect plagiarism?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Partially. Diffing a suspect text against a source highlights verbatim copied passages reliably. It won't catch paraphrasing, restructuring, or translated copying — those need semantic comparison, which is a different (and harder) problem."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a diff and a merge?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A diff shows differences between two texts; a merge combines changes from two versions into one. Merging needs a diff plus decisions about conflicting edits — which is why merges can require human judgment when both sides changed the same lines."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is comparing texts online safe for sensitive documents?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends entirely on where the comparison happens. Tools that upload your text to a server expose it; tools that run the diff in your browser with JavaScript never transmit anything. For contracts or unpublished work, prefer the latter — or diff locally with built-in tools."
+      }
+    }
+  ]
+}
+  </script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
 <script>

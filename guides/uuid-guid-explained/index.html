@@ -28,6 +28,62 @@
     "mainEntityOfPage": "https://mtansari8765lab.github.io/guides/uuid-guid-explained/"
   }
   </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does UUID stand for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Universally Unique Identifier — a 128-bit identifier standardized in RFC 4122 (updated by RFC 9562), designed so anyone can generate one independently with a negligible chance of duplication."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a GUID the same as a UUID?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Effectively yes. GUID (Globally Unique Identifier) is Microsoft's term for the same 128-bit identifier format. In everyday use the terms are interchangeable, and a GUID generator and a UUID generator produce the same thing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can two UUIDs be the same?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In theory, yes; in practice, no. A version-4 UUID has 122 random bits, and you'd need to generate about 2.7 quintillion of them to reach even a 50% chance of one collision. With a proper random source, duplicates are not a realistic concern."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which UUID version should I use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Version 4 (random) is the safe default for general use. Use version 7 (time-ordered) for database primary keys at scale, since chronological ordering keeps indexes efficient. Use version 5 (name-based) when the same input must always produce the same UUID."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are UUIDs case-sensitive?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The hex digits are case-insensitive — uppercase and lowercase forms represent the same UUID. Lowercase is the convention. Always normalize case before comparing UUIDs as strings, or 6F1E… won't match 6f1e…."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I generate a UUID in JavaScript?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the built-in crypto.randomUUID() — it returns a proper version-4 UUID using the browser's cryptographic randomness, with no libraries needed. Avoid hand-rolling one from Math.random(), which is not cryptographically secure."
+      }
+    }
+  ]
+}
+  </script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
 <script>

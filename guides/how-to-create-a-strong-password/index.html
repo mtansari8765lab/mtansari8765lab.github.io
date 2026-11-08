@@ -28,6 +28,62 @@
     "mainEntityOfPage": "https://mtansari8765lab.github.io/guides/how-to-create-a-strong-password/"
   }
   </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long should my password be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At least 14–16 random characters for generated passwords, or five or more random words for passphrases you memorize. Below 12 random characters, offline attacks become practical; above 16, you're well past the point of diminishing returns against any realistic attacker."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are passphrases better than random passwords?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For passwords you type from memory, yes — five random words are both strong (~90,000 years against a fast offline attack) and typable. For everything stored in a password manager, a 16+ character random string is simpler and stronger. The critical word in both cases is random: a phrase you invent (\"Ilovemydog2024\") is far weaker than dice-roll randomness."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do special characters make passwords much stronger?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They help, but less than length. Going from lowercase-only to the full 94-character set adds about 1.8 bits of entropy per character; adding one more character of any kind adds 4.7–6.5 bits. So a 16-character lowercase password beats a 12-character mixed one. Use symbols when convenient, but prioritize length."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I change my passwords regularly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — not on a schedule. Forced rotation produces predictable variations (\"Winter2025!\" → \"Spring2026!\") that are easy to guess. Change a password when there's a concrete reason: a breach notification, a phishing attempt, or you shared it with someone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it safe to use an online password generator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on where the generation happens. Ours runs entirely in your browser using the WebCrypto API — the random bytes never leave your device, nothing is logged or transmitted. Be wary of generators that send your password to a server; there's no reason a generator needs the network at all."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the single most important password habit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Never reusing passwords across sites. One breached database plus credential-stuffing bots will try your leaked password everywhere; uniqueness per site neutralizes that entire attack class. A password manager makes uniqueness effortless."
+      }
+    }
+  ]
+}
+  </script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
 <script>

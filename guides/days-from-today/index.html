@@ -57,6 +57,11 @@
         "@type": "Question",
         "name": "What is the difference between 'days from today' and 'days between two dates'?",
         "acceptedAnswer": { "@type": "Answer", "text": "'Days from today' starts at the current date and counts forward (or backward) a number of days to find a target date. 'Days between two dates' starts with two known dates and counts how many days separate them. A date calculator handles both directions." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do leap years affect the count?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Only if your count crosses February 29 in a leap year (divisible by 4, except century years not divisible by 400). If it does and you forget the extra day, every date after February lands one day off. Calculators handle this automatically." }
       }
     ]
   }
