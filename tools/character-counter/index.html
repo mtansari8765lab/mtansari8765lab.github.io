@@ -7,7 +7,7 @@
   <meta name="description" content="Free character counter: count characters, characters without spaces, words, lines and UTF-8 bytes live as you type. Fast, private, no signup.">
   <link rel="canonical" href="https://mtansari8765lab.github.io/tools/character-counter/">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="QuickTools">
+  <meta property="og:site_name" content="MaxTools">
   <meta property="og:title" content="Character Counter — Count Characters, Words &amp; Lines">
   <meta property="og:description" content="Free character counter: count characters, characters without spaces, words, lines and UTF-8 bytes live as you type. Fast, private, no signup.">
   <meta property="og:url" content="https://mtansari8765lab.github.io/tools/character-counter/">
@@ -80,8 +80,8 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="../../index.html" aria-label="QuickTools home">
-        <span class="brand-name">QuickTools</span>
+      <a class="brand" href="../../index.html" aria-label="MaxTools home">
+        <span class="brand-name">MaxTools</span>
         <span class="brand-tag">Free online tools that run in your browser.</span>
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
@@ -125,7 +125,7 @@
       <h2 id="about-cc">About this character counter</h2>
       <p>Character limits decide whether your message fits: social media bios, post captions, SMS messages, form fields, and SEO meta descriptions all cut you off at a fixed number of characters. The trouble is that "characters" is not always counted the way you expect — some platforms count emoji as two characters, others limit by bytes instead. This free character counter shows every count that matters, live as you type: total characters, characters excluding spaces, words, lines, and the exact UTF-8 byte length.</p>
       <p>Counting is Unicode-safe. Each emoji counts as one character (many naive counters report two because they count UTF-16 code units), and the UTF-8 byte readout tells you the true storage size — useful when a database column, API, or SMS gateway enforces a byte limit, since accented characters take two bytes and most emoji take four. Writers use the excluding-spaces figure for assignments that ignore whitespace; marketers use the byte count to keep meta descriptions and ad copy inside technical limits.</p>
-      <p>Like every QuickTools utility, the counter runs entirely on your device. Paste confidential drafts freely — nothing is uploaded or stored.</p>
+      <p>Like every MaxTools utility, the counter runs entirely on your device. Paste confidential drafts freely — nothing is uploaded or stored.</p>
 
       <h3>Worked example</h3>
       <p>Type <em>Hello world! 😀</em> into the box and the counter reports: 14 characters, 12 characters excluding spaces, 3 words, 1 line, and 17 UTF-8 bytes. Notice the two numbers the emoji produces: it is one character (14, not 15), but four bytes (17 bytes for 14 characters). That gap is exactly what breaks naive counters and SMS gateways — this one shows you both figures so you are never guessing. Try a sentence of your own, such as <em>SEO meta descriptions should stay under 160 characters for best display.</em> — 72 characters, 62 excluding spaces, 11 words, 72 bytes.</p>
@@ -209,7 +209,7 @@
           <li><a href="../../terms.html">Terms</a></li>
         </ul>
       </nav>
-      <p class="footer-note">© <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+      <p class="footer-note">© <span id="year">2026</span> MaxTools. Free online tools that run in your browser.</p>
     </div>
   </footer>
   <script src="../../assets/logic/character-counter.js"></script>
@@ -225,7 +225,7 @@
         bytes: document.getElementById('c-bytes')
       };
       function update() {
-        var r = window.QuickTools.characterCounter.analyze(input.value);
+        var r = window.MaxTools.characterCounter.analyze(input.value);
         els.chars.textContent = r.characters.toLocaleString();
         els.charsNs.textContent = r.charactersNoSpaces.toLocaleString();
         els.words.textContent = r.words.toLocaleString();
@@ -237,12 +237,12 @@
         input.value = ''; update(); input.focus();
       });
       document.getElementById('cc-copy').addEventListener('click', function (e) {
-        var r = window.QuickTools.characterCounter.analyze(input.value);
+        var r = window.MaxTools.characterCounter.analyze(input.value);
         var summary = 'Characters: ' + r.characters + ' (' + r.charactersNoSpaces +
           ' excl. spaces), Words: ' + r.words + ', Lines: ' + r.lines +
           ', UTF-8 bytes: ' + r.utf8Bytes;
-        window.QuickTools.copyText(summary).then(function () {
-          window.QuickTools.flashButton(e.currentTarget);
+        window.MaxTools.copyText(summary).then(function () {
+          window.MaxTools.flashButton(e.currentTarget);
         });
       });
       update();

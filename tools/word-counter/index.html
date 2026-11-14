@@ -7,7 +7,7 @@
   <meta name="description" content="Free word counter online: count words, characters, sentences and paragraphs as you type, plus reading and speaking time estimates. No signup needed.">
   <link rel="canonical" href="https://mtansari8765lab.github.io/tools/word-counter/">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="QuickTools">
+  <meta property="og:site_name" content="MaxTools">
   <meta property="og:title" content="Word Counter Online Free — Count Words &amp; Characters">
   <meta property="og:description" content="Free word counter online: count words, characters, sentences and paragraphs as you type, plus reading and speaking time estimates. No signup needed.">
   <meta property="og:url" content="https://mtansari8765lab.github.io/tools/word-counter/">
@@ -24,7 +24,7 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "How does the QuickTools word counter count words?",
+        "name": "How does the MaxTools word counter count words?",
         "acceptedAnswer": { "@type": "Answer", "text": "A word is any sequence of non-whitespace characters. So \"hello-world\" counts as one word, while \"hello world\" counts as two. This matches how most word processors count." }
       },
       {
@@ -80,8 +80,8 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="../../index.html" aria-label="QuickTools home">
-        <span class="brand-name">QuickTools</span>
+      <a class="brand" href="../../index.html" aria-label="MaxTools home">
+        <span class="brand-name">MaxTools</span>
         <span class="brand-tag">Free online tools that run in your browser.</span>
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
@@ -155,7 +155,7 @@
     <section class="prose faq" aria-labelledby="wc-faq">
       <h2 id="wc-faq">Frequently asked questions</h2>
       <details>
-        <summary>How does the QuickTools word counter count words?</summary>
+        <summary>How does the MaxTools word counter count words?</summary>
         <p>A word is any sequence of non-whitespace characters. So "hello-world" counts as one word, while "hello world" counts as two. This matches how most word processors count.</p>
       </details>
       <details>
@@ -211,7 +211,7 @@
           <li><a href="../../terms.html">Terms</a></li>
         </ul>
       </nav>
-      <p class="footer-note">© <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+      <p class="footer-note">© <span id="year">2026</span> MaxTools. Free online tools that run in your browser.</p>
     </div>
   </footer>
   <script src="../../assets/logic/word-counter.js"></script>
@@ -229,26 +229,26 @@
         speaking: document.getElementById('st-speaking')
       };
       function update() {
-        var r = window.QuickTools.wordCounter.analyze(input.value);
+        var r = window.MaxTools.wordCounter.analyze(input.value);
         els.words.textContent = r.words.toLocaleString();
         els.chars.textContent = r.characters.toLocaleString();
         els.charsNs.textContent = r.charactersNoSpaces.toLocaleString();
         els.sentences.textContent = r.sentences.toLocaleString();
         els.paragraphs.textContent = r.paragraphs.toLocaleString();
-        els.reading.textContent = window.QuickTools.formatDuration(r.readingSeconds);
-        els.speaking.textContent = window.QuickTools.formatDuration(r.speakingSeconds);
+        els.reading.textContent = window.MaxTools.formatDuration(r.readingSeconds);
+        els.speaking.textContent = window.MaxTools.formatDuration(r.speakingSeconds);
       }
       input.addEventListener('input', update);
       document.getElementById('wc-clear').addEventListener('click', function () {
         input.value = ''; update(); input.focus();
       });
       document.getElementById('wc-copy').addEventListener('click', function (e) {
-        var r = window.QuickTools.wordCounter.analyze(input.value);
+        var r = window.MaxTools.wordCounter.analyze(input.value);
         var summary = 'Words: ' + r.words + ', Characters: ' + r.characters +
           ' (' + r.charactersNoSpaces + ' excl. spaces), Sentences: ' + r.sentences +
           ', Paragraphs: ' + r.paragraphs;
-        window.QuickTools.copyText(summary).then(function () {
-          window.QuickTools.flashButton(e.currentTarget);
+        window.MaxTools.copyText(summary).then(function () {
+          window.MaxTools.flashButton(e.currentTarget);
         });
       });
       update();

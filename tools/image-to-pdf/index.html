@@ -7,7 +7,7 @@
   <meta name="description" content="Convert JPG, PNG or WebP images to PDF free. Multiple images per document, Letter/A4/fit-to-image pages. Everything happens in your browser — no upload.">
   <link rel="canonical" href="https://mtansari8765lab.github.io/tools/image-to-pdf/">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="QuickTools">
+  <meta property="og:site_name" content="MaxTools">
   <meta property="og:title" content="Image to PDF Converter Free — PNG to PDF Online, No Upload">
   <meta property="og:description" content="Convert JPG, PNG or WebP images to PDF free. Multiple images per document, Letter/A4/fit-to-image pages. Everything happens in your browser — no upload.">
   <meta property="og:url" content="https://mtansari8765lab.github.io/tools/image-to-pdf/">
@@ -104,8 +104,8 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="../../index.html" aria-label="QuickTools home">
-        <span class="brand-name">QuickTools</span>
+      <a class="brand" href="../../index.html" aria-label="MaxTools home">
+        <span class="brand-name">MaxTools</span>
         <span class="brand-tag">Free online tools that run in your browser.</span>
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">&#9776;</button>
@@ -151,7 +151,7 @@
         </div>
         <div class="opt-row">
           <label for="pdf-title">Document title:</label>
-          <input type="text" id="pdf-title" value="QuickTools images" maxlength="120" style="padding:.45rem .6rem;border:1px solid var(--border);border-radius:8px;font:inherit">
+          <input type="text" id="pdf-title" value="MaxTools images" maxlength="120" style="padding:.45rem .6rem;border:1px solid var(--border);border-radius:8px;font:inherit">
         </div>
         <div class="btn-row">
           <button type="button" id="pdf-go" class="primary">Create PDF</button>
@@ -253,7 +253,7 @@
           <li><a href="../../terms.html">Terms</a></li>
         </ul>
       </nav>
-      <p class="footer-note">&copy; <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+      <p class="footer-note">&copy; <span id="year">2026</span> MaxTools. Free online tools that run in your browser.</p>
     </div>
   </footer>
   <script src="../../assets/logic/image-to-pdf.js"></script>
@@ -262,7 +262,7 @@
 /* Image to PDF UI */
 (function () {
   'use strict';
-  var P = window.QuickTools.imageToPdf, Q = window.QuickTools;
+  var P = window.MaxTools.imageToPdf, Q = window.MaxTools;
   var errBox = document.getElementById('tool-error');
   var zone = document.getElementById('dz'), input = document.getElementById('file-input');
   var list = document.getElementById('file-list');
@@ -315,7 +315,7 @@
     Q.hideError(errBox);
     if (!files.length) { Q.showError(errBox, 'Add at least one image first.'); return; }
     var pageSize = document.getElementById('pdf-pagesize').value;
-    var title = document.getElementById('pdf-title').value || 'QuickTools images';
+    var title = document.getElementById('pdf-title').value || 'MaxTools images';
     var status = document.getElementById('pdf-status');
     var dl = document.getElementById('pdf-downloads');
     dl.innerHTML = '';

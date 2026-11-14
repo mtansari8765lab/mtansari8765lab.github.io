@@ -7,7 +7,7 @@
   <meta name="description" content="Generate strong random passwords (4–64 characters) with a secure generator using WebCrypto. Custom length, symbols, no ambiguous characters option.">
   <link rel="canonical" href="https://mtansari8765lab.github.io/tools/password-generator/">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="QuickTools">
+  <meta property="og:site_name" content="MaxTools">
   <meta property="og:title" content="Strong Random Password Generator — Free &amp; Secure">
   <meta property="og:description" content="Generate strong random passwords (4–64 characters) with a secure generator using WebCrypto. Custom length, symbols, no ambiguous characters option.">
   <meta property="og:url" content="https://mtansari8765lab.github.io/tools/password-generator/">
@@ -80,8 +80,8 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="../../index.html" aria-label="QuickTools home">
-        <span class="brand-name">QuickTools</span>
+      <a class="brand" href="../../index.html" aria-label="MaxTools home">
+        <span class="brand-name">MaxTools</span>
         <span class="brand-tag">Free online tools that run in your browser.</span>
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
@@ -222,14 +222,14 @@
           <li><a href="../../terms.html">Terms</a></li>
         </ul>
       </nav>
-      <p class="footer-note">© <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+      <p class="footer-note">© <span id="year">2026</span> MaxTools. Free online tools that run in your browser.</p>
     </div>
   </footer>
   <script src="../../assets/logic/password-generator.js"></script>
   <script src="../../assets/main.js"></script>
   <script>
     (function () {
-      var pg = window.QuickTools.passwordGenerator;
+      var pg = window.MaxTools.passwordGenerator;
       var ui = document.getElementById('pg-ui');
       var errBox = document.getElementById('pg-error');
       var lengthInput = document.getElementById('pg-length');
@@ -240,7 +240,7 @@
       if (!pg.isCryptoAvailable()) {
         ui.style.display = 'none';
         errBox.style.display = '';
-        errBox.textContent = 'Secure password generation is unavailable: your browser does not support WebCrypto (crypto.getRandomValues). QuickTools refuses to generate passwords with weaker randomness. Please use a modern browser.';
+        errBox.textContent = 'Secure password generation is unavailable: your browser does not support WebCrypto (crypto.getRandomValues). MaxTools refuses to generate passwords with weaker randomness. Please use a modern browser.';
         return;
       }
 
@@ -275,8 +275,8 @@
       document.getElementById('pg-copy').addEventListener('click', function (e) {
         var v = output.dataset.value || '';
         if (!v) return;
-        window.QuickTools.copyText(v).then(function () {
-          window.QuickTools.flashButton(e.currentTarget);
+        window.MaxTools.copyText(v).then(function () {
+          window.MaxTools.flashButton(e.currentTarget);
         });
       });
 

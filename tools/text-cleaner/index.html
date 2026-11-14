@@ -7,7 +7,7 @@
   <meta name="description" content="Remove line breaks, empty lines and duplicate lines online free. Clean messy text in your browser — collapse whitespace, strip HTML, trim lines.">
   <link rel="canonical" href="https://mtansari8765lab.github.io/tools/text-cleaner/">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="QuickTools">
+  <meta property="og:site_name" content="MaxTools">
   <meta property="og:title" content="Remove Line Breaks &amp; Duplicate Lines Online Free">
   <meta property="og:description" content="Remove line breaks, empty lines and duplicate lines online free. Clean messy text in your browser — collapse whitespace, strip HTML, trim lines.">
   <meta property="og:url" content="https://mtansari8765lab.github.io/tools/text-cleaner/">
@@ -80,8 +80,8 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="../../index.html" aria-label="QuickTools home">
-        <span class="brand-name">QuickTools</span>
+      <a class="brand" href="../../index.html" aria-label="MaxTools home">
+        <span class="brand-name">MaxTools</span>
         <span class="brand-tag">Free online tools that run in your browser.</span>
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
@@ -137,7 +137,7 @@
       <h2 id="about-tc">About this text cleaner</h2>
       <p>Copied text is rarely clean. PDFs paste with a line break after every line, spreadsheets leave blank rows, web pages bring along HTML tags, and lists accumulate duplicate entries. Fixing all of that by hand in a document is slow and fiddly. This free text cleaner tidies messy text in one pass: remove line breaks to join wrapped lines into paragraphs, delete empty lines, drop duplicate lines while keeping the original order, collapse runs of extra spaces and tabs, trim leading and trailing whitespace from every line, and strip HTML tags from copied web content.</p>
       <p>Every option works independently and the output updates live as you tick boxes or edit the text, so you can see exactly what each change does. A small stats panel shows lines before and after plus how many characters were removed — useful for confirming that a dedupe or whitespace collapse actually did what you expected. Duplicate-line removal keeps the first occurrence and preserves order, which is what you want when cleaning keyword lists, email lists or data rows.</p>
-      <p>As with all QuickTools, cleaning happens entirely in your browser. Paste sensitive data, client lists or internal documents freely — nothing is uploaded, stored or sent anywhere.</p>
+      <p>As with all MaxTools, cleaning happens entirely in your browser. Paste sensitive data, client lists or internal documents freely — nothing is uploaded, stored or sent anywhere.</p>
 
       <h3>Worked example</h3>
       <p>Take this realistic mess pasted from a web page:</p>
@@ -229,7 +229,7 @@ Bold text</pre>
           <li><a href="../../terms.html">Terms</a></li>
         </ul>
       </nav>
-      <p class="footer-note">© <span id="year">2026</span> QuickTools. Free online tools that run in your browser.</p>
+      <p class="footer-note">© <span id="year">2026</span> MaxTools. Free online tools that run in your browser.</p>
     </div>
   </footer>
   <script src="../../assets/logic/text-cleaner.js"></script>
@@ -256,7 +256,7 @@ Bold text</pre>
         return o;
       }
       function update() {
-        var r = window.QuickTools.textCleaner.clean(input.value, readOpts());
+        var r = window.MaxTools.textCleaner.clean(input.value, readOpts());
         if (r.output === '') {
           output.innerHTML = '<span style="color:var(--muted)">Cleaned text will appear here.</span>';
         } else {
@@ -272,14 +272,14 @@ Bold text</pre>
       document.getElementById('tc-copy').addEventListener('click', function (e) {
         var v = output.dataset.value || '';
         if (!v) return;
-        window.QuickTools.copyText(v).then(function () {
-          window.QuickTools.flashButton(e.currentTarget);
+        window.MaxTools.copyText(v).then(function () {
+          window.MaxTools.flashButton(e.currentTarget);
         });
       });
       document.getElementById('tc-download').addEventListener('click', function () {
         var v = output.dataset.value || '';
         if (!v) return;
-        window.QuickTools.downloadText('cleaned-text.txt', v);
+        window.MaxTools.downloadText('cleaned-text.txt', v);
       });
       document.getElementById('tc-clear').addEventListener('click', function () {
         input.value = ''; update(); input.focus();

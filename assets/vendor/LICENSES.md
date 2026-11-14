@@ -1,6 +1,6 @@
 # Vendored third-party libraries
 
-These files are served from QuickTools' own hosting (same origin) so tool pages
+These files are served from MaxTools' own hosting (same origin) so tool pages
 make zero external network requests. Both are MIT-licensed; the license texts
 below are included as required.
 
