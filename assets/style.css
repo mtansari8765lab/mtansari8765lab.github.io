@@ -321,3 +321,8 @@ input[type="range"] { width: 100%; accent-color: var(--brand); }
 .data-table th:first-child, .data-table td:first-child { text-align: left; }
 .data-table thead th { background: var(--bg-soft); }
 .disclaimer { color: var(--muted); font-size: .92rem; }
+
+/* ---------- logo assets (LOGO-ASSETS-001) ---------- */
+.brand-logo { height: 40px; width: auto; display: block; }
+.footer-logo { display: block; height: 50px; width: auto; margin-bottom: 0.5rem; }
+@media (max-width: 480px) { .brand-logo { height: 32px; } .footer-logo { height: 40px; } }
