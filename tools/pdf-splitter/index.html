@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free PDF Splitter — Split &amp; Extract Pages in Your Browser</title>
+  <meta name="description" content="Split a PDF free: extract pages or page ranges into a new PDF, or burst every page into its own file. 100% client-side — your file never leaves your device. No sign-up, no upload.">
+  <link rel="canonical" href="https://mtansari8765lab.github.io/tools/pdf-splitter/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MaxTools">
+  <meta property="og:title" content="Free PDF Splitter — Split &amp; Extract Pages in Your Browser">
+  <meta property="og:description" content="Split a PDF free: extract pages or page ranges into a new PDF, or burst every page into its own file. 100% client-side — your file never leaves your device. No sign-up, no upload.">
+  <meta property="og:url" content="https://mtansari8765lab.github.io/tools/pdf-splitter/">
+  <meta property="og:image" content="https://mtansari8765lab.github.io/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free PDF Splitter — Split &amp; Extract Pages in Your Browser">
+  <meta name="twitter:description" content="Split a PDF free: extract pages or page ranges into a new PDF, or burst every page into its own file. 100% client-side — your file never leaves your device. No sign-up, no upload.">
+  <meta name="twitter:image" content="https://mtansari8765lab.github.io/assets/og-image.png">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "MaxTools PDF Splitter",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (web browser)",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Free PDF splitter that runs entirely in your browser. Extract pages or page ranges into a new PDF, or split every page into its own file. No upload, no sign-up."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I split a PDF without uploading it?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Drop the PDF into the tool above, pick the pages you want (for example 1-3, 5), and click Split PDF. The split runs entirely in your browser — your document is never uploaded to any server, unlike most online PDF splitters."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What page ranges can I extract?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Single pages (5), ranges (1-3), lists (1-3, 5, 8-), an open-ended range (8- means page 8 to the end), or the words all, odd and even. Pages are extracted in the order you list them, duplicates removed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I split a PDF into one file per page?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Choose the 'One file per page' mode and each page is saved as its own single-page PDF, with one download link per page. There is no ZIP download — download the pages you need individually."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a file size limit?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Files up to 50 MB are accepted. The practical limit is your device's memory: very large scanned documents with hundreds of pages can be slow on a phone, so split large files on a desktop when you can."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I split a password-protected PDF?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No — encrypted files are rejected. Open the PDF in a reader, remove the password, save an unprotected copy, and then split it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does splitting change the pages?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Pages are copied at the PDF object level, so text stays selectable, fonts and images keep their quality, and each page keeps its original size and rotation. Nothing is re-rendered or compressed."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do digital signatures survive splitting?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. A digital signature is bound to the exact contents of its file, so it becomes invalid the moment pages are extracted. Split first, then sign the finished document."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
+  gtag('js', new Date());
+  gtag('config', 'G-T2LH1SV8Y5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8008490095120298"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="MaxTools home">
+        <img class="brand-logo" src="../../assets/logo.svg" alt="MaxTools" width="160" height="40">
+        <span class="brand-tag">Free online tools that run in your browser.</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> &#8250; <a href="../index.html">Tools</a> &#8250; <span aria-current="page">PDF Splitter</span>
+    </nav>
+
+    <h1>Free PDF Splitter</h1>
+    <p><strong>Runs 100% in your browser — your file never leaves your device.</strong></p>
+
+    <section class="tool-box" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" style="margin-top:0">Split a PDF</h2>
+      <div id="tool-error" class="error-box" style="display:none" role="alert"></div>
+      <div class="drop-zone" id="dz" role="button" tabindex="0" aria-label="Upload a PDF file"><p style="font-size:2rem; margin:0 0 .5rem">&#128196;</p><p><strong>Drop a PDF here</strong> or click to browse</p><p class="progress-note">One PDF file, up to 50 MB</p><input type="file" id="file-input" accept="application/pdf"></div>
+      <p class="progress-note" id="sp-fileinfo"></p>
+      <div class="opt-grid" id="opts" style="display:none">
+        <fieldset>
+          <legend>Split mode</legend>
+          <p><label><input type="radio" name="sp-mode" value="extract" checked> Extract pages — one new PDF with the pages you pick</label></p>
+          <p><label><input type="radio" name="sp-mode" value="burst"> One file per page — every page as its own PDF</label></p>
+        </fieldset>
+        <div id="sp-range-wrap">
+          <label for="sp-range">Pages to extract</label>
+          <input type="text" id="sp-range" class="filter-input" placeholder="e.g. 1-3, 5, 8-" autocomplete="off">
+          <p class="progress-note">Single pages, ranges, or lists: <code>1-3, 5, 8-</code> (8- means page 8 to the end). Or type <code>all</code>, <code>odd</code> or <code>even</code>.</p>
+          <div class="btn-row">
+            <button type="button" id="sp-all">All pages</button>
+            <button type="button" id="sp-odd">Odd pages</button>
+            <button type="button" id="sp-even">Even pages</button>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button type="button" id="sp-go" class="primary">Split PDF</button>
+          <button type="button" id="sp-clear">Clear</button>
+        </div>
+        <p class="progress-note" id="sp-status"></p>
+        <ul class="download-list" id="sp-downloads"></ul>
+      </div>
+    </section>
+
+    <section class="prose" aria-labelledby="about-tool">
+      <h2 id="about-tool">About this PDF splitter</h2>
+      <p>A 40-page report where you only need chapter 2. A scanned contract where only the signed page matters. A bank statement where one month's pages go to the accountant. Splitting a PDF is the opposite job to merging one — and like the merger on this site, it runs on pdf-lib, a real PDF engine that executes entirely in your browser. The library file is served from this site, not a CDN, so the page works offline once loaded and makes zero external requests. Most splitter sites ask you to upload the whole document first; here your file never leaves your device.</p>
+      <h2>Common ways people use a PDF splitter</h2>
+      <p><strong>Send only the pages that matter.</strong> A contract, a medical record or a tenancy agreement often contains pages the other side does not need. Extract the relevant pages into a fresh PDF and share that instead of the whole file.</p>
+      <p><strong>Pull one chapter out of a report.</strong> A long annual report or manual becomes usable once the chapter you actually need is its own short document — easier to attach, easier to read on a phone.</p>
+      <p><strong>Break a scan into single pages.</strong> A scanner that saves a whole stack as one PDF is no help when a form wants one page per upload. Burst mode gives you one file per page, named by page number.</p>
+      <p><strong>Remove blank or unwanted pages.</strong> Extract everything except the pages you do not want — for example <code>1-4, 6-12</code> to drop a blank page 5 — and the result is a clean document with no gaps.</p>
+      <h2>How to use</h2>
+      <ol>
+        <li>Drop one PDF into the upload box (or click to browse). The tool shows how many pages it has.</li>
+        <li>Choose <strong>Extract pages</strong> for one new PDF, or <strong>One file per page</strong> for a separate file per page.</li>
+        <li>For extraction, type the pages: <code>1-3, 5, 8-</code>, or use the All / Odd / Even shortcuts.</li>
+        <li>Click <strong>Split PDF</strong> and download the result. Check the page count before sending it on.</li>
+      </ol>
+      <h2>Limitations</h2>
+      <ul>
+        <li>Files up to 50 MB. Very large scanned documents (hundreds of pages) can be slow and memory-hungry on low-end devices — split them on a desktop when you can.</li>
+        <li>Password-protected (encrypted) PDFs cannot be split — remove the password first in your PDF reader.</li>
+        <li>Interactive form fields do not survive — split PDFs are read-only; fill forms before splitting.</li>
+        <li>Digital signatures break: a signature is bound to the exact bytes of the original file, so always split first and sign the final document last.</li>
+        <li>Bookmarks and outlines from the original may not carry over into the split files.</li>
+        <li>Burst mode gives one download link per page — there is no ZIP download, so download the pages you need individually.</li>
+        <li>Pages are copied unchanged: splitting does not compress anything, so a big scanned page stays big.</li>
+      </ul>
+    </section>
+
+    <section class="prose faq" aria-labelledby="tool-faq">
+      <h2 id="tool-faq">Frequently asked questions</h2>
+      <details>
+        <summary>How do I split a PDF without uploading it?</summary>
+        <p>Drop the PDF into the tool above, pick the pages you want (for example 1-3, 5), and click Split PDF. The split runs entirely in your browser — your document is never uploaded to any server, unlike most online PDF splitters.</p>
+      </details>
+      <details>
+        <summary>What page ranges can I extract?</summary>
+        <p>Single pages (5), ranges (1-3), lists (1-3, 5, 8-), an open-ended range (8- means page 8 to the end), or the words all, odd and even. Pages are extracted in the order you list them, duplicates removed.</p>
+      </details>
+      <details>
+        <summary>Can I split a PDF into one file per page?</summary>
+        <p>Yes. Choose the 'One file per page' mode and each page is saved as its own single-page PDF, with one download link per page. There is no ZIP download — download the pages you need individually.</p>
+      </details>
+      <details>
+        <summary>Is there a file size limit?</summary>
+        <p>Files up to 50 MB are accepted. The practical limit is your device's memory: very large scanned documents with hundreds of pages can be slow on a phone, so split large files on a desktop when you can.</p>
+      </details>
+      <details>
+        <summary>Can I split a password-protected PDF?</summary>
+        <p>No — encrypted files are rejected. Open the PDF in a reader, remove the password, save an unprotected copy, and then split it.</p>
+      </details>
+      <details>
+        <summary>Does splitting change the pages?</summary>
+        <p>No. Pages are copied at the PDF object level, so text stays selectable, fonts and images keep their quality, and each page keeps its original size and rotation. Nothing is re-rendered or compressed.</p>
+      </details>
+      <details>
+        <summary>Do digital signatures survive splitting?</summary>
+        <p>No. A digital signature is bound to the exact contents of its file, so it becomes invalid the moment pages are extracted. Split first, then sign the finished document.</p>
+      </details>
+    </section>
+
+    <section class="related-tools" aria-labelledby="related">
+      <h2 id="related">Related tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="../pdf-merger/index.html"><h3>PDF Merger</h3><p>Combine PDFs into one document — the reverse of this tool.</p><span class="card-cta">Open tool &rarr;</span></a>
+        <a class="tool-card" href="../image-to-pdf/index.html"><h3>Image to PDF</h3><p>Turn images into a PDF first, then split it.</p><span class="card-cta">Open tool &rarr;</span></a>
+        <a class="tool-card" href="../qr-code-generator/index.html"><h3>QR Code Generator</h3><p>Make a QR code linking to a PDF you share.</p><span class="card-cta">Open tool &rarr;</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../privacy.html">Privacy</a></li>
+          <li><a href="../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note"><img class="footer-logo" src="../../assets/logo.svg" alt="MaxTools" width="200" height="50">&copy; <span id="year">2026</span> MaxTools. Free online tools that run in your browser.</p>
+    </div>
+  </footer>
+  <script defer src="../../assets/vendor/pdf-lib.min.js"></script>
+  <script src="../../assets/logic/pdf-splitter.js"></script>
+  <script src="../../assets/main.js"></script>
+<script>
+/* PDF Splitter UI */
+(function () {
+  'use strict';
+  var M = window.QuickTools.pdfSplitter, Q = window.QuickTools;
+  var errBox = document.getElementById('tool-error');
+  var zone = document.getElementById('dz'), input = document.getElementById('file-input');
+  var fileinfo = document.getElementById('sp-fileinfo');
+  var status = document.getElementById('sp-status');
+  var dl = document.getElementById('sp-downloads');
+  var file = null, fileBytes = null, pageCount = 0;
+
+  function resetState() {
+    file = null; fileBytes = null; pageCount = 0;
+    fileinfo.textContent = '';
+    status.textContent = '';
+    dl.innerHTML = '';
+    document.getElementById('opts').style.display = 'none';
+    document.getElementById('sp-range').value = '';
+    Q.hideError(errBox);
+  }
+
+  function addDownload(name, blob) {
+    var url = URL.createObjectURL(blob);
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    a.className = 'dl'; a.href = url; a.download = name;
+    a.textContent = 'Download ' + name + ' (' + M.formatBytes(blob.size) + ')';
+    li.appendChild(a); dl.appendChild(li);
+  }
+
+  Q.setupDropZone(zone, input, function (picked) {
+    Q.hideError(errBox);
+    var f = picked[0];
+    if (!f) return;
+    if (!M.isPdfFile(f)) { Q.showError(errBox, 'That file is not a PDF.'); return; }
+    if (f.size > M.MAX_FILE_BYTES) {
+      Q.showError(errBox, 'That file is ' + M.formatBytes(f.size) + ' — the limit is ' + M.formatBytes(M.MAX_FILE_BYTES) + '.');
+      return;
+    }
+    resetState();
+    file = f;
+    status.textContent = 'Reading ' + f.name + '\u2026';
+    Q.readFileAsArrayBuffer(f).then(function (ab) {
+      fileBytes = new Uint8Array(ab);
+      return M.getPageCount(fileBytes, window.PDFLib);
+    }).then(function (n) {
+      pageCount = n;
+      fileinfo.textContent = f.name + ' — ' + M.formatBytes(f.size) + ', ' + n + ' page' + (n === 1 ? '' : 's') + '.';
+      document.getElementById('opts').style.display = '';
+      status.textContent = '';
+    }).catch(function (e) {
+      status.textContent = '';
+      resetState();
+      Q.showError(errBox, e.message);
+    });
+  });
+
+  function selectedMode() {
+    var radios = document.getElementsByName('sp-mode');
+    for (var i = 0; i < radios.length; i++) if (radios[i].checked) return radios[i].value;
+    return 'extract';
+  }
+
+  Array.prototype.forEach.call(document.getElementsByName('sp-mode'), function (r) {
+    r.addEventListener('change', function () {
+      document.getElementById('sp-range-wrap').style.display = selectedMode() === 'burst' ? 'none' : '';
+    });
+  });
+
+  function setRange(v) { document.getElementById('sp-range').value = v; }
+  document.getElementById('sp-all').addEventListener('click', function () { setRange('all'); });
+  document.getElementById('sp-odd').addEventListener('click', function () { setRange('odd'); });
+  document.getElementById('sp-even').addEventListener('click', function () { setRange('even'); });
+
+  document.getElementById('sp-clear').addEventListener('click', resetState);
+
+  document.getElementById('sp-go').addEventListener('click', function () {
+    Q.hideError(errBox);
+    if (!fileBytes) { Q.showError(errBox, 'Add a PDF file first.'); return; }
+    dl.innerHTML = '';
+    var mode = selectedMode();
+    if (mode === 'burst') {
+      status.textContent = 'Splitting into ' + pageCount + ' single-page PDFs\u2026';
+      M.burstPages(fileBytes, window.PDFLib).then(function (parts) {
+        parts.forEach(function (part) {
+          var blob = new Blob([part.bytes], { type: 'application/pdf' });
+          addDownload(M.buildOutputName(file.name, 'page-' + part.page), blob);
+        });
+        status.textContent = 'Done: ' + parts.length + ' single-page PDFs.';
+      }).catch(function (e) {
+        status.textContent = '';
+        Q.showError(errBox, e.message);
+      });
+      return;
+    }
+    var pages;
+    try {
+      pages = M.parsePageSpec(document.getElementById('sp-range').value, pageCount);
+    } catch (e) {
+      Q.showError(errBox, e.message);
+      return;
+    }
+    status.textContent = 'Extracting ' + pages.length + ' page' + (pages.length === 1 ? '' : 's') + '\u2026';
+    M.extractPages(fileBytes, pages, window.PDFLib).then(function (pdfBytes) {
+      var blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      var suffix = pages.length === 1 ? 'page-' + pages[0] : 'pages-' + pages[0] + '-' + pages[pages.length - 1];
+      addDownload(M.buildOutputName(file.name, suffix), blob);
+      status.textContent = 'Done: ' + pages.length + ' page' + (pages.length === 1 ? '' : 's') + ' extracted.';
+    }).catch(function (e) {
+      status.textContent = '';
+      Q.showError(errBox, e.message);
+    });
+  });
+})();
+</script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free QR Code Generator — No Sign-Up, Works in Your Browser</title>
+  <meta name="description" content="Create a free QR code for a link, text, Wi-Fi network, email, phone call or SMS. Static codes that never expire — generated 100% in your browser, no sign-up, no upload. Download PNG or SVG.">
+  <link rel="canonical" href="https://mtansari8765lab.github.io/tools/qr-code-generator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MaxTools">
+  <meta property="og:title" content="Free QR Code Generator — No Sign-Up, Works in Your Browser">
+  <meta property="og:description" content="Create a free QR code for a link, text, Wi-Fi network, email, phone call or SMS. Static codes that never expire — generated 100% in your browser, no sign-up, no upload. Download PNG or SVG.">
+  <meta property="og:url" content="https://mtansari8765lab.github.io/tools/qr-code-generator/">
+  <meta property="og:image" content="https://mtansari8765lab.github.io/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free QR Code Generator — No Sign-Up, Works in Your Browser">
+  <meta name="twitter:description" content="Create a free QR code for a link, text, Wi-Fi network, email, phone call or SMS. Static codes that never expire — generated 100% in your browser, no sign-up, no upload. Download PNG or SVG.">
+  <meta name="twitter:image" content="https://mtansari8765lab.github.io/assets/og-image.png">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "MaxTools QR Code Generator",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (web browser)",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Free QR code generator that runs entirely in your browser. Create static QR codes for URLs, text, Wi-Fi networks, email, phone calls and SMS, and download them as PNG or SVG."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is this QR code generator really free with no sign-up?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. There is no account, no email address and no limit on how many codes you make. The generator runs entirely in your browser using a small open-source library served from this site."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do the QR codes expire?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. These are static QR codes: the link, text or Wi-Fi login is encoded directly into the pattern itself, so the code works forever. There is no subscription to lapse and no server that can switch the code off. The only exception is the content itself — if you change your Wi-Fi password or move the web page, print a new code."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my Wi-Fi password sent anywhere?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The code is generated on your own device — your Wi-Fi password, links and text are never uploaded to any server. Anyone who can see the printed code can read the password from it, though, so only display a Wi-Fi code where guests are meant to see it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is error correction, and which level should I pick?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Error correction is built-in redundancy: part of the code can be damaged or covered and it still scans. L tolerates about 7% damage, M about 15%, Q about 25% and H about 30%. M is the right default for screens and clean print; use Q or H if the code will be printed small, outdoors, or partly covered by a logo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Should I download PNG or SVG?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SVG for print — it is a vector, so it stays sharp at any size, from a business card to a poster. PNG for screens, chats and documents where an image file is expected; pick 1024 px for the sharpest result."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will my phone read a Wi-Fi QR code?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "On current iPhones and Android phones, yes: point the built-in camera at the code and the phone offers to join the network without typing the password. Older phones may need a QR scanner app. The code uses the standard WIFI:T:...;S:...;P:...; format that phones understand."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens if I change my Wi-Fi password?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The old code stops working, because the old password is baked into it. Generate a fresh code with the new password and replace any printed copies."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
+  gtag('js', new Date());
+  gtag('config', 'G-T2LH1SV8Y5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8008490095120298"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="MaxTools home">
+        <img class="brand-logo" src="../../assets/logo.svg" alt="MaxTools" width="160" height="40">
+        <span class="brand-tag">Free online tools that run in your browser.</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">&#9776;</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> &#8250; <a href="../index.html">Tools</a> &#8250; <span aria-current="page">QR Code Generator</span>
+    </nav>
+
+    <h1>Free QR Code Generator</h1>
+    <p><strong>Static codes that never expire — generated 100% in your browser, no sign-up, nothing uploaded.</strong></p>
+
+    <section class="tool-box" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" style="margin-top:0">Make a QR code</h2>
+      <div id="tool-error" class="error-box" style="display:none" role="alert"></div>
+
+      <fieldset>
+        <legend>What should the code contain?</legend>
+        <div class="btn-row" role="radiogroup" aria-label="QR code type">
+          <label><input type="radio" name="qr-type" value="url" checked> Link / URL</label>
+          <label><input type="radio" name="qr-type" value="text"> Text</label>
+          <label><input type="radio" name="qr-type" value="wifi"> Wi-Fi</label>
+          <label><input type="radio" name="qr-type" value="email"> Email</label>
+          <label><input type="radio" name="qr-type" value="tel"> Phone call</label>
+          <label><input type="radio" name="qr-type" value="sms"> SMS</label>
+        </div>
+      </fieldset>
+
+      <div id="fields-url" class="qr-fields">
+        <label for="qr-url">Website address</label>
+        <input type="url" id="qr-url" class="filter-input" value="https://mtansari8765lab.github.io/" placeholder="https://example.com" autocomplete="off">
+        <p class="progress-note">http:// or https:// — the scheme is added if you leave it out.</p>
+      </div>
+
+      <div id="fields-text" class="qr-fields" hidden>
+        <label for="qr-text">Text</label>
+        <textarea id="qr-text" rows="3" class="filter-input" placeholder="Type any text — a message, a note, an address…"></textarea>
+        <p class="progress-note">Plain text up to about 2,900 characters.</p>
+      </div>
+
+      <div id="fields-wifi" class="qr-fields" hidden>
+        <label for="wifi-ssid">Network name (SSID)</label>
+        <input type="text" id="wifi-ssid" class="filter-input" placeholder="e.g. MyHomeWiFi" autocomplete="off">
+        <label for="wifi-password">Wi-Fi password</label>
+        <input type="text" id="wifi-password" class="filter-input" placeholder="Network password" autocomplete="off">
+        <label for="wifi-security">Security type</label>
+        <select id="wifi-security" class="filter-input">
+          <option value="WPA" selected>WPA / WPA2 (most routers)</option>
+          <option value="WEP">WEP (old routers)</option>
+          <option value="nopass">Open — no password</option>
+        </select>
+        <p><label><input type="checkbox" id="wifi-hidden"> Hidden network (SSID not broadcast)</label></p>
+        <p class="progress-note">The SSID is case-sensitive — type it exactly as your router shows it. Anyone who can see the printed code can read the password from it.</p>
+      </div>
+
+      <div id="fields-email" class="qr-fields" hidden>
+        <label for="qr-email">Email address</label>
+        <input type="email" id="qr-email" class="filter-input" placeholder="name@example.com" autocomplete="off">
+        <label for="qr-subject">Subject (optional)</label>
+        <input type="text" id="qr-subject" class="filter-input" placeholder="Subject line" autocomplete="off">
+        <label for="qr-body">Message (optional)</label>
+        <textarea id="qr-body" rows="2" class="filter-input" placeholder="Pre-filled message"></textarea>
+        <p class="progress-note">Scanning opens the phone's email app with the address (and subject/message) filled in.</p>
+      </div>
+
+      <div id="fields-tel" class="qr-fields" hidden>
+        <label for="qr-phone">Phone number</label>
+        <input type="tel" id="qr-phone" class="filter-input" placeholder="+1 555 123 4567" autocomplete="off">
+        <p class="progress-note">Scanning offers to call the number. Include the country code for numbers people will call from abroad.</p>
+      </div>
+
+      <div id="fields-sms" class="qr-fields" hidden>
+        <label for="sms-phone">Phone number</label>
+        <input type="tel" id="sms-phone" class="filter-input" placeholder="+1 555 123 4567" autocomplete="off">
+        <label for="sms-message">Message (optional)</label>
+        <textarea id="sms-message" rows="2" class="filter-input" placeholder="Pre-filled text message"></textarea>
+        <p class="progress-note">Scanning opens the messaging app with the number and message filled in.</p>
+      </div>
+
+      <fieldset>
+        <legend>Code options</legend>
+        <div class="opt-grid">
+          <label for="qr-size">Download size (PNG)
+            <select id="qr-size" class="filter-input">
+              <option value="256">256 px</option>
+              <option value="512" selected>512 px</option>
+              <option value="1024">1024 px</option>
+            </select>
+          </label>
+          <label for="qr-ec">Error correction
+            <select id="qr-ec" class="filter-input">
+              <option value="L">L — ~7% damage tolerated</option>
+              <option value="M" selected>M — ~15% (recommended)</option>
+              <option value="Q">Q — ~25%</option>
+              <option value="H">H — ~30% (rough handling)</option>
+            </select>
+          </label>
+          <label for="qr-dark">Code colour
+            <input type="color" id="qr-dark" value="#000000">
+          </label>
+          <label for="qr-light">Background colour
+            <input type="color" id="qr-light" value="#ffffff">
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="btn-row">
+        <button type="button" id="qr-generate" class="primary">Generate QR Code</button>
+        <button type="button" id="qr-clear">Clear</button>
+      </div>
+      <p class="progress-note" id="qr-status"></p>
+
+      <div id="qr-output" style="display:none">
+        <div id="qr-preview" style="text-align:center; margin:1rem 0"></div>
+        <p class="progress-note" id="qr-payload" style="word-break:break-all"></p>
+        <div class="btn-row">
+          <button type="button" id="qr-download-png" class="primary">Download PNG</button>
+          <button type="button" id="qr-download-svg">Download SVG</button>
+          <button type="button" id="qr-copy">Copy encoded text</button>
+        </div>
+        <p class="progress-note"><strong>Test before you print:</strong> scan the code with your own phone first, and check the link or Wi-Fi login it opens. A code printed wrong is a flyer wasted.</p>
+      </div>
+    </section>
+
+    <section class="prose" aria-labelledby="about-tool">
+      <h2 id="about-tool">About this QR code generator</h2>
+      <p>A QR code is just text drawn as a pattern: a web address, a Wi-Fi login, an email address or a short message, encoded so a phone camera can read it in one scan. This generator draws that pattern entirely in your browser with <a href="https://github.com/kazuhikoarase/qrcode-generator">qrcode-generator</a>, a small open-source library served from this site — nothing you type is sent to a server, there is no account, and there is no watermark on the download.</p>
+      <p>Every code here is <strong>static</strong>: the content is baked into the pattern itself. That means it never expires, has no scan limit, and keeps working even if this site disappears — but it also means you cannot change what a printed code points to afterwards. If the link moves or the Wi-Fi password changes, print a fresh code.</p>
+      <h2>How each type is encoded</h2>
+      <ul>
+        <li><strong>Link / URL</strong> — the address itself, e.g. <code>https://example.com/menu</code>. Scanning opens it in the browser.</li>
+        <li><strong>Text</strong> — plain text, shown on screen after scanning. Good for a short message, a Wi-Fi-free notice, or an address.</li>
+        <li><strong>Wi-Fi</strong> — the standard <code>WIFI:T:WPA;S:NetworkName;P:password;;</code> format. Phones recognise it and offer to join without typing the password. Special characters in the name or password are escaped automatically.</li>
+        <li><strong>Email</strong> — a <code>mailto:</code> link, with subject and message if you add them. Scanning opens the email app ready to send.</li>
+        <li><strong>Phone call</strong> — a <code>tel:</code> link. Scanning offers to dial the number.</li>
+        <li><strong>SMS</strong> — a <code>SMSTO:number:message</code> link. Scanning opens the messaging app with the text pre-filled.</li>
+      </ul>
+      <h2>Common ways people use QR codes</h2>
+      <p><strong>Wi-Fi for guests.</strong> A café, guesthouse or office prints one code at the counter or on each table; guests join without asking for — or mistyping — the password. Print it at least 3 cm across so older phones can read it from a normal distance.</p>
+      <p><strong>Menus, posters and flyers.</strong> A code on a poster links to the full menu, the booking page or the event sign-up, so the print stays short and the details stay current online. Use the SVG download for print — it stays sharp at any size.</p>
+      <p><strong>Business cards.</strong> A code linking to your website or a pre-addressed email lets someone reach you without typing a long address from a card.</p>
+      <p><strong>Contactless payments and check-ins.</strong> Many small sellers put a code at the till linking to a payment page or a feedback form — one scan, no app to install.</p>
+      <h2>How to use</h2>
+      <ol>
+        <li>Pick what the code should contain — link, text, Wi-Fi, email, phone or SMS.</li>
+        <li>Fill in the details. The code updates as you type.</li>
+        <li>Choose a size and error-correction level (M suits most uses; Q or H for print that will get rough handling).</li>
+        <li>Scan it with your own phone to check it opens the right thing.</li>
+        <li>Download PNG for screens and documents, or SVG for print.</li>
+      </ol>
+      <h2>Limitations</h2>
+      <ul>
+        <li>Static codes only — no tracking, no scan counts, no editable "dynamic" codes, and no logo embedded in the code. (A logo over the middle needs high error correction and can break scanning; keep codes clean.)</li>
+        <li>About 2,900 characters maximum in one code; long URLs make dense codes that are harder to scan — shorten the link first if the pattern looks very dense.</li>
+        <li>Very light code colours or low contrast can fail to scan. Black on white is the most reliable; if you pick colours, test the scan before printing.</li>
+        <li>Wi-Fi codes share the password with anyone who can see them — only display them where guests are meant to see them.</li>
+        <li>Some older phones need a scanner app; the built-in camera works on current iPhones and Android phones.</li>
+      </ul>
+    </section>
+
+    <section class="prose faq" aria-labelledby="tool-faq">
+      <h2 id="tool-faq">Frequently asked questions</h2>
+      <details>
+        <summary>Is this QR code generator really free with no sign-up?</summary>
+        <p>Yes. There is no account, no email address and no limit on how many codes you make. The generator runs entirely in your browser using a small open-source library served from this site.</p>
+      </details>
+      <details>
+        <summary>Do the QR codes expire?</summary>
+        <p>No. These are static QR codes: the link, text or Wi-Fi login is encoded directly into the pattern itself, so the code works forever. There is no subscription to lapse and no server that can switch the code off. The only exception is the content itself — if you change your Wi-Fi password or move the web page, print a new code.</p>
+      </details>
+      <details>
+        <summary>Is my Wi-Fi password sent anywhere?</summary>
+        <p>No. The code is generated on your own device — your Wi-Fi password, links and text are never uploaded to any server. Anyone who can see the printed code can read the password from it, though, so only display a Wi-Fi code where guests are meant to see it.</p>
+      </details>
+      <details>
+        <summary>What is error correction, and which level should I pick?</summary>
+        <p>Error correction is built-in redundancy: part of the code can be damaged or covered and it still scans. L tolerates about 7% damage, M about 15%, Q about 25% and H about 30%. M is the right default for screens and clean print; use Q or H if the code will be printed small, outdoors, or partly covered.</p>
+      </details>
+      <details>
+        <summary>Should I download PNG or SVG?</summary>
+        <p>SVG for print — it is a vector, so it stays sharp at any size, from a business card to a poster. PNG for screens, chats and documents where an image file is expected; pick 1024 px for the sharpest result.</p>
+      </details>
+      <details>
+        <summary>Will my phone read a Wi-Fi QR code?</summary>
+        <p>On current iPhones and Android phones, yes: point the built-in camera at the code and the phone offers to join the network without typing the password. Older phones may need a QR scanner app. The code uses the standard WIFI:T:…;S:…;P:…; format that phones understand.</p>
+      </details>
+      <details>
+        <summary>What happens if I change my Wi-Fi password?</summary>
+        <p>The old code stops working, because the old password is baked into it. Generate a fresh code with the new password and replace any printed copies.</p>
+      </details>
+    </section>
+
+    <section class="related-tools" aria-labelledby="related">
+      <h2 id="related">Related tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="../password-generator/index.html"><h3>Password Generator</h3><p>Make a strong Wi-Fi password first, then encode it here.</p><span class="card-cta">Open tool &rarr;</span></a>
+        <a class="tool-card" href="../image-to-pdf/index.html"><h3>Image to PDF</h3><p>Turn a downloaded code into a printable PDF page.</p><span class="card-cta">Open tool &rarr;</span></a>
+        <a class="tool-card" href="../pdf-merger/index.html"><h3>PDF Merger</h3><p>Combine printed-code PDFs into one document.</p><span class="card-cta">Open tool &rarr;</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../privacy.html">Privacy</a></li>
+          <li><a href="../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note"><img class="footer-logo" src="../../assets/logo.svg" alt="MaxTools" width="200" height="50">&copy; <span id="year">2026</span> MaxTools. Free online tools that run in your browser.</p>
+    </div>
+  </footer>
+  <script defer src="../../assets/vendor/qrcode-generator.js"></script>
+  <script src="../../assets/logic/qr-code-generator.js"></script>
+  <script src="../../assets/main.js"></script>
+<script>
+/* QR Code Generator UI */
+(function () {
+  'use strict';
+  var M = window.QuickTools.qrCodeGenerator, Q = window.QuickTools;
+  var errBox = document.getElementById('tool-error');
+  var status = document.getElementById('qr-status');
+  var output = document.getElementById('qr-output');
+  var preview = document.getElementById('qr-preview');
+  var payloadEl = document.getElementById('qr-payload');
+  var current = null; // { code, payload, size, dark, light }
+
+  function val(id) { var el = document.getElementById(id); return el ? el.value : ''; }
+  function selectedType() {
+    var radios = document.getElementsByName('qr-type');
+    for (var i = 0; i < radios.length; i++) if (radios[i].checked) return radios[i].value;
+    return 'url';
+  }
+
+  function showFields(type) {
+    ['url', 'text', 'wifi', 'email', 'tel', 'sms'].forEach(function (t) {
+      var el = document.getElementById('fields-' + t);
+      if (el) el.hidden = (t !== type);
+    });
+  }
+
+  function collectInput(type) {
+    if (type === 'url') return { url: val('qr-url') };
+    if (type === 'text') return { text: val('qr-text') };
+    if (type === 'wifi') return {
+      ssid: val('wifi-ssid'), password: val('wifi-password'),
+      security: val('wifi-security'),
+      hidden: !!document.getElementById('wifi-hidden').checked
+    };
+    if (type === 'email') return { email: val('qr-email'), subject: val('qr-subject'), body: val('qr-body') };
+    if (type === 'tel') return { phone: val('qr-phone') };
+    if (type === 'sms') return { phone: val('sms-phone'), message: val('sms-message') };
+    return {};
+  }
+
+  function generate() {
+    Q.hideError(errBox);
+    var type = selectedType();
+    showFields(type);
+    var payload;
+    try {
+      payload = M.buildPayload(type, collectInput(type));
+    } catch (e) {
+      output.style.display = 'none';
+      current = null;
+      status.textContent = '';
+      Q.showError(errBox, e.message);
+      return;
+    }
+    var engine = (typeof qrcode === 'function') ? qrcode : null;
+    var code;
+    try {
+      code = M.createQr(engine, payload, val('qr-ec'));
+    } catch (e) {
+      output.style.display = 'none';
+      current = null;
+      Q.showError(errBox, e.message);
+      return;
+    }
+    var size = parseInt(val('qr-size'), 10) || 512;
+    var dark = val('qr-dark') || '#000000';
+    var light = val('qr-light') || '#ffffff';
+    try {
+      preview.innerHTML = M.renderSvg(code, 256, dark, light);
+    } catch (e) {
+      Q.showError(errBox, e.message);
+      return;
+    }
+    current = { code: code, payload: payload, size: size, dark: dark, light: light };
+    payloadEl.textContent = 'Encoded: ' + payload;
+    output.style.display = '';
+    status.textContent = 'Code ready — ' + code.count + '×' + code.count + ' modules. Scan it with your phone to check it before printing.';
+  }
+
+  Array.prototype.forEach.call(document.getElementsByName('qr-type'), function (r) {
+    r.addEventListener('change', generate);
+  });
+  ['qr-url', 'qr-text', 'wifi-ssid', 'wifi-password', 'wifi-security', 'qr-email', 'qr-subject', 'qr-body', 'qr-phone', 'sms-phone', 'sms-message'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('input', generate);
+  });
+  ['qr-size', 'qr-ec', 'qr-dark', 'qr-light'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('change', generate);
+  });
+  var hiddenBox = document.getElementById('wifi-hidden');
+  if (hiddenBox) hiddenBox.addEventListener('change', generate);
+
+  document.getElementById('qr-generate').addEventListener('click', generate);
+
+  document.getElementById('qr-clear').addEventListener('click', function () {
+    ['qr-url', 'qr-text', 'wifi-ssid', 'wifi-password', 'qr-email', 'qr-subject', 'qr-body', 'qr-phone', 'sms-phone', 'sms-message'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+    document.getElementById('wifi-security').value = 'WPA';
+    document.getElementById('wifi-hidden').checked = false;
+    output.style.display = 'none';
+    current = null;
+    status.textContent = '';
+    Q.hideError(errBox);
+    generate();
+  });
+
+  document.getElementById('qr-download-png').addEventListener('click', function () {
+    if (!current) return;
+    var canvas = document.createElement('canvas');
+    canvas.width = current.size; canvas.height = current.size;
+    var ctx = canvas.getContext('2d');
+    try { M.drawToCanvas(current.code, ctx, current.size, current.dark, current.light); }
+    catch (e) { Q.showError(errBox, e.message); return; }
+    if (canvas.toBlob) {
+      canvas.toBlob(function (blob) {
+        if (blob) Q.downloadBlob(blob, M.buildDownloadName('png'));
+        else Q.showError(errBox, 'PNG export failed in this browser — try the SVG download.');
+      }, 'image/png');
+    } else {
+      Q.showError(errBox, 'PNG export is not supported in this browser — try the SVG download.');
+    }
+  });
+
+  document.getElementById('qr-download-svg').addEventListener('click', function () {
+    if (!current) return;
+    var svg = M.renderSvg(current.code, current.size, current.dark, current.light);
+    Q.downloadBlob(new Blob([svg], { type: 'image/svg+xml;charset=utf-8' }), M.buildDownloadName('svg'));
+  });
+
+  document.getElementById('qr-copy').addEventListener('click', function () {
+    if (!current) return;
+    var btn = document.getElementById('qr-copy');
+    Q.copyText(current.payload).then(function () { Q.flashButton(btn, 'Copied!'); })
+      .catch(function () { Q.showError(errBox, 'Copy failed — select the encoded text above and copy it manually.'); });
+  });
+
+  generate();
+})();
+</script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
+</body>
+</html>

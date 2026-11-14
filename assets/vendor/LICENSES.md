@@ -1,7 +1,7 @@
 # Vendored third-party libraries
 
 These files are served from MaxTools' own hosting (same origin) so tool pages
-make zero external network requests. Both are MIT-licensed; the license texts
+make zero external network requests. All are MIT-licensed; the license texts
 below are included as required.
 
 ## pdf-lib.min.js
@@ -17,7 +17,13 @@ below are included as required.
 - **Used by:** HEIC to JPG tool (client-side HEIC decoding; bundles its WASM decoder)
 - **Note:** UMD build; in the browser it registers `window.heic2any`.
 
-### MIT License (applies to both)
+## qrcode-generator.js
+- **Source:** qrcode-generator v1.4.4 (https://github.com/kazuhikoarase/qrcode-generator, npm package `qrcode-generator`)
+- **License:** MIT — Copyright (c) 2009 Kazuhiko Arase
+- **Used by:** QR Code Generator tool (client-side QR code generation)
+- **Note:** Plain script; in the browser it defines the global `qrcode` function. In Node tests it is loaded via `vm` (no CommonJS export).
+
+### MIT License (applies to all three)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

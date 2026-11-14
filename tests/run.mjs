@@ -858,6 +858,293 @@ test('salary: negative amounts rejected', () => {
   assert.throws(() => sc.annualToMonthly(-100), /cannot be negative/);
 });
 
+// ---------- qr code generator ----------
+
+const qr = require('../assets/logic/qr-code-generator.js');
+// Load the vendored qrcode-generator lib in a VM (it has no CommonJS export).
+const __qrLibSrc = fs.readFileSync(path.resolve(__wiringDirSafe(), '../assets/vendor/qrcode-generator.js'), 'utf8');
+function __wiringDirSafe() { return path.dirname(fileURLToPath(import.meta.url)); }
+
+test('qr: url validation', () => {
+  assert.equal(qr.validUrl('https://example.com').ok, true);
+  assert.equal(qr.validUrl('example.com').value, 'https://example.com');
+  assert.equal(qr.validUrl('').ok, false);
+  assert.equal(qr.validUrl('ftp://example.com').ok, false);
+  assert.equal(qr.validUrl('https://nodot').ok, false);
+  assert.equal(qr.validUrl('not a url').ok, false);
+});
+
+test('qr: email and phone validation', () => {
+  assert.equal(qr.validEmail('a@b.com').ok, true);
+  assert.equal(qr.validEmail('no-at-sign').ok, false);
+  assert.equal(qr.validEmail('a@b').ok, false);
+  assert.equal(qr.validPhone('+1 555 123 4567').value, '+15551234567');
+  assert.equal(qr.validPhone('5551234567').ok, true);
+  assert.equal(qr.validPhone('123').ok, false);
+  assert.equal(qr.validPhone('abc').ok, false);
+});
+
+test('qr: buildPayload for every type', () => {
+  assert.equal(qr.buildPayload('url', { url: 'example.com' }), 'https://example.com');
+  assert.equal(qr.buildPayload('text', { text: 'hello' }), 'hello');
+  assert.equal(
+    qr.buildPayload('wifi', { ssid: 'MyWiFi', password: 's3cret', security: 'WPA' }),
+    'WIFI:T:WPA;S:MyWiFi;P:s3cret;;'
+  );
+  assert.equal(
+    qr.buildPayload('wifi', { ssid: 'Net;work', password: 'p:ss', security: 'WEP', hidden: true }),
+    'WIFI:T:WEP;S:Net\\;work;P:p\\:ss;H:true;;'
+  );
+  assert.equal(qr.buildPayload('wifi', { ssid: 'OpenNet', security: 'nopass' }), 'WIFI:T:nopass;S:OpenNet;P:;;');
+  assert.equal(qr.buildPayload('email', { email: 'a@b.com' }), 'mailto:a@b.com');
+  assert.equal(
+    qr.buildPayload('email', { email: 'a@b.com', subject: 'Hi there', body: 'Hello!' }),
+    'mailto:a@b.com?subject=Hi%20there&body=Hello!'
+  );
+  assert.equal(qr.buildPayload('tel', { phone: '+44 20 7946 0958' }), 'tel:+442079460958');
+  assert.equal(qr.buildPayload('sms', { phone: '5551234567', message: 'Hi' }), 'SMSTO:5551234567:Hi');
+});
+
+test('qr: buildPayload rejects bad input', () => {
+  assert.throws(() => qr.buildPayload('url', { url: '' }), /Enter a URL/);
+  assert.throws(() => qr.buildPayload('text', { text: '   ' }), /Enter some text/);
+  assert.throws(() => qr.buildPayload('wifi', { ssid: '', password: 'x' }), /SSID/);
+  assert.throws(() => qr.buildPayload('wifi', { ssid: 'N', security: 'WPA' }), /password/);
+  assert.throws(() => qr.buildPayload('wifi', { ssid: 'N', password: 'x', security: 'WPA3' }), /security type/);
+  assert.throws(() => qr.buildPayload('email', { email: 'bad' }), /email address/);
+  assert.throws(() => qr.buildPayload('tel', { phone: '12' }), /phone number/);
+  assert.throws(() => qr.buildPayload('bogus', {}), /Unknown QR code type/);
+  assert.throws(() => qr.buildPayload('text', { text: 'x'.repeat(3000) }), /too much data/);
+  assert.throws(() => qr.validateEcLevel('X'), /error-correction/);
+  assert.equal(qr.validateEcLevel('h'), 'H');
+});
+
+test('qr: real library renders a scannable-shaped code', () => {
+  const vm = require('node:vm');
+  const ctx = { console };
+  vm.createContext(ctx);
+  vm.runInContext(__qrLibSrc, ctx);
+  assert.equal(typeof ctx.qrcode, 'function');
+  const code = qr.createQr(ctx.qrcode, 'https://example.com', 'M');
+  assert.equal(code.count, 25); // version 1, 21 + 4*1
+  assert.equal(code.isDark(0, 0), true); // finder pattern corner is dark
+  assert.equal(typeof code.isDark(12, 12), 'boolean');
+  const svg = qr.renderSvg(code, 256, '#000000', '#ffffff');
+  assert.ok(svg.startsWith('<svg '));
+  assert.ok(svg.includes('viewBox="0 0 256 256"'));
+  const rects = (svg.match(/<rect/g) || []).length;
+  assert.ok(rects > 100, 'dark modules drawn, got ' + rects);
+  assert.ok(svg.endsWith('</svg>'));
+  // quiet zone respected: first dark rect is offset from (0,0)
+  const firstRect = svg.match(/<rect x="([\d.]+)" y="([\d.]+)"/);
+  assert.ok(parseFloat(firstRect[1]) > 0 && parseFloat(firstRect[2]) > 0);
+  // canvas drawing with a stub context
+  let filled = 0;
+  const stubCtx = { fillStyle: '', fillRect() { filled++; } };
+  qr.drawToCanvas(code, stubCtx, 512, '#000000', '#ffffff');
+  assert.ok(filled > 100, 'canvas modules drawn, got ' + filled);
+  assert.throws(() => qr.createQr(null, 'x', 'M'), /QR engine failed to load/);
+  assert.throws(() => qr.renderSvg(null, 256), /Invalid QR code/);
+  assert.ok(/\.png$/.test(qr.buildDownloadName('png')));
+  assert.ok(/\.svg$/.test(qr.buildDownloadName('svg')));
+  assert.equal(qr.byteLength('héllo'), 6);
+});
+
+// ---------- pdf splitter ----------
+
+const sp = require('../assets/logic/pdf-splitter.js');
+
+test('pdf splitter: page-spec parsing', () => {
+  assert.deepEqual(sp.parsePageSpec('1-3, 5', 10), [1, 2, 3, 5]);
+  assert.deepEqual(sp.parsePageSpec('8-', 10), [8, 9, 10]);
+  assert.deepEqual(sp.parsePageSpec('all', 3), [1, 2, 3]);
+  assert.deepEqual(sp.parsePageSpec('odd', 5), [1, 3, 5]);
+  assert.deepEqual(sp.parsePageSpec('even', 5), [2, 4]);
+  assert.deepEqual(sp.parsePageSpec('5, 1-3, 3', 10), [1, 2, 3, 5]); // sorted + deduped
+  assert.deepEqual(sp.parsePageSpec('ALL', 2), [1, 2]);
+  assert.deepEqual(sp.parseRanges('1-3, 5, 7-8', 10), [[1, 3], [5, 5], [7, 8]]);
+  assert.equal(sp.describeRange([1, 3]), '1-3');
+  assert.equal(sp.describeRange([5, 5]), '5');
+});
+
+test('pdf splitter: page-spec errors', () => {
+  assert.throws(() => sp.parsePageSpec('', 10), /Enter the pages/);
+  assert.throws(() => sp.parsePageSpec('0', 10), /start at 1/);
+  assert.throws(() => sp.parsePageSpec('11', 10), /does not exist/);
+  assert.throws(() => sp.parsePageSpec('5-2', 10), /backwards/);
+  assert.throws(() => sp.parsePageSpec('1-99', 10), /does not exist/);
+  assert.throws(() => sp.parsePageSpec('abc', 10), /Could not understand/);
+  assert.throws(() => sp.parsePageSpec('1,,3', 10), /stray comma/);
+  assert.throws(() => sp.parsePageSpec('1', 0), /no pages/);
+});
+
+test('pdf splitter: names and file checks', () => {
+  assert.equal(sp.buildOutputName('report.pdf', 'pages-1-3'), 'report-pages-1-3.pdf');
+  assert.equal(sp.buildOutputName('my file!.pdf', 'page-2'), 'my-file-page-2.pdf');
+  assert.equal(sp.isPdfFile({ name: 'a.pdf', type: '' }), true);
+  assert.equal(sp.isPdfFile({ name: 'a.png', type: 'image/png' }), false);
+  assert.equal(sp.formatBytes(1536), '1.5 KB');
+  assert.equal(sp.MAX_FILE_BYTES, 50 * 1024 * 1024);
+});
+
+async function __makePdf(n) {
+  const doc = await PDFLib.PDFDocument.create();
+  for (let i = 0; i < n; i++) doc.addPage([200, 200]);
+  return doc.save();
+}
+
+test('pdf splitter: extract + burst round-trip with real pdf-lib', async () => {
+  const src = await __makePdf(5);
+  assert.equal(await sp.getPageCount(src, PDFLib), 5);
+  const extracted = await sp.extractPages(src, [2, 4], PDFLib);
+  assert.equal((await PDFLib.PDFDocument.load(extracted)).getPageCount(), 2);
+  const single = await sp.extractPages(src, [3], PDFLib);
+  assert.equal((await PDFLib.PDFDocument.load(single)).getPageCount(), 1);
+  const burst = await sp.burstPages(src, PDFLib);
+  assert.equal(burst.length, 5);
+  assert.deepEqual(burst.map((p) => p.page), [1, 2, 3, 4, 5]);
+  for (const part of burst) {
+    assert.equal((await PDFLib.PDFDocument.load(part.bytes)).getPageCount(), 1);
+  }
+});
+
+test('pdf splitter: rejects bad input gracefully', async () => {
+  const good = await __makePdf(2);
+  await assert.rejects(sp.getPageCount(new Uint8Array([1, 2, 3, 4]), PDFLib), /not a valid PDF/);
+  await assert.rejects(sp.extractPages(good, [], PDFLib), /at least one page/);
+  await assert.rejects(sp.extractPages(good, [1], null), /PDF engine failed to load/);
+  await assert.rejects(sp.burstPages(new Uint8Array([9, 9, 9, 9]), PDFLib), /not a valid PDF/);
+});
+
+// ---------- dynamic wiring: execute each new page's inline script in a VM ----------
+// The static wiring test below proves every window.* reference resolves.
+// These tests go further: they run the real inline <script> of each new
+// page against stubbed DOM elements, so a broken handler or a generate()
+// that throws on load fails the suite.
+
+const __vm = require('node:vm');
+
+function __stubEl(id) {
+  const listeners = {};
+  return {
+    id, value: '', checked: false, hidden: false, style: {}, classList: { add() {}, remove() {}, toggle() {} },
+    innerHTML: '', textContent: '', children: [],
+    addEventListener(evt, fn) { (listeners[evt] = listeners[evt] || []).push(fn); },
+    __listeners: listeners,
+    __fire(evt, arg) { (listeners[evt] || []).forEach((fn) => fn(arg)); },
+    appendChild(child) { this.children.push(child); return child; },
+    click() { this.__fire('click'); },
+    getContext() { return { fillStyle: '', fillRect() {} }; },
+    toBlob(cb) { cb(null); },
+  };
+}
+
+function __stubDocument(ids, radios) {
+  const els = {};
+  ids.forEach((id) => { els[id] = __stubEl(id); });
+  return {
+    __els: els,
+    getElementById(id) { return els[id] || null; },
+    getElementsByName(name) { return radios[name] || []; },
+    createElement(tag) { return __stubEl(tag); },
+    addEventListener() {},
+  };
+}
+
+function __inlineScript(pageRel, marker) {
+  const html = fs.readFileSync(path.resolve(__wiringDirSafe(), '..', pageRel), 'utf8');
+  const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)]
+    .filter((m) => !/\bsrc=/.test(m[1]) && !/application\/ld\+json/.test(m[1]))
+    .map((m) => m[2]);
+  const found = scripts.find((s) => s.includes(marker));
+  assert.ok(found, 'inline script not found in ' + pageRel);
+  return found;
+}
+
+test('wiring dynamic: qr page generates a code on load', () => {
+  const doc = __stubDocument(
+    ['tool-error', 'qr-status', 'qr-output', 'qr-preview', 'qr-payload', 'qr-url', 'qr-text',
+     'wifi-ssid', 'wifi-password', 'wifi-security', 'wifi-hidden', 'qr-email', 'qr-subject',
+     'qr-body', 'qr-phone', 'sms-phone', 'sms-message', 'qr-size', 'qr-ec', 'qr-dark',
+     'qr-light', 'qr-generate', 'qr-clear', 'qr-download-png', 'qr-download-svg', 'qr-copy'],
+    { 'qr-type': [Object.assign(__stubEl('r-url'), { value: 'url', checked: true }),
+                  Object.assign(__stubEl('r-text'), { value: 'text', checked: false })] }
+  );
+  doc.__els['qr-url'].value = 'https://example.com';
+  doc.__els['qr-size'].value = '512';
+  doc.__els['qr-ec'].value = 'M';
+  doc.__els['qr-dark'].value = '#000000';
+  doc.__els['qr-light'].value = '#ffffff';
+  const sandbox = {
+    window: {}, document: doc, console,
+    URL: { createObjectURL: () => 'blob:x', revokeObjectURL() {} },
+    Blob: globalThis.Blob,
+  };
+  sandbox.window = sandbox;
+  sandbox.window.QuickTools = {
+    qrCodeGenerator: qr,
+    hideError(box) { box.style.display = 'none'; box.textContent = ''; },
+    showError(box, msg) { box.style.display = ''; box.textContent = msg; },
+    downloadBlob() {}, copyText: () => Promise.resolve(), flashButton() {},
+  };
+  __vm.createContext(sandbox);
+  __vm.runInContext(__qrLibSrc, sandbox);
+  __vm.runInContext(__inlineScript('tools/qr-code-generator/index.html', 'QR Code Generator UI'), sandbox);
+  // generate() runs on load: preview must hold an SVG and no error shown.
+  assert.ok(doc.__els['qr-preview'].innerHTML.includes('<svg'), 'preview holds an SVG code');
+  assert.equal(doc.__els['tool-error'].textContent, '');
+  assert.ok(doc.__els['qr-payload'].textContent.includes('https://example.com'));
+  assert.ok(doc.__els['qr-generate'].__listeners.click.length >= 1, 'Generate handler attached');
+  assert.ok(doc.__els['qr-download-png'].__listeners.click.length >= 1, 'PNG handler attached');
+  assert.ok(doc.__els['qr-download-svg'].__listeners.click.length >= 1, 'SVG handler attached');
+  // Typing an invalid URL must show an error, not throw.
+  doc.__els['qr-url'].value = 'not a url';
+  doc.__els['qr-url'].__fire('input');
+  assert.ok(doc.__els['tool-error'].textContent.length > 0, 'invalid URL surfaces an error');
+});
+
+test('wiring dynamic: pdf splitter page loads a file and splits it', async () => {
+  const src = await __makePdf(4);
+  const doc = __stubDocument(
+    ['tool-error', 'dz', 'file-input', 'sp-fileinfo', 'sp-status', 'sp-downloads', 'opts',
+     'sp-range', 'sp-all', 'sp-odd', 'sp-even', 'sp-clear', 'sp-go'],
+    { 'sp-mode': [Object.assign(__stubEl('m-extract'), { value: 'extract', checked: true }),
+                  Object.assign(__stubEl('m-burst'), { value: 'burst', checked: false })] }
+  );
+  let dropCb = null;
+  const sandbox = {
+    window: {}, document: doc, console,
+    URL: { createObjectURL: () => 'blob:x', revokeObjectURL() {} },
+    Blob: globalThis.Blob,
+  };
+  sandbox.window = sandbox;
+  sandbox.window.PDFLib = PDFLib;
+  sandbox.window.QuickTools = {
+    pdfSplitter: sp,
+    hideError(box) { box.style.display = 'none'; box.textContent = ''; },
+    showError(box, msg) { box.style.display = ''; box.textContent = msg; },
+    setupDropZone(zone, input, cb) { dropCb = cb; },
+    readFileAsArrayBuffer: () => Promise.resolve(src.buffer.slice(src.byteOffset, src.byteOffset + src.byteLength)),
+  };
+  __vm.createContext(sandbox);
+  __vm.runInContext(__inlineScript('tools/pdf-splitter/index.html', 'PDF Splitter UI'), sandbox);
+  assert.ok(typeof dropCb === 'function', 'drop zone wired');
+  assert.ok(doc.__els['sp-go'].__listeners.click.length >= 1, 'Split handler attached');
+  dropCb([{ name: 'report.pdf', type: 'application/pdf', size: src.length }]);
+  for (let i = 0; i < 10; i++) await new Promise((r) => setImmediate(r));
+  assert.ok(doc.__els['sp-fileinfo'].textContent.includes('4 pages'), 'file info shows page count, got: ' + doc.__els['sp-fileinfo'].textContent);
+  assert.equal(doc.__els['opts'].style.display, '');
+  doc.__els['sp-range'].value = '1-2, 4';
+  doc.__els['sp-go'].__fire('click');
+  for (let i = 0; i < 10; i++) await new Promise((r) => setImmediate(r));
+  assert.ok(doc.__els['sp-status'].textContent.includes('Done'), 'split completed, status: ' + doc.__els['sp-status'].textContent);
+  assert.equal(doc.__els['sp-downloads'].children.length, 1, 'one download link produced');
+  // Invalid range must surface an error, not throw.
+  doc.__els['sp-range'].value = '99';
+  doc.__els['sp-go'].__fire('click');
+  assert.ok(doc.__els['tool-error'].textContent.includes('does not exist'), 'bad range surfaces an error');
+});
+
 // ---------- wiring smoke test: HTML <-> JS namespace ----------
 // Regression test for the Nov 14 2026 brand rename, which renamed the
 // window.* call sites in HTML (window.QuickTools -> window.MaxTools) while
