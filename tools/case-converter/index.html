@@ -225,7 +225,7 @@
     (function () {
       var input = document.getElementById('cv-input');
       var output = document.getElementById('cv-output');
-      var cc = window.MaxTools.caseConverter;
+      var cc = window.QuickTools.caseConverter;
       function convert(mode) {
         try {
           var result = cc[mode](input.value);
@@ -242,14 +242,14 @@
       document.getElementById('cv-copy').addEventListener('click', function (e) {
         var v = output.dataset.value || '';
         if (!v) return;
-        window.MaxTools.copyText(v).then(function () {
-          window.MaxTools.flashButton(e.currentTarget);
+        window.QuickTools.copyText(v).then(function () {
+          window.QuickTools.flashButton(e.currentTarget);
         });
       });
       document.getElementById('cv-download').addEventListener('click', function () {
         var v = output.dataset.value || '';
         if (!v) return;
-        window.MaxTools.downloadText('converted-text.txt', v);
+        window.QuickTools.downloadText('converted-text.txt', v);
       });
       document.getElementById('cv-clear').addEventListener('click', function () {
         input.value = '';

@@ -226,7 +226,7 @@
         bytes: document.getElementById('c-bytes')
       };
       function update() {
-        var r = window.MaxTools.characterCounter.analyze(input.value);
+        var r = window.QuickTools.characterCounter.analyze(input.value);
         els.chars.textContent = r.characters.toLocaleString();
         els.charsNs.textContent = r.charactersNoSpaces.toLocaleString();
         els.words.textContent = r.words.toLocaleString();
@@ -238,12 +238,12 @@
         input.value = ''; update(); input.focus();
       });
       document.getElementById('cc-copy').addEventListener('click', function (e) {
-        var r = window.MaxTools.characterCounter.analyze(input.value);
+        var r = window.QuickTools.characterCounter.analyze(input.value);
         var summary = 'Characters: ' + r.characters + ' (' + r.charactersNoSpaces +
           ' excl. spaces), Words: ' + r.words + ', Lines: ' + r.lines +
           ', UTF-8 bytes: ' + r.utf8Bytes;
-        window.MaxTools.copyText(summary).then(function () {
-          window.MaxTools.flashButton(e.currentTarget);
+        window.QuickTools.copyText(summary).then(function () {
+          window.QuickTools.flashButton(e.currentTarget);
         });
       });
       update();

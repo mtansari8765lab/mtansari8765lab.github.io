@@ -230,26 +230,26 @@
         speaking: document.getElementById('st-speaking')
       };
       function update() {
-        var r = window.MaxTools.wordCounter.analyze(input.value);
+        var r = window.QuickTools.wordCounter.analyze(input.value);
         els.words.textContent = r.words.toLocaleString();
         els.chars.textContent = r.characters.toLocaleString();
         els.charsNs.textContent = r.charactersNoSpaces.toLocaleString();
         els.sentences.textContent = r.sentences.toLocaleString();
         els.paragraphs.textContent = r.paragraphs.toLocaleString();
-        els.reading.textContent = window.MaxTools.formatDuration(r.readingSeconds);
-        els.speaking.textContent = window.MaxTools.formatDuration(r.speakingSeconds);
+        els.reading.textContent = window.QuickTools.formatDuration(r.readingSeconds);
+        els.speaking.textContent = window.QuickTools.formatDuration(r.speakingSeconds);
       }
       input.addEventListener('input', update);
       document.getElementById('wc-clear').addEventListener('click', function () {
         input.value = ''; update(); input.focus();
       });
       document.getElementById('wc-copy').addEventListener('click', function (e) {
-        var r = window.MaxTools.wordCounter.analyze(input.value);
+        var r = window.QuickTools.wordCounter.analyze(input.value);
         var summary = 'Words: ' + r.words + ', Characters: ' + r.characters +
           ' (' + r.charactersNoSpaces + ' excl. spaces), Sentences: ' + r.sentences +
           ', Paragraphs: ' + r.paragraphs;
-        window.MaxTools.copyText(summary).then(function () {
-          window.MaxTools.flashButton(e.currentTarget);
+        window.QuickTools.copyText(summary).then(function () {
+          window.QuickTools.flashButton(e.currentTarget);
         });
       });
       update();

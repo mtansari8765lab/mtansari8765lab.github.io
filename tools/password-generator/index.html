@@ -230,7 +230,7 @@
   <script src="../../assets/main.js"></script>
   <script>
     (function () {
-      var pg = window.MaxTools.passwordGenerator;
+      var pg = window.QuickTools.passwordGenerator;
       var ui = document.getElementById('pg-ui');
       var errBox = document.getElementById('pg-error');
       var lengthInput = document.getElementById('pg-length');
@@ -276,8 +276,8 @@
       document.getElementById('pg-copy').addEventListener('click', function (e) {
         var v = output.dataset.value || '';
         if (!v) return;
-        window.MaxTools.copyText(v).then(function () {
-          window.MaxTools.flashButton(e.currentTarget);
+        window.QuickTools.copyText(v).then(function () {
+          window.QuickTools.flashButton(e.currentTarget);
         });
       });
 

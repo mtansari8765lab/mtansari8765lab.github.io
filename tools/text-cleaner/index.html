@@ -257,7 +257,7 @@ Bold text</pre>
         return o;
       }
       function update() {
-        var r = window.MaxTools.textCleaner.clean(input.value, readOpts());
+        var r = window.QuickTools.textCleaner.clean(input.value, readOpts());
         if (r.output === '') {
           output.innerHTML = '<span style="color:var(--muted)">Cleaned text will appear here.</span>';
         } else {
@@ -273,14 +273,14 @@ Bold text</pre>
       document.getElementById('tc-copy').addEventListener('click', function (e) {
         var v = output.dataset.value || '';
         if (!v) return;
-        window.MaxTools.copyText(v).then(function () {
-          window.MaxTools.flashButton(e.currentTarget);
+        window.QuickTools.copyText(v).then(function () {
+          window.QuickTools.flashButton(e.currentTarget);
         });
       });
       document.getElementById('tc-download').addEventListener('click', function () {
         var v = output.dataset.value || '';
         if (!v) return;
-        window.MaxTools.downloadText('cleaned-text.txt', v);
+        window.QuickTools.downloadText('cleaned-text.txt', v);
       });
       document.getElementById('tc-clear').addEventListener('click', function () {
         input.value = ''; update(); input.focus();

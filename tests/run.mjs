@@ -2,6 +2,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const require = createRequire(import.meta.url);
 const wc = require('../assets/logic/word-counter.js');
@@ -853,4 +856,169 @@ test('compound: growth table reaches the future value for fractional years', () 
 test('salary: negative amounts rejected', () => {
   assert.throws(() => sc.hourlyToAnnual(-5, 40), /cannot be negative/);
   assert.throws(() => sc.annualToMonthly(-100), /cannot be negative/);
+});
+
+// ---------- wiring smoke test: HTML <-> JS namespace ----------
+// Regression test for the Nov 14 2026 brand rename, which renamed the
+// window.* call sites in HTML (window.QuickTools -> window.MaxTools) while
+// the .js modules still register on window.QuickTools. Every tool page threw
+// on load, yet this suite passed 109/109 because it never executes page JS.
+// This test statically cross-checks every window.* reference in each page's
+// inline scripts against the definitions in the local JS files that page
+// loads, so a namespace mismatch fails loudly instead of shipping silent.
+
+const __wiringDir = path.dirname(fileURLToPath(import.meta.url));
+const WIRING_SITE = path.resolve(__wiringDir, '..');
+
+// Browser/third-party globals, not defined by our own JS.
+const WIRING_EXCLUDED = new Set([
+  'gtag', 'dataLayer', 'location', 'PDFLib',
+  'navigator', 'localStorage', 'sessionStorage', 'console',
+]);
+
+function wiringWalkHtml(dir, out = []) {
+  for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, ent.name);
+    if (ent.isDirectory()) wiringWalkHtml(p, out);
+    else if (ent.name.endsWith('.html')) out.push(p);
+  }
+  return out;
+}
+
+function wiringApiKeys(js) {
+  const m = /(?:var|const|let)\s+api\s*=\s*\{/.exec(js);
+  if (!m) return null;
+  let i = m.index + m[0].length - 1;
+  const start = i;
+  let depth = 0;
+  let str = null;
+  for (; i < js.length; i++) {
+    const ch = js[i];
+    if (str) {
+      if (ch === '\\') { i++; continue; }
+      if (ch === str) str = null;
+      continue;
+    }
+    if (ch === "'" || ch === '"' || ch === '`') { str = ch; continue; }
+    if (ch === '{') depth++;
+    else if (ch === '}') { depth--; if (depth === 0) break; }
+  }
+  const body = js.slice(start + 1, i);
+  const keys = new Set();
+  for (const km of body.matchAll(/([A-Za-z_$][\w$]*)\s*:/g)) keys.add(km[1]);
+  for (const part of body.split(',')) {
+    const sm = /^\s*([A-Za-z_$][\w$]*)\s*$/.exec(part);
+    if (sm) keys.add(sm[1]);
+  }
+  return keys;
+}
+
+function wiringParseJs(js) {
+  const namespaces = new Set();
+  const members = new Map();
+  for (const m of js.matchAll(/window\.([A-Za-z_$][\w$]*)\s*=/g)) namespaces.add(m[1]);
+  const addMember = (ns, mem) => {
+    if (!members.has(ns)) members.set(ns, new Set());
+    members.get(ns).add(mem);
+  };
+  for (const m of js.matchAll(/window\.([A-Za-z_$][\w$]*)\.([A-Za-z_$][\w$]*)\s*=/g)) addMember(m[1], m[2]);
+  for (const m of js.matchAll(/window\.([A-Za-z_$][\w$]*)\[['"]([^'"]+)['"]\]\s*=/g)) addMember(m[1], m[2]);
+  return { namespaces, members, apiKeys: wiringApiKeys(js) };
+}
+
+function wiringChainSegments(rest) {
+  const segs = [];
+  for (const m of rest.matchAll(/\.([A-Za-z_$][\w$]*)|\[['"]([^'"]+)['"]\]/g)) {
+    segs.push(m[1] || m[2]);
+  }
+  return segs;
+}
+
+test('wiring: every window.* reference in page HTML resolves to a loaded JS definition', () => {
+  const failures = [];
+  let totalRefs = 0;
+  for (const page of wiringWalkHtml(WIRING_SITE)) {
+    const html = fs.readFileSync(page, 'utf8');
+    const rel = path.relative(WIRING_SITE, page).split(path.sep).join('/');
+    const namespaces = new Set();
+    const members = new Map();
+    const apiByMember = new Map();
+    for (const sm of html.matchAll(/<script[^>]*\bsrc=["']([^"']+)["']/g)) {
+      const src = sm[1];
+      if (/^(https?:)?\/\//.test(src)) continue;
+      const jsPath = path.resolve(path.dirname(page), src);
+      if (!fs.existsSync(jsPath)) {
+        failures.push(`${rel}: loads missing local script ${src}`);
+        continue;
+      }
+      const d = wiringParseJs(fs.readFileSync(jsPath, 'utf8'));
+      for (const ns of d.namespaces) namespaces.add(ns);
+      for (const [ns, mems] of d.members) {
+        if (!members.has(ns)) members.set(ns, new Set());
+        for (const mem of mems) {
+          members.get(ns).add(mem);
+          if (d.apiKeys) apiByMember.set(ns + '.' + mem, d.apiKeys);
+        }
+      }
+    }
+    for (const bm of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)) {
+      const attrs = bm[1];
+      const code = bm[2];
+      if (/\bsrc=/.test(attrs)) continue;
+      if (/type=["']application\/ld\+json["']/.test(attrs)) continue;
+      // Direct window.* chains.
+      for (const cm of code.matchAll(/window\.([A-Za-z_$][\w$]*)((?:\.[A-Za-z_$][\w$]*|\[['"][^'"]+['"]\])*)/g)) {
+        const ns = cm[1];
+        if (WIRING_EXCLUDED.has(ns)) continue;
+        totalRefs++;
+        const segs = wiringChainSegments(cm[2]);
+        if (!namespaces.has(ns)) {
+          failures.push(`${rel}: window.${ns} is not defined by any script this page loads (reference: window.${ns}${cm[2]})`);
+          continue;
+        }
+        if (segs.length >= 1 && !(members.get(ns) || new Set()).has(segs[0])) {
+          failures.push(`${rel}: window.${ns}.${segs[0]} is not defined by any script this page loads`);
+          continue;
+        }
+        if (segs.length >= 2) {
+          const api = apiByMember.get(ns + '.' + segs[0]);
+          if (api && !api.has(segs[1])) {
+            failures.push(`${rel}: window.${ns}.${segs[0]}.${segs[1]} is not in that module's api (known: ${[...api].join(', ')})`);
+          }
+        }
+      }
+      // Aliases: var X = window.Ns(.member)? — excluding call results.
+      const aliases = new Map();
+      for (const am of code.matchAll(/([A-Za-z_$][\w$]*)\s*=\s*window\.([A-Za-z_$][\w$]*)((?:\.[A-Za-z_$][\w$]*|\[['"][^'"]+['"]\])*)/g)) {
+        const after = code[am.index + am[0].length];
+        if (after === '(') continue; // call result, not an alias
+        const ns = am[2];
+        if (WIRING_EXCLUDED.has(ns)) continue;
+        const segs = wiringChainSegments(am[3]);
+        if (segs.length > 1) continue; // deeper value, not a resolvable alias
+        aliases.set(am[1], { ns, member: segs[0] || null });
+      }
+      for (const [v, target] of aliases) {
+        const esc = v.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const uses = [];
+        for (const um of code.matchAll(new RegExp('\\b' + esc + '\\.([A-Za-z_$][\\w$]*)', 'g'))) uses.push(um[1]);
+        for (const um of code.matchAll(new RegExp('\\b' + esc + "\\[['\"]([^'\"]+)['\"]\\]", 'g'))) uses.push(um[1]);
+        for (const sub of uses) {
+          totalRefs++;
+          if (target.member === null) {
+            if (!(members.get(target.ns) || new Set()).has(sub)) {
+              failures.push(`${rel}: alias ${v} (= window.${target.ns}) uses .${sub}, which is not defined on window.${target.ns} by any script this page loads`);
+            }
+          } else {
+            const api = apiByMember.get(target.ns + '.' + target.member);
+            if (api && !api.has(sub)) {
+              failures.push(`${rel}: alias ${v} (= window.${target.ns}.${target.member}) uses .${sub}, which is not in that module's api (known: ${[...api].join(', ')})`);
+            }
+          }
+        }
+      }
+    }
+  }
+  assert.ok(totalRefs > 0, 'wiring test found no window.* references — the scan itself is broken');
+  assert.equal(failures.length, 0, `unresolved window.* references (${failures.length}):\n` + failures.join('\n'));
 });
