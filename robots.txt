@@ -1,4 +1,4 @@
-# QuickTools + TradeCalc live on this domain — all search engines welcome.
+# MaxTools + Dr.Building live on this domain — all search engines welcome.
 User-agent: *
 Allow: /
 
