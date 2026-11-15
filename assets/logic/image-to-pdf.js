@@ -42,7 +42,7 @@
     }
     opts = opts || {};
     var sizeName = String(opts.pageSize || 'letter').toLowerCase();
-    var title = String(opts.title == null ? 'QuickTools images' : opts.title);
+    var title = String(opts.title == null ? 'MaxTools images' : opts.title);
     var enc = asciiEncoder();
 
     pages.forEach(validatePageInput);
@@ -111,7 +111,7 @@
       offsets.map(function (o) { return pad10(o) + ' 00000 n \n'; }).join(''));
     var trailer = enc('trailer\n<< /Size ' + (maxObj + 1) +
       ' /Root 1 0 R /Info << /Title (' + escapePdfString(title) + ')' +
-      ' /Producer (QuickTools) >> >>\nstartxref\n' + xrefPos + '\n%%EOF');
+      ' /Producer (MaxTools) >> >>\nstartxref\n' + xrefPos + '\n%%EOF');
     parts.push(xref, trailer);
     return concatBytes.apply(null, parts);
   }
