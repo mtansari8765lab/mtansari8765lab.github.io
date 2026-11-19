@@ -1,4 +1,4 @@
-# MaxTools + Dr.Building live on this domain — all search engines welcome.
+# MaxTools, Dr.Building, SteadyCents + Findaro live on this domain — all search engines welcome.
 User-agent: *
 Allow: /
 
@@ -35,3 +35,5 @@ Allow: /
 
 Sitemap: https://mtansari8765lab.github.io/sitemap.xml
 Sitemap: https://mtansari8765lab.github.io/trade-calc/sitemap.xml
+Sitemap: https://mtansari8765lab.github.io/steadycents/sitemap.xml
+Sitemap: https://mtansari8765lab.github.io/findaro/sitemap.xml
