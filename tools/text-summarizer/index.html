@@ -38,27 +38,27 @@
       {
         "@type": "Question",
         "name": "How does this text summarizer work?",
-        "acceptedAnswer": { "@type": "Answer", "text": "It is an extractive, frequency-based summarizer. It splits your text into sentences, counts how often each significant word appears in the whole document, scores every sentence by the frequencies of the words it contains, and keeps the top-scoring sentences in their original order. No machine learning and no AI model are involved — nothing is generated or reworded." }
+        "acceptedAnswer": { "@type": "Answer", "text": "It is an extractive, frequency-based summarizer. It splits your text into sentences, counts how often each significant word appears in the whole document, scores every sentence by the frequencies of the words it contains, and keeps the top-scoring sentences in their original order. No machine learning and no AI model are involved." }
       },
       {
         "@type": "Question",
         "name": "Is this an AI summarizer?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. This tool uses classic extractive summarization: word-frequency scoring with stopword removal and length normalization. It cannot understand meaning the way a large language model does, which is exactly why its output is always a faithful subset of your original sentences — it never invents facts." }
+        "acceptedAnswer": { "@type": "Answer", "text": "No. This tool uses classic extractive summarization: word-frequency scoring with stopword removal and length normalization. It cannot understand meaning the way a large language model does — which is exactly why its output is always a faithful subset of your original sentences and never invents facts." }
       },
       {
         "@type": "Question",
         "name": "What is the difference between sentences mode and percent mode?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Sentences mode keeps an exact number of sentences (e.g. the 3 most important). Percent mode keeps that share of the total — 25% of a 20-sentence article keeps 5 sentences. Percent mode adapts automatically to document length." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Sentences mode keeps an exact number of sentences. Percent mode keeps that share of the total — 25% of a 20-sentence article keeps 5 sentences — and adapts automatically to document length." }
       },
       {
         "@type": "Question",
         "name": "Why does the summary keep sentences in their original order?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Reading order matters for comprehension. The tool ranks sentences by importance to choose which ones survive, then restores document order so the summary still reads like a condensed version of your text instead of a shuffled pile of highlights." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Reading order matters for comprehension. The tool ranks sentences by importance to choose which survive, then restores document order so the summary reads like a condensed version of your text." }
       },
       {
         "@type": "Question",
         "name": "What text works best with extractive summarization?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Factual, information-dense writing: articles, reports, meeting notes, research summaries. It works poorly on very short texts (under ~5 sentences there is little to compress), dialogue, poetry, and texts where the key point is implied rather than stated outright." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Factual, information-dense writing: articles, reports, meeting notes, research summaries. It works poorly on very short texts, dialogue, poetry, and texts where the key point is implied rather than stated." }
       },
       {
         "@type": "Question",

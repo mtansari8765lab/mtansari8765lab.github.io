@@ -41,12 +41,12 @@
       {
         "@type": "Question",
         "name": "In what order are the cleaning operations applied?",
-        "acceptedAnswer": { "@type": "Answer", "text": "In a fixed order: strip HTML, then remove line breaks, remove empty lines, trim lines, remove duplicates, and finally collapse whitespace. The order matters — trimming runs before duplicate detection, so lines differing only by trailing spaces are caught as duplicates." }
+        "acceptedAnswer": { "@type": "Answer", "text": "In a fixed order: strip HTML → remove line breaks → remove empty lines → trim lines → remove duplicates → collapse whitespace. The order matters — for example, trimming happens before duplicate detection, so lines that differ only by trailing spaces are caught as duplicates." }
       },
       {
         "@type": "Question",
         "name": "Will it remove duplicate lines that differ only by spaces?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes, as long as Trim each line is also ticked (it is on by default). Duplicate detection is exact-match, but trimming runs first in the operation order, so 'apple ' and 'apple' are treated as the same line and only the first is kept." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, as long as \"Trim each line\" is also ticked (it is on by default). Duplicate detection is exact-match, but trimming runs first in the operation order, so \"apple \" and \"apple\" are treated as the same line and only the first is kept." }
       },
       {
         "@type": "Question",
