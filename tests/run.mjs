@@ -12,6 +12,7 @@ const cc = require('../assets/logic/character-counter.js');
 const cs = require('../assets/logic/case-converter.js');
 const tc = require('../assets/logic/text-cleaner.js');
 const pw = require('../assets/logic/password-generator.js');
+const yvd = require('../assets/logic/youtube-video-download.js');
 
 // ---------- word counter ----------
 
@@ -1016,6 +1017,48 @@ test('pdf splitter: rejects bad input gracefully', async () => {
   await assert.rejects(sp.burstPages(new Uint8Array([9, 9, 9, 9]), PDFLib), /not a valid PDF/);
 });
 
+// ---------- youtube video download guide: URL parsing only, never a fetch ----------
+const YT_ID = 'dQw4w9WgXcQ';
+
+test('youtube: watch URL with extra params normalizes', () => {
+  const r = yvd.parseYouTubeUrl('https://www.youtube.com/watch?v=' + YT_ID + '&t=42s&list=PLx');
+  assert.equal(r.ok, true);
+  assert.equal(r.videoId, YT_ID);
+  assert.equal(r.kind, 'video');
+  assert.equal(r.watchUrl, 'https://www.youtube.com/watch?v=' + YT_ID);
+  assert.equal(r.studioUrl, 'https://studio.youtube.com/video/' + YT_ID + '/edit');
+});
+
+test('youtube: youtu.be short link', () => {
+  const r = yvd.parseYouTubeUrl('https://youtu.be/' + YT_ID + '?si=abc');
+  assert.equal(r.ok, true);
+  assert.equal(r.videoId, YT_ID);
+  assert.equal(r.watchUrl, 'https://www.youtube.com/watch?v=' + YT_ID);
+});
+
+test('youtube: shorts, live, embed and music links', () => {
+  assert.equal(yvd.parseYouTubeUrl('https://www.youtube.com/shorts/' + YT_ID).kind, 'short');
+  assert.equal(yvd.parseYouTubeUrl('https://www.youtube.com/live/' + YT_ID).kind, 'live');
+  assert.equal(yvd.parseYouTubeUrl('https://www.youtube.com/embed/' + YT_ID).kind, 'embed');
+  assert.equal(yvd.parseYouTubeUrl('https://music.youtube.com/watch?v=' + YT_ID).videoId, YT_ID);
+  assert.equal(yvd.parseYouTubeUrl('https://m.youtube.com/watch?v=' + YT_ID).videoId, YT_ID);
+});
+
+test('youtube: scheme-less and messy input', () => {
+  assert.equal(yvd.parseYouTubeUrl('www.youtube.com/watch?v=' + YT_ID).ok, true);
+  assert.equal(yvd.parseYouTubeUrl('  https://youtu.be/' + YT_ID + '  ').videoId, YT_ID);
+});
+
+test('youtube: non-video and invalid links rejected', () => {
+  assert.equal(yvd.parseYouTubeUrl('').ok, false);
+  assert.equal(yvd.parseYouTubeUrl('https://www.youtube.com/').ok, false);
+  assert.equal(yvd.parseYouTubeUrl('https://www.youtube.com/@SomeChannel').ok, false);
+  assert.equal(yvd.parseYouTubeUrl('https://www.youtube.com/playlist?list=PLx').ok, false);
+  assert.equal(yvd.parseYouTubeUrl('https://example.com/watch?v=' + YT_ID).ok, false);
+  assert.equal(yvd.parseYouTubeUrl('https://www.youtube.com/watch?v=short').ok, false);
+  assert.equal(yvd.parseYouTubeUrl('not a link at all').ok, false);
+});
+
 // ---------- dynamic wiring: execute each new page's inline script in a VM ----------
 // The static wiring test below proves every window.* reference resolves.
 // These tests go further: they run the real inline <script> of each new
@@ -1101,6 +1144,43 @@ test('wiring dynamic: qr page generates a code on load', () => {
   doc.__els['qr-url'].value = 'not a url';
   doc.__els['qr-url'].__fire('input');
   assert.ok(doc.__els['tool-error'].textContent.length > 0, 'invalid URL surfaces an error');
+});
+
+test('wiring dynamic: youtube guide checks a link and surfaces errors', () => {
+  const doc = __stubDocument(
+    ['tool-error', 'yt-url', 'yt-result', 'yt-kind', 'yt-id', 'yt-watch', 'yt-open',
+     'yt-studio', 'yt-check', 'yt-clear', 'yt-copy'],
+    {}
+  );
+  doc.__els['yt-url'].focus = () => {};
+  const sandbox = {
+    window: {}, document: doc, console,
+    URL: { createObjectURL: () => 'blob:x', revokeObjectURL() {} },
+    Blob: globalThis.Blob,
+  };
+  sandbox.window = sandbox;
+  sandbox.window.QuickTools = {
+    youtubeVideoDownload: yvd,
+    hideError(box) { box.style.display = 'none'; box.textContent = ''; },
+    showError(box, msg) { box.style.display = ''; box.textContent = msg; },
+    copyText: () => Promise.resolve(), flashButton() {},
+  };
+  __vm.createContext(sandbox);
+  __vm.runInContext(__inlineScript('tools/youtube-video-download/index.html', 'YouTube Video Download Guide UI'), sandbox);
+  assert.ok(doc.__els['yt-check'].__listeners.click.length >= 1, 'Check handler attached');
+  // Valid link fills the result block with the canonical URL.
+  doc.__els['yt-url'].value = 'https://youtu.be/dQw4w9WgXcQ';
+  doc.__els['yt-check'].__fire('click');
+  assert.equal(doc.__els['tool-error'].textContent, '');
+  assert.equal(doc.__els['yt-id'].textContent, 'dQw4w9WgXcQ');
+  assert.equal(doc.__els['yt-watch'].href, 'https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+  assert.equal(doc.__els['yt-studio'].href, 'https://studio.youtube.com/video/dQw4w9WgXcQ/edit');
+  assert.equal(doc.__els['yt-result'].style.display, '');
+  // Invalid link shows an error instead of throwing.
+  doc.__els['yt-url'].value = 'https://example.com/watch?v=dQw4w9WgXcQ';
+  doc.__els['yt-check'].__fire('click');
+  assert.ok(doc.__els['tool-error'].textContent.length > 0, 'non-YouTube link surfaces an error');
+  assert.equal(doc.__els['yt-result'].style.display, 'none');
 });
 
 test('wiring dynamic: pdf splitter page loads a file and splits it', async () => {
