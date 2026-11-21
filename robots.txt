@@ -1,4 +1,4 @@
-# MaxTools, Dr.Building, SteadyCents + Findaro live on this domain — all search engines welcome.
+# MaxTools, Dr.Building, Dr.Budget + Dr.Find live on this domain — all search engines welcome.
 User-agent: *
 Allow: /
 
