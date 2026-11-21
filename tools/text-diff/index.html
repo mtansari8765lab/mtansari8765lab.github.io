@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Diff Checker — Compare Two Texts Online Free</title>
+  <meta name="description" content="Compare two texts online free. Paste the original and modified versions to see word-level differences — additions green, deletions red. Nothing uploaded.">
+  <link rel="canonical" href="https://mtansari8765lab.github.io/tools/text-diff/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MaxTools">
+  <meta property="og:title" content="Text Diff Checker — Compare Two Texts Online Free">
+  <meta property="og:description" content="Compare two texts online free. Paste the original and modified versions to see word-level differences — additions green, deletions red. Nothing uploaded.">
+  <meta property="og:url" content="https://mtansari8765lab.github.io/tools/text-diff/">
+  <meta property="og:image" content="https://mtansari8765lab.github.io/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Text Diff Checker — Compare Two Texts Online Free">
+  <meta name="twitter:description" content="Compare two texts online free. Paste the original and modified versions to see word-level differences — additions green, deletions red. Nothing uploaded.">
+  <meta name="twitter:image" content="https://mtansari8765lab.github.io/assets/og-image.png">
+  <link rel="stylesheet" href="../../assets/style.css">
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <style>
+    .diff-cols { display: grid; gap: 1rem; }
+    @media (min-width: 700px) { .diff-cols { grid-template-columns: 1fr 1fr; } }
+    .diff-output { white-space: pre-wrap; word-wrap: break-word; line-height: 1.7; }
+    .diff-add { background: #dcfce7; color: #14532d; border-radius: 3px; padding: 0 2px; }
+    .diff-del { background: #fee2e2; color: #7f1d1d; text-decoration: line-through; border-radius: 3px; padding: 0 2px; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the text diff tool work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It splits both texts into words and finds the longest common subsequence — the longest run of words both versions share in the same order. Words outside that shared run are reported as added (in the modified text only) or removed (in the original only). The comparison uses Hirschberg's algorithm, which finds the same minimal edit set as a full dynamic-programming diff but with far less memory." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my text uploaded anywhere?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The diff runs 100% in your browser with JavaScript. Your text never leaves your device." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between a word-level and a line-level diff?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A word-level diff compares word by word, so changing one word inside a sentence highlights just that word. A line-level diff compares line by line, so the same edit flags the entire line as changed. Word-level is better for prose; line-level is better for code and config files." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does my diff show the whole document as changed?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Almost always formatting noise: different line endings, trailing spaces, or re-wrapped paragraphs. Run both texts through the text cleaner first to normalize them, then diff again — the real changes will stand out." }
+      }
+    ]
+  }
+  </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T2LH1SV8Y5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'analytics_storage': 'denied'});
+  gtag('js', new Date());
+  gtag('config', 'G-T2LH1SV8Y5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8008490095120298"
+     crossorigin="anonymous"></script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Text Diff",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://mtansari8765lab.github.io/tools/text-diff/",
+  "description": "Compare two texts online free. Paste the original and modified versions to see word-level differences — additions green, deletions red. Nothing uploaded."
+}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../../index.html" aria-label="MaxTools home">
+        <img class="brand-logo" src="../../assets/logo.svg" alt="MaxTools" width="160" height="40">
+        <span class="brand-tag">Free online tools that run in your browser.</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../../index.html">Home</a> › <a href="../index.html">Tools</a> › <span aria-current="page">Text Diff</span>
+    </nav>
+
+    <h1>Free Online Text Diff</h1>
+    <p><strong>Runs 100% in your browser — your text never leaves your device.</strong></p>
+
+    <section class="tool-box" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" style="margin-top:0">Compare two texts</h2>
+      <div class="diff-cols">
+        <div>
+          <label for="td-original">Original text:</label>
+          <textarea id="td-original" placeholder="Paste the original text here…"></textarea>
+          <p style="margin:0.4rem 0 0"><span id="td-words-a">0</span> words</p>
+        </div>
+        <div>
+          <label for="td-modified">Modified text:</label>
+          <textarea id="td-modified" placeholder="Paste the modified text here…"></textarea>
+          <p style="margin:0.4rem 0 0"><span id="td-words-b">0</span> words</p>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button type="button" id="td-compare" class="primary">Compare</button>
+        <button type="button" id="td-swap">Swap</button>
+        <button type="button" id="td-sample">Sample</button>
+        <button type="button" id="td-clear">Clear</button>
+      </div>
+      <p id="td-status" aria-live="polite" style="margin:0.75rem 0 0">Enter text in both boxes, then click Compare.</p>
+      <label for="td-output" style="margin-top:0.75rem">Differences (green = added, red = removed):</label>
+      <div class="output-box diff-output" id="td-output" aria-live="polite"><span style="color:var(--muted)">The diff will appear here.</span></div>
+      <div class="stats-grid" aria-live="polite">
+        <div class="stat"><div class="stat-label">Words added</div><div class="stat-value" id="td-added">0</div></div>
+        <div class="stat"><div class="stat-label">Words removed</div><div class="stat-value" id="td-removed">0</div></div>
+        <div class="stat"><div class="stat-label">Words unchanged</div><div class="stat-value" id="td-unchanged">0</div></div>
+      </div>
+      <div class="btn-row">
+        <button type="button" id="td-copy" class="primary">Copy result</button>
+      </div>
+    </section>
+
+    <section class="prose" aria-labelledby="about-td">
+      <h2 id="about-td">About this text diff checker</h2>
+      <p>A text diff checker compares two versions of a text and shows exactly what changed between them. Paste the original into one box and the revised version into the other, and the tool highlights every difference word by word: words that were added appear in green, words that were removed appear in red with a strikethrough, and everything that stayed the same is left plain. Instead of reading two drafts side by side and hunting for edits by eye — a slow job where small changes slip past unnoticed — you get the full list of changes in one glance.</p>
+      <p>Writers and editors use it to check what changed in a revised draft. Contract reviewers compare a returned redline against the agreed version to confirm nothing extra slipped in. Students compare essay drafts to see what a tutor or classmate edited. Developers and support staff compare two versions of a config file, an error log, or a customer message to find the one line that changed. Translators check a revised translation against the first pass for dropped paragraphs. Anywhere two versions of the same text exist and the differences matter, a diff is faster and more reliable than reading both from scratch.</p>
+      <p>The comparison runs entirely in your browser with JavaScript — your text is never uploaded, stored, or sent anywhere, so contracts and unpublished drafts stay private. The tool splits both texts into words and finds the longest common subsequence: the longest run of words both versions share in the same order. Everything else is a change. Because the comparison is word-level rather than line-level, editing one word inside a sentence highlights just that word instead of flagging the whole sentence — which is what makes the results readable for prose. Line breaks and spacing are preserved in the output, so the diff reads like the original document.</p>
+
+      <h3>Worked example</h3>
+      <p>Take a nine-word sentence and change two words in it. Original: "The quick brown fox jumps over the lazy dog." Modified: "The quick red fox leaps over the lazy dog." The diff highlights brown and jumps in red (removed) and red and leaps in green (added); the other seven words stay plain. The stats panel reads: 9 words in the original, 9 in the modified version, 2 words added, 2 words removed, 7 unchanged — exactly what the tool reports, so you can check the counts before trusting a diff on a longer document.</p>
+
+      <h2>How to use</h2>
+      <ol>
+        <li>Paste the original text into the first box and the modified text into the second.</li>
+        <li>Click Compare — the diff appears below with additions in green and deletions in red.</li>
+        <li>Check the stats panel for the word counts and the number of words added, removed, and unchanged.</li>
+        <li>Use Copy result to copy the diff as text, Swap to reverse the two inputs, or Sample to try the tool with example texts.</li>
+      </ol>
+
+      <h2>Limitations</h2>
+      <ul>
+        <li>The comparison is exact-match and case-sensitive: "Hello" and "hello" count as different words, so normalize case with the <a href="../case-converter/index.html">case converter</a> first if case doesn't matter.</li>
+        <li>Moved text shows as a deletion plus an addition — the tool finds the smallest set of edits, not "this paragraph moved".</li>
+        <li>Formatting noise (different line endings, trailing spaces) can make whole passages look changed; run both texts through the <a href="../text-cleaner/index.html">text cleaner</a> first if a diff looks suspiciously large.</li>
+        <li>Very long documents (tens of thousands of words) may take a few seconds to compare.</li>
+      </ul>
+    </section>
+
+    <section class="prose faq" aria-labelledby="td-faq">
+      <h2 id="td-faq">Frequently asked questions</h2>
+      <details>
+        <summary>How does the text diff tool work?</summary>
+        <p>It splits both texts into words and finds the longest common subsequence — the longest run of words both versions share in the same order. Words outside that shared run are reported as added (in the modified text only) or removed (in the original only). The comparison uses Hirschberg's algorithm, which finds the same minimal edit set as a full dynamic-programming diff but with far less memory.</p>
+      </details>
+      <details>
+        <summary>Is my text uploaded anywhere?</summary>
+        <p>No. The diff runs 100% in your browser with JavaScript. Your text never leaves your device.</p>
+      </details>
+      <details>
+        <summary>What is the difference between a word-level and a line-level diff?</summary>
+        <p>A word-level diff compares word by word, so changing one word inside a sentence highlights just that word. A line-level diff compares line by line, so the same edit flags the entire line as changed. Word-level is better for prose; line-level is better for code and config files.</p>
+      </details>
+      <details>
+        <summary>Why does my diff show the whole document as changed?</summary>
+        <p>Almost always formatting noise: different line endings, trailing spaces, or re-wrapped paragraphs. Run both texts through the text cleaner first to normalize them, then diff again — the real changes will stand out.</p>
+      </details>
+    </section>
+
+    <section class="related-tools" aria-labelledby="related">
+      <h2 id="related">Related tools</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="../word-counter/index.html"><h3>Word Counter</h3><p>Words, sentences, paragraphs and reading time estimates.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../character-counter/index.html"><h3>Character Counter</h3><p>Characters, words, lines and UTF-8 bytes — live.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../text-cleaner/index.html"><h3>Text Cleaner</h3><p>Remove line breaks, duplicates and extra whitespace.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../../guides/compare-two-texts/index.html"><h3>How to Compare Two Texts</h3><p>Line vs word vs character diffs, and how to read the results.</p><span class="card-cta">Read guide →</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav aria-label="Footer navigation">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+          <li><a href="../../privacy.html">Privacy</a></li>
+          <li><a href="../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note"><img class="footer-logo" src="../../assets/logo.svg" alt="MaxTools" width="200" height="50">© <span id="year">2026</span> MaxTools. Free online tools that run in your browser.</p>
+    </div>
+  </footer>
+  <script src="../../assets/logic/text-diff.js"></script>
+  <script src="../../assets/main.js"></script>
+  <script>
+    // Text Diff UI
+    (function () {
+      var orig = document.getElementById('td-original');
+      var mod = document.getElementById('td-modified');
+      var output = document.getElementById('td-output');
+      var status = document.getElementById('td-status');
+      var elWordsA = document.getElementById('td-words-a');
+      var elWordsB = document.getElementById('td-words-b');
+      var elAdded = document.getElementById('td-added');
+      var elRemoved = document.getElementById('td-removed');
+      var elUnchanged = document.getElementById('td-unchanged');
+      var lastPlain = '';
+
+      function esc(s) {
+        return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+
+      function updateCounts() {
+        elWordsA.textContent = window.QuickTools.textDiff.countWords(orig.value).toLocaleString();
+        elWordsB.textContent = window.QuickTools.textDiff.countWords(mod.value).toLocaleString();
+      }
+
+      function renderPlain(parts) {
+        return parts.map(function (p) {
+          if (p.type === 'add') return '{+' + p.text + '+}';
+          if (p.type === 'del') return '[-' + p.text + '-]';
+          return p.text;
+        }).join('');
+      }
+
+      function compare() {
+        if (orig.value === '' && mod.value === '') {
+          status.textContent = 'Enter text in both boxes, then click Compare.';
+          output.innerHTML = '<span style="color:var(--muted)">The diff will appear here.</span>';
+          elAdded.textContent = '0';
+          elRemoved.textContent = '0';
+          elUnchanged.textContent = '0';
+          lastPlain = '';
+          return;
+        }
+        var r = window.QuickTools.textDiff.diff(orig.value, mod.value);
+        var html = r.parts.map(function (p) {
+          if (p.type === 'add') return '<span class="diff-add">' + esc(p.text) + '</span>';
+          if (p.type === 'del') return '<span class="diff-del">' + esc(p.text) + '</span>';
+          return esc(p.text);
+        }).join('');
+        output.innerHTML = html === '' ? '<span style="color:var(--muted)">The diff will appear here.</span>' : html;
+        elAdded.textContent = r.wordsAdded.toLocaleString();
+        elRemoved.textContent = r.wordsRemoved.toLocaleString();
+        elUnchanged.textContent = r.wordsUnchanged.toLocaleString();
+        lastPlain = renderPlain(r.parts);
+        status.textContent = r.identical
+          ? 'No differences — the texts are identical.'
+          : r.wordsAdded + ' word' + (r.wordsAdded === 1 ? '' : 's') + ' added, ' +
+            r.wordsRemoved + ' word' + (r.wordsRemoved === 1 ? '' : 's') + ' removed, ' +
+            r.wordsUnchanged + ' unchanged.';
+      }
+
+      orig.addEventListener('input', updateCounts);
+      mod.addEventListener('input', updateCounts);
+      document.getElementById('td-compare').addEventListener('click', compare);
+      document.getElementById('td-swap').addEventListener('click', function () {
+        var tmp = orig.value;
+        orig.value = mod.value;
+        mod.value = tmp;
+        updateCounts();
+        if (lastPlain !== '') compare();
+      });
+      document.getElementById('td-sample').addEventListener('click', function () {
+        orig.value = 'Our team meeting is on Tuesday at 10am in Room 4. Please bring the quarterly report and your laptop. Lunch will be provided after the meeting.';
+        mod.value = 'Our team meeting is on Wednesday at 10am in Room 4. Please bring the quarterly report and your laptop. Lunch will not be provided after the meeting.';
+        updateCounts();
+        compare();
+      });
+      document.getElementById('td-clear').addEventListener('click', function () {
+        orig.value = '';
+        mod.value = '';
+        updateCounts();
+        status.textContent = 'Enter text in both boxes, then click Compare.';
+        output.innerHTML = '<span style="color:var(--muted)">The diff will appear here.</span>';
+        elAdded.textContent = '0';
+        elRemoved.textContent = '0';
+        elUnchanged.textContent = '0';
+        lastPlain = '';
+      });
+      document.getElementById('td-copy').addEventListener('click', function (e) {
+        if (!lastPlain) return;
+        window.QuickTools.copyText(lastPlain).then(function () {
+          window.QuickTools.flashButton(e.currentTarget);
+        });
+      });
+      updateCounts();
+    })();
+  </script>
+
+<div id="qt-consent" hidden style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#1f2937;color:#f9fafb;padding:14px 18px;font-size:14px;line-height:1.5;box-shadow:0 -2px 12px rgba(0,0,0,.25);font-family:system-ui,-apple-system,sans-serif;">
+  <span>We use cookies for anonymous analytics (Google Analytics) to see which pages are popular. No personal data is collected. <a href="https://mtansari8765lab.github.io/privacy.html" style="color:#93c5fd;text-decoration:underline;">Privacy policy</a></span>
+  <span style="display:inline-block;margin-left:12px;white-space:nowrap;margin-top:8px;">
+    <button id="qt-consent-accept" style="background:#2563eb;color:#fff;border:0;border-radius:6px;padding:8px 16px;margin-right:8px;cursor:pointer;font-size:14px;">Accept</button>
+    <button id="qt-consent-decline" style="background:transparent;color:#e5e7eb;border:1px solid #6b7280;border-radius:6px;padding:8px 16px;cursor:pointer;font-size:14px;">Decline</button>
+  </span>
+</div>
+<script>
+(function(){
+  var KEY='qt-consent-choice', banner=document.getElementById('qt-consent');
+  function apply(choice){
+    if(window.gtag){try{gtag('consent','update',{'analytics_storage':choice});}catch(e){}}
+    try{localStorage.setItem(KEY,choice);}catch(e){}
+    banner.hidden=true;
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'||saved==='denied'){ if(window.gtag){try{gtag('consent','update',{'analytics_storage':saved});}catch(e){}} }
+  else { banner.hidden=false; }
+  document.getElementById('qt-consent-accept').addEventListener('click',function(){apply('granted');});
+  document.getElementById('qt-consent-decline').addEventListener('click',function(){apply('denied');});
+})();
+</script>
+
+</body>
+</html>

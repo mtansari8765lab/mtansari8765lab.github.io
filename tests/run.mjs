@@ -11,6 +11,7 @@ const wc = require('../assets/logic/word-counter.js');
 const cc = require('../assets/logic/character-counter.js');
 const cs = require('../assets/logic/case-converter.js');
 const tc = require('../assets/logic/text-cleaner.js');
+const tdiff = require('../assets/logic/text-diff.js');
 const pw = require('../assets/logic/password-generator.js');
 const yvd = require('../assets/logic/youtube-video-download.js');
 
@@ -188,6 +189,123 @@ test('text cleaner: empty input', () => {
   assert.equal(r.output, '');
   assert.equal(r.linesBefore, 0);
   assert.equal(r.linesAfter, 0);
+});
+
+// ---------- text diff ----------
+
+test('text diff: identical texts have no differences', () => {
+  const r = tdiff.diff('hello world', 'hello world');
+  assert.equal(r.identical, true);
+  assert.equal(r.wordsAdded, 0);
+  assert.equal(r.wordsRemoved, 0);
+  assert.equal(r.wordsUnchanged, 2);
+  assert.deepEqual(r.parts, [{ type: 'same', text: 'hello world' }]);
+});
+
+test('text diff: one word changed flags exactly that word', () => {
+  const r = tdiff.diff('The quick brown fox', 'The quick red fox');
+  assert.equal(r.identical, false);
+  assert.equal(r.wordsAdded, 1);
+  assert.equal(r.wordsRemoved, 1);
+  assert.equal(r.wordsUnchanged, 3);
+  const dels = r.parts.filter((p) => p.type === 'del').map((p) => p.text);
+  const adds = r.parts.filter((p) => p.type === 'add').map((p) => p.text);
+  assert.deepEqual(dels, ['brown']);
+  assert.deepEqual(adds, ['red']);
+});
+
+test('text diff: worked example numbers (page prose)', () => {
+  const r = tdiff.diff(
+    'The quick brown fox jumps over the lazy dog.',
+    'The quick red fox leaps over the lazy dog.'
+  );
+  assert.equal(r.wordsOriginal, 9);
+  assert.equal(r.wordsModified, 9);
+  assert.equal(r.wordsAdded, 2);
+  assert.equal(r.wordsRemoved, 2);
+  assert.equal(r.wordsUnchanged, 7);
+});
+
+test('text diff: empty inputs', () => {
+  assert.deepEqual(tdiff.diff('', '').parts, []);
+  assert.equal(tdiff.diff('', '').identical, true);
+  const r = tdiff.diff('', 'new text here');
+  assert.equal(r.wordsAdded, 3);
+  assert.equal(r.wordsRemoved, 0);
+  const r2 = tdiff.diff('gone now', '');
+  assert.equal(r2.wordsRemoved, 2);
+  assert.equal(r2.wordsAdded, 0);
+  assert.equal(tdiff.diff(null, undefined).identical, true);
+});
+
+test('text diff: insertions and deletions at start, middle, end', () => {
+  const r = tdiff.diff('b c', 'a b c d');
+  assert.equal(r.wordsAdded, 2);
+  assert.equal(r.wordsRemoved, 0);
+  assert.equal(r.wordsUnchanged, 2);
+  const r2 = tdiff.diff('a b c', 'b');
+  assert.equal(r2.wordsRemoved, 2);
+  assert.equal(r2.wordsUnchanged, 1);
+});
+
+test('text diff: whitespace-only change is not identical, adds no words', () => {
+  const r = tdiff.diff('a b', 'a  b');
+  assert.equal(r.identical, false);
+  assert.equal(r.wordsAdded, 0);
+  assert.equal(r.wordsRemoved, 0);
+  assert.equal(r.wordsUnchanged, 2);
+});
+
+test('text diff: parts reconstruct both inputs exactly', () => {
+  const pairs = [
+    ['hello world', 'hello brave new world'],
+    ['line one\nline two\nline three', 'line one\nline TWO\nline three\nline four'],
+    ['The cat sat.', 'The dog sat on the mat.'],
+    ['a a a b', 'a b b a'],
+    ['punctuation, matters! does it?', 'punctuation matters; does it really?'],
+  ];
+  for (const [a, b] of pairs) {
+    const d = tdiff.diff(a, b);
+    const orig = d.parts.filter((p) => p.type !== 'add').map((p) => p.text).join('');
+    const mod = d.parts.filter((p) => p.type !== 'del').map((p) => p.text).join('');
+    assert.equal(orig, a);
+    assert.equal(mod, b);
+  }
+});
+
+test('text diff: matches naive full-DP LCS on random trials', () => {
+  function lcsLen(a, b) {
+    const ta = a.match(/\S+|\s+/g) || [];
+    const tb = b.match(/\S+|\s+/g) || [];
+    const dp = Array.from({ length: ta.length + 1 }, () => new Array(tb.length + 1).fill(0));
+    for (let i = 1; i <= ta.length; i++) {
+      for (let j = 1; j <= tb.length; j++) {
+        dp[i][j] = ta[i - 1] === tb[j - 1] ? dp[i - 1][j - 1] + 1 : Math.max(dp[i - 1][j], dp[i][j - 1]);
+      }
+    }
+    return dp[ta.length][tb.length];
+  }
+  let seed = 42;
+  const rnd = () => (seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648;
+  const vocab = ['the', 'cat', 'dog', 'runs', 'jumps', 'over', 'red', 'blue', 'a', 'an', 'quick', 'slow', 'fox', 'house', 'tree', 'river', 'stone', 'book', 'pen', 'cup'];
+  for (let t = 0; t < 200; t++) {
+    const n1 = 1 + Math.floor(rnd() * 25);
+    const n2 = 1 + Math.floor(rnd() * 25);
+    const w1 = Array.from({ length: n1 }, () => vocab[Math.floor(rnd() * vocab.length)]).join(' ');
+    const w2 = Array.from({ length: n2 }, () => vocab[Math.floor(rnd() * vocab.length)]).join(' ');
+    const d = tdiff.diff(w1, w2);
+    const sameTokens = d.parts
+      .filter((p) => p.type === 'same')
+      .reduce((s, p) => s + (p.text.match(/\S+|\s+/g) || []).length, 0);
+    assert.equal(sameTokens, lcsLen(w1, w2), 'LCS mismatch on trial ' + t);
+  }
+});
+
+test('text diff: countWords', () => {
+  assert.equal(tdiff.countWords(''), 0);
+  assert.equal(tdiff.countWords('   \n\t '), 0);
+  assert.equal(tdiff.countWords('one two  three'), 3);
+  assert.equal(tdiff.countWords(null), 0);
 });
 
 // ---------- password generator ----------
@@ -1223,6 +1341,70 @@ test('wiring dynamic: pdf splitter page loads a file and splits it', async () =>
   doc.__els['sp-range'].value = '99';
   doc.__els['sp-go'].__fire('click');
   assert.ok(doc.__els['tool-error'].textContent.includes('does not exist'), 'bad range surfaces an error');
+});
+
+test('wiring dynamic: text diff page compares and renders the diff', () => {
+  const doc = __stubDocument(
+    ['td-original', 'td-modified', 'td-output', 'td-status',
+     'td-words-a', 'td-words-b', 'td-added', 'td-removed', 'td-unchanged',
+     'td-compare', 'td-swap', 'td-sample', 'td-clear', 'td-copy'],
+    {}
+  );
+  const sandbox = {
+    window: {}, document: doc, console,
+    URL: { createObjectURL: () => 'blob:x', revokeObjectURL() {} },
+    Blob: globalThis.Blob,
+  };
+  sandbox.window = sandbox;
+  sandbox.window.QuickTools = {
+    textDiff: tdiff,
+    copyText: () => Promise.resolve(), flashButton() {},
+  };
+  __vm.createContext(sandbox);
+  __vm.runInContext(__inlineScript('tools/text-diff/index.html', 'Text Diff UI'), sandbox);
+  assert.ok(doc.__els['td-compare'].__listeners.click.length >= 1, 'Compare handler attached');
+  assert.ok(doc.__els['td-swap'].__listeners.click.length >= 1, 'Swap handler attached');
+  assert.ok(doc.__els['td-sample'].__listeners.click.length >= 1, 'Sample handler attached');
+  assert.ok(doc.__els['td-clear'].__listeners.click.length >= 1, 'Clear handler attached');
+  assert.ok(doc.__els['td-copy'].__listeners.click.length >= 1, 'Copy handler attached');
+  // Worked example: two words changed.
+  doc.__els['td-original'].value = 'The quick brown fox jumps over the lazy dog.';
+  doc.__els['td-modified'].value = 'The quick red fox leaps over the lazy dog.';
+  doc.__els['td-original'].__fire('input');
+  doc.__els['td-modified'].__fire('input');
+  assert.equal(doc.__els['td-words-a'].textContent, '9');
+  assert.equal(doc.__els['td-words-b'].textContent, '9');
+  doc.__els['td-compare'].__fire('click');
+  assert.equal(doc.__els['td-added'].textContent, '2');
+  assert.equal(doc.__els['td-removed'].textContent, '2');
+  assert.equal(doc.__els['td-unchanged'].textContent, '7');
+  assert.ok(doc.__els['td-output'].innerHTML.includes('diff-del'), 'deletions highlighted');
+  assert.ok(doc.__els['td-output'].innerHTML.includes('diff-add'), 'additions highlighted');
+  assert.ok(doc.__els['td-output'].innerHTML.includes('brown'), 'removed word rendered');
+  assert.ok(doc.__els['td-output'].innerHTML.includes('red'), 'added word rendered');
+  assert.ok(doc.__els['td-status'].textContent.includes('2 words added'), 'status reports counts');
+  // HTML in user text must be escaped, not rendered as markup.
+  doc.__els['td-original'].value = 'a <b>bold</b> move';
+  doc.__els['td-modified'].value = 'a <i>bold</i> move';
+  doc.__els['td-compare'].__fire('click');
+  assert.ok(!doc.__els['td-output'].innerHTML.includes('<b>bold</b>'), 'user HTML escaped');
+  assert.ok(doc.__els['td-output'].innerHTML.includes('&lt;b&gt;'), 'escaped entity present');
+  // Identical texts report no differences.
+  doc.__els['td-original'].value = 'same text';
+  doc.__els['td-modified'].value = 'same text';
+  doc.__els['td-compare'].__fire('click');
+  assert.ok(doc.__els['td-status'].textContent.includes('identical'), 'identical texts reported');
+  // Sample fills both boxes and compares.
+  doc.__els['td-sample'].__fire('click');
+  assert.ok(doc.__els['td-original'].value.includes('Tuesday'), 'sample fills original');
+  assert.ok(doc.__els['td-modified'].value.includes('Wednesday'), 'sample fills modified');
+  assert.equal(doc.__els['td-added'].textContent, '2');
+  assert.equal(doc.__els['td-removed'].textContent, '1');
+  // Clear resets everything.
+  doc.__els['td-clear'].__fire('click');
+  assert.equal(doc.__els['td-original'].value, '');
+  assert.equal(doc.__els['td-modified'].value, '');
+  assert.equal(doc.__els['td-added'].textContent, '0');
 });
 
 // ---------- wiring smoke test: HTML <-> JS namespace ----------
