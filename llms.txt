@@ -1,0 +1,53 @@
+# MaxTools
+
+> MaxTools is a free collection of online tools that run entirely in the visitor's browser: text tools, converters, calculators, and file tools. No sign-up and no uploads to a server — everything is computed on the visitor's own device. MaxTools is part of a small family of free tool sites on this domain, alongside Dr.Building (home-improvement calculators), Dr.Budget (budgeting calculators and money guides), and Dr.Find (search and everyday tools).
+
+## MaxTools
+
+- [MaxTools home](https://mtansari8765lab.github.io/)
+- [All tools](https://mtansari8765lab.github.io/tools/)
+- [Word Counter](https://mtansari8765lab.github.io/tools/word-counter/)
+- [Percentage Calculator](https://mtansari8765lab.github.io/tools/percentage-calculator/)
+- [Age Calculator](https://mtansari8765lab.github.io/tools/age-calculator/)
+- [Date Calculator](https://mtansari8765lab.github.io/tools/date-calculator/)
+- [QR Code Generator](https://mtansari8765lab.github.io/tools/qr-code-generator/)
+- [Text Diff — Compare Two Texts](https://mtansari8765lab.github.io/tools/text-diff/)
+- [HEIC to JPG Converter](https://mtansari8765lab.github.io/tools/heic-to-jpg/)
+- [PDF Splitter](https://mtansari8765lab.github.io/tools/pdf-splitter/)
+- [PDF Merger](https://mtansari8765lab.github.io/tools/pdf-merger/)
+- [Image Resizer](https://mtansari8765lab.github.io/tools/image-resizer/)
+- [Case Converter](https://mtansari8765lab.github.io/tools/case-converter/)
+- [Character Counter](https://mtansari8765lab.github.io/tools/character-counter/)
+- [Password Generator](https://mtansari8765lab.github.io/tools/password-generator/)
+- [Compound Interest Calculator](https://mtansari8765lab.github.io/tools/compound-interest-calculator/)
+- [Salary Calculator](https://mtansari8765lab.github.io/tools/salary-calculator/)
+- [Discount Calculator](https://mtansari8765lab.github.io/tools/discount-calculator/)
+
+## Dr.Building — home-improvement calculators
+
+- [Dr.Building home](https://mtansari8765lab.github.io/trade-calc/)
+- [Concrete Calculator](https://mtansari8765lab.github.io/trade-calc/calculators/concrete-calculator/)
+- [Brick Calculator](https://mtansari8765lab.github.io/trade-calc/calculators/brick-calculator/)
+- [Paint Calculator](https://mtansari8765lab.github.io/trade-calc/calculators/paint-calculator/)
+- [Tile Calculator](https://mtansari8765lab.github.io/trade-calc/calculators/tile-calculator/)
+- [Drywall Calculator](https://mtansari8765lab.github.io/trade-calc/calculators/drywall-calculator/)
+- [Sand Calculator](https://mtansari8765lab.github.io/trade-calc/calculators/sand-calculator/)
+
+## Dr.Budget — budgeting calculators and money guides
+
+- [Dr.Budget home](https://mtansari8765lab.github.io/steadycents/)
+- [Monthly Budget Calculator](https://mtansari8765lab.github.io/steadycents/calculators/budget/)
+- [Debt Payoff Calculator](https://mtansari8765lab.github.io/steadycents/calculators/debt-payoff/)
+- [Credit Card Payoff Calculator](https://mtansari8765lab.github.io/steadycents/calculators/credit-card-payoff/)
+
+## Dr.Find — search and everyday tools
+
+- [Dr.Find home](https://mtansari8765lab.github.io/findaro/)
+- [JSON Formatter](https://mtansari8765lab.github.io/findaro/tools/json-formatter/)
+- [Unit Converter](https://mtansari8765lab.github.io/findaro/tools/unit-converter/)
+- [Percentage Calculator](https://mtansari8765lab.github.io/findaro/tools/percentage/)
+
+## Optional
+
+- [About MaxTools](https://mtansari8765lab.github.io/about.html)
+- [Privacy Policy](https://mtansari8765lab.github.io/privacy.html)
