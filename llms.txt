@@ -24,6 +24,7 @@
 - [Discount Calculator](https://mtansari8765lab.github.io/tools/discount-calculator/)
 - [Oz to Lbs Converter](https://mtansari8765lab.github.io/oz-to-lbs/)
 - [Kg to Stone Converter](https://mtansari8765lab.github.io/kg-to-stone/)
+- [How Many Ounces in a Pint](https://mtansari8765lab.github.io/how-many-ounces-in-a-pint/)
 - [Stone to Kg Converter](https://mtansari8765lab.github.io/stone-to-kg/)
 - [Lbs to Grams Converter](https://mtansari8765lab.github.io/lbs-to-grams/)
 - [Grams to Lbs Converter](https://mtansari8765lab.github.io/grams-to-lbs/)
