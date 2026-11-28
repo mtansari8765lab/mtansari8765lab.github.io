@@ -1,0 +1,221 @@
+# MaxTools — full page index
+
+## About MaxTools — Free Browser-Based Online Tools
+https://mtansari8765lab.github.io/about.html
+About MaxTools: free online utilities that run entirely in your browser. No signup, no uploads, no tracking of your input.
+
+## Contact MaxTools — Questions, Bugs & Tool Suggestions
+https://mtansari8765lab.github.io/contact.html
+Contact MaxTools: report a bug, suggest a tool, or ask a question. Reach us by email — we reply to genuine messages.
+
+## Grams to Lbs Converter — Grams to Pounds — MaxTools
+https://mtansari8765lab.github.io/grams-to-lbs/
+Convert grams to pounds instantly with the grams to lbs converter. Includes reverse conversion, formula, examples, quick table, and FAQs. Free, no sign-up.
+
+## Grams to Ounces Converter — Grams to Ounces — MaxTools
+https://mtansari8765lab.github.io/grams-to-ounces/
+Convert grams to ounces instantly with the grams to ounces converter. Includes reverse conversion, formula, examples, quick table, and FAQs. Free, no sign-up.
+
+## How to Compare Two Texts and Spot Every Difference — MaxTools
+https://mtansari8765lab.github.io/guides/compare-two-texts/
+How to compare two texts online: line vs word vs character diffs, how diff algorithms work, reading the results, and honest limits of automated comparison.
+
+## What Date Is 90 Days From Today? (Complete Guide) — MaxTools
+https://mtansari8765lab.github.io/guides/days-from-today/
+What date is 90 days from today? Quick counting methods, real use cases (due dates, deadlines, visa day counts), FAQs, and a free date calculator.
+
+## How to Create a Strong Password You'll Actually Remember — MaxTools
+https://mtansari8765lab.github.io/guides/how-to-create-a-strong-password/
+A practical guide to strong passwords: length and randomness, weak-vs-strong examples with honest crack-time estimates, passphrases, and manager advice.
+
+## Lorem Ipsum Explained: What Placeholder Text Is and Its Uses — MaxTools
+https://mtansari8765lab.github.io/guides/lorem-ipsum-explained/
+What is lorem ipsum? The real meaning and history of placeholder dummy text, when designers use it, when to avoid it, and how to measure it for your mockups.
+
+## Random Numbers Explained: True vs Pseudorandom — MaxTools
+https://mtansari8765lab.github.io/guides/random-numbers-explained/
+What makes a number truly random? True randomness vs pseudorandom generators, why Math.random() isn
+
+## UUIDs and GUIDs Explained: Formats, Versions & Uses — MaxTools
+https://mtansari8765lab.github.io/guides/uuid-guid-explained/
+What is a UUID? The 8-4-4-4-12 format, UUID vs GUID, versions 1/4/5/7, collision odds, and when to use (or avoid) universally unique identifiers.
+
+## How Many Ounces in a Pint? Pints to Fluid Ounces — MaxTools
+https://mtansari8765lab.github.io/how-many-ounces-in-a-pint/
+How many ounces in a pint? A US liquid pint is 16 fluid ounces; an imperial pint is 20 fluid ounces. Includes a pints to ounces calculator, formula, table, and FAQs.
+
+## MaxTools — Free Online Tools That Run in Your Browser
+https://mtansari8765lab.github.io/
+MaxTools offers free online tools — word counter, character counter, case converter, text cleaner and password generator. Fast, private, no signup.
+
+## Kg to Lbs Converter — Kilograms to Pounds — MaxTools
+https://mtansari8765lab.github.io/kg-to-lbs/
+Convert kilograms to pounds instantly with the kg to lbs converter. Includes reverse conversion, formula, examples, quick table, and FAQs. Free, no sign-up.
+
+## Kg to Oz Converter — Kilograms to Ounces — MaxTools
+https://mtansari8765lab.github.io/kg-to-oz/
+Convert kilograms to ounces instantly with the kg to oz converter. Includes reverse conversion, formula, examples, quick table, and FAQs. Free, no sign-up.
+
+## Kg to Stone Converter — Kilograms to Stone — MaxTools
+https://mtansari8765lab.github.io/kg-to-stone/
+Convert kilograms to stone instantly with the kg to stone converter. Includes reverse conversion, formula, examples, quick table, and FAQs. Free, no sign-up.
+
+## Lbs to Grams Converter — Pounds to Grams — MaxTools
+https://mtansari8765lab.github.io/lbs-to-grams/
+Convert pounds to grams instantly with the lbs to grams converter. Includes reverse conversion, formula, examples, quick table, and FAQs. Free, no sign-up.
+
+## Lbs to Kg Converter — Pounds to Kilograms — MaxTools
+https://mtansari8765lab.github.io/lbs-to-kg/
+Convert pounds to kilograms instantly with the lbs to kg converter. Includes reverse conversion, formula, examples, quick table, and FAQs. Free, no sign-up.
+
+## Lbs to Oz Converter — Pounds to Ounces — MaxTools
+https://mtansari8765lab.github.io/lbs-to-oz/
+Convert pounds to ounces instantly with the lbs to oz converter. Includes reverse conversion, formula, examples, quick table, and FAQs. Free, no sign-up.
+
+## Ounces to Grams Converter — Ounces to Grams — MaxTools
+https://mtansari8765lab.github.io/ounces-to-grams/
+Convert ounces to grams instantly with the ounces to grams converter. Includes reverse conversion, formula, examples, quick table, and FAQs. Free, no sign-up.
+
+## Oz to Kg Converter — Ounces to Kilograms — MaxTools
+https://mtansari8765lab.github.io/oz-to-kg/
+Convert ounces to kilograms instantly with the oz to kg converter. Includes reverse conversion, formula, examples, quick table, and FAQs. Free, no sign-up.
+
+## Oz to Lbs Converter — Ounces to Pounds — MaxTools
+https://mtansari8765lab.github.io/oz-to-lbs/
+Convert ounces to pounds instantly with the oz to lbs converter. Includes lbs to oz, formula, examples, quick table, and FAQs. Free, no sign-up.
+
+## Privacy Policy — MaxTools
+https://mtansari8765lab.github.io/privacy.html
+MaxTools privacy policy: tools run in your browser and we collect no inputs. Google Analytics and AdSense use cookies and technical data as described.
+
+## Stone to Kg Converter — Stone to Kilograms — MaxTools
+https://mtansari8765lab.github.io/stone-to-kg/
+Convert stone to kilograms instantly with the stone to kg converter. Includes reverse conversion, formula, examples, quick table, and FAQs. Free, no sign-up.
+
+## Terms of Use — MaxTools
+https://mtansari8765lab.github.io/terms.html
+MaxTools terms of use: free tools provided as-is with no warranty. Plain-English rules for using the site.
+
+## Age Calculator Online Free — How Old Am I? — MaxTools
+https://mtansari8765lab.github.io/tools/age-calculator/
+Free age calculator online: enter your date of birth and get your exact age in years, months and days, total days lived, and a countdown to your next birthday.
+
+## Case Converter — UPPERCASE, lowercase, Title Case — MaxTools
+https://mtansari8765lab.github.io/tools/case-converter/
+Free case converter: change text to UPPERCASE, lowercase, Title Case, Sentence case and more. Copy or download results instantly, no signup.
+
+## Character Counter — Count Characters, Words & Lines — MaxTools
+https://mtansari8765lab.github.io/tools/character-counter/
+Free character counter: count characters, characters without spaces, words, lines and UTF-8 bytes live as you type. Fast, private, no signup.
+
+## Compound Interest Calculator — See Your Money Grow — MaxTools
+https://mtansari8765lab.github.io/tools/compound-interest-calculator/
+Free compound interest calculator online: project savings growth with compounding frequency and monthly contributions, plus a year-by-year growth table.
+
+## 30 Days From Today — What Date Is It? (Live Answer) — MaxTools
+https://mtansari8765lab.github.io/tools/date-calculator/30-days-from-today/
+What date is 30 days from today? Get the live answer computed from today
+
+## 45 Days From Today — What Date Is It? (Live Answer) — MaxTools
+https://mtansari8765lab.github.io/tools/date-calculator/45-days-from-today/
+What date is 45 days from today? Get the live answer computed from today
+
+## 90 Days From Today — What Date Is It? (Live Answer) — MaxTools
+https://mtansari8765lab.github.io/tools/date-calculator/90-days-from-today/
+What date is 90 days from today? Get the live answer computed from today
+
+## Date Calculator Online Free — Days Between Dates — MaxTools
+https://mtansari8765lab.github.io/tools/date-calculator/
+Free date calculator online: count days between two dates, or add/subtract days, weeks, months and years from any date. Handles leap years and month ends.
+
+## Discount Calculator Online Free — Sale Price & Savings — MaxTools
+https://mtansari8765lab.github.io/tools/discount-calculator/
+Free discount calculator: apply stacked discounts, add sales tax, or work backwards from a sale price to the percent off. Prices rounded to cents.
+
+## Favicon Generator Free — PNG to ICO Online, No Signup — MaxTools
+https://mtansari8765lab.github.io/tools/favicon-generator/
+Free favicon generator: turn any image into a multi-size favicon.ico plus Apple touch and PWA icons, with the HTML snippet. 100% in your browser.
+
+## HEIC to JPG Converter Free Online — Convert iPhone Photos — MaxTools
+https://mtansari8765lab.github.io/tools/heic-to-jpg/
+Convert HEIC photos from your iPhone to JPG free. Batch conversion, adjustable quality, runs entirely in your browser — photos never uploaded.
+
+## Batch Convert HEIC to JPG on Windows 11 — Free — MaxTools
+https://mtansari8765lab.github.io/tools/heic-to-jpg-batch-windows-11/
+Batch convert HEIC photos to JPG on Windows 11, free and in your browser. No app to install, no upload — batch conversion tested with 10 files at once.
+
+## Convert iPhone HEIC to JPG — Free, In Your Browser — MaxTools
+https://mtansari8765lab.github.io/tools/heic-to-jpg-iphone-offline/
+Convert iPhone HEIC photos to JPG without uploading them anywhere. Free converter that runs in your browser — your photos never leave your phone.
+
+## Holiday Countdown: Days Until Christmas, Easter & More — MaxTools
+https://mtansari8765lab.github.io/tools/holiday-countdown/
+Search any holiday — Christmas, Easter, Diwali, Eid, Halloween — and get a live days-hours-minutes countdown. 68 festivals, computed in your browser.
+
+## Compress Image Online Free — Reduce Size, No Upload — MaxTools
+https://mtansari8765lab.github.io/tools/image-compressor/
+Free image compressor: shrink JPG, PNG and WebP photos by quality or to an exact target size (e.g. under 100KB). No upload — files never leave your browser.
+
+## JPG to PNG Converter Free — Convert Images, No Upload — MaxTools
+https://mtansari8765lab.github.io/tools/image-converter/
+Free JPG to PNG converter: change images between JPG, PNG and WebP online. Batch conversion, 100% in your browser — files never leave your device.
+
+## Image Resizer Online Free — Resize Photos Without Uploading — MaxTools
+https://mtansari8765lab.github.io/tools/image-resizer/
+Free image resizer: resize photos by width, height, percentage or longest side, keeping the aspect ratio. 100% in your browser — images never leave your device.
+
+## Image to PDF Converter Free — PNG to PDF Online, No Upload — MaxTools
+https://mtansari8765lab.github.io/tools/image-to-pdf/
+Convert JPG, PNG or WebP images to PDF free. Multiple images per document, Letter/A4/fit-to-image pages. Everything happens in your browser — no upload.
+
+## All Free Online Tools — MaxTools
+https://mtansari8765lab.github.io/tools/
+Browse every free MaxTools utility: word counter, character counter, case converter, text cleaner and password generator. All run in your browser, no signup.
+
+## Strong Random Password Generator — Free & Secure — MaxTools
+https://mtansari8765lab.github.io/tools/password-generator/
+Generate strong random passwords (4–64 characters) with a secure generator using WebCrypto. Custom length, symbols, no ambiguous characters option.
+
+## Merge PDF Online Free — Combine PDFs Without Uploading — MaxTools
+https://mtansari8765lab.github.io/tools/pdf-merger/
+Merge PDF files free: combine multiple PDFs into one document, reorder files first. 100% client-side — your documents never leave your device.
+
+## Free PDF Splitter — Split & Extract Pages in Your Browser — MaxTools
+https://mtansari8765lab.github.io/tools/pdf-splitter/
+Split a PDF free: extract pages or page ranges into a new PDF, or burst every page into its own file. 100% in your browser — no sign-up, no upload.
+
+## Percentage Calculator Online Free — X% of Y & Change — MaxTools
+https://mtansari8765lab.github.io/tools/percentage-calculator/
+Free percentage calculator online: find X% of Y, what percent one number is of another, and percent increase or decrease. Instant answers, no signup.
+
+## Free QR Code Generator — No Sign-Up, Works in Your Browser — MaxTools
+https://mtansari8765lab.github.io/tools/qr-code-generator/
+Create a free QR code for a link, text, Wi-Fi, email, phone or SMS. Static codes that never expire — made 100% in your browser, no sign-up. Download PNG or SVG.
+
+## Salary to Hourly Calculator — Annual ↔ Hourly Pay — MaxTools
+https://mtansari8765lab.github.io/tools/salary-calculator/
+Free salary calculator online: convert annual salary to hourly, weekly or monthly pay (and back), with custom hours per week and overtime estimates.
+
+## Remove Line Breaks & Duplicate Lines Online Free — MaxTools
+https://mtansari8765lab.github.io/tools/text-cleaner/
+Remove line breaks, empty lines and duplicate lines online free. Clean messy text in your browser — collapse whitespace, strip HTML, trim lines.
+
+## Text Diff Checker — Compare Two Texts Online Free — MaxTools
+https://mtansari8765lab.github.io/tools/text-diff/
+Compare two texts online free. Paste the original and modified versions to see word-level differences — additions green, deletions red. Nothing uploaded.
+
+## Text Summarizer Online Free — Extractive Summary in Seconds — MaxTools
+https://mtansari8765lab.github.io/tools/text-summarizer/
+Free extractive text summarizer: paste text and get a shorter version of its most important sentences. No signup, runs in your browser.
+
+## Time Duration Calculator — Hours Between Times — MaxTools
+https://mtansari8765lab.github.io/tools/time-duration-calculator/
+Free time duration calculator online: find hours and minutes between two times (overnight shifts supported) and total a multi-row timesheet.
+
+## Word Counter Online Free — Count Words & Characters — MaxTools
+https://mtansari8765lab.github.io/tools/word-counter/
+Free word counter online: count words, characters, sentences and paragraphs as you type, plus reading and speaking time estimates. No signup needed.
+
+## Download Your Own YouTube Video — Step-by-Step Guide — MaxTools
+https://mtansari8765lab.github.io/tools/youtube-video-download/
+Download your own YouTube video the official way: YouTube Studio download, Google Takeout, and YouTube Premium offline viewing. No ripper — just lawful options.
