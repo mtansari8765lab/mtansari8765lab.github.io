@@ -22,6 +22,7 @@
 - [Compound Interest Calculator](https://mtansari8765lab.github.io/tools/compound-interest-calculator/)
 - [Salary Calculator](https://mtansari8765lab.github.io/tools/salary-calculator/)
 - [Discount Calculator](https://mtansari8765lab.github.io/tools/discount-calculator/)
+- [Oz to Lbs Converter](https://mtansari8765lab.github.io/oz-to-lbs/)
 
 ## Dr.Building — home-improvement calculators
 
