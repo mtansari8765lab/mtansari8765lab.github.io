@@ -23,6 +23,17 @@
 - [Salary Calculator](https://mtansari8765lab.github.io/tools/salary-calculator/)
 - [Discount Calculator](https://mtansari8765lab.github.io/tools/discount-calculator/)
 - [Oz to Lbs Converter](https://mtansari8765lab.github.io/oz-to-lbs/)
+- [Kg to Stone Converter](https://mtansari8765lab.github.io/kg-to-stone/)
+- [Stone to Kg Converter](https://mtansari8765lab.github.io/stone-to-kg/)
+- [Lbs to Grams Converter](https://mtansari8765lab.github.io/lbs-to-grams/)
+- [Grams to Lbs Converter](https://mtansari8765lab.github.io/grams-to-lbs/)
+- [Oz to Kg Converter](https://mtansari8765lab.github.io/oz-to-kg/)
+- [Kg to Oz Converter](https://mtansari8765lab.github.io/kg-to-oz/)
+- [Ounces to Grams Converter](https://mtansari8765lab.github.io/ounces-to-grams/)
+- [Grams to Ounces Converter](https://mtansari8765lab.github.io/grams-to-ounces/)
+- [Lbs to Oz Converter](https://mtansari8765lab.github.io/lbs-to-oz/)
+- [Lbs to Kg Converter](https://mtansari8765lab.github.io/lbs-to-kg/)
+- [Kg to Lbs Converter](https://mtansari8765lab.github.io/kg-to-lbs/)
 
 ## Dr.Building — home-improvement calculators
 
