@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <script>(function(){try{var t=localStorage.getItem('maxtools-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
   <meta name="p:domain_verify" content="f0597f8a4ffdfcd1d0175ec1f19c8e7c">
   <title>MaxTools — Free Online Tools That Run in Your Browser</title>
   <meta name="description" content="MaxTools offers free online tools — word counter, character counter, case converter, text cleaner and password generator. Fast, private, no signup.">
@@ -55,139 +59,301 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="index.html" aria-label="MaxTools home">
+      <a class="brand" href="index.html" aria-label="MaxTools home" aria-current="page">
         <img class="brand-logo" src="assets/logo.svg" alt="MaxTools" width="160" height="40">
         <span class="brand-tag">Free online tools that run in your browser.</span>
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
       <nav class="main-nav" id="main-nav" aria-label="Main navigation">
         <ul>
-          <li><a href="index.html" aria-current="page">Home</a></li>
-          <li><a href="tools/index.html">All Tools</a></li>
+          <li><a href="tools/index.html">Tools</a></li>
+          <li><a href="index.html#browse-categories">Categories</a></li>
+          <li><a href="index.html#guides">Guides</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
+      <div class="header-actions">
+        <form class="site-search" action="tools/index.html" method="get" role="search" aria-label="Site search">
+          <label class="visually-hidden" for="site-search-input">Search tools</label>
+          <input type="search" id="site-search-input" name="q" placeholder="Search tools" autocomplete="off">
+          <button type="submit">Search</button>
+        </form>
+        <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme"><span class="theme-toggle-icon" aria-hidden="true">☀</span><span class="theme-toggle-label">Light</span></button>
+      </div>
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="main-content" tabindex="-1">
     <section class="hero">
-      <h1>Free online tools that run in your browser</h1>
-      <p class="lead">Count words, convert text case, clean messy text and generate strong passwords — no signup, no uploads, no waiting.</p>
-      <span class="privacy-note">🔒 100% client-side — your text never leaves your device.</span>
+      <p class="hero-eyebrow">Precision browser utilities</p>
+      <h1>Tools that get things done.</h1>
+      <p class="lead">Free online tools that run in your browser — count words, convert text, clean messy copy, generate strong passwords and work with files. No signup, no uploads, no waiting.</p>
+      <form class="hero-search" action="tools/index.html" method="get" role="search" aria-label="Search MaxTools tools">
+        <label class="visually-hidden" for="home-tool-search">Search MaxTools tools</label>
+        <input type="search" id="home-tool-search" name="q" placeholder="Search tools — try QR code, word counter or PDF" autocomplete="off">
+        <button class="primary" type="submit">Search</button>
+      </form>
+      <p class="search-status" id="home-search-status" aria-live="polite"></p>
+      <div class="quick-links" aria-label="Popular tool shortcuts">
+        <span>Popular:</span>
+        <a href="tools/qr-code-generator/index.html">QR Code Generator</a>
+        <a href="tools/pdf-splitter/index.html">PDF Splitter</a>
+        <a href="tools/word-counter/index.html">Word Counter</a>
+        <a href="tools/case-converter/index.html">Case Converter</a>
+      </div>
+      <div class="hero-meta" aria-label="MaxTools highlights"><span>Browser-based</span><span>No sign-up</span><span>Free to use</span><span>Private by design</span></div>
+      <div class="hero-cats" aria-label="Browse tool categories"><a href="tools/index.html?category=text">Text tools</a><a href="tools/index.html?category=images-pdfs">Images &amp; PDFs</a><a href="tools/index.html?category=calculators">Calculators</a><a href="tools/index.html?category=utilities">Everyday utilities</a></div>
+      <span class="privacy-note">100% client-side — your text never leaves your device.</span>
     </section>
 
     <section aria-labelledby="popular-tools">
       <h2 id="popular-tools">Popular tools</h2>
-      <div class="tool-grid">
-        <a class="tool-card" href="tools/word-counter/index.html">
+      <p class="section-intro">Four essentials are highlighted first; the full library follows.</p>
+      <div class="tool-grid home-tool-grid">
+        <a class="tool-card" href="tools/word-counter/index.html" data-category="text" data-popular="true">
           <h3>Word Counter</h3>
           <p>Count words, characters, sentences and paragraphs as you type, with reading and speaking time estimates.</p>
           <span class="card-cta">Open tool →</span>
         </a>
-        <a class="tool-card" href="tools/character-counter/index.html">
+        <a class="tool-card" href="tools/character-counter/index.html" data-category="text">
           <h3>Character Counter</h3>
           <p>Live character, word, line and UTF-8 byte counts — handy for posts, forms and meta descriptions.</p>
           <span class="card-cta">Open tool →</span>
         </a>
-        <a class="tool-card" href="tools/case-converter/index.html">
+        <a class="tool-card" href="tools/case-converter/index.html" data-category="text" data-popular="true">
           <h3>Case Converter</h3>
           <p>Switch text between UPPERCASE, lowercase, Title Case, Sentence case and more in one click.</p>
           <span class="card-cta">Open tool →</span>
         </a>
-        <a class="tool-card" href="tools/text-cleaner/index.html">
+        <a class="tool-card" href="tools/text-cleaner/index.html" data-category="text">
           <h3>Text Cleaner</h3>
           <p>Remove line breaks, empty lines and duplicate lines, collapse whitespace and strip HTML tags.</p>
           <span class="card-cta">Open tool →</span>
         </a>
-        <a class="tool-card" href="tools/text-summarizer/index.html">
+        <a class="tool-card" href="tools/text-summarizer/index.html" data-category="text">
           <h3>Text Summarizer</h3>
           <p>Shorten any text to its most important sentences — extractive, honest, no AI claims.</p>
           <span class="card-cta">Open tool →</span>
         </a>
-        <a class="tool-card" href="tools/text-diff/index.html">
+        <a class="tool-card" href="tools/text-diff/index.html" data-category="text">
           <h3>Text Diff</h3>
           <p>Compare two texts word by word — additions in green, deletions in red, nothing uploaded.</p>
           <span class="card-cta">Open tool →</span>
         </a>
-        <a class="tool-card" href="tools/password-generator/index.html">
+        <a class="tool-card" href="tools/password-generator/index.html" data-category="utilities">
           <h3>Password Generator</h3>
           <p>Create strong random passwords with secure WebCrypto randomness — custom length and character sets.</p>
           <span class="card-cta">Open tool →</span>
         </a>
-        <a class="tool-card" href="tools/image-resizer/index.html">
+        <a class="tool-card" href="tools/image-resizer/index.html" data-category="images-pdf">
           <h3>Image Resizer</h3>
           <p>Resize photos by width, height, percentage or longest side — no upload.</p>
           <span class="card-cta">Open tool →</span>
         </a>
-        <a class="tool-card" href="tools/image-compressor/index.html">
+        <a class="tool-card" href="tools/image-compressor/index.html" data-category="images-pdf">
           <h3>Image Compressor</h3>
           <p>Shrink images to a target file size or quality — files never leave your browser.</p>
           <span class="card-cta">Open tool →</span>
         </a>
-        <a class="tool-card" href="tools/heic-to-jpg/index.html">
+        <a class="tool-card" href="tools/heic-to-jpg/index.html" data-category="images-pdf">
           <h3>HEIC to JPG</h3>
           <p>Convert iPhone HEIC photos to JPG — batch conversion, entirely in your browser.</p>
           <span class="card-cta">Open tool →</span>
         </a>
-        <a class="tool-card" href="tools/image-to-pdf/index.html">
+        <a class="tool-card" href="tools/image-to-pdf/index.html" data-category="images-pdf">
           <h3>Image to PDF</h3>
           <p>Turn images into a single PDF document — Letter, A4 or fit-to-image.</p>
           <span class="card-cta">Open tool →</span>
         </a>
-      <a class="tool-card" data-tool-name="percentage calculator percent of change increase decrease" href="tools/percentage-calculator/index.html">
+      <a class="tool-card" data-tool-name="percentage calculator percent of change increase decrease" href="tools/percentage-calculator/index.html" data-category="calculators">
         <h3>Percentage Calculator</h3>
         <p>X% of Y, what percent one number is of another, and percent increase or decrease.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="age calculator how old am i birthday years months days" href="tools/age-calculator/index.html">
+      <a class="tool-card" data-tool-name="age calculator how old am i birthday years months days" href="tools/age-calculator/index.html" data-category="calculators">
         <h3>Age Calculator</h3>
         <p>Exact age in years, months and days, total days lived, and your next birthday countdown.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="date calculator days between dates add subtract days from today" href="tools/date-calculator/index.html">
+      <a class="tool-card" data-tool-name="date calculator days between dates add subtract days from today" href="tools/date-calculator/index.html" data-category="calculators">
         <h3>Date Calculator</h3>
         <p>Days between two dates, or add/subtract days, weeks, months and years from any date.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="discount calculator sale price savings tax percent off" href="tools/discount-calculator/index.html">
+      <a class="tool-card" data-tool-name="discount calculator sale price savings tax percent off" href="tools/discount-calculator/index.html" data-category="calculators">
         <h3>Discount Calculator</h3>
         <p>Stacked discounts, sales tax, and sale-price to percent-off conversion.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="time duration calculator hours between times overnight shift timesheet" href="tools/time-duration-calculator/index.html">
+      <a class="tool-card" data-tool-name="time duration calculator hours between times overnight shift timesheet" href="tools/time-duration-calculator/index.html" data-category="calculators">
         <h3>Time Duration Calculator</h3>
         <p>Hours between two times (overnight shifts supported) and timesheet totals.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="salary calculator hourly annual pay wage overtime" href="tools/salary-calculator/index.html">
+      <a class="tool-card" data-tool-name="salary calculator hourly annual pay wage overtime" href="tools/salary-calculator/index.html" data-category="calculators">
         <h3>Salary Calculator</h3>
         <p>Convert annual salary to hourly, weekly or monthly pay — and back — with overtime estimates.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="compound interest calculator savings growth investment monthly" href="tools/compound-interest-calculator/index.html">
+      <a class="tool-card" data-tool-name="compound interest calculator savings growth investment monthly" href="tools/compound-interest-calculator/index.html" data-category="calculators">
         <h3>Compound Interest Calculator</h3>
         <p>Project savings growth with compounding and monthly contributions, plus a growth table.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="qr code generator wifi url text email sms png svg" href="tools/qr-code-generator/index.html">
+      <a class="tool-card" data-tool-name="qr code generator wifi url text email sms png svg" href="tools/qr-code-generator/index.html" data-category="utilities" data-popular="true">
         <h3>QR Code Generator</h3>
         <p>Make QR codes for links, text, Wi-Fi, email, phone and SMS — static codes, PNG or SVG download, no sign-up.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="pdf splitter split extract pages ranges" href="tools/pdf-splitter/index.html">
+      <a class="tool-card" data-tool-name="pdf splitter split extract pages ranges" href="tools/pdf-splitter/index.html" data-category="images-pdf" data-popular="true">
         <h3>PDF Splitter</h3>
         <p>Extract pages or ranges from a PDF, or split every page into its own file — no upload, runs in your browser.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="youtube video download guide download own video studio takeout premium offline" href="tools/youtube-video-download/index.html">
+      <a class="tool-card" data-tool-name="youtube video download guide download own video studio takeout premium offline" href="tools/youtube-video-download/index.html" data-category="utilities">
         <h3>YouTube Video Download Guide</h3>
         <p>Download your own YouTube video the official way — Studio, Takeout and Premium offline viewing. No ripper, just the lawful options.</p>
         <span class="card-cta">Open guide →</span>
       </a>
+      </div>
+    </section>
+
+
+    <section aria-labelledby="browse-categories">
+      <h2 id="browse-categories">Browse by category</h2>
+      <p class="section-intro">Jump straight to the kind of job you need to do.</p>
+      <div class="category-grid">
+        <article class="category-card">
+          <h3>Text tools</h3>
+          <p>Write, count, convert and compare text without uploading it.</p>
+          <ul>
+            <li><a href="tools/word-counter/index.html">Word Counter</a></li>
+            <li><a href="tools/character-counter/index.html">Character Counter</a></li>
+            <li><a href="tools/case-converter/index.html">Case Converter</a></li>
+            <li><a href="tools/text-diff/index.html">Text Diff</a></li>
+            <li><a href="tools/index.html?category=text">View text tools</a></li>
+          </ul>
+        </article>
+        <article class="category-card">
+          <h3>Images &amp; PDFs</h3>
+          <p>Resize, convert, compress and organize files in your browser.</p>
+          <ul>
+            <li><a href="tools/image-resizer/index.html">Image Resizer</a></li>
+            <li><a href="tools/image-compressor/index.html">Image Compressor</a></li>
+            <li><a href="tools/pdf-splitter/index.html">PDF Splitter</a></li>
+            <li><a href="tools/heic-to-jpg/index.html">HEIC to JPG</a></li>
+            <li><a href="tools/index.html?category=images-pdf">View image &amp; PDF tools</a></li>
+          </ul>
+        </article>
+        <article class="category-card">
+          <h3>Calculators</h3>
+          <p>Everyday percentage, date, salary and interest calculations.</p>
+          <ul>
+            <li><a href="tools/percentage-calculator/index.html">Percentage Calculator</a></li>
+            <li><a href="tools/age-calculator/index.html">Age Calculator</a></li>
+            <li><a href="tools/date-calculator/index.html">Date Calculator</a></li>
+            <li><a href="tools/compound-interest-calculator/index.html">Compound Interest Calculator</a></li>
+            <li><a href="tools/index.html?category=calculators">View calculators</a></li>
+          </ul>
+        </article>
+        <article class="category-card">
+          <h3>Everyday utilities</h3>
+          <p>Practical generators and guides for common jobs.</p>
+          <ul>
+            <li><a href="tools/qr-code-generator/index.html">QR Code Generator</a></li>
+            <li><a href="tools/password-generator/index.html">Password Generator</a></li>
+            <li><a href="tools/holiday-countdown/index.html">Holiday Countdown</a></li>
+            <li><a href="tools/youtube-video-download/index.html">YouTube Video Download Guide</a></li>
+            <li><a href="tools/index.html?category=utilities">View everyday utilities</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="featured-tools">
+      <h2 id="featured-tools">Featured &amp; recent tools</h2>
+      <p class="section-intro">Useful additions and everyday essentials, ready to open.</p>
+      <div class="featured-grid">
+        <a class="tool-card" href="tools/qr-code-generator/index.html" data-category="utilities" data-popular="true">
+          <h3>QR Code Generator</h3>
+          <p>Make QR codes for links, text, Wi-Fi, email, phone and SMS — static codes, PNG or SVG download, no sign-up.</p>
+          <span class="card-cta">Open tool →</span>
+        </a>
+        <a class="tool-card" href="tools/pdf-splitter/index.html" data-category="images-pdf" data-popular="true">
+          <h3>PDF Splitter</h3>
+          <p>Extract pages or ranges from a PDF, or split every page into its own file — no upload, runs in your browser.</p>
+          <span class="card-cta">Open tool →</span>
+        </a>
+        <a class="tool-card" href="tools/text-diff/index.html" data-category="text">
+          <h3>Text Diff</h3>
+          <p>Compare two texts word by word — additions in green, deletions in red, nothing uploaded.</p>
+          <span class="card-cta">Open tool →</span>
+        </a>
+        <a class="tool-card" href="tools/holiday-countdown/index.html" data-category="utilities">
+          <h3>Holiday Countdown</h3>
+          <p>Search any holiday or festival — Christmas, Easter, Diwali, Eid — and get a live days-hours-minutes countdown.</p>
+          <span class="card-cta">Open tool →</span>
+        </a>
+      </div>
+    </section>
+
+    <section aria-labelledby="guides">
+      <h2 id="guides">Guides</h2>
+      <p class="section-intro">Plain-language explainers that sit alongside the tools.</p>
+      <div class="guide-grid">
+        <a class="tool-card" href="guides/how-to-create-a-strong-password/index.html">
+          <h3>How to Create a Strong Password You'll Actually Remember</h3>
+          <p>Length, randomness, passphrases and manager advice for passwords you can actually remember.</p>
+          <span class="card-cta">Read guide →</span>
+        </a>
+        <a class="tool-card" href="guides/days-from-today/index.html">
+          <h3>90 Days From Today: A Complete Guide</h3>
+          <p>Quick counting methods, real use cases, FAQs and a free date calculator.</p>
+          <span class="card-cta">Read guide →</span>
+        </a>
+        <a class="tool-card" href="guides/lorem-ipsum-explained/index.html">
+          <h3>Lorem Ipsum Explained: What Placeholder Text Is and Its Uses</h3>
+          <p>The meaning and history of placeholder text, when to use it and when to avoid it.</p>
+          <span class="card-cta">Read guide →</span>
+        </a>
+        <a class="tool-card" href="guides/uuid-guid-explained/index.html">
+          <h3>UUIDs and GUIDs Explained: Formats, Versions &amp; Uses</h3>
+          <p>The 8-4-4-4-12 format, versions, collision odds and when to use UUIDs.</p>
+          <span class="card-cta">Read guide →</span>
+        </a>
+        <a class="tool-card" href="guides/random-numbers-explained/index.html">
+          <h3>Random Numbers Explained: True vs Pseudorandom</h3>
+          <p>True randomness vs pseudorandom generators, and where good randomness matters.</p>
+          <span class="card-cta">Read guide →</span>
+        </a>
+        <a class="tool-card" href="guides/compare-two-texts/index.html">
+          <h3>How to Compare Two Texts and Spot Every Difference</h3>
+          <p>Line, word and character diffs, how algorithms work and honest limits.</p>
+          <span class="card-cta">Read guide →</span>
+        </a>
+      </div>
+    </section>
+
+    <section aria-labelledby="trust-heading">
+      <h2 id="trust-heading">Private by design</h2>
+      <p class="section-intro">MaxTools is built around browser-based processing. Read the <a href="privacy.html">privacy policy</a> for the details.</p>
+      <div class="trust-grid">
+        <article class="trust-card">
+          <h3>Runs in your browser</h3>
+          <p>Tool processing happens on your device with JavaScript; your text and files are not uploaded for processing.</p>
+        </article>
+        <article class="trust-card">
+          <h3>No sign-up</h3>
+          <p>Open a tool and start using it — no account or email address is required.</p>
+        </article>
+        <article class="trust-card">
+          <h3>Free to use</h3>
+          <p>Every tool on MaxTools is free to use with no account and no signup.</p>
+        </article>
       </div>
     </section>
 
@@ -223,6 +389,8 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="tools/index.html">All Tools</a></li>
+          <li><a href="index.html#browse-categories">Categories</a></li>
+          <li><a href="index.html#guides">Guides</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="privacy.html">Privacy</a></li>

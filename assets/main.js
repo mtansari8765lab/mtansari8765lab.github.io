@@ -1,4 +1,4 @@
-/* QuickTools — shared site JS (no frameworks, no external requests). */
+/* MaxTools — shared site JS. The window.QuickTools namespace is preserved for existing tool wiring. */
 (function () {
   'use strict';
 
@@ -11,6 +11,41 @@
       var open = nav.classList.toggle('open');
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+    Array.prototype.forEach.call(nav.querySelectorAll('a'), function (link) {
+      link.addEventListener('click', function () {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // Theme toggle: dark by default, light only when the visitor chooses it.
+  function currentTheme() {
+    return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  }
+
+  function syncThemeToggle() {
+    var btn = document.querySelector('.theme-toggle');
+    if (!btn) return;
+    var light = currentTheme() === 'light';
+    btn.setAttribute('aria-pressed', light ? 'true' : 'false');
+    btn.setAttribute('aria-label', light ? 'Switch to dark theme' : 'Switch to light theme');
+    var label = btn.querySelector('.theme-toggle-label');
+    if (label) label.textContent = light ? 'Dark' : 'Light';
+    var icon = btn.querySelector('.theme-toggle-icon');
+    if (icon) icon.textContent = light ? '☾' : '☀';
+  }
+
+  function initTheme() {
+    var btn = document.querySelector('.theme-toggle');
+    syncThemeToggle();
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var next = currentTheme() === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('maxtools-theme', next); } catch (e) {}
+      syncThemeToggle();
+    });
   }
 
   // Footer year
@@ -19,22 +54,59 @@
     if (el) el.textContent = String(new Date().getFullYear());
   }
 
-  // Tools directory live filter
+  // Tools directory live filter, with optional ?q= and ?category= entry points.
   function initToolFilter() {
     var input = document.getElementById('tool-filter');
     if (!input) return;
     var cards = Array.prototype.slice.call(document.querySelectorAll('[data-tool-name]'));
     var empty = document.getElementById('filter-empty');
-    input.addEventListener('input', function () {
+    var category = '';
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var initialQuery = params.get('q') || '';
+      category = (params.get('category') || '').toLowerCase();
+      if (initialQuery) input.value = initialQuery;
+    } catch (e) {}
+
+    function applyFilter() {
       var q = input.value.trim().toLowerCase();
       var visible = 0;
       cards.forEach(function (card) {
-        var hay = (card.getAttribute('data-tool-name') + ' ' + card.textContent).toLowerCase();
-        var show = q === '' || hay.indexOf(q) !== -1;
+        var hay = ((card.getAttribute('data-tool-name') || '') + ' ' +
+          (card.getAttribute('data-category') || '') + ' ' + card.textContent).toLowerCase();
+        var categoryMatch = category === '' || card.getAttribute('data-category') === category;
+        var show = categoryMatch && (q === '' || hay.indexOf(q) !== -1);
         card.style.display = show ? '' : 'none';
         if (show) visible++;
       });
       if (empty) empty.style.display = visible === 0 ? '' : 'none';
+    }
+
+    input.addEventListener('input', applyFilter);
+    applyFilter();
+  }
+
+  // Homepage search filters the homepage library while typing; submitting opens the directory.
+  function initHomeSearch() {
+    var input = document.getElementById('home-tool-search');
+    if (!input) return;
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.home-tool-grid .tool-card'));
+    var status = document.getElementById('home-search-status');
+    input.addEventListener('input', function () {
+      var q = input.value.trim().toLowerCase();
+      var visible = 0;
+      cards.forEach(function (card) {
+        var hay = ((card.getAttribute('data-tool-name') || '') + ' ' +
+          (card.getAttribute('data-category') || '') + ' ' + card.textContent).toLowerCase();
+        var show = q === '' || hay.indexOf(q) !== -1;
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      if (!status) return;
+      if (q === '') status.textContent = '';
+      else if (visible === 0) status.textContent = 'No tools match that search yet. Try a shorter word.';
+      else if (visible === 1) status.textContent = '1 tool matches below.';
+      else status.textContent = visible + ' tools match below.';
     });
   }
 
@@ -98,8 +170,10 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     initNav();
+    initTheme();
     initYear();
     initToolFilter();
+    initHomeSearch();
   });
 
   window.QuickTools = window.QuickTools || {};

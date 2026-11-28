@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <script>(function(){try{var t=localStorage.getItem('maxtools-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
   <title>Strong Random Password Generator — Free &amp; Secure — MaxTools</title>
   <meta name="description" content="Generate strong random passwords (4–64 characters) with a secure generator using WebCrypto. Custom length, symbols, no ambiguous characters option.">
   <link rel="canonical" href="https://mtansari8765lab.github.io/tools/password-generator/">
@@ -95,6 +99,7 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="../../index.html" aria-label="MaxTools home">
@@ -104,16 +109,25 @@
       <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
       <nav class="main-nav" id="main-nav" aria-label="Main navigation">
         <ul>
-          <li><a href="../../index.html">Home</a></li>
-          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../tools/index.html">Tools</a></li>
+          <li><a href="../../index.html#browse-categories">Categories</a></li>
+          <li><a href="../../index.html#guides">Guides</a></li>
           <li><a href="../../about.html">About</a></li>
           <li><a href="../../contact.html">Contact</a></li>
         </ul>
       </nav>
+      <div class="header-actions">
+        <form class="site-search" action="../../tools/index.html" method="get" role="search" aria-label="Site search">
+          <label class="visually-hidden" for="site-search-input">Search tools</label>
+          <input type="search" id="site-search-input" name="q" placeholder="Search tools" autocomplete="off">
+          <button type="submit">Search</button>
+        </form>
+        <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme"><span class="theme-toggle-icon" aria-hidden="true">☀</span><span class="theme-toggle-label">Light</span></button>
+      </div>
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="main-content" tabindex="-1">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
       <a href="../../index.html">Home</a> › <a href="../index.html">Tools</a> › <span aria-current="page">Password Generator</span>
     </nav>
@@ -213,9 +227,9 @@
     <section class="related-tools" aria-labelledby="related">
       <h2 id="related">Related tools</h2>
       <div class="tool-grid">
-        <a class="tool-card" href="../word-counter/index.html"><h3>Word Counter</h3><p>Words, sentences, paragraphs and reading time estimates.</p><span class="card-cta">Open tool →</span></a>
-        <a class="tool-card" href="../character-counter/index.html"><h3>Character Counter</h3><p>Characters, words, lines and UTF-8 bytes — live.</p><span class="card-cta">Open tool →</span></a>
-        <a class="tool-card" href="../text-cleaner/index.html"><h3>Text Cleaner</h3><p>Remove line breaks, duplicates and extra whitespace.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../word-counter/index.html" data-category="text"><h3>Word Counter</h3><p>Words, sentences, paragraphs and reading time estimates.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../character-counter/index.html" data-category="text"><h3>Character Counter</h3><p>Characters, words, lines and UTF-8 bytes — live.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../text-cleaner/index.html" data-category="text"><h3>Text Cleaner</h3><p>Remove line breaks, duplicates and extra whitespace.</p><span class="card-cta">Open tool →</span></a>
         <a class="tool-card" href="../../guides/random-numbers-explained/index.html"><h3>Random Numbers Explained</h3><p>True randomness vs pseudorandom generators — and why it matters.</p><span class="card-cta">Read guide →</span></a>
         <a class="tool-card" href="../../guides/uuid-guid-explained/index.html"><h3>UUIDs and GUIDs Explained</h3><p>The 8-4-4-4-12 format, UUID vs GUID, versions 1/4/5/7 and collision odds.</p><span class="card-cta">Read guide →</span></a>
       </div>
@@ -233,6 +247,8 @@
         <ul>
           <li><a href="../../index.html">Home</a></li>
           <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../index.html#browse-categories">Categories</a></li>
+          <li><a href="../../index.html#guides">Guides</a></li>
           <li><a href="../../about.html">About</a></li>
           <li><a href="../../contact.html">Contact</a></li>
           <li><a href="../../privacy.html">Privacy</a></li>

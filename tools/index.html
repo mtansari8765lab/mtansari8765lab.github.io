@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <script>(function(){try{var t=localStorage.getItem('maxtools-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
   <title>All Free Online Tools — MaxTools</title>
   <meta name="description" content="Browse every free MaxTools utility: word counter, character counter, case converter, text cleaner and password generator. All run in your browser, no signup.">
   <link rel="canonical" href="https://mtansari8765lab.github.io/tools/">
@@ -31,6 +35,7 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="../index.html" aria-label="MaxTools home">
@@ -40,16 +45,25 @@
       <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
       <nav class="main-nav" id="main-nav" aria-label="Main navigation">
         <ul>
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="index.html" aria-current="page">All Tools</a></li>
+          <li><a href="../tools/index.html" aria-current="page">Tools</a></li>
+          <li><a href="../index.html#browse-categories">Categories</a></li>
+          <li><a href="../index.html#guides">Guides</a></li>
           <li><a href="../about.html">About</a></li>
           <li><a href="../contact.html">Contact</a></li>
         </ul>
       </nav>
+      <div class="header-actions">
+        <form class="site-search" action="../tools/index.html" method="get" role="search" aria-label="Site search">
+          <label class="visually-hidden" for="site-search-input">Search tools</label>
+          <input type="search" id="site-search-input" name="q" placeholder="Search tools" autocomplete="off">
+          <button type="submit">Search</button>
+        </form>
+        <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme"><span class="theme-toggle-icon" aria-hidden="true">☀</span><span class="theme-toggle-label">Light</span></button>
+      </div>
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="main-content" tabindex="-1">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
       <a href="../index.html">Home</a> › <span aria-current="page">All Tools</span>
     </nav>
@@ -58,198 +72,206 @@
 
     <label for="tool-filter" style="font-weight:600">Filter tools</label>
     <input type="text" id="tool-filter" class="filter-input" placeholder="Type to filter, e.g. &quot;password&quot;…" autocomplete="off">
+    <nav class="category-chips" id="categories" aria-label="Browse tools by category">
+      <a href="index.html">All tools</a>
+      <a href="index.html?category=text">Text tools</a>
+      <a href="index.html?category=images-pdf">Images &amp; PDFs</a>
+      <a href="index.html?category=calculators">Calculators</a>
+      <a href="index.html?category=utilities">Everyday utilities</a>
+    </nav>
 
     <div class="tool-grid" id="tool-grid">
-      <a class="tool-card" data-tool-name="word counter words characters sentences paragraphs reading time" href="word-counter/index.html">
+      <a class="tool-card" data-tool-name="word counter words characters sentences paragraphs reading time" href="word-counter/index.html" data-category="text">
         <h3>Word Counter</h3>
         <p>Count words, characters, sentences and paragraphs as you type, with reading and speaking time estimates.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="character counter characters bytes lines words utf-8" href="character-counter/index.html">
+      <a class="tool-card" data-tool-name="character counter characters bytes lines words utf-8" href="character-counter/index.html" data-category="text">
         <h3>Character Counter</h3>
         <p>Live character, word, line and UTF-8 byte counts — handy for posts, forms and meta descriptions.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="case converter uppercase lowercase title sentence capitalised text" href="case-converter/index.html">
+      <a class="tool-card" data-tool-name="case converter uppercase lowercase title sentence capitalised text" href="case-converter/index.html" data-category="text">
         <h3>Case Converter</h3>
         <p>Switch text between UPPERCASE, lowercase, Title Case, Sentence case and more in one click.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="text cleaner remove line breaks duplicate lines whitespace html strip" href="text-cleaner/index.html">
+      <a class="tool-card" data-tool-name="text cleaner remove line breaks duplicate lines whitespace html strip" href="text-cleaner/index.html" data-category="text">
         <h3>Text Cleaner</h3>
         <p>Remove line breaks, empty lines and duplicate lines, collapse whitespace and strip HTML tags.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="text summarizer summarize shorten extractive sentences tl;dr" href="text-summarizer/index.html">
+      <a class="tool-card" data-tool-name="text summarizer summarize shorten extractive sentences tl;dr" href="text-summarizer/index.html" data-category="text">
         <h3>Text Summarizer</h3>
         <p>Shorten any text to its most important sentences — extractive, honest, no AI claims.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="text diff compare two texts differences checker word added removed" href="text-diff/index.html">
+      <a class="tool-card" data-tool-name="text diff compare two texts differences checker word added removed" href="text-diff/index.html" data-category="text">
         <h3>Text Diff</h3>
         <p>Compare two texts word by word — additions in green, deletions in red, nothing uploaded.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="oz to lbs converter ounces pounds weight convert" href="../oz-to-lbs/index.html">
-        <h3>Oz to Lbs Converter</h3>
-        <p>Convert ounces to pounds and back — formula, examples and a quick table.</p>
-        <span class="card-cta">Open tool →</span>
-      </a>
-      <a class="tool-card" data-tool-name="kg to lbs kilograms pounds weight converter calculator" href="../kg-to-lbs/index.html">
-        <h3>Kg to Lbs Converter</h3>
-        <p>Convert kilograms to pounds and back — formula, examples and a quick table.</p>
-        <span class="card-cta">Open tool →</span>
-      </a>
-      <a class="tool-card" data-tool-name="lbs to kg pounds kilograms weight converter calculator" href="../lbs-to-kg/index.html">
-        <h3>Lbs to Kg Converter</h3>
-        <p>Convert pounds to kilograms and back — formula, examples and a quick table.</p>
-        <span class="card-cta">Open tool →</span>
-      </a>
-      <a class="tool-card" data-tool-name="lbs to oz pounds ounces weight converter calculator" href="../lbs-to-oz/index.html">
-        <h3>Lbs to Oz Converter</h3>
-        <p>Convert pounds to ounces and back — formula, examples and a quick table.</p>
-        <span class="card-cta">Open tool →</span>
-      </a>
-      <a class="tool-card" data-tool-name="grams to ounces grams ounces weight converter calculator" href="../grams-to-ounces/index.html">
-        <h3>Grams to Ounces Converter</h3>
-        <p>Convert grams to ounces and back — formula, examples and a quick table.</p>
-        <span class="card-cta">Open tool →</span>
-      </a>
-      <a class="tool-card" data-tool-name="ounces to grams ounces grams weight converter calculator" href="../ounces-to-grams/index.html">
-        <h3>Ounces to Grams Converter</h3>
-        <p>Convert ounces to grams and back — formula, examples and a quick table.</p>
-        <span class="card-cta">Open tool →</span>
-      </a>
-      <a class="tool-card" data-tool-name="kg to oz kilograms ounces weight converter calculator" href="../kg-to-oz/index.html">
-        <h3>Kg to Oz Converter</h3>
-        <p>Convert kilograms to ounces and back — formula, examples and a quick table.</p>
-        <span class="card-cta">Open tool →</span>
-      </a>
-      <a class="tool-card" data-tool-name="oz to kg ounces kilograms weight converter calculator" href="../oz-to-kg/index.html">
-        <h3>Oz to Kg Converter</h3>
-        <p>Convert ounces to kilograms and back — formula, examples and a quick table.</p>
-        <span class="card-cta">Open tool →</span>
-      </a>
-      <a class="tool-card" data-tool-name="grams to lbs grams pounds weight converter calculator" href="../grams-to-lbs/index.html">
-        <h3>Grams to Lbs Converter</h3>
-        <p>Convert grams to pounds and back — formula, examples and a quick table.</p>
-        <span class="card-cta">Open tool →</span>
-      </a>
-      <a class="tool-card" data-tool-name="lbs to grams pounds grams weight converter calculator" href="../lbs-to-grams/index.html">
-        <h3>Lbs to Grams Converter</h3>
-        <p>Convert pounds to grams and back — formula, examples and a quick table.</p>
-        <span class="card-cta">Open tool →</span>
-      </a>
-      <a class="tool-card" data-tool-name="stone to kg stone kilograms weight converter calculator" href="../stone-to-kg/index.html">
-        <h3>Stone to Kg Converter</h3>
-        <p>Convert stone to kilograms and back — formula, examples and a quick table.</p>
-        <span class="card-cta">Open tool →</span>
-      </a>
-      <a class="tool-card" data-tool-name="kg to stone kilograms stone weight converter calculator" href="../kg-to-stone/index.html">
-        <h3>Kg to Stone Converter</h3>
-        <p>Convert kilograms to stone and back — formula, examples and a quick table.</p>
-        <span class="card-cta">Open tool →</span>
-      </a>
-      <a class="tool-card" data-tool-name="how many ounces in a pint pints to ounces fluid ounces volume converter" href="../how-many-ounces-in-a-pint/index.html">
-        <h3>How Many Ounces in a Pint?</h3>
-        <p>Convert pints to fluid ounces — US liquid pint 16 fl oz, imperial pint 20 fl oz.</p>
-        <span class="card-cta">Open tool →</span>
-      </a>
-      <a class="tool-card" data-tool-name="holiday countdown how many days until christmas easter diwali eid halloween thanksgiving festival days left" href="holiday-countdown/index.html">
+      <a class="tool-card" data-tool-name="holiday countdown how many days until christmas easter diwali eid halloween thanksgiving festival days left" href="holiday-countdown/index.html" data-category="utilities">
         <h3>Holiday Countdown</h3>
         <p>Search any holiday or festival — Christmas, Easter, Diwali, Eid — and get a live days-hours-minutes countdown.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="password generator strong random secure crypto" href="password-generator/index.html">
+      <a class="tool-card" data-tool-name="password generator strong random secure crypto" href="password-generator/index.html" data-category="utilities">
         <h3>Password Generator</h3>
         <p>Create strong random passwords with secure WebCrypto randomness — custom length and character sets.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="image resizer resize photo dimensions pixels width height percent" href="image-resizer/index.html">
+      <a class="tool-card" data-tool-name="image resizer resize photo dimensions pixels width height percent" href="image-resizer/index.html" data-category="images-pdf">
         <h3>Image Resizer</h3>
         <p>Resize photos by width, height, percentage or longest side — aspect ratio preserved, no upload.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="jpg to png converter image format webp jpeg" href="image-converter/index.html">
+      <a class="tool-card" data-tool-name="jpg to png converter image format webp jpeg" href="image-converter/index.html" data-category="images-pdf">
         <h3>JPG to PNG Converter</h3>
         <p>Convert images between JPG, PNG and WebP — batch conversion, 100% in your browser.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="image compressor compress reduce file size kb quality" href="image-compressor/index.html">
+      <a class="tool-card" data-tool-name="image compressor compress reduce file size kb quality" href="image-compressor/index.html" data-category="images-pdf">
         <h3>Image Compressor</h3>
         <p>Shrink images by quality or to an exact target size (e.g. under 100KB) — no upload.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="image to pdf png to pdf jpg to pdf converter document" href="image-to-pdf/index.html">
+      <a class="tool-card" data-tool-name="image to pdf png to pdf jpg to pdf converter document" href="image-to-pdf/index.html" data-category="images-pdf">
         <h3>Image to PDF</h3>
         <p>Turn JPG, PNG or WebP images into a single PDF — Letter, A4 or fit-to-image pages.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="merge pdf combine join documents" href="pdf-merger/index.html">
+      <a class="tool-card" data-tool-name="merge pdf combine join documents" href="pdf-merger/index.html" data-category="images-pdf">
         <h3>PDF Merger</h3>
         <p>Combine multiple PDFs into one document — reorder files, merge locally, no upload.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="split pdf extract pages ranges burst" href="pdf-splitter/index.html">
+      <a class="tool-card" data-tool-name="split pdf extract pages ranges burst" href="pdf-splitter/index.html" data-category="images-pdf">
         <h3>PDF Splitter</h3>
         <p>Extract pages or ranges from a PDF, or split every page into its own file — no upload, runs in your browser.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="qr code generator wifi url text email sms png svg" href="qr-code-generator/index.html">
+      <a class="tool-card" data-tool-name="qr code generator wifi url text email sms png svg" href="qr-code-generator/index.html" data-category="utilities">
         <h3>QR Code Generator</h3>
         <p>Make QR codes for links, text, Wi-Fi, email, phone and SMS — static codes, PNG or SVG download, no sign-up.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="favicon generator png to ico icon" href="favicon-generator/index.html">
+      <a class="tool-card" data-tool-name="favicon generator png to ico icon" href="favicon-generator/index.html" data-category="images-pdf">
         <h3>Favicon Generator</h3>
         <p>Turn any image into a multi-size favicon.ico plus Apple touch and PWA icons, with the HTML snippet.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="heic to jpg converter iphone photo heif" href="heic-to-jpg/index.html">
+      <a class="tool-card" data-tool-name="heic to jpg converter iphone photo heif" href="heic-to-jpg/index.html" data-category="images-pdf">
         <h3>HEIC to JPG</h3>
         <p>Convert iPhone HEIC photos to JPG — batch conversion, entirely in your browser.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="percentage calculator percent of change increase decrease" href="percentage-calculator/index.html">
+      <a class="tool-card" data-tool-name="percentage calculator percent of change increase decrease" href="percentage-calculator/index.html" data-category="calculators">
         <h3>Percentage Calculator</h3>
         <p>X% of Y, what percent one number is of another, and percent increase or decrease.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="age calculator how old am i birthday years months days" href="age-calculator/index.html">
+      <a class="tool-card" data-tool-name="age calculator how old am i birthday years months days" href="age-calculator/index.html" data-category="calculators">
         <h3>Age Calculator</h3>
         <p>Exact age in years, months and days, total days lived, and your next birthday countdown.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="date calculator days between dates add subtract days from today" href="date-calculator/index.html">
+      <a class="tool-card" data-tool-name="date calculator days between dates add subtract days from today" href="date-calculator/index.html" data-category="calculators">
         <h3>Date Calculator</h3>
         <p>Days between two dates, or add/subtract days, weeks, months and years from any date.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="discount calculator sale price savings tax percent off" href="discount-calculator/index.html">
+      <a class="tool-card" data-tool-name="discount calculator sale price savings tax percent off" href="discount-calculator/index.html" data-category="calculators">
         <h3>Discount Calculator</h3>
         <p>Stacked discounts, sales tax, and sale-price to percent-off conversion.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="time duration calculator hours between times overnight shift timesheet" href="time-duration-calculator/index.html">
+      <a class="tool-card" data-tool-name="time duration calculator hours between times overnight shift timesheet" href="time-duration-calculator/index.html" data-category="calculators">
         <h3>Time Duration Calculator</h3>
         <p>Hours between two times (overnight shifts supported) and timesheet totals.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="salary calculator hourly annual pay wage overtime" href="salary-calculator/index.html">
+      <a class="tool-card" data-tool-name="salary calculator hourly annual pay wage overtime" href="salary-calculator/index.html" data-category="calculators">
         <h3>Salary Calculator</h3>
         <p>Convert annual salary to hourly, weekly or monthly pay — and back — with overtime estimates.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="compound interest calculator savings growth investment monthly" href="compound-interest-calculator/index.html">
+      <a class="tool-card" data-tool-name="compound interest calculator savings growth investment monthly" href="compound-interest-calculator/index.html" data-category="calculators">
         <h3>Compound Interest Calculator</h3>
         <p>Project savings growth with compounding and monthly contributions, plus a growth table.</p>
         <span class="card-cta">Open tool →</span>
       </a>
-      <a class="tool-card" data-tool-name="youtube video download guide download own video studio takeout premium offline" href="youtube-video-download/index.html">
+      <a class="tool-card" data-tool-name="youtube video download guide download own video studio takeout premium offline" href="youtube-video-download/index.html" data-category="utilities">
         <h3>YouTube Video Download Guide</h3>
         <p>Download your own YouTube video the official way — Studio, Takeout and Premium offline viewing. No ripper, just the lawful options.</p>
         <span class="card-cta">Open guide →</span>
       </a>
+      <a class="tool-card" data-tool-name="grams to lbs grams pounds weight converter calculator" href="../grams-to-lbs/index.html" data-category="calculators">
+        <h3>Grams to Lbs Converter</h3>
+        <p>Convert grams to pounds and back — formula, examples and a quick table.</p>
+        <span class="card-cta">Open tool →</span>
+      </a>
+      <a class="tool-card" data-tool-name="grams to ounces grams ounces weight converter calculator" href="../grams-to-ounces/index.html" data-category="calculators">
+        <h3>Grams to Ounces Converter</h3>
+        <p>Convert grams to ounces and back — formula, examples and a quick table.</p>
+        <span class="card-cta">Open tool →</span>
+      </a>
+      <a class="tool-card" data-tool-name="how many ounces in a pint pints to ounces fluid ounces volume converter" href="../how-many-ounces-in-a-pint/index.html" data-category="calculators">
+        <h3>How Many Ounces in a Pint?</h3>
+        <p>Convert pints to fluid ounces — US liquid pint 16 fl oz, imperial pint 20 fl oz.</p>
+        <span class="card-cta">Open tool →</span>
+      </a>
+      <a class="tool-card" data-tool-name="kg to lbs kilograms pounds weight converter calculator" href="../kg-to-lbs/index.html" data-category="calculators">
+        <h3>Kg to Lbs Converter</h3>
+        <p>Convert kilograms to pounds and back — formula, examples and a quick table.</p>
+        <span class="card-cta">Open tool →</span>
+      </a>
+      <a class="tool-card" data-tool-name="kg to oz kilograms ounces weight converter calculator" href="../kg-to-oz/index.html" data-category="calculators">
+        <h3>Kg to Oz Converter</h3>
+        <p>Convert kilograms to ounces and back — formula, examples and a quick table.</p>
+        <span class="card-cta">Open tool →</span>
+      </a>
+      <a class="tool-card" data-tool-name="kg to stone kilograms stone weight converter calculator" href="../kg-to-stone/index.html" data-category="calculators">
+        <h3>Kg to Stone Converter</h3>
+        <p>Convert kilograms to stone and back — formula, examples and a quick table.</p>
+        <span class="card-cta">Open tool →</span>
+      </a>
+      <a class="tool-card" data-tool-name="lbs to grams pounds grams weight converter calculator" href="../lbs-to-grams/index.html" data-category="calculators">
+        <h3>Lbs to Grams Converter</h3>
+        <p>Convert pounds to grams and back — formula, examples and a quick table.</p>
+        <span class="card-cta">Open tool →</span>
+      </a>
+      <a class="tool-card" data-tool-name="lbs to kg pounds kilograms weight converter calculator" href="../lbs-to-kg/index.html" data-category="calculators">
+        <h3>Lbs to Kg Converter</h3>
+        <p>Convert pounds to kilograms and back — formula, examples and a quick table.</p>
+        <span class="card-cta">Open tool →</span>
+      </a>
+      <a class="tool-card" data-tool-name="lbs to oz pounds ounces weight converter calculator" href="../lbs-to-oz/index.html" data-category="calculators">
+        <h3>Lbs to Oz Converter</h3>
+        <p>Convert pounds to ounces and back — formula, examples and a quick table.</p>
+        <span class="card-cta">Open tool →</span>
+      </a>
+      <a class="tool-card" data-tool-name="ounces to grams ounces grams weight converter calculator" href="../ounces-to-grams/index.html" data-category="calculators">
+        <h3>Ounces to Grams Converter</h3>
+        <p>Convert ounces to grams and back — formula, examples and a quick table.</p>
+        <span class="card-cta">Open tool →</span>
+      </a>
+      <a class="tool-card" data-tool-name="oz to kg ounces kilograms weight converter calculator" href="../oz-to-kg/index.html" data-category="calculators">
+        <h3>Oz to Kg Converter</h3>
+        <p>Convert ounces to kilograms and back — formula, examples and a quick table.</p>
+        <span class="card-cta">Open tool →</span>
+      </a>
+      <a class="tool-card" data-tool-name="oz to lbs converter ounces pounds weight convert" href="../oz-to-lbs/index.html" data-category="calculators">
+        <h3>Oz to Lbs Converter</h3>
+        <p>Convert ounces to pounds and back — formula, examples and a quick table.</p>
+        <span class="card-cta">Open tool →</span>
+      </a>
+      <a class="tool-card" data-tool-name="stone to kg stone kilograms weight converter calculator" href="../stone-to-kg/index.html" data-category="calculators">
+        <h3>Stone to Kg Converter</h3>
+        <p>Convert stone to kilograms and back — formula, examples and a quick table.</p>
+        <span class="card-cta">Open tool →</span>
+      </a>
+
     </div>
     <p id="filter-empty" style="display:none; color: var(--muted);">No tools match your filter. Try a different search.</p>
   </main>
@@ -260,6 +282,8 @@
         <ul>
           <li><a href="../index.html">Home</a></li>
           <li><a href="index.html">All Tools</a></li>
+          <li><a href="../index.html#browse-categories">Categories</a></li>
+          <li><a href="../index.html#guides">Guides</a></li>
           <li><a href="../about.html">About</a></li>
           <li><a href="../contact.html">Contact</a></li>
           <li><a href="../privacy.html">Privacy</a></li>

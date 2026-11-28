@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <script>(function(){try{var t=localStorage.getItem('maxtools-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
   <title>Text Summarizer Online Free — Extractive Summary in Seconds — MaxTools</title>
   <meta name="description" content="Free extractive text summarizer: paste text and get a shorter version of its most important sentences. No signup, runs in your browser.">
   <link rel="canonical" href="https://mtansari8765lab.github.io/tools/text-summarizer/">
@@ -101,6 +105,7 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="../../index.html" aria-label="MaxTools home">
@@ -110,16 +115,25 @@
       <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
       <nav class="main-nav" id="main-nav" aria-label="Main navigation">
         <ul>
-          <li><a href="../../index.html">Home</a></li>
-          <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../tools/index.html">Tools</a></li>
+          <li><a href="../../index.html#browse-categories">Categories</a></li>
+          <li><a href="../../index.html#guides">Guides</a></li>
           <li><a href="../../about.html">About</a></li>
           <li><a href="../../contact.html">Contact</a></li>
         </ul>
       </nav>
+      <div class="header-actions">
+        <form class="site-search" action="../../tools/index.html" method="get" role="search" aria-label="Site search">
+          <label class="visually-hidden" for="site-search-input">Search tools</label>
+          <input type="search" id="site-search-input" name="q" placeholder="Search tools" autocomplete="off">
+          <button type="submit">Search</button>
+        </form>
+        <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme"><span class="theme-toggle-icon" aria-hidden="true">☀</span><span class="theme-toggle-label">Light</span></button>
+      </div>
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="main-content" tabindex="-1">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
       <a href="../../index.html">Home</a> › <a href="../index.html">Tools</a> › <span aria-current="page">Text Summarizer</span>
     </nav>
@@ -239,9 +253,9 @@
     <section class="related-tools" aria-labelledby="related">
       <h2 id="related">Related tools</h2>
       <div class="tool-grid">
-        <a class="tool-card" href="../word-counter/index.html"><h3>Word Counter</h3><p>Words, sentences, paragraphs and reading time estimates.</p><span class="card-cta">Open tool →</span></a>
-        <a class="tool-card" href="../text-cleaner/index.html"><h3>Text Cleaner</h3><p>Remove line breaks, duplicates and extra whitespace.</p><span class="card-cta">Open tool →</span></a>
-        <a class="tool-card" href="../case-converter/index.html"><h3>Case Converter</h3><p>UPPERCASE, lowercase, Title Case and more in one click.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../word-counter/index.html" data-category="text"><h3>Word Counter</h3><p>Words, sentences, paragraphs and reading time estimates.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../text-cleaner/index.html" data-category="text"><h3>Text Cleaner</h3><p>Remove line breaks, duplicates and extra whitespace.</p><span class="card-cta">Open tool →</span></a>
+        <a class="tool-card" href="../case-converter/index.html" data-category="text"><h3>Case Converter</h3><p>UPPERCASE, lowercase, Title Case and more in one click.</p><span class="card-cta">Open tool →</span></a>
       </div>
     </section>
   </main>
@@ -252,6 +266,8 @@
         <ul>
           <li><a href="../../index.html">Home</a></li>
           <li><a href="../index.html">All Tools</a></li>
+          <li><a href="../../index.html#browse-categories">Categories</a></li>
+          <li><a href="../../index.html#guides">Guides</a></li>
           <li><a href="../../about.html">About</a></li>
           <li><a href="../../contact.html">Contact</a></li>
           <li><a href="../../privacy.html">Privacy</a></li>
